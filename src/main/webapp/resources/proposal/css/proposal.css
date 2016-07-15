@@ -1,0 +1,127 @@
+/*
+	proposal.jsp
+*/
+
+@CHARSET "UTF-8";
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+#notice {
+	margin: 20px 0px;
+	color: #ff3399;
+}
+
+form input, textarea {
+	margin: 10px 0px;
+}
+
+.bs-callout {
+	padding: 0px 20px;
+	margin: 10px 0px 30px 0px;
+	border-left: 1px solid #eee;
+	border-left-width: 5px;
+	border-radius: 3px;
+}
+
+.bs-callout input {
+	margin: 0px;
+}
+
+.bs-callout-primary {
+	border-left-color: #428bca;
+}
+
+.bs-callout-primary h4 {
+	color: #428bca;
+}
+
+
+
+
+.customBtn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 2px solid transparent;
+	border-radius: 4px
+}
+
+
+
+
+.btn-add-reference {
+	color: #333;
+	background-color: #fff;
+	border-color: #428bca;
+}
+
+.btn-add-reference.active, .btn-add-reference.focus, .btn-add-reference:active,
+	.btn-add-reference:focus, .btn-add-reference:hover, .open>.dropdown-toggle.btn-add-reference
+	{
+	color: #333;
+	background-color: #c3daee;
+	border-color: #428bca;
+}
+
+.btn-add-reference.active, .btn-add-reference:active, .open>.dropdown-toggle.btn-add-reference
+	{
+	background-image: none
+}
+
+.btn-add-reference .badge {
+	color: #fff;
+	background-color: #333
+}
+
+
+
+
+.btn-remove-reference {
+	color: #333;
+	background-color: #fff;
+	border-color: #ff0000;
+}
+
+.btn-remove-reference.active, .btn-remove-reference.focus, .btn-remove-reference:active,
+	.btn-remove-reference:focus, .btn-remove-reference:hover, .open>.dropdown-toggle.btn-remove-reference
+	{
+	color: #333;
+	background-color: #ffb3b3;
+	border-color: #ff0000;
+}
+
+.btn-remove-reference.active, .btn-remove-reference:active, .open>.dropdown-toggle.btn-remove-reference
+	{
+	background-image: none
+}
+
+.btn-remove-reference .badge {
+	color: #fff;
+	background-color: #333
+}
+
+
+
+
+.btn-group-lg>.customBtn, .customBtn-lg {
+	padding: 5px 50px;
+	font-size: 18px;
+	line-height: 1.3333333;
+	border-radius: 6px
+}
