@@ -14,7 +14,7 @@ import com.four.myapp.domain.MemberVO;
 
 
 @Repository
-public class MemberDAOImpl implements MemberDAO {
+public class MemberDaoImpl implements MemberDAO {
 	@Inject
 	private SqlSession sqlSession;
 
