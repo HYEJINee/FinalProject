@@ -38,6 +38,7 @@ public class BoardController {
 	// 해당 게시물로 이동
 	@RequestMapping(value="/board/read", method=RequestMethod.GET)
 	public void ReadHandler(@RequestParam("topic_no") int topic_no, Model model) throws SQLException {
+		System.out.println(topic_no);
 		model.addAttribute(service.Read(topic_no));
 	}
 }
