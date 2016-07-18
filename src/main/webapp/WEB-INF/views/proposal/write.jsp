@@ -1,5 +1,16 @@
 <%@ page pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <% session.setAttribute("user_no", 1); %> --%>
+<%-- <%session.removeAttribute("user_no"); %> --%>
 <!DOCTYPE html PUBLIC>
+<c:choose>
+	<c:when test="${empty user_no}">
+		user_no 없음
+	</c:when>
+	<c:otherwise>
+		user_no 있음
+	</c:otherwise>
+</c:choose>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -12,12 +23,13 @@
 <body>
 	<div class="container">
 		<div class="row">
-
 			<!-- 커버 이미지 등록 -->
-			<form action="" method="post">			
-				<div id="coverImg" class="jumbotron">
+			<form id="formCoverImg" action="write.cover" method="post" enctype="multipart/form-data">			
+				<div id="divCoverImg" class="jumbotron col-md-12">
+				<!-- <img alt="" src="/myapp/resources/proposal/img/example.jpg" class="img-responsive"> -->
 					<p class="text-center">
-						<button id="btnCover" type="button" class="btn btn-default">커버 이미지 등록</button>
+						<input type="file" id="coverImgUp" name="coverImgUp" class="hidden">
+						<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
 					</p>
 				</div>
 			</form>
@@ -27,22 +39,20 @@
 				<h5 id="notice" class="text-center">공지 : 안건이 토론주제로 승인 받기 위해서는 글 작성시부터 10일 이내에 20표가 필요합니다.</h5>
 			</div>
 			
-			<form action="" method="post">
-				<div class="col-md-12">
-
+			<form action="write.do" method="post">
 			<!-- 토론 형식 선택 -->			
+				<div class="col-md-12">
 					<div id="debateType" class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 							토론 형식 <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">찬반 토론 </a></li>
-							<li><a href="#">자유 토론 </a></li>
+							<li><a>찬반 토론 </a></li>
+							<li><a>자유 토론 </a></li>
 						</ul>
 					</div>
-			<!-- 토론 형식 선택 -->			
-
 				</div>
+			<!-- 토론 형식 선택 -->			
 
 			<!-- 안건 세부 사항 입력 -->
 				<div class="col-md-12">

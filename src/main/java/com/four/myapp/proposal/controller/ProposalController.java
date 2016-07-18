@@ -12,4 +12,9 @@ public class ProposalController {
 	public String proposalGet() {
 		return "/proposal/write";
 	}
+	
+	@RequestMapping(value="/write.do", method=RequestMethod.POST)
+	public String proposalPost() {
+		return "home";
+	}
 }

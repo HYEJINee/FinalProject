@@ -2,7 +2,26 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
+		<property value="com.mysql.jdbc.Driver" name="driverClassName" />
+		<!-- <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property> -->
+		<property value="jdbc:mysql://127.0.0.1:3306/tawar" name="url" />
+		<property value="root" name="username" />
+		<property value="1111" name="password" />
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource" />
+		<property value="classpath:/mybatis-config.xml" name="configLocation" />
+		<property value="classpath:/**/mappers/**/*Mapper.xml" name="mapperLocations" />
+	</bean>
+
+	<!-- close를 대신해서 사용 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession"
+		destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 </beans>

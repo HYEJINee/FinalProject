@@ -13,6 +13,12 @@ h1, h2, h3, h4, h5, h6 {
 	color: #ff3399;
 }
 
+#coverImg {
+	background-image: url("/myapp/resources/proposal/img/example.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 form input, textarea {
 	margin: 10px 0px;
 }
