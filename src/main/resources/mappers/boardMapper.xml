@@ -3,6 +3,6 @@
 
 <mapper namespace="com.four.mappers.boardMapper">
 	<select id="getList" resultType="com.four.myapp.domain.BoardDto">
-		select * from topic_tbl
+		select topic_tbl.topic_no, user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_pro, debate_con, debate_neut from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no;
 	</select>
 </mapper>

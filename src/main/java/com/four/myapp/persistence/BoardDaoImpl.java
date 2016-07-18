@@ -20,4 +20,9 @@ public class BoardDaoImpl implements BoardDAO{
 		return sqlsession.selectList(NAMESPACE + ".getList");
 	}
 
+	@Override
+	public BoardDto Read(int topic_no) throws SQLException {
+		return sqlsession.selectOne(NAMESPACE + ".Read");
+	}
+
 }

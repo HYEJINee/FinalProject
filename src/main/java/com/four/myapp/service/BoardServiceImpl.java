@@ -19,5 +19,8 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDto> getList() throws SQLException {
 		return dao.getList();
 	}
-
+	
+	public BoardDto Read(int topic_no) throws SQLException {
+		return dao.Read(topic_no);
+	}
 }

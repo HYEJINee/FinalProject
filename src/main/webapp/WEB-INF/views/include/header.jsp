@@ -15,7 +15,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/myapp/">TAWAR</a>
+      <a class="navbar-brand" href="/">TAWAR</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

@@ -7,4 +7,5 @@ import com.four.myapp.domain.BoardDto;
 
 public interface BoardService {
 	public List<BoardDto> getList() throws SQLException;
+	public BoardDto Read(int topic_no) throws SQLException;
 }
