@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.four.mappers.memberMapper">
+
+	<insert id="registMember" parameterType="MemberVO">
+		insert into user_tbl (user_email, user_pw, user_nick) values
+		(#{user_email}, #{user_pw}, #{user_nick})
+	</insert>
+	<update id="modifyMember" parameterType="MemberVO">
+		update user_tbl set user_pw = #{user_pw}, user_nick=#{user_nick}
+	</update>
+	<select id="allMember" resultType="MemberVO">
+		select * from user_tbl
+	</select>
+
+	<select id="readWithPW" resultType="MemberVO">
+		select * from user_tbl
+		where user_email=#{user_id} and user_pw=#{user_pw}
+
+	</select>
+</mapper>
+
