@@ -1,0 +1,3 @@
+required.memberVO.user_email=유저 email를 입력해주세요.
+required.memberVO.user_pw=유저 Password를 입력해주세요.
+login.memberVO = 입력된 유저 ID와 Password가 존재하지 않습니다.

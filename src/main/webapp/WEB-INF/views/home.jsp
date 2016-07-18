@@ -142,6 +142,7 @@
 			location.href = "/board/read?topic_no=" + topic_no;
 		});
 	});
+	
 </script>
 </body>
 </html>

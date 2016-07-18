@@ -27,11 +27,12 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/mypage">아이디</a></li>
-        <li class="dropdown"><a href="/login">로그인</a></li>
+        <li class="dropdown"><a href="/member/login">로그인</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
+
 </html>
