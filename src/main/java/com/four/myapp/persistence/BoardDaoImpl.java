@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.four.myapp.domain.BoardDto;
+import com.four.myapp.domain.MainDto;
 
 @Repository
 public class BoardDaoImpl implements BoardDAO{
@@ -16,12 +16,12 @@ public class BoardDaoImpl implements BoardDAO{
 	private static final String NAMESPACE = "com.four.mappers.boardMapper";
 	
 	@Override
-	public List<BoardDto> getList() throws SQLException {
+	public List<MainDto> getList() throws SQLException {
 		return sqlsession.selectList(NAMESPACE + ".getList");
 	}
 
 	@Override
-	public BoardDto Read(int topic_no) throws SQLException {
+	public MainDto Read(int topic_no) throws SQLException {
 		return sqlsession.selectOne(NAMESPACE + ".Read");
 	}
 

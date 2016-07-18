@@ -1,6 +1,6 @@
 package com.four.myapp.domain;
 
-public class BoardDto {
+public class MainDto {
 	private int topic_no, user_no;
 	private String topic_regdate, topic_endate;
 	private String topic_type, topic_title, topic_short_cont, topic_progress;
