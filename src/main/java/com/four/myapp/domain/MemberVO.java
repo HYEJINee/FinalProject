@@ -47,6 +47,12 @@ public class MemberVO {
 	public void setUser_profile(String user_profile) {
 		this.user_profile = user_profile;
 	}
+	@Override
+	public String toString() {
+		return "MemberVO [user_no=" + user_no + ", user_email=" + user_email + ", user_pw=" + user_pw + ", user_nick="
+				+ user_nick + ", user_lv=" + user_lv + ", user_profile=" + user_profile + "]";
+	}
 	
 	
 }
+

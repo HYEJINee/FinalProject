@@ -1,5 +1,7 @@
 package com.four.myapp.controller;
 
+import java.sql.SQLException;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
@@ -25,10 +28,20 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Inject
 	MemberServiceImpl service;
-	
+	@RequestMapping(value = "/member_regist", method = RequestMethod.GET)
+	public void member_regist() throws Exception {
+	}
+
+	@RequestMapping(value = "/member_regist", method = RequestMethod.POST)
+	public String member_regist(@ModelAttribute MemberVO vo) throws SQLException {
+		service.registMember(vo);
+		logger.info("loginComplete : " + vo.toString());
+		return "home";
+	}
+
 	@RequestMapping(value="/login")
 	public void login() {
-		//생략
+		//�깮�왂
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
@@ -60,20 +73,6 @@ public class MemberController {
 		binder.setValidator(new MemberValidation());
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

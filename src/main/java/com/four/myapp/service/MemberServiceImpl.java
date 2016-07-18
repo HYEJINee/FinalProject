@@ -12,7 +12,18 @@ import com.four.myapp.persistence.MemberDAO;
 public class MemberServiceImpl implements MemberService {
 	@Inject
 	MemberDAO dao;
-	
+
+
+	@Override
+	public void registMember(MemberVO vo) {
+		dao.registMember(vo);
+	}
+
+	@Override
+	public void modifyMember(MemberVO vo) {
+		dao.modifyMember(vo);
+	}
+
 	@Override
 	public MemberVO readMember(String user_email) throws Exception {
 		return dao.readMember(user_email);
