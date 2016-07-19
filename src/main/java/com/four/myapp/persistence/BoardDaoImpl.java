@@ -16,13 +16,18 @@ public class BoardDaoImpl implements BoardDAO{
 	private static final String NAMESPACE = "com.four.mappers.boardMapper";
 	
 	@Override
-	public List<MainDto> getList() throws SQLException {
-		return sqlsession.selectList(NAMESPACE + ".getList");
+	public List<MainDto> getMainList() throws SQLException {
+		return sqlsession.selectList(NAMESPACE + ".getMainList");
 	}
 
 	@Override
-	public MainDto Read(int topic_no) throws SQLException {
-		return sqlsession.selectOne(NAMESPACE + ".Read");
+	public List<MainDto> getBoardList() throws SQLException {
+		return sqlsession.selectList(NAMESPACE + ".getBoardList");
+	}
+	
+	@Override
+	public MainDto read(int topic_no) throws SQLException {
+		return sqlsession.selectOne(NAMESPACE + ".read" , topic_no);
 	}
 
 }

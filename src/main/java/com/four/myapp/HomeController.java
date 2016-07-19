@@ -24,7 +24,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) throws SQLException {
-		model.addAttribute("list",service.getList());
+		model.addAttribute("main",service.getMainList());
+		model.addAttribute("board", service.getBoardList());
 		return "home";
 	}
 }

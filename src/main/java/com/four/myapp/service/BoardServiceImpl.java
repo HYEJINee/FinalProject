@@ -16,11 +16,17 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO dao;
 	
 	@Override
-	public List<MainDto> getList() throws SQLException {
-		return dao.getList();
+	public List<MainDto> getMainList() throws SQLException {
+		return dao.getMainList();
 	}
 	
-	public MainDto Read(int topic_no) throws SQLException {
-		return dao.Read(topic_no);
+	@Override
+	public List<MainDto> getBoardList() throws SQLException {
+		return dao.getBoardList();
+	}
+	
+	@Override
+	public MainDto read(int topic_no) throws SQLException {
+		return dao.read(topic_no);
 	}
 }

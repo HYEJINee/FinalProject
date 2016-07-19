@@ -4,7 +4,9 @@ public class MainDto {
 	private int topic_no, user_no;
 	private String topic_regdate, topic_endate;
 	private String topic_type, topic_title, topic_short_cont, topic_progress;
-	private int debate_pro, debate_con, debate_neut;
+	private int debate_tot_pro, debate_tot_con, debate_tot_neut;
+	private int op_cnt;
+	private int recomnd_cnt;
 	
 	public int getTopic_no() {
 		return topic_no;
@@ -54,23 +56,35 @@ public class MainDto {
 	public void setTopic_progress(String topic_progress) {
 		this.topic_progress = topic_progress;
 	}
-	public int getDebate_pro() {
-		return debate_pro;
+	public int getDebate_tot_pro() {
+		return debate_tot_pro;
 	}
-	public void setDebate_pro(int debate_pro) {
-		this.debate_pro = debate_pro;
+	public void setDebate_tot_pro(int debate_pro) {
+		this.debate_tot_pro = debate_pro;
 	}
-	public int getDebate_con() {
-		return debate_con;
+	public int getDebate_tot_con() {
+		return debate_tot_con;
 	}
-	public void setDebate_con(int debate_con) {
-		this.debate_con = debate_con;
+	public void setDebate_tot_con(int debate_con) {
+		this.debate_tot_con = debate_con;
 	}
-	public int getDebate_neut() {
-		return debate_neut;
+	public int getDebate_tot_neut() {
+		return debate_tot_neut;
 	}
-	public void setDebate_neut(int debate_neut) {
-		this.debate_neut = debate_neut;
+	public void setDebate_tot_neut(int debate_neut) {
+		this.debate_tot_neut = debate_neut;
+	}
+	public int getOp_cnt() {
+		return op_cnt;
+	}
+	public void setOp_cnt(int op_cnt) {
+		this.op_cnt = op_cnt;
+	}
+	public int getRecomnd_cnt() {
+		return recomnd_cnt;
+	}
+	public void setRecomnd_cnt(int recomnd_cnt) {
+		this.recomnd_cnt = recomnd_cnt;
 	}
 	
 }
