@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.four.mappers.readMapper">
+	<select id="selectRead" resultType="com.four.myapp.domain.ReadVO">
+		SELECT  A.*, B.user_no, B.topic_type, B.topic_title, B.topic_short_cont, C.debate_endate, 
+		C.debate_pro, C.debate_con, C.debate_neut, count(D.vote) as votecount,
+		(Select user_nick From user_tbl where user_no = 1) AS user_nick
+		FROM topic_detail_tbl AS A INNER JOIN topic_tbl AS B INNER JOIN debate_tbl AS C INNER JOIN vote_tbl AS D
+		ON A.topic_no = B.topic_no = C.topic_no = 1
+	</select>
+</mapper>
