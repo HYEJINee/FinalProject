@@ -24,5 +24,16 @@
 	<select id="allMember" resultType="MemberVO">
 		select * from user_tbl
 	</select>
-
+<select id="chkUser_email" resultType="int">
+ SELECT
+  count(*)
+ FROM user_tbl
+ WHERE user_email = #{user_email} 
+ </select> 
+ <select id="chkUser_nick" resultType="int">
+ SELECT
+  count(*)
+ FROM user_tbl
+ WHERE user_nick = #{user_nick} 
+ </select> 
 </mapper>

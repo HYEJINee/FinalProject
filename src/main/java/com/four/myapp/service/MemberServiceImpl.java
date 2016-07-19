@@ -34,4 +34,15 @@ public class MemberServiceImpl implements MemberService {
 		return dao.readWithPW(user_email, user_pw);
 	}
 
+	@Override
+	public int chkUser_email(String user_email) throws Exception {
+		return dao.chkUser_email(user_email);
+	}
+
+	@Override
+	public int chkUser_nick(String user_nick) throws Exception {
+		return dao.chkUser_nick(user_nick);
+	}
+
+
 }

@@ -48,5 +48,13 @@ public class MemberDAOImpl implements MemberDAO {
       }
       return vo;
    }
+@Override
+public int chkUser_email(String user_email) {
+	return sqlSession.selectOne(NAMESPACE+".chkUser_email", user_email);
+}
+@Override
+public int chkUser_nick(String user_nick) {
+	return sqlSession.selectOne(NAMESPACE+".chkUser_nick", user_nick);
+}
    
 }
