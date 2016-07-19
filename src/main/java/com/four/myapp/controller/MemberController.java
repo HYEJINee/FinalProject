@@ -126,6 +126,11 @@ public class MemberController {
 	  
 	  return resultMap;
 	 } 
+	 
+	 @RequestMapping(value="/member_findPw")
+		public void member_findPw() {
+		
+		}
 }
 
 
