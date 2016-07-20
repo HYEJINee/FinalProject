@@ -33,6 +33,6 @@
 		</table>
 	</form>
 	<a href="/WEB-INF/views/member/member_findEmail.jsp"><input type="button" name="find_email"  value="이메일 찾기"/></a>
-	<input type="button" name="find_pw" value="비밀번호 찾기"/>
+	<a href="member_findPw"><input type="button" name="find_pw" value="비밀번호 찾기"/></a>
 </body>
 </html>
