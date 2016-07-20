@@ -11,4 +11,5 @@ public interface MemberDAO {
 	public int chkUser_email(String user_email);
 	public int chkUser_nick(String user_nick);
 	public MemberVO findPw(String user_email, String user_nick);
+	public void member_check(String user_nick, String user_email);
 }

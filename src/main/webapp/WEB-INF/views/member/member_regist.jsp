@@ -169,7 +169,7 @@
 		if (nick_check == "nick_fail") {
 			alert("중복된 닉네임입니다.");
 			userinput.user_nick.focus();
-			before_email = document.form.user_nick.value;
+			before_nick = document.form.user_nick.value;
 			return false;
 		}
 
