@@ -6,7 +6,7 @@ import com.four.myapp.domain.ProposalRefDTO;
 import com.four.myapp.domain.ReplyDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 
-public interface ProposalDao {
+public interface ProposalDAO {
 	public List<TopicProposalDTO> getTopicList();
 	public TopicProposalDTO getTopic(int topic_no);
 	public List<ProposalRefDTO> getTopicRefList(int topic_no);

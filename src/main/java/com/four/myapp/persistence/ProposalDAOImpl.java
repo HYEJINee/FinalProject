@@ -11,7 +11,7 @@ import com.four.myapp.domain.ReplyDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 
 @Repository
-public class ProposalDaoImpl implements ProposalDao {
+public class ProposalDAOImpl implements ProposalDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String NAMESPACE = "com.four.myapp.mappers.proposalMapper";
