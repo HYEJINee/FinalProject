@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,6 +28,7 @@ import org.springframework.web.util.WebUtils;
 import com.four.myapp.domain.EmailVO;
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.persistence.EmailSender;
+import com.four.myapp.service.BoardServiceImpl;
 import com.four.myapp.service.MemberServiceImpl;
 import com.four.myapp.util.MemberValidation;
 
@@ -41,22 +43,25 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Inject
 	MemberServiceImpl service;
+	@Inject
+	BoardServiceImpl b_service;
 	@RequestMapping(value = "/member_regist", method = RequestMethod.GET)
 	public void member_regist() throws Exception {
 	}
 
 
 	@RequestMapping(value = "/member_regist", method = RequestMethod.POST)
-	public String member_regist(@ModelAttribute MemberVO vo) throws Exception {
+	public String member_regist(@ModelAttribute MemberVO vo,Model model) throws Exception {
 		service.registMember(vo);
 		String link = "http://localhost:8080/member/member_check?user_check=Y&&user_email="+vo.getUser_email();
-	            email.setContent("다음 링크를 클릭해주세요." + link);
+	            email.setContent(vo.getUser_nick()+"님, 다음 링크를 클릭하여 인증을 완료해주세요.\n" + link);
 	            email.setReceiver(vo.getUser_email());
 	            email.setSubject(vo.getUser_nick()+"님, Tawar 인증 메일입니다.");
 	            emailSender.SendEmail(email);
 	            System.out.println("controller : "+email);
 	       
 		logger.info("loginComplete : " + vo.toString());
+		model.addAttribute("page", b_service.getPageInfo(0, 0));
 		return "home";
 	}
 	@RequestMapping(value="/member_check")
@@ -152,8 +157,7 @@ public class MemberController {
 		}
 	 
 	    @RequestMapping(value="/member_findPw", method=RequestMethod.POST)
-	    public ModelAndView findPw(MemberVO mem, String user_email, String user_nick ,ModelMap model) throws Exception {
-	        ModelAndView mav;
+	    public String findPw(MemberVO mem, String user_email, String user_nick ,ModelMap model) throws Exception {
 	        System.out.println(user_email +"," + user_nick);
 			MemberVO vo = service.findPw(user_email,user_nick);
 			System.out.println(mem.getUser_email());
@@ -168,11 +172,9 @@ public class MemberController {
 	            System.out.println(find_email+","+find_nick+","+find_pw);
 	            emailSender.SendEmail(email);
 	            System.out.println("controller : "+email);
-	            mav= new ModelAndView("redirect:/login");
-	            return mav;
+	            return "member/findPwDone";
 	        }else {
-	            mav=new ModelAndView("redirect:/logout");
-	            return mav;
+	            return "home";
 	        }
 	    }
 

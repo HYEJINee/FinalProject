@@ -32,6 +32,7 @@ public class HomeController {
 			nowBlock = 0;
 			nowPage = 0;
 		}
+		
 		model.addAttribute("page", service.getPageInfo(nowBlock, nowPage));
 		return "home";
 	}
