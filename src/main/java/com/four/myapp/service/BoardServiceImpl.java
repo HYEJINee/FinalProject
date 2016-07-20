@@ -7,19 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.four.myapp.domain.MainDto;
-import com.four.myapp.domain.PageDto;
 import com.four.myapp.persistence.BoardDAO;
-import com.four.myapp.persistence.BoardDaoImpl;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO dao;
-	
-	@Override
-	public PageDto getPageInfo(int nowBlock, int nowPage) {
-		return dao.getPageInfo(nowBlock, nowPage);
-	}
 	
 	@Override
 	public List<MainDto> getMainList() throws SQLException {

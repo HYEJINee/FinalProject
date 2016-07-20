@@ -1,4 +1,6 @@
 @CHARSET "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 .item {
 	margin-top: 15px;
 }
@@ -16,6 +18,12 @@
 #main_title {
 	margin-top: 50px;
 }
+#main_title h2 {
+	font-family: 'Jeju Gothic', sans-serif;
+}
+center h3 {
+	font-family: 'Jeju Gothic', sans-serif;
+}
 #pro {
 	color:blue; 
 	margin-left:50px;
@@ -32,6 +40,10 @@
 }
 #board_title {
 	margin-left:20px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.board_title h3 {
+	font-family: 'Jeju Gothic', sans-serif;
 }
 #board_icon {
 	 float:right;
