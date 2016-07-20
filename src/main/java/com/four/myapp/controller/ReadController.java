@@ -23,6 +23,8 @@ public class ReadController {
 	@RequestMapping(value="read", method=RequestMethod.GET)
 	public void readget(Model model) throws SQLException {
 		model.addAttribute("readlist",service.Readdao());
+		model.addAttribute("readResource",service.getResource());
+		model.addAttribute("readOpinion",service.getOpinion());
 	}
 	
 }

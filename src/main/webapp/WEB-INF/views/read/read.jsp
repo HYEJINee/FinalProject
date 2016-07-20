@@ -103,12 +103,15 @@
 				<hr />
 			</div>
 			<div>
+			
 				<h2>참고자료</h2>
+				<c:forEach items="${readResource}" var="resource">
 				<br />
 				<h3>
-					<a href="${readlist.topic_resource_link}">${resource.topic_resource_title}</a> 
+					<a href=http://${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a> 
 				</h3>
 				<br />
+				</c:forEach>
 			</div>
 			<hr />
 			<div class="row marketing">
@@ -130,35 +133,32 @@
 			</div>
 			<h2>의견</h2>
 			<hr />
-
+			<c:forEach items="${readOpinion}" var="opinion">
+			<c:choose>
+			<c:when test="${opinion.vote_type eq 0}">
 			<div class="form-group">
 				<div class="col-sm-1">
 					<img src="#"
 						style="height: 30px; width: 30px" />
 				</div>
-				<div class="col-sm-9"
-					style="border-style: solid; border-width: 1px; border-color: #46FFFF">
-					<div class="col-sm-3">
-						<h4>의견 입력 ID</h4>
-					</div>
-					<div class="col-sm-3">
-						<h3>
-							<span class="label label-info" style="margin-top: 20px">찬성</span>
-						</h3>
+				<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #46FFFF">
+					<div class="col-sm-6">
+						<h3>${opinion.user_nick}&nbsp;&nbsp;
+						<span class="label label-info" style="margin-top: 20px">찬성</span></h3>
 					</div>
 					<div style="text-align: right">
 						<h3>
-							<em>NO.1</em>
+							<em>NO.${opinion.op_no}</em>
 						</h3>
 					</div>
-					<br /> 이 존중의 의미는위에서도 얘기했지만, 자살의 조장이 아닙니다. 한 사람이 삶을 포기할 정도로 힘든
-					삶을살았고, 그 삶은 어떻게형성되었으며, 이를 해결하기 위해서는 어떠한 문제를 해결해야하는지를 파악하는태도입니다. 자살을
-					비판하는 사람들중 많은 사람들이 아래와 같은 태도를 보여줍니다. ‘아니 아무리 사는게 힘들었어도 자살은 아니지 않나?’,
-					‘그래도 죽을 힘이 있었으면 그 힘으로 살아보지…’라는 한탄 섞인 비판을 하지만이러한 태도는 자살이란 것이가지는 사회성을
-					희석시키는 태도라 생각됩니다. 우리가 정말 자살이란행위를 끊고 싶다면 그 첫 걸음은자살에 대한 ‘존중’에서 나올 수
-					있다고 생각합니다. <br /> <br />
+					<br />
+					${opinion.op_content}
+					<br /> <br />
 					<div>
-						<div class="col-sm-offset-7 col-sm-1">
+						<div class="col-sm-4">
+							<em>작성 날짜 : ${opinion.op_regdate}</em><br/>
+						</div>
+						<div class="col-sm-offset-5 col-sm-1">
 							<button type="button" class="btn btn btn-info"
 								aria-label="Left Align">
 								<span class="glyphicon glyphicon-triangle-top"
@@ -178,31 +178,30 @@
 					</div>
 				</div>
 			</div>
-
+			</c:when>
+			</c:choose>
+			<c:choose>
+			<c:when test="${opinion.vote_type eq 1}">
 			<div class="form-group ">
-				<div class="col-sm-offset-2 col-sm-9"
-					style="border-style: solid; border-width: 1px; border-color: #FF3232">
-					<div class="col-sm-3">
-						<h4>의견 입력 ID</h4>
+				<div class="col-sm-offset-2 col-sm-9" style="border-style: solid; border-width: 1px; border-color: #FF3232">
+				<div class="col-sm-6">
+						<h3>${opinion.user_nick}&nbsp;&nbsp;
+						<span class="label label-danger" style="margin-top: 20px">반대</span></h3>
 					</div>
-					<div class="col-sm-3">
-						<h3>
-							<span class="label label-danger" style="margin-top: 20px">반대</span>
-						</h3>
-					</div>
+					
 					<div style="text-align: right">
 						<h3>
-							<em>NO.2</em>
+							<em>NO.${opinion.op_no}</em>
 						</h3>
 					</div>
-					<br /> 이 존중의 의미는위에서도 얘기했지만, 자살의 조장이 아닙니다. 한 사람이 삶을 포기할 정도로 힘든
-					삶을살았고, 그 삶은 어떻게형성되었으며, 이를 해결하기 위해서는 어떠한 문제를 해결해야하는지를 파악하는태도입니다. 자살을
-					비판하는 사람들중 많은 사람들이 아래와 같은 태도를 보여줍니다. ‘아니 아무리 사는게 힘들었어도 자살은 아니지 않나?’,
-					‘그래도 죽을 힘이 있었으면 그 힘으로 살아보지…’라는 한탄 섞인 비판을 하지만이러한 태도는 자살이란 것이가지는 사회성을
-					희석시키는 태도라 생각됩니다. 우리가 정말 자살이란행위를 끊고 싶다면 그 첫 걸음은자살에 대한 ‘존중’에서 나올 수
-					있다고 생각합니다. <br /> <br />
+					<br />
+					${opinion.op_content}
+					<br /> <br />
 					<div>
-						<div class="col-sm-offset-7 col-sm-1">
+						<div class="col-sm-4">
+							<em>작성 날짜 : ${opinion.op_regdate}</em><br/>
+						</div>
+						<div class="col-sm-offset-5 col-sm-1">
 							<button type="button" class="btn btn btn-info"
 								aria-label="Left Align">
 								<span class="glyphicon glyphicon-triangle-top"
@@ -219,6 +218,7 @@
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" />
 						</div>
+						
 					</div>
 				</div>
 				<div class="col-sm-1">
@@ -226,6 +226,10 @@
 						style="height: 30px; width: 30px" />
 				</div>
 			</div>
+			</c:when>
+			</c:choose>
+			
+			</c:forEach>
 			<div class="form-group">
 				<div class=" col-sm-offset-5">
 					<input type="button" value="이전 답글" class="btn btn-default" /> <input

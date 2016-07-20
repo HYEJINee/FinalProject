@@ -11,4 +11,12 @@
 		FROM topic_detail_tbl AS A INNER JOIN topic_tbl AS B INNER JOIN debate_tbl AS C INNER JOIN vote_tbl AS D
 		ON A.topic_no = B.topic_no = C.topic_no = 1
 	</select>
+	
+	<select id="selectResource" resultType="com.four.myapp.domain.ReadResourceVO">
+		select topic_resource_title, topic_resource_link from  topic_resource_tbl where topic_no = 1
+	</select>
+	
+	<select id="selectOpinion" resultType="com.four.myapp.domain.ReadOpinionVO">
+		select A.*, (Select user_nick From user_tbl where user_no = A.user_no) AS user_nick from opinion_tbl AS A where topic_no = 1;  
+	</select>
 </mapper>
