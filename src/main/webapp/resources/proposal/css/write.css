@@ -1,11 +1,15 @@
 /*
-	proposal.jsp
+	write.css
 */
 
 @CHARSET "UTF-8";
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
+}
+
+#formCoverImg {
+	margin-top: 50px;
 }
 
 #notice {
@@ -42,7 +46,6 @@ form input, textarea {
 .bs-callout-primary h4 {
 	color: #428bca;
 }
-
 
 
 

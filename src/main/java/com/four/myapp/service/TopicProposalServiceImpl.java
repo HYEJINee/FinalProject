@@ -34,4 +34,14 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	public List<ReplyDTO> callReplies(int topic_no) {
 		return proposalDAO.getReplies(topic_no);
 	}
+	
+	@Override
+	public TopicProposalDTO callSaved(int user_no) throws Exception {
+		return proposalDAO.checkSaved(user_no);
+	}
+
+	@Override
+	public void saveProposal(TopicProposalDTO topicProposalDTO) {
+		proposalDAO.registTopic(topicProposalDTO);
+	}
 }

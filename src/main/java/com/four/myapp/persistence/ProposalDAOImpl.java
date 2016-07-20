@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.four.myapp.domain.ProposalRefDTO;
 import com.four.myapp.domain.ReplyDTO;
 import com.four.myapp.domain.TopicProposalDTO;
+import com.mysql.jdbc.Connection;
 
 @Repository
 public class ProposalDAOImpl implements ProposalDAO {
@@ -35,20 +36,14 @@ public class ProposalDAOImpl implements ProposalDAO {
 	public List<ReplyDTO> getReplies(int topic_no) {
 		return sqlSession.selectList(NAMESPACE + ".getReplies", topic_no);
 	}
-
+	
 	@Override
-	public void temporarySaveProposal(TopicProposalDTO topicProposalDto) {
-		// TODO Auto-generated method stub
+	public TopicProposalDTO checkSaved(int user_no) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".checkSaved", user_no);
 	}
-
+	
 	@Override
-	public void submitProposal(TopicProposalDTO topicProposalDto) {
-		// TODO Auto-generated method stub
+	public void registTopic(TopicProposalDTO topicProposalDTO) {
+		sqlSession.insert(NAMESPACE + ".proposalUp", topicProposalDTO);
 	}
-
-	@Override
-	public void updateProposal(TopicProposalDTO topicProposalDto) {
-		// TODO Auto-generated method stub
-	}
-
 }

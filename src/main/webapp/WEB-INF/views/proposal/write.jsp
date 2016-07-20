@@ -1,7 +1,5 @@
 <%@ page pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <% session.setAttribute("user_no", 1); %> --%>
-<%-- <%session.removeAttribute("user_no"); %> --%>
 <!DOCTYPE html PUBLIC>
 <html lang="ko">
 <head>
@@ -13,49 +11,50 @@
 <link href="${pageContext.request.contextPath}/resources/proposal/css/write.css" rel="stylesheet" />
 </head>
 <body>
+<c:choose>
+	<c:when test="${empty USER_KEY == false}">
 	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/include/header.jsp" />
 	
-			<!-- 커버 이미지 등록 -->
-			<form id="formCoverImg" action="write.cover" method="post" enctype="multipart/form-data">			
-				<div id="divCoverImg" class="jumbotron col-md-12">
-				<!-- <img alt="" src="/myapp/resources/proposal/img/example.jpg" class="img-responsive"> -->
-					<p class="text-center">
-						<input type="file" id="coverImgUp" name="coverImgUp" class="hidden">
-						<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
-					</p>
-				</div>
-			</form>
-			<!-- 커버 이미지 등록 -->
+	<!-- 커버 이미지 등록 -->
+	<form id="formCoverImg" action="write.do" method="post" enctype="multipart/form-data">			
+		<div id="divCoverImg" class="jumbotron col-md-12">
+		<!-- <img alt="" src="/myapp/resources/proposal/img/example.jpg" class="img-responsive"> -->
+			<p class="text-center">
+				<input type="file" id="coverImgUp" name="coverImgUp" class="hidden">
+				<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
+			</p>
+		</div>
+	<!-- 커버 이미지 등록 -->
 	
-	<div class="container">
-		<div class="row">
+		<div class="container">
+			<div class="row">
 
-			<div class="col-md-12">
-				<h5 id="notice" class="text-center">공지 : 안건이 토론주제로 승인 받기 위해서는 글 작성시부터 10일 이내에 20표가 필요합니다.</h5>
-			</div>
+				<div class="col-md-12">
+					<h5 id="notice" class="text-center">공지 : 안건이 토론주제로 승인 받기 위해서는 글 작성시부터 10일 이내에 20표가 필요합니다.</h5>
+				</div>
 			
-			<form action="write.do" method="post">
 			<!-- 토론 형식 선택 -->			
 				<div class="col-md-12">
 					<div id="debateType" class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 							토론 형식 <span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu" role="menu">
+						<ul id="btn_topic_type" class="dropdown-menu" role="menu">
 							<li><a>찬반 토론 </a></li>
 							<li><a>자유 토론 </a></li>
 						</ul>
+						<input type="hidden" id="hid_topic_type" name="topic_type"/>
 					</div>
 				</div>
 			<!-- 토론 형식 선택 -->			
 
 			<!-- 안건 세부 사항 입력 -->
 				<div class="col-md-12">
-					<input type="text" id="prop-title" class="form-control"
+					<input type="text" id="prop-title" class="form-control" name="topic_title"
 						placeholder="제목을 입력해주세요" />
-					<textarea id="prop-lead" class="form-control"
+					<textarea id="prop-lead" class="form-control" name="topic_short_cont"
 						placeholder="건의하시는 안건에 대하여 간략한 정보를 입력해주세요."></textarea>
-					<textarea id="prop-body" class="form-control" rows="10"
+					<textarea id="prop-body" class="form-control" rows="10" name="topic_long_cont"
 						placeholder="건의하시는 안건에 대한 상세한 정보를 입력해주세요."></textarea>
 					<hr />
 					<h4>참고자료</h4>
@@ -98,16 +97,22 @@
 			<!-- 안건 등록 -->
 					<div class="col-md-12">
 						<p class="text-center">
-							<button id="btnSubmit" type="button" class="btn btn-lg btn-primary">안건 건의 글 등록하기</button>
+							<input type="hidden" name="user_no" value="${USER_KEY.user_no}">
+							<button id="btnSubmit" type="submit" class="btn btn-lg btn-primary">안건 건의 글 등록하기</button>
 						</p>
 					</div>
 			<!-- 안건 등록 -->
 				</div>
-			</form>
-		</div>
-	</div>
+			</div><!-- row -->
+		</div><!-- container -->
+	</form>
+	</c:when>
+	<c:otherwise>
+		<c:redirect url="/proposal/list" />
+	</c:otherwise>
+</c:choose>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/proposal/js/proposal.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/proposal/js/write.js"></script>
 </body>
 </html>

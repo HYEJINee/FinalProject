@@ -25,10 +25,13 @@
 					<li role="presentation"><a href="#free" aria-controls="free" role="tab" data-toggle="pill">자유 토론</a></li>
 				</ul>
 				<hr>
-			
-				<p class="text-center">
-					<button class="customBtn btn-write customBtn-lg">안건 건의 글 작성하기</button>
-				</p>
+				
+				<div id="divWrite">
+					<p class="text-center">
+						<button class="customBtn btn-write customBtn-lg">안건 건의 글 작성하기</button>
+					</p>
+					<p id="login_needed" class="text-center"></p>
+				</div>
 			
 				<div class="tab-content">
 				<!-- 모든 토론 탭 -->
@@ -115,8 +118,14 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
     <script>
+    	var USER_KEY = ${empty USER_KEY == false};
+    
     	$('.btn-write').on('click', function() {
-    		location.href='/proposal/write.do';
+    		if(USER_KEY) {
+	    		location.href='/proposal/write.do';
+    		} else {
+				$('#login_needed').text('로그인한 이용자만 글을 작성할 수 있습니다.');    			
+    		}
     	});
     	
     	$(function () {
@@ -125,7 +134,7 @@
     	
     	$('.card').on('click', function() {
     		var topic_no = $(this).attr("topic-no");
-    		location.href="read?topic_no=" + topic_no;
+	   		location.href="read?topic_no=" + topic_no;
     	});
     </script>
 </body>

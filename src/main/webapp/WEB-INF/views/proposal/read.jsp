@@ -13,15 +13,17 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-			<!-- 헤더 -->
-			<div id="divCoverImg" class="jumbotron">
-				<div class="container">
-				<h3>${topic.topic_title}</h3>
-				<p>${topic.topic_short_cont}</p>
-				<p class="text-right">건의자 : ${topic.user_nick}</p>
-				</div>
-			</div>	
-			<!-- 헤더 -->
+	
+	<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
+	<div id="divCoverImg" class="jumbotron">
+		<div class="container">
+			<h3>${topic.topic_title}</h3>
+			<p>${topic.topic_short_cont}</p>
+			<p class="text-right">건의자 : ${topic.user_nick}</p>
+		</div>
+	</div>	
+	<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
+	
 	<div class="container">
 		<div class="row">
 

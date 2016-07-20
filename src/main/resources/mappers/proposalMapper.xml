@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.four.myapp.mappers.proposalMapper">
+
 	<insert id="proposalUp">
-		insert into topic_tbl ()
+		insert into topic_tbl(user_no, topic_type, topic_title, topic_short_cont, topic_endate) values(#{user_no}, #{topic_type}, #{topic_title}, #{topic_short_cont}, date_add(now(), interval +10 day))
 	</insert>
 
-	<insert id="coverImgUp">
-		insert into topic_cover_img_tbl (topic_no, img_file_name) values (#{topic_no}, #{img_file_name})
-	</insert>
+	<select id="checkSaved">
+		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont from topic_tbl t left join topic_detail_tbl d on t.topic_no = d.topic_no left join topic_cover_img_tbl c on t.topic_no = c.topic_no where t.topic_progress = 0 and t.user_no = #{user_no}
+	</select>
 	
 	<select id="getList" resultType="TopicProposalDTO">
-		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, t.topic_progress, count(r.user_no) as recommend, t.topic_regdate, t.topic_endate from topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no where t.topic_progress = 0 group by t.topic_no order by topic_regdate
+		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, t.topic_progress, count(r.user_no) as recommend, t.topic_regdate, t.topic_endate from topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no where t.topic_progress = 1 group by t.topic_no order by topic_regdate
 	</select>
 	
 	<select id="getTopic" resultType="TopicProposalDTO" parameterType="int">

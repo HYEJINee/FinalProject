@@ -11,4 +11,6 @@ public interface TopicProposalService {
 	public TopicProposalDTO callTopic(int topic_no);
 	public List<ProposalRefDTO> callRefs(int topic_no);
 	public List<ReplyDTO> callReplies(int topic_no);
+	public TopicProposalDTO callSaved(int user_no) throws Exception;
+	public void saveProposal(TopicProposalDTO topicProposalDTO);
 }

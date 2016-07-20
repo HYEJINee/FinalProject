@@ -78,6 +78,15 @@ h3 {
 	padding: 10px 20px;
 }
 
+#divWrite {
+	height: 80px;	
+}
+
+#login_needed {
+	font-weight: bold;
+	color: red;	
+}
+
 #topic-tab>li {
 	float: left
 }

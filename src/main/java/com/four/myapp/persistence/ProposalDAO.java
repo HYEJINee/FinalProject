@@ -11,7 +11,6 @@ public interface ProposalDAO {
 	public TopicProposalDTO getTopic(int topic_no);
 	public List<ProposalRefDTO> getTopicRefList(int topic_no);
 	public List<ReplyDTO> getReplies(int topic_no);
-	public void temporarySaveProposal(TopicProposalDTO topicProposalDto);
-	public void submitProposal(TopicProposalDTO topicProposalDto);
-	public void updateProposal(TopicProposalDTO topicProposalDto);
+	public TopicProposalDTO checkSaved(int user_no) throws Exception;
+	public void registTopic(TopicProposalDTO topicProposalDTO);
 }
