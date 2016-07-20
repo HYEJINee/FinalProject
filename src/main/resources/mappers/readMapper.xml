@@ -5,11 +5,12 @@
 
 <mapper namespace="com.four.mappers.readMapper">
 	<select id="selectRead" resultType="com.four.myapp.domain.ReadVO">
-		SELECT  A.*, B.user_no, B.topic_type, B.topic_title, B.topic_short_cont, C.debate_endate, 
-		C.debate_pro, C.debate_con, C.debate_neut, count(D.vote) as votecount,
-		(Select user_nick From user_tbl where user_no = 1) AS user_nick
-		FROM topic_detail_tbl AS A INNER JOIN topic_tbl AS B INNER JOIN debate_tbl AS C INNER JOIN vote_tbl AS D
-		ON A.topic_no = B.topic_no = C.topic_no = 1
+		
+		select A.topic_type, A.topic_title, A.topic_short_cont, B.topic_long_cont, B.topic_pro, B.topic_con,
+		C.debate_endate, C.debate_tot_pro, C.debate_tot_con, C.debate_tot_neut,
+		(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick
+		FROM topic_tbl AS A INNER JOIN topic_detail_tbl AS B INNER JOIN debate_tbl AS C
+		where A.topic_no = B.topic_no = C.topic_no = 1;
 	</select>
 	
 	<select id="selectResource" resultType="com.four.myapp.domain.ReadResourceVO">
@@ -17,6 +18,6 @@
 	</select>
 	
 	<select id="selectOpinion" resultType="com.four.myapp.domain.ReadOpinionVO">
-		select A.*, (Select user_nick From user_tbl where user_no = A.user_no) AS user_nick from opinion_tbl AS A where topic_no = 1;  
-	</select>
+		select A.op_no,A.op_content,A.op_like,A.op_rel, A.op_regdate, A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick from opinion_tbl AS A where topic_no = 1;  
+</select>
 </mapper>

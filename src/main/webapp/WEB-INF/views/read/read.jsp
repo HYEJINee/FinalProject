@@ -54,17 +54,17 @@
 			<div class="form-group">
 				<div class=" col-sm-offset-1 col-sm-2">
 					<h2>
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>${readlist.votecount}
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;${(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)}
 					</h2>
 				</div>
 				<div class="col-sm-2">
-					<h4 style="color: blue">찬성 : ${readlist.debate_pro/(readlist.debate_pro + readlist.debate_con + readlist.debate_neut)*100}%</h4>
+				<h4 style="color: blue">찬성 : <fmt:formatNumber value="${readlist.debate_tot_pro/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#"/>%</h4>
+</div>
+				<div class="col-sm-2">
+					<h4 style="color: red">반대 : <fmt:formatNumber value="${readlist.debate_tot_con/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#"/>%</h4>
 				</div>
 				<div class="col-sm-2">
-					<h4 style="color: red">반대 : ${readlist.debate_con/(readlist.debate_pro + readlist.debate_con + readlist.debate_neut)*100}%</h4>
-				</div>
-				<div class="col-sm-2">
-					<h4 style="color: gray">중립 : ${readlist.debate_neut/(readlist.debate_pro + readlist.debate_con + readlist.debate_neut)*100}%</h4>
+					<h4 style="color: gray">중립 : <fmt:formatNumber value="${readlist.debate_tot_neut/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#"/>%</h4>
 				</div>
 			</div>
 
@@ -72,9 +72,9 @@
 				<div class="col-sm-offset-3 col-sm-6">
 					<div class="progress">
 						<div class="progress-bar progress-bar-info progress-bar-striped"
-							role="progressbar" style="width: ${readlist.debate_pro/(readlist.debate_pro + readlist.debate_con + readlist.debate_neut)*100}%"></div>
+							role="progressbar" style="width: ${readlist.debate_tot_pro/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}%"></div>
 						<div class="progress-bar progress-bar-danger progress-bar-striped"
-							role="progressbar" style="width: ${readlist.debate_con/(readlist.debate_pro + readlist.debate_con + readlist.debate_neut)*100}%"></div>
+							role="progressbar" style="width: ${readlist.debate_tot_con/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}%"></div>
 
 					</div>
 
@@ -162,7 +162,7 @@
 							<button type="button" class="btn btn btn-info"
 								aria-label="Left Align">
 								<span class="glyphicon glyphicon-triangle-top"
-									aria-hidden="true"></span> 00
+									aria-hidden="true"></span> ${opinion.op_like}
 							</button>
 						</div>
 						<div class="col-sm-1">
@@ -205,7 +205,7 @@
 							<button type="button" class="btn btn btn-info"
 								aria-label="Left Align">
 								<span class="glyphicon glyphicon-triangle-top"
-									aria-hidden="true"></span> 00
+									aria-hidden="true"></span> ${opinion.op_like}
 							</button>
 						</div>
 						<div class="col-sm-1">
@@ -228,6 +228,56 @@
 			</div>
 			</c:when>
 			</c:choose>
+			
+			<c:choose>
+			<c:when test="${opinion.vote_type eq 2}">
+			<div class="form-group ">
+				<div class="col-sm-offset-2 col-sm-9" style="border-style: solid; border-width: 1px; border-color: #66FF00">
+				<div class="col-sm-6">
+						<h3>${opinion.user_nick}&nbsp;&nbsp;
+						<span class="label label-success" style="margin-top: 20px">중립</span></h3>
+					</div>
+					
+					<div style="text-align: right">
+						<h3>
+							<em>NO.${opinion.op_no}</em>
+						</h3>
+					</div>
+					<br />
+					${opinion.op_content}
+					<br /> <br />
+					<div>
+						<div class="col-sm-4">
+							<em>작성 날짜 : ${opinion.op_regdate}</em><br/>
+						</div>
+						<div class="col-sm-offset-5 col-sm-1">
+							<button type="button" class="btn btn btn-info"
+								aria-label="Left Align">
+								<span class="glyphicon glyphicon-triangle-top"
+									aria-hidden="true"></span> ${opinion.op_like}
+							</button>
+						</div>
+						<div class="col-sm-1">
+							<button type="button" class="btn btn btn-danger"
+								aria-label="Left Align">
+								<span class="glyphicon glyphicon-triangle-bottom"
+									aria-hidden="true"></span> 00
+							</button>
+						</div>
+						<div class="col-sm-1">
+							<input type="button" value="답글" class="btn btn-default" />
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-sm-1">
+					<img src=""
+						style="height: 30px; width: 30px" />
+				</div>
+			</div>
+			</c:when>
+			</c:choose>
+			
 			
 			</c:forEach>
 			<div class="form-group">
