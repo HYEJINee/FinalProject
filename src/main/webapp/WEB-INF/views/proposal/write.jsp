@@ -3,14 +3,6 @@
 <%-- <% session.setAttribute("user_no", 1); %> --%>
 <%-- <%session.removeAttribute("user_no"); %> --%>
 <!DOCTYPE html PUBLIC>
-<c:choose>
-	<c:when test="${empty user_no}">
-		user_no 없음
-	</c:when>
-	<c:otherwise>
-		user_no 있음
-	</c:otherwise>
-</c:choose>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
@@ -18,11 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TAWAR - 안건 건의</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/resources/proposal/css/proposal.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/proposal/css/write.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="container">
-		<div class="row">
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/include/header.jsp" />
+	
 			<!-- 커버 이미지 등록 -->
 			<form id="formCoverImg" action="write.cover" method="post" enctype="multipart/form-data">			
 				<div id="divCoverImg" class="jumbotron col-md-12">
@@ -34,6 +26,9 @@
 				</div>
 			</form>
 			<!-- 커버 이미지 등록 -->
+	
+	<div class="container">
+		<div class="row">
 
 			<div class="col-md-12">
 				<h5 id="notice" class="text-center">공지 : 안건이 토론주제로 승인 받기 위해서는 글 작성시부터 10일 이내에 20표가 필요합니다.</h5>
