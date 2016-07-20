@@ -48,5 +48,22 @@ public class MemberDAOImpl implements MemberDAO {
       }
       return vo;
    }
+@Override
+public int chkUser_email(String user_email) {
+	return sqlSession.selectOne(NAMESPACE+".chkUser_email", user_email);
+}
+@Override
+public int chkUser_nick(String user_nick) {
+	return sqlSession.selectOne(NAMESPACE+".chkUser_nick", user_nick);
+}
+@Override
+public MemberVO findPw(String user_email, String user_nick) {
+	 Map<String, String> paramMap = new HashMap<String, String>();
+     paramMap.put("user_email", user_email);
+     paramMap.put("user_nick", user_nick);
+     MemberVO vo =  sqlSession.selectOne(NAMESPACE + ".findPw", paramMap);
+     
+     return vo;
+}
    
 }

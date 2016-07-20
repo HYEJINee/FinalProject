@@ -11,18 +11,38 @@
 
 	<select id="readWithPW" resultType="MemberVO">
 		select * from user_tbl
-		where user_email=#{user_email} and user_pw=#{user_pw}
+		where
+		user_email=#{user_email} and user_pw=#{user_pw}
 	</select>
-	
-<insert id="registMember" parameterType="MemberVO">
-		insert into user_tbl (user_email, user_pw, user_nick) values
-		(#{user_email}, #{user_pw}, #{user_nick})
+
+	<insert id="registMember" parameterType="MemberVO">
+		insert into user_tbl
+		(user_email, user_pw, user_nick) values
+		(#{user_email}, #{user_pw},
+		#{user_nick})
 	</insert>
 	<update id="modifyMember" parameterType="MemberVO">
-		update user_tbl set user_pw = #{user_pw}, user_nick=#{user_nick}
+		update user_tbl set
+		user_pw = #{user_pw}, user_nick=#{user_nick}
 	</update>
 	<select id="allMember" resultType="MemberVO">
 		select * from user_tbl
 	</select>
-
+	<select id="chkUser_email" resultType="int">
+		SELECT
+		count(*)
+		FROM user_tbl
+		WHERE user_email = #{user_email}
+	</select>
+	<select id="chkUser_nick" resultType="int">
+		SELECT
+		count(*)
+		FROM user_tbl
+		WHERE user_nick = #{user_nick}
+	</select>
+	<select id="findPw" resultType="MemberVO">
+				select * from user_tbl
+		where
+		user_email=#{user_email} and user_nick=#{user_nick}
+	</select>
 </mapper>

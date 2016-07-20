@@ -8,4 +8,7 @@ public interface MemberDAO {
 	public void modifyMember(MemberVO vo);
 	public MemberVO readMember(String user_no) throws Exception;
 	public MemberVO readWithPW(String user_email, String user_pw) throws Exception;
+	public int chkUser_email(String user_email);
+	public int chkUser_nick(String user_nick);
+	public MemberVO findPw(String user_email, String user_nick);
 }
