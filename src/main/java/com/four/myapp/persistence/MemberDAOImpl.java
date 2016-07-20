@@ -65,5 +65,12 @@ public MemberVO findPw(String user_email, String user_nick) {
      
      return vo;
 }
+@Override
+public void member_check(String user_check, String user_email) {
+	Map<String, String> paramMap = new HashMap<String, String>();
+    paramMap.put("user_check", user_check);
+    paramMap.put("user_email", user_email);
+    sqlSession.update(NAMESPACE+".member_check",paramMap);      
+}
    
 }

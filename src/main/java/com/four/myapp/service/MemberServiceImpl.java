@@ -48,6 +48,11 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO findPw(String user_email, String user_nick) {
 		return dao.findPw(user_email, user_nick);
 	}
+
+	@Override
+	public void member_check(String user_email, String user_check) {
+		dao.member_check(user_email, user_check);
+	}
  
 
 }

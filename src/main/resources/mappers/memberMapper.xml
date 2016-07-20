@@ -45,4 +45,8 @@
 		where
 		user_email=#{user_email} and user_nick=#{user_nick}
 	</select>
+	<update id="member_check" parameterType="MemberVO">
+	update user_tbl set
+	user_check = #{user_check} where user_email=#{user_email}
+	</update>
 </mapper>

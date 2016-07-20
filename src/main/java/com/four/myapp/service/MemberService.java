@@ -10,4 +10,5 @@ public interface MemberService {
 	 public int chkUser_email(String user_email) throws Exception; 
 	 public int chkUser_nick(String user_nick) throws Exception; 
 	 public MemberVO findPw(String user_email, String user_nick);
+	 public void member_check(String user_email, String user_check);
 }

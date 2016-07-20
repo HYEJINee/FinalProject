@@ -33,6 +33,10 @@ import com.four.myapp.util.MemberValidation;
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
+	 @Autowired
+	   private EmailSender emailSender;
+	   @Autowired
+	   private EmailVO email;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Inject
@@ -41,13 +45,28 @@ public class MemberController {
 	public void member_regist() throws Exception {
 	}
 
+
 	@RequestMapping(value = "/member_regist", method = RequestMethod.POST)
-	public String member_regist(@ModelAttribute MemberVO vo) throws SQLException {
+	public String member_regist(@ModelAttribute MemberVO vo) throws Exception {
 		service.registMember(vo);
+		String link = "http://localhost:8080/member/member_check?user_check=Y&&user_email="+vo.getUser_email();
+	            email.setContent("다음 링크를 클릭해주세요." + link);
+	            email.setReceiver(vo.getUser_email());
+	            email.setSubject(vo.getUser_nick()+"님, Tawar 인증 메일입니다.");
+	            emailSender.SendEmail(email);
+	            System.out.println("controller : "+email);
+	       
 		logger.info("loginComplete : " + vo.toString());
 		return "home";
 	}
-
+	@RequestMapping(value="/member_check")
+	public void member_check(String user_check,String user_email) {
+		if(user_check.equals("Y")){
+			service.member_check(user_check, user_email);
+			
+		}
+		
+	}
 	@RequestMapping(value="/login")
 	public void login() {
 	}
@@ -61,7 +80,11 @@ public class MemberController {
 		
 		try{
 			MemberVO vo = service.readWithPW(member.getUser_email(), member.getUser_pw());
+			if(member.getUser_check().equals("N")){
+				return "member/needCheck";
+			}
 			WebUtils.setSessionAttribute(req, "USER_KEY", vo);
+			
 		}
 		catch(Exception err) {
 			logger.info("loginComplete:" + err.toString());
@@ -136,10 +159,6 @@ public class MemberController {
 		
 		}
 	 
-	 @Autowired
-	   private EmailSender emailSender;
-	   @Autowired
-	   private EmailVO email;
 	    @RequestMapping(value="/member_findPw", method=RequestMethod.POST)
 	    public ModelAndView findPw(MemberVO mem, String user_email, String user_nick ,ModelMap model) throws Exception {
 	        ModelAndView mav;
