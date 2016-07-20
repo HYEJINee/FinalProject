@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+
+	#divRecommend {
+		margin: 20px 0px;
+		padding-bottom: 80px;
+		border-bottom: 1px solid silver;
+	}
+	
+	#divRecommend .progress {
+		margin-bottom: 10px;
+	}
+	
+	#divRecommend .text-center {
+		font-weight: bold;
+	}
+	
+	#divRecommend .badge {
+		background-color: #5cb85c;
+	}
+	
+	#divContent {
+		padding:5px 50px;
+	}
+	
+	#divContent p {
+		text-indent: 30px;
+		line-height: 1.8;
+		word-spacing: 3px;
+		font-size: 13pt;
+		min-height: 400px;
+	}
+
+	#divRef {
+		margin-bottom: 20px;
+		padding: 20px 50px;
+	}
+
+	#divRef h4 {
+		border-bottom: 1px solid silver;
+	}
+
+	#divProCon {
+		margin-bottom: 20px;
+		padding: 20px 50px;
+		border-bottom: 1px solid silver;
+		min-height: 300px;
+	}
+	
+	#divProCon h4 {
+		padding-bottom: 10px;
+		text-align: center;
+		font-weight: bold;
+		border-bottom: 1px solid silver;
+	}
+	
+	#divProCon p {
+		padding: 5px 40px;
+		font-size:12pt;
+	}
