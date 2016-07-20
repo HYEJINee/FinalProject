@@ -26,7 +26,7 @@
         <li><a href="/finished">종료된 토론</a>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/mypage">아이디</a></li>
+        <li><a href="/member/mypage">아이디</a></li>
         <li class="dropdown"><a href="/member/login">로그인</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
