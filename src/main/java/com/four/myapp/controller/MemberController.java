@@ -63,7 +63,7 @@ public class MemberController {
 			logger.info("loginComplete:" + err.toString());
 			return "/member/login";
 		}
-		return "home";
+		return "/member/mypage";
 	}
 	
 	@RequestMapping(value="/logout")
