@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.four.myapp.domain.MainDto;
+import com.four.myapp.domain.PageDto;
 import com.four.myapp.persistence.BoardDAO;
 import com.four.myapp.persistence.BoardDaoImpl;
 
@@ -16,13 +17,23 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO dao;
 	
 	@Override
+	public PageDto getPageInfo(int nowBlock, int nowPage) {
+		return dao.getPageInfo(nowBlock, nowPage);
+	}
+	
+	@Override
 	public List<MainDto> getMainList() throws SQLException {
 		return dao.getMainList();
 	}
 	
 	@Override
-	public List<MainDto> getBoardList() throws SQLException {
-		return dao.getBoardList();
+	public List<MainDto> getRecmdList() throws SQLException {
+		return dao.getRecmdList();
+	}
+	
+	@Override
+	public List<MainDto> getFinishedList() throws SQLException {
+		return dao.getFinishedList();
 	}
 	
 	@Override

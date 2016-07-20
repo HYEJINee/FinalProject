@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.four.myapp.domain.MainDto;
+import com.four.myapp.domain.PageDto;
 
 @Repository
 public class BoardDaoImpl implements BoardDAO{
@@ -16,13 +17,22 @@ public class BoardDaoImpl implements BoardDAO{
 	private static final String NAMESPACE = "com.four.mappers.boardMapper";
 	
 	@Override
+	public PageDto getPageInfo(int nowBlock, int nowPage) {
+		return new PageDto(nowBlock,nowPage);
+	}
+	@Override
 	public List<MainDto> getMainList() throws SQLException {
 		return sqlsession.selectList(NAMESPACE + ".getMainList");
 	}
 
 	@Override
-	public List<MainDto> getBoardList() throws SQLException {
-		return sqlsession.selectList(NAMESPACE + ".getBoardList");
+	public List<MainDto> getRecmdList() throws SQLException {
+		return sqlsession.selectList(NAMESPACE + ".getRecmdList");
+	}
+	
+	@Override
+	public List<MainDto> getFinishedList() throws SQLException {
+		return sqlsession.selectList(NAMESPACE + ".getFinishedList");
 	}
 	
 	@Override
