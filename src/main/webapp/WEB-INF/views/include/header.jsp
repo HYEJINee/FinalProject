@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -15,7 +15,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">TAWAR</a>
+      <a class="navbar-brand" href="/?nowBlock=0&nowPage=0">TAWAR</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,7 +26,7 @@
         <li><a href="/finished">종료된 토론</a>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/mypage">아이디</a></li>
+        <li><a href="/member/mypage">아이디</a></li>
         <li class="dropdown"><a href="/member/login">로그인</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
