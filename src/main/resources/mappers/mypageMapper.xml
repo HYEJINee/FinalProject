@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.four.mappers.boardMapper">
-	<select id="timeline" resultType="com.four.myapp.domain.BoardDto">
-		select topic_tbl.topic_no, user_no, topic_type, topic_title, topic_progress, debate_regdate, debate_endate from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no;
+<mapper namespace="com.four.mappers.mypageMapper">
+	<select id="timeline" parameterType="String" resultType="com.four.myapp.domain.MypageDto">
+		select * from timeline_tbl where user_no=#{user_no} order by timeline_date desc;
 	</select>
 	
 

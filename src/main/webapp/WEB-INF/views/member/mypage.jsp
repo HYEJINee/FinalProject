@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,6 +110,15 @@
 				</div>
 				</div>
 				<div class="mypage-activity-list">
+					<h3>${test} </h3>
+					<c:forEach items="${timeline}" var="mypageDto">
+						<div class="row mypage-activity-row">
+							<div class="col-md-3 mypage-activity-date">${mypageDto.timeline_date }</div>
+							<div class="col-md-9 mypage-activity-all mypage-activity-opinion">
+								<a href="/board/read?topic_no=${mypageDto.topic_no }">테스트</a>${mypageDto.timeline_type }
+							</div>
+						</div>
+					</c:forEach>
 					<div class="row mypage-activity-row">
 						<div class="col-md-3 mypage-activity-date">2016. 5. 10</div>
 						<div class="col-md-9 mypage-activity-all mypage-activity-opinion"><a href="#">자살은 개인의 선택이다</a> 에 <strong>찬성</strong>의견을 달았습니다.</div>

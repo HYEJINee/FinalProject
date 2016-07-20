@@ -1,63 +1,76 @@
 package com.four.myapp.domain;
 
 public class MypageDto {
-	private String topic_no, user_no;
-	private String topic_regdate, topic_endate;
-	private String topic_type, topic_title, topic_progress;
-	private String debate_regdate, debate_endate;
-	public String getTopic_no() {
-		return topic_no;
-	}
-	public void setTopic_no(String topic_no) {
-		this.topic_no = topic_no;
-	}
+	private String user_no;
+	private String topic_no;
+	private String timeline_type;
+	private String timeline_statement;
+	private String timeline_date;
+	private String vote_type;
 	public String getUser_no() {
 		return user_no;
 	}
 	public void setUser_no(String user_no) {
 		this.user_no = user_no;
 	}
-	public String getTopic_regdate() {
-		return topic_regdate;
+	public String getTopic_no() {
+		return topic_no;
 	}
-	public void setTopic_regdate(String topic_regdate) {
-		this.topic_regdate = topic_regdate;
+	public void setTopic_no(String topic_no) {
+		this.topic_no = topic_no;
 	}
-	public String getTopic_endate() {
-		return topic_endate;
+	public String getTimeline_type() {
+		return timeline_type;
 	}
-	public void setTopic_endate(String topic_endate) {
-		this.topic_endate = topic_endate;
+	public void setTimeline_type(String vote_type, String timeline_type) {
+		this.timeline_type = timeline_type;
+		//setTimeline_statement(vote_type, timeline_type);
 	}
-	public String getTopic_type() {
-		return topic_type;
+	/*
+	public String setVote_statement(String vote_type) {
+		String vote_statement;
+		switch (vote_type) {
+		case "0" : return vote_statement = "찬성";
+		case "1" : return vote_statement = "반대";
+		case "2" : return vote_statement = "중재";
+		default : return vote_statement = null;
+		}
 	}
-	public void setTopic_type(String topic_type) {
-		this.topic_type = topic_type;
+	public void setTimeline_statement(String vote_type, String timeline_type) {
+		String vote_statement = setVote_statement(vote_type);
+		switch (timeline_type) {
+		case "0" : timeline_statement = "안건을 생성했습니다.";
+			break;
+		case "1" : timeline_statement = "안건이 토론 상정을 위해 추천을 받고있습니다.";
+			break;
+		case "2" : timeline_statement = "안건이 토론 상정에 실패하여 종료했습니다.";
+			break;
+		case "3" : timeline_statement = "안건이 토론중입니다.";
+			break;
+		case "4" : timeline_statement = "안건이 토론을 종료하였습니다.";
+			break;
+		case "5" : timeline_statement = "안건을 추천 하였습니다.";
+			break;
+		case "6" : timeline_statement = "안건에 <strong>" + vote_statement + "</strong> 투표를 하였습니다.";
+			break;
+		case "7" : timeline_statement = "안건에 <strong>"  + vote_statement + "</strong> 의견을 남겼습니다.";
+			break;
+		default : timeline_statement = null;
+			break;
+		}
 	}
-	public String getTopic_title() {
-		return topic_title;
+	*/
+	public String getTimeline_date() {
+		return timeline_date;
 	}
-	public void setTopic_title(String topic_title) {
-		this.topic_title = topic_title;
+	public void setTimeline_date(String timeline_date) {
+		this.timeline_date = timeline_date;
 	}
-	public String getTopic_progress() {
-		return topic_progress;
+	public String getVote_type() {
+		return vote_type;
 	}
-	public void setTopic_progress(String topic_progress) {
-		this.topic_progress = topic_progress;
-	}
-	public String getDebate_regdate() {
-		return debate_regdate;
-	}
-	public void setDebate_regdate(String debate_regdate) {
-		this.debate_regdate = debate_regdate;
-	}
-	public String getDebate_endate() {
-		return debate_endate;
-	}
-	public void setDebate_endate(String debate_endate) {
-		this.debate_endate = debate_endate;
+	public void setVote_type(String vote_type) {
+		this.vote_type = vote_type;
 	}
 	
 	
