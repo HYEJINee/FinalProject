@@ -1,0 +1,47 @@
+@CHARSET "utf-8";
+.item {
+	margin-top: 15px;
+}
+.header_item {
+	margin-top: 5px;
+}
+.list_item{
+	margin-top: 30px;
+	padding: 20px;
+	border:1px #d9edf7 solid;
+}
+.type1 {
+	padding: 23px;
+}
+#main_title {
+	margin-top: 50px;
+}
+#pro {
+	color:blue; 
+	margin-left:50px;
+}
+#pro_board {
+	color:blue;
+	margin-left:235px;
+}
+#con {
+	color:red;
+}
+#neut {
+	color:gray;
+}
+#board_title {
+	margin-left:20px;
+}
+#board_icon {
+	 float:right;
+}
+.board_title h3{
+	margin-left: 50%;
+}
+.board_title a {
+	float: right;
+}
+#last {
+	margin-bottom: 200px;
+}

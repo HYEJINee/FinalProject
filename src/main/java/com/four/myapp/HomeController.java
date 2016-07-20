@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.four.myapp.service.BoardService;
 
@@ -23,8 +24,11 @@ public class HomeController {
 	private BoardService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) throws SQLException {
-		model.addAttribute("list",service.getList());
+	public String home(@RequestParam("nowBlock") int nowBlock, @RequestParam("nowPage") int nowPage, Model model) throws SQLException {
+		model.addAttribute("main",service.getMainList());
+		model.addAttribute("recmd", service.getRecmdList());
+		model.addAttribute("finish", service.getFinishedList());
+		model.addAttribute("page", service.getPageInfo(nowBlock, nowPage));
 		return "home";
 	}
 }
