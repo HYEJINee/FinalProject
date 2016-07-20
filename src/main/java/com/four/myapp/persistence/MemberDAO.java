@@ -10,4 +10,5 @@ public interface MemberDAO {
 	public MemberVO readWithPW(String user_email, String user_pw) throws Exception;
 	public int chkUser_email(String user_email);
 	public int chkUser_nick(String user_nick);
+	public MemberVO findPw(String user_email, String user_nick);
 }
