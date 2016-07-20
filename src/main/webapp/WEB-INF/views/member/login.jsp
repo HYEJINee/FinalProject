@@ -5,9 +5,15 @@
 <html>
 <head>
 <title>Insert title here</title>
+<style>
+	.login_page{
+		margin-top: 100px;
+	}
+</style>
 </head>
 <body>
 <%@include file="../include/header.jsp" %>
+<div class="container login_page">
 <spring:hasBindErrors name="memberVO" />
 <form:errors name="memberVO" />
 	<form method="post" action="/member/login">
@@ -33,6 +39,10 @@
 		</table>
 	</form>
 	<a href="/WEB-INF/views/member/member_findEmail.jsp"><input type="button" name="find_email"  value="이메일 찾기"/></a>
+
 	<a href="member_findPw"><input type="button" name="find_pw" value="비밀번호 찾기"/></a>
+
+	<input type="button" name="find_pw" value="비밀번호 찾기"/>
+	</div>
 </body>
 </html>

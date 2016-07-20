@@ -2,11 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.four.mappers.boardMapper">
-	<select id="getList" resultType="com.four.myapp.domain.BoardDto">
-		select topic_tbl.topic_no, user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_pro, debate_con, debate_neut from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no;
+	<select id="getMainList" resultType="com.four.myapp.domain.MainDto">
+		select topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no left join (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl on topic_tbl.topic_no = op_tbl.topic_no where topic_progress = 3 order by topic_no desc;
 	</select>
 	
-	<select id="read" parameterType="Integer" resultType="com.four.myapp.domain.BoardDto">
+	<select id="getRecmdList" resultType="MainDto">
+		select topic_tbl.topic_no, user_no, topic_type, topic_title, topic_short_cont, topic_progress, recomnd_cnt from topic_tbl left join (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl on topic_tbl.topic_no = recommend_tbl.topic_no where topic_progress = 1 order by topic_no desc;		
+	</select>
+	
+	<select id="getFinishedList" resultType="MainDto">
+		select topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no left join (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl on topic_tbl.topic_no = op_tbl.topic_no left join (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl on topic_tbl.topic_no = recommend_tbl.topic_no where topic_progress = 4 order by topic_no desc;
+	</select>
+	<select id="read" parameterType="Integer" resultType="com.four.myapp.domain.MainDto">
 		select * from topic_tbl where topic_no = #{topic_no};
 	</select>
 </mapper>
