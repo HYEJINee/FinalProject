@@ -72,15 +72,13 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String loginComplete(@Valid MemberVO member, BindingResult result, HttpServletRequest req) {
+	public String loginComplete(MemberVO member, HttpServletRequest req) {
 		logger.info("loginComplete:" + member.toString());
-		if(result.hasErrors()){
-			return "/member/login";
-		}
+	
 		
 		try{
 			MemberVO vo = service.readWithPW(member.getUser_email(), member.getUser_pw());
-			if(member.getUser_check().equals("N")){
+			if(vo.getUser_check().equals("N")){
 				return "member/needCheck";
 			}
 			WebUtils.setSessionAttribute(req, "USER_KEY", vo);
@@ -98,12 +96,6 @@ public class MemberController {
 		req.getSession().invalidate(); 
 		return "home";
 	}
-	
-	@InitBinder
-	private void initBinder(WebDataBinder binder){
-		binder.setValidator(new MemberValidation());
-	}
-	
 	 @RequestMapping("/member/chkUser_email")
 	 @ResponseBody
 	 public Map<String, String> chkUser_email(String user_email) throws Exception {
