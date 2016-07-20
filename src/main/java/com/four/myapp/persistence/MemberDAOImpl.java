@@ -42,7 +42,7 @@ public class MemberDAOImpl implements MemberDAO {
       paramMap.put("user_email", user_email);
       paramMap.put("user_pw", user_pw);
       MemberVO vo =  sqlSession.selectOne(NAMESPACE + ".readWithPW", paramMap);
-      
+      System.out.println("readWithPW DAOImpl : " + vo);
       if(vo==null){
          throw new Exception();
       }

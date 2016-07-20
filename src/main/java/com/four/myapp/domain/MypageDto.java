@@ -24,42 +24,42 @@ public class MypageDto {
 	}
 	public void setTimeline_type(String vote_type, String timeline_type) {
 		this.timeline_type = timeline_type;
-		//setTimeline_statement(vote_type, timeline_type);
+		setTimeline_statement(vote_type, timeline_type);
 	}
-	/*
+	
 	public String setVote_statement(String vote_type) {
 		String vote_statement;
 		switch (vote_type) {
-		case "0" : return vote_statement = "Âù¼º";
-		case "1" : return vote_statement = "¹İ´ë";
-		case "2" : return vote_statement = "ÁßÀç";
+		case "0" : return vote_statement = "ì°¬ì„±";
+		case "1" : return vote_statement = "ë°˜ëŒ€";
+		case "2" : return vote_statement = "ì¤‘ì¬";
 		default : return vote_statement = null;
 		}
 	}
 	public void setTimeline_statement(String vote_type, String timeline_type) {
 		String vote_statement = setVote_statement(vote_type);
 		switch (timeline_type) {
-		case "0" : timeline_statement = "¾È°ÇÀ» »ı¼ºÇß½À´Ï´Ù.";
+		case "0" : timeline_statement = " ì•ˆê±´ì„ ìƒì„±í–ˆìŠµë‹ˆë‹¤.";
 			break;
-		case "1" : timeline_statement = "¾È°ÇÀÌ Åä·Ğ »óÁ¤À» À§ÇØ ÃßÃµÀ» ¹Ş°íÀÖ½À´Ï´Ù.";
+		case "1" : timeline_statement = " ì•ˆê±´ì´ í† ë¡  ìƒì •ì„ ìœ„í•´ ì¶”ì²œì„ ë°›ê³ ìˆìŠµë‹ˆë‹¤. ";
 			break;
-		case "2" : timeline_statement = "¾È°ÇÀÌ Åä·Ğ »óÁ¤¿¡ ½ÇÆĞÇÏ¿© Á¾·áÇß½À´Ï´Ù.";
+		case "2" : timeline_statement = " ì•ˆê±´ì´ í† ë¡  ìƒì •ì— ì‹¤íŒ¨í•˜ì—¬ ì¢…ë£Œí–ˆìŠµë‹ˆë‹¤.";
 			break;
-		case "3" : timeline_statement = "¾È°ÇÀÌ Åä·ĞÁßÀÔ´Ï´Ù.";
+		case "3" : timeline_statement = " ì•ˆê±´ì´ í† ë¡ ì¤‘ì…ë‹ˆë‹¤.";
 			break;
-		case "4" : timeline_statement = "¾È°ÇÀÌ Åä·ĞÀ» Á¾·áÇÏ¿´½À´Ï´Ù.";
+		case "4" : timeline_statement = " ì•ˆê±´ì´ í† ë¡ ì„ ì¢…ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤.";
 			break;
-		case "5" : timeline_statement = "¾È°ÇÀ» ÃßÃµ ÇÏ¿´½À´Ï´Ù.";
+		case "5" : timeline_statement = " ì•ˆê±´ì„ ì¶”ì²œ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			break;
-		case "6" : timeline_statement = "¾È°Ç¿¡ <strong>" + vote_statement + "</strong> ÅõÇ¥¸¦ ÇÏ¿´½À´Ï´Ù.";
+		case "6" : timeline_statement = "ì•ˆê±´ì— <strong>" + vote_statement + "</strong> íˆ¬í‘œë¥¼ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 			break;
-		case "7" : timeline_statement = "¾È°Ç¿¡ <strong>"  + vote_statement + "</strong> ÀÇ°ßÀ» ³²°å½À´Ï´Ù.";
+		case "7" : timeline_statement = "ì•ˆê±´ì— <strong>"  + vote_statement + "</strong> ì˜ê²¬ì„ ë‚¨ê²¼ìŠµë‹ˆë‹¤.";
 			break;
 		default : timeline_statement = null;
 			break;
 		}
 	}
-	*/
+	
 	public String getTimeline_date() {
 		return timeline_date;
 	}
