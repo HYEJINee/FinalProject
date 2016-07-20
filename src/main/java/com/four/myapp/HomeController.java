@@ -24,10 +24,14 @@ public class HomeController {
 	private BoardService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(@RequestParam("nowBlock") int nowBlock, @RequestParam("nowPage") int nowPage, Model model) throws SQLException {
+	public String home(@RequestParam(value="nowBlock", required=false) Integer nowBlock, @RequestParam(value="nowPage", required=false) Integer nowPage, Model model) throws SQLException {
 		model.addAttribute("main",service.getMainList());
 		model.addAttribute("recmd", service.getRecmdList());
 		model.addAttribute("finish", service.getFinishedList());
+		if(nowBlock == null || nowPage == null) {
+			nowBlock = 0;
+			nowPage = 0;
+		}
 		model.addAttribute("page", service.getPageInfo(nowBlock, nowPage));
 		return "home";
 	}
