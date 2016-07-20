@@ -11,11 +11,15 @@
 </head>
 <body>
 	<!-- pageInfo -->
-	<c:set var="totalPage" value="${main.size()/page.numPerPage}"/>
+	<c:set var="numPerPage" value="6"/>	<!-- 각 페이지마다 게시물의 수 -->
+	<c:set var="pagePerBlock" value="5"/>	<!-- 페이지블럭 마다 페이지의 수 -->
+	<c:set var="nowPage" value="${nowPage}"/>	<!-- 현재 페이지 위치 -->
+	<c:set var="nowBlock" value="${nowBlock}"/>	<!-- 현재 블럭 위치 -->
+	<c:set var="totalPage" value="${main.size()/numPerPage}"/>
 	<c:set var="totalPage" value="${totalPage+(1-(totalPage%1))%1}"/> <!-- ceiling -->
-	<c:set var="totalBlock" value="${totalPage/page.pagePerBlock}"/>
+	<c:set var="totalBlock" value="${totalPage/pagePerBlock}"/>
 	<c:set var="totalBLock" value="${totalBlock+(1-(totalBlock%1))%1}"/> <!-- ceiling -->
-	<c:set var="beginPerPage" value="${page.numPerPage * page.nowPage}"/>
+	<c:set var="beginPerPage" value="${numPerPage * nowPage}"/>
 	<!-- Header -->
 	<%@ include file="include/header.jsp" %>
 	<!-- Content Title -->
@@ -51,7 +55,7 @@
 			<div class="col-md-12">
 				<center><h3>토론중</h3></center>
 				<hr/>
-				<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + page.numPerPage -1}">
+				<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}">
 					<c:choose>
 						<c:when test="${mainList.topic_type eq 0}">
 							<div class="item list_item col-md-3 col-md-offset-1">
@@ -106,25 +110,25 @@
 			<div class="col-md-offset-5">
 				<nav>
 				  <ul class="pagination">
-				  	<c:if test="${page.nowBlock > 0}">
+				  	<c:if test="${nowBlock > 0}">
 				  		<li>
-					      <a href="/?nowBlock=${page.nowBlock-1}&nowPage=${(page.nowBlock-1)*page.pagePerBlock}" aria-label="Previous">
+					      <a href="/?nowBlock=${nowBlock-1}&nowPage=${(nowBlock-1)*pagePerBlock}" aria-label="Previous">
 					        <span aria-hidden="true">&laquo;</span>
 					      </a>
 					    </li>
 				  	</c:if>
 				  	<c:set var="doneLoop" value="false"/>
-				  	<c:forEach begin="0" end="${page.pagePerBlock-1}" varStatus="status">
+				  	<c:forEach begin="0" end="${pagePerBlock-1}" varStatus="status">
 				  		<c:if test="${not doneLoop}">
-				  			<li><a href="/?nowBlock=${page.nowBlock}&nowPage=${status.current + (page.nowBlock*page.pagePerBlock)}">${status.current+1 + (page.nowBlock*page.pagePerBlock)}</a></li>
+				  			<li><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
 				  		</c:if>
-				  		<c:if test="${status.current+1 + (page.nowBlock*page.pagePerBlock) eq totalPage}">
+				  		<c:if test="${status.current+1 + (nowBlock*pagePerBlock) eq totalPage}">
 				  			<c:set var="doneLoop" value="true"/>
 				  		</c:if>
 				  	</c:forEach>
-				  	<c:if test="${page.nowBlock +1 < totalBlock}">
+				  	<c:if test="${nowBlock +1 < totalBlock}">
 				  		<li>
-					      <a href="/?nowBlock=${page.nowBlock+1}&nowPage=${(page.nowBlock+1)*page.pagePerBlock}" aria-label="Next">
+					      <a href="/?nowBlock=${nowBlock+1}&nowPage=${(nowBlock+1)*pagePerBlock}" aria-label="Next">
 					        <span aria-hidden="true">&raquo;</span>
 					      </a>
 					    </li>

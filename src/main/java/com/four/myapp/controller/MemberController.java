@@ -43,15 +43,14 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Inject
 	MemberServiceImpl service;
-	@Inject
-	BoardServiceImpl b_service;
+	
 	@RequestMapping(value = "/member_regist", method = RequestMethod.GET)
 	public void member_regist() throws Exception {
 	}
 
 
 	@RequestMapping(value = "/member_regist", method = RequestMethod.POST)
-	public String member_regist(@ModelAttribute MemberVO vo,Model model) throws Exception {
+	public String member_regist(@ModelAttribute MemberVO vo) throws Exception {
 		service.registMember(vo);
 		String link = "http://localhost:8080/member/member_check?user_check=Y&&user_email="+vo.getUser_email();
 	            email.setContent(vo.getUser_nick()+"님, 다음 링크를 클릭하여 인증을 완료해주세요.\n" + link);
@@ -61,7 +60,6 @@ public class MemberController {
 	            System.out.println("controller : "+email);
 	       
 		logger.info("loginComplete : " + vo.toString());
-		model.addAttribute("page", b_service.getPageInfo(0, 0));
 		return "home";
 	}
 	@RequestMapping(value="/member_check")
