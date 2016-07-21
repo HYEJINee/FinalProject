@@ -18,6 +18,15 @@
 .top {
    margin-top:50px;
 }
+.yes {
+   border-color: #46FFFF;
+}
+.no {
+   border-color: #FF3232;
+}
+.neut {
+   border-color: #66FF00;
+}
 </style>
 </head>
 
@@ -33,11 +42,14 @@
 			var chkval = $(this).val();
 			alert(chkval);
 			if(chkval == "0"){
-
+				$("#h4id").removeClass('yes');
+				$("#areaid").removeClass('yes');
 			} else if(chkval == "1"){
-				
+				$("#h4id").removeClass('no');
+				$("#areaid").removeClass('no');
 			} else {
-				
+				$("#h4id").removeClass('neut');
+				$("#areaid").removeClass('neut');
 			}
 		});
 		
@@ -356,7 +368,7 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-2">
-					<h4 style="border-style: solid; border-width: 1px; border-color: #46FFFF;  border-radius: 5px;" id="textfield" >
+					<h4 id="h4id" style="border-style: solid; border-width: 1px;  border-radius: 5px; border-color: #46FFFF" id="textfield" >
 						 <input type="text" class="form-control" id="replyid" readonly="readonly"></h4>
 				</div>
 				<div class="col-sm-2">
@@ -364,7 +376,7 @@
 				</div>
 			</div>
 			<div class="col-sm-offset-1 col-sm-9">
-				<textarea cols="150" rows="10" style="border-color: #46FFFF" id="replyarea"></textarea>
+				<textarea id="areaid" cols="150" rows="10"  style="border-color: #46FFFF" id="replyarea"></textarea>
 			</div>
 			<br />
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
