@@ -43,8 +43,7 @@ public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Inject
 	MemberServiceImpl service;
-	@Inject
-	BoardServiceImpl b_service;
+	
 	@RequestMapping(value = "/member_regist", method = RequestMethod.GET)
 	public void member_regist() throws Exception {
 	}
@@ -92,10 +91,10 @@ public class MemberController {
 			logger.info("loginComplete:" + err.toString());
 			return "/member/login_fail";
 		}
-		return "/member/mypage";
+		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/logout")
+	@RequestMapping(value="/member_logout")
 	public String logout(HttpServletRequest req){
 		req.getSession().invalidate(); 
 		return "home";
