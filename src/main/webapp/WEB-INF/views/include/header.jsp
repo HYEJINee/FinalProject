@@ -1,4 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"  isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -38,13 +41,17 @@
         <li><a href="/finished">종료된 토론</a>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/member/mypage">아이디</a></li>
+           <c:if test="${empty USER_KEY != true}">
+        <li><a href="/member/mypage">마이페이지</a></li>
+        </c:if>
+             <c:if test="${empty USER_KEY != false}">
         <li class="dropdown"><a href="/member/member_login">로그인</a></li>
+        </c:if>
+        <c:if test="${empty USER_KEY != true}">
+        <li class="dropdown"><a href="/member/member_logout">로그아웃</a></li>
+        </c:if>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-</body>
-
-</html>
