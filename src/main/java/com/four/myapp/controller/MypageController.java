@@ -31,7 +31,6 @@ public class MypageController {
 		}
 		else {
 			String user_no = vo.getUser_no();
-			model.addAttribute("test", "test message");
 			model.addAttribute("timeline", service.timeline(user_no));
 			return "/member/mypage";
 		}
