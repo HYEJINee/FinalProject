@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+#content {
+	margin-top: 50px;
+}
+
 hr {
 	margin-top:0px !important;
 }
