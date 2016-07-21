@@ -14,20 +14,6 @@
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.js"></script>
 <script src="/resources/bootstrap/js/menu.js"></script>
-<style>
-.top {
-   margin-top:50px;
-}
-.yes {
-   border-color: #46FFFF;
-}
-.no {
-   border-color: #FF3232;
-}
-.neut {
-   border-color: #66FF00;
-}
-</style>
 </head>
 
 <script type="text/javascript">
@@ -40,21 +26,14 @@
 		});
 		$("input[name=chk]").click(function() { //id test1 이라는 a태그 클릭시 발생
 			var chkval = $(this).val();
-			alert(chkval);
 			if(chkval == "0"){
-				$("#h4id").removeClass('yes');
-				$("#areaid").removeClass('yes');
+				$("#areaid").attr("style", "border-color: #46FFFF");
 			} else if(chkval == "1"){
-				$("#h4id").removeClass('no');
-				$("#areaid").removeClass('no');
+				$("#areaid").attr("style", "border-color: #FF3232");
 			} else {
-				$("#h4id").removeClass('neut');
-				$("#areaid").removeClass('neut');
+				$("#areaid").attr("style", "border-color: #66FF00");
 			}
 		});
-		
-		
-		
 	});
 </script>
 <body>
@@ -368,7 +347,7 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-2">
-					<h4 id="h4id" style="border-style: solid; border-width: 1px;  border-radius: 5px; border-color: #46FFFF" id="textfield" >
+					<h4 >
 						 <input type="text" class="form-control" id="replyid" readonly="readonly"></h4>
 				</div>
 				<div class="col-sm-2">
