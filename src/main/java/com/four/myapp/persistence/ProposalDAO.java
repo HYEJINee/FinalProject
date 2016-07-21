@@ -16,4 +16,5 @@ public interface ProposalDAO {
 	public void registTopic(TopicProposalDTO topicProposalDTO);
 	public void recommend(int topic_no, int user_no);
 	public boolean checkRecommended(int topic_no, int user_no);
+	public void proposalUp(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks);
 }
