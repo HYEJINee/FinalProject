@@ -18,7 +18,6 @@ public class MypageServiceImpl implements MypageService {
 	
 	@Override
 	public List<MypageDto> timeline(String user_no) throws SQLException {
-		System.out.println("ServiceImpl : " + user_no );
 		return dao.timeline(user_no);
 	}
 

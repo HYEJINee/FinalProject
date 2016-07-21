@@ -3,7 +3,10 @@
 
 <mapper namespace="com.four.mappers.mypageMapper">
 	<select id="timeline" parameterType="String" resultType="com.four.myapp.domain.MypageDto">
-		select * from timeline_tbl where user_no=#{user_no} order by timeline_date desc;
+		select timeline_tbl.user_no, timeline_tbl.topic_no, vote_type, timeline_type, timeline_date, topic_title
+ 		from timeline_tbl left join topic_tbl 
+ 		on timeline_tbl.topic_no=topic_tbl.topic_no
+ 		where timeline_tbl.user_no=#{user_no} order by timeline_date desc;
 	</select>
 	
 
