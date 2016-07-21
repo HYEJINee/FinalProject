@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>회원가입 페이지</title>
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -220,7 +219,7 @@
 <body>
 
 <%@include file="../include/header.jsp" %>
-	<div class="container body">
+	<div class="container body ">
 
 		<form class="form-horizontal" method="post"
 			action="/member/member_regist" name="form">
