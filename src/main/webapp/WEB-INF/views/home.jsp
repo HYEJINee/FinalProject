@@ -234,7 +234,7 @@
 	$(document).ready(function(){
 		$(".item").click(function(){
 			var topic_no = $(this).children().filter("input").val();
-			location.href = "/board/read?topic_no=" + topic_no;
+			location.href = "/read/read?topic_no=" + topic_no;
 		});
 	});
 	

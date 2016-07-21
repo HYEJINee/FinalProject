@@ -19,8 +19,8 @@ public class ReadDAOImpl implements ReadDAO {
 	private static final String NAMESPACE = "com.four.mappers.readMapper";
 
 	@Override
-	public ReadVO Readdao() throws SQLException {
-		return sqlSession.selectOne(NAMESPACE+".selectRead");
+	public ReadVO Readdao(int topic_no) throws SQLException {
+		return sqlSession.selectOne(NAMESPACE+".selectRead", topic_no);
 		
 	}
 

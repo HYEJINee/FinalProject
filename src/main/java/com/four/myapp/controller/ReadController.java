@@ -21,8 +21,8 @@ public class ReadController {
 	@Autowired
 	private ReadService service;
 	@RequestMapping(value="read", method=RequestMethod.GET)
-	public void readget(Model model) throws SQLException {
-		model.addAttribute("readlist",service.Readdao());
+	public void readget(@RequestParam("topic_no") int topic_no, Model model) throws SQLException {
+		model.addAttribute("readlist",service.Readdao(topic_no));
 		model.addAttribute("readResource",service.getResource());
 		model.addAttribute("readOpinion",service.getOpinion());
 	}

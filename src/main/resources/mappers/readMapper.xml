@@ -10,14 +10,14 @@
 		C.debate_endate, C.debate_tot_pro, C.debate_tot_con, C.debate_tot_neut,
 		(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick
 		FROM topic_tbl AS A INNER JOIN topic_detail_tbl AS B INNER JOIN debate_tbl AS C
-		where A.topic_no = B.topic_no = C.topic_no = 1;
+		where A.topic_no = B.topic_no = C.topic_no = #{topic_no};
 	</select>
 	
 	<select id="selectResource" resultType="com.four.myapp.domain.ReadResourceVO">
-		select topic_resource_title, topic_resource_link from  topic_resource_tbl where topic_no = 1
+		select topic_resource_title, topic_resource_link from  topic_resource_tbl where topic_no = #{topic_no}
 	</select>
 	
 	<select id="selectOpinion" resultType="com.four.myapp.domain.ReadOpinionVO">
-		select A.op_no,A.op_content,A.op_like,A.op_rel, A.op_regdate, A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick from opinion_tbl AS A where topic_no = 1;  
+		select A.op_no,A.op_content,A.op_like,A.op_rel, A.op_regdate, A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick from opinion_tbl AS A where topic_no = #{topic_no};  
 </select>
 </mapper>
