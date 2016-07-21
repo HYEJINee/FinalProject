@@ -13,12 +13,12 @@
 	<!-- pageInfo -->
 	<c:set var="numPerPage" value="6"/>	<!-- 각 페이지마다 게시물의 수 -->
 	<c:set var="pagePerBlock" value="5"/>	<!-- 페이지블럭 마다 페이지의 수 -->
-	<c:set var="nowPage" value="${nowPage}"/>	<!-- 현재 페이지 위치 -->
-	<c:set var="nowBlock" value="${nowBlock}"/>	<!-- 현재 블럭 위치 -->
+	<c:set var="nowPage" value="${param.nowPage}"/>	<!-- 현재 페이지 위치 -->
+	<c:set var="nowBlock" value="${param.nowBlock}"/>	<!-- 현재 블럭 위치 -->
 	<c:set var="totalPage" value="${main.size()/numPerPage}"/>
-	<c:set var="totalPage" value="${totalPage+(1-(totalPage%1))%1}"/> <!-- ceiling -->
+	<fmt:formatNumber var="totalPage" value="${totalPage+(1-(totalPage%1))%1}" maxFractionDigits="0"/> <!-- ceiling -->
 	<c:set var="totalBlock" value="${totalPage/pagePerBlock}"/>
-	<c:set var="totalBLock" value="${totalBlock+(1-(totalBlock%1))%1}"/> <!-- ceiling -->
+	<fmt:formatNumber var="totalBlock" value="${totalBlock+(1-(totalBlock%1))%1}" maxFractionDigits="0"/> <!-- ceiling -->
 	<c:set var="beginPerPage" value="${numPerPage * nowPage}"/>
 	<!-- Header -->
 	<%@ include file="include/header.jsp" %>
@@ -145,7 +145,7 @@
 			<div class="col-md-6">
 				<div class="board_title col-md-10">
 					<h3>안건 건의</h3>
-					<a href="/proposal">전체 안건 보기</a>
+					<a href="/proposal/list">전체 안건 보기</a>
 				</div>
 				<div class="col-md-10">
 				<c:set var="recomnd_loop" value="false"/>

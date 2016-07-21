@@ -3,7 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>회원가입 페이지</title>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -18,6 +20,10 @@
 <style>
 .body {
 	margin-top: 50px
+}
+.notice{
+ text-align: center;
+ text-size : 15pt;
 }
 </style>
 
@@ -140,29 +146,32 @@
 
 		if (email_check == "none") {
 			alert("이메일 중복체크를 확인해주세요.");
+			before_email=document.form.user_email.value;
 			return false;
 		}
-
-		if (nick_check == "none") {
-			alert("닉네임 중복체크를 확인해주세요.");
-			return false;
-		}
-
 		if (before_email != document.form.user_email.value) {
 			alert("이메일 중복 체크를 다시 확인해주세요.");
 			before_email=document.form.user_email.value;
 			return false;
 		}
-		if (email_check == "email_fail") {
-			alert("중복된 아이디입니다.");
-			userinput.user_email.focus();
-			before_email = document.form.user_email.value;
+		if (nick_check == "none") {
+			alert("닉네임 중복체크를 확인해주세요.");
+
+			before_nick=document.form.user_nick.value;
 			return false;
 		}
 
 		if (before_nick !== document.form.user_nick.value) {
 			alert("닉네임 중복 체크를 다시 확인해주세요.");
 			before_nick=document.form.user_nick.value;
+			return false;
+		}
+
+		
+		if (email_check == "email_fail") {
+			alert("중복된 아이디입니다.");
+			userinput.user_email.focus();
+			before_email = document.form.user_email.value;
 			return false;
 		}
 
@@ -209,6 +218,8 @@
 </script>
 </head>
 <body>
+
+<%@include file="../include/header.jsp" %>
 	<div class="container body">
 
 		<form class="form-horizontal" method="post"

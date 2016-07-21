@@ -1,10 +1,21 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<style>
+.notice{
+margin-top : 300px;
+ text-align: center;
+ text-size : 25pt;
+}
+</style>
 </head>
 <body>
-<h1>°¡ÀÔÇÏ½Å ÀÌ¸ÞÀÏ·Î ÀÎÁõ¸ÞÀÏÀÌ Àü¼ÛµÇ¾ú½À´Ï´Ù. ¸ÞÀÏ ÀÎÁõ ÈÄ ÀÌ¿ëÇØÁÖ¼¼¿ä.</h1>
+<%@include file="../include/header.jsp" %>
+<div class="col-sm-12 notice">
+ê°€ìž…í•˜ì‹  ì´ë©”ì¼ë¡œ ì¸ì¦ë©”ì¼ì´ ì „ì†¡ë˜ì—ˆìŠµë‹ˆë‹¤. ë©”ì¼ ì¸ì¦ í›„ ì´ìš©í•´ì£¼ì„¸ìš”.
+</div>
 </body>
 </html>
