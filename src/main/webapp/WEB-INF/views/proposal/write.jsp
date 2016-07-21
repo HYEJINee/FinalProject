@@ -16,13 +16,13 @@
 	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/include/header.jsp" />
 	
 	<!-- 커버 이미지 등록 -->
-	<form id="formCoverImg" action="write.do" method="post" enctype="multipart/form-data">			
+	<form id="proposal" action="write.do" method="post" enctype="multipart/form-data">			
 		<div id="divCoverImg" class="jumbotron col-md-12">
 		<!-- <img alt="" src="/myapp/resources/proposal/img/example.jpg" class="img-responsive"> -->
-			<p class="text-center">
+			<div id="divBtnCoverImg">
 				<input type="file" id="coverImgUp" name="coverImgUp" class="hidden">
 				<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
-			</p>
+			</div>
 		</div>
 	<!-- 커버 이미지 등록 -->
 	
@@ -60,9 +60,9 @@
 					<h4>참고자료</h4>
 					<div id="references">
 						<div class="reference bs-callout bs-callout-primary">
-							<input type="text" class="form-control"
+							<input type="text" class="form-control" name="topic_resource_title"
 								placeholder="참고자료 제목 - 예) [한겨레] 자살, 개인 선택인가 사회문제인가" /><br>
-							<input type="text" class="form-control"
+							<input type="text" class="form-control" name="topic_resource_link"
 								placeholder="참고자료 링크 - 예) http://www.hani.co.kr/arti/society/schooling/288194.html" />
 						</div>
 					</div>
@@ -81,12 +81,12 @@
 					<div class="row">
 						<div class="col-md-6">
 							<h4>찬성 의견</h4>
-							<textarea class="form-control" rows="10"
+							<textarea id="prop-pro" class="form-control" rows="10" name="topic_pro"
 								placeholder="이 안건에 대한 찬성 의견을 뒷받침하는 내용을 작성해주세요."></textarea>
 						</div>
 						<div class="col-md-6">
 							<h4>반대 의견</h4>
-							<textarea class="form-control" rows="10"
+							<textarea id="prop-con" class="form-control" rows="10" name="topic_con"
 								placeholder="이 안건에 대한 반대 의견을 뒷받침하는 내용을 작성해주세요."></textarea>
 						</div>
 					</div>
@@ -97,7 +97,6 @@
 			<!-- 안건 등록 -->
 					<div class="col-md-12">
 						<p class="text-center">
-							<input type="hidden" name="user_no" value="${USER_KEY.user_no}">
 							<button id="btnSubmit" type="submit" class="btn btn-lg btn-primary">안건 건의 글 등록하기</button>
 						</p>
 					</div>

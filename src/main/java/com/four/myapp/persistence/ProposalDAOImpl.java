@@ -67,4 +67,20 @@ public class ProposalDAOImpl implements ProposalDAO {
 		}
 		return result;
 	}
+	
+	@Override
+	public void proposalUp(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks) {
+		sqlSession.insert(NAMESPACE + ".proposalUp", topicProposalDTO);
+		
+		int topic_no = sqlSession.selectOne(NAMESPACE + ".getLatest", topicProposalDTO.getUser_no());
+		topicProposalDTO.setTopic_no(topic_no);
+		
+		sqlSession.insert(NAMESPACE + ".proposalDetailUp", topicProposalDTO);
+
+		ProposalRefDTO proposalRefDTO = null; 
+		for(int refCnt = 0; refCnt < refTitles.size(); refCnt++) {
+			proposalRefDTO = new ProposalRefDTO(topicProposalDTO.getTopic_no(), refTitles.get(refCnt), refLinks.get(refCnt));
+			sqlSession.insert(NAMESPACE + ".proposalRefUp", proposalRefDTO);
+		}
+	}
 }
