@@ -62,7 +62,7 @@ public class MemberController {
 	       
 		logger.info("loginComplete : " + vo.toString());
 		model.addAttribute("page", b_service.getPageInfo(0, 0));
-		return "home";
+		return "needCheck";
 	}
 	@RequestMapping(value="/member_check")
 	public void member_check(String user_check,String user_email) {
@@ -72,12 +72,12 @@ public class MemberController {
 		}
 		
 	}
-	@RequestMapping(value="/login")
-	public void login() {
+	@RequestMapping(value="/member_login")
+	public void member_login() {
 	}
 
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String loginComplete(MemberVO member, HttpServletRequest req) {
+	@RequestMapping(value="/member_login", method=RequestMethod.POST)
+	public String member_login(MemberVO member, HttpServletRequest req) {
 		logger.info("loginComplete:" + member.toString());
 	
 		
@@ -91,7 +91,7 @@ public class MemberController {
 		}
 		catch(Exception err) {
 			logger.info("loginComplete:" + err.toString());
-			return "/member/login";
+			return "/member/login_fail";
 		}
 		return "/member/mypage";
 	}
