@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.four.myapp.service.BoardService;
 
@@ -15,27 +16,28 @@ import com.four.myapp.service.BoardService;
 public class BoardController {
 	@Autowired
 	private BoardService service;
-	// ¾È°Ç °ÇÀÇ °Ô½ÃÆÇÀ¸·Î ÀÌµ¿
+	// ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping("/proposal")
 	public void ProposalHandler() {
 		
 	}
-	// Åä·ÐÁß °Ô½ÃÆÇÀ¸·Î ÀÌµ¿	
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½	
 	@RequestMapping("/ongoing")
 	public void OngoingHandler() {
 		
 	}
-	// Á¾·áµÈ Åä·Ð °Ô½ÃÆÇÀ¸·Î ÀÌµ¿
-	@RequestMapping("/finished")
-	public void FinishedHandler() {
-		
+	// 
+	@RequestMapping("/finished/list")
+	public void FinishedHandler(Model model) throws SQLException {
+		model.addAttribute("list", service.getFinishedList());
 	}
-	// ¸¶ÀÌÆäÀÌÁö·Î ÀÌµ¿
+	
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping("/mypage")
 	public void MypageHandler() {
 		
 	}
-	// ÇØ´ç °Ô½Ã¹°·Î ÀÌµ¿
+	// ï¿½Ø´ï¿½ ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping(value="/board/read", method=RequestMethod.GET)
 	public void ReadHandler(@RequestParam("topic_no") int topic_no, Model model) throws SQLException {
 		model.addAttribute("mainDto", service.read(topic_no));

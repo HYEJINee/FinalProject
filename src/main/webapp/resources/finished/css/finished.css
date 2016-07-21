@@ -1,0 +1,29 @@
+/*
+	작성자 : 최락휘
+	작성일 : 2016.07.21
+*/
+@CHARSET "UTF-8";
+
+.container {
+	margin-top: 50px;
+}
+#category {
+	margin-top: 20px;
+}
+.nav-pills li{
+	/* 부트스트랩 우선순위 때문에 직접 지정 */
+}
+.item {
+	margin-top: 15px;
+	border:1px #d9edf7 solid;
+}
+#pro {
+	color:blue; 
+	margin-left:50px;
+}
+#con {
+	color:red;
+}
+#neut {
+	color:gray;
+}
