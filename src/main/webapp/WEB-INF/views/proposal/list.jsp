@@ -26,12 +26,14 @@
 				</ul>
 				<hr>
 				
-				<div id="divWrite">
-					<p class="text-center">
-						<button class="customBtn btn-write customBtn-lg">안건 건의 글 작성하기</button>
-					</p>
-					<p id="login_needed" class="text-center"></p>
-				</div>
+				<c:if test="${empty USER_KEY != true}">
+					<div id="divWrite">
+						<p class="text-center">
+							<button class="customBtn btn-write customBtn-lg">안건 건의 글 작성하기</button>
+						</p>
+						<p id="login_needed" class="text-center"></p>
+					</div>
+				</c:if>
 			
 				<div class="tab-content">
 				<!-- 모든 토론 탭 -->
@@ -118,14 +120,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
     <script>
-    	var USER_KEY = ${empty USER_KEY == false};
-    
     	$('.btn-write').on('click', function() {
-    		if(USER_KEY) {
-	    		location.href='/proposal/write.do';
-    		} else {
-				$('#login_needed').text('로그인한 이용자만 글을 작성할 수 있습니다.');    			
-    		}
+	    	location.href='/proposal/write.do';
     	});
     	
     	$(function () {

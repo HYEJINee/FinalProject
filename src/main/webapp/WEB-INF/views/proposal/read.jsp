@@ -36,11 +36,28 @@
 			    			${topic.recommend}표
   						</div>
 					</div>
-					<p class="text-center"><button class="btn btn-success btn-sm">투표하기</button></p>
+					<c:choose>
+						<c:when test="${empty USER_KEY == false}">
+							<c:choose>
+								<c:when test="${voted != true}">
+									<form action="read.vote" method="post">
+										<input type="hidden" name="topic_no" value="${topic.topic_no}" />
+										<p class="text-center"><button id="btnVote" class="btn btn-success btn-sm">투표하기</button></p>
+									</form>
+								</c:when>
+								<c:otherwise>
+									<p class="text-center"><button class="btn btn-success btn-sm" disabled="disabled">이미 투표에 참여하셨습니다.</button></p>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<p class="text-center"><button class="btn btn-success btn-sm" disabled="disabled">투표하려면 로그인해주세요</button></p>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<!-- 안건 투표 -->
-
+			
 			<!-- 본문 내용 -->	
 			<div id="divContent" class="col-md-12">
 				<p>${topic.topic_long_cont}</p>
@@ -70,29 +87,41 @@
 			<!-- 찬성 반대 의견 -->
 			
 			<div class="col-md-10 col-md-offset-1">
-				<h4>댓글 쓰기</h4>
-				작성자 : ㅇㅇㅇ
-				<textarea class="form-control" rows="5" placeholder="이 안건에 추가하고 싶은 자료가 있거나 작성자에게 하고 싶은 말이 있다면 적어주세요."></textarea>
-				<button class="btn btn-primary btn-sm pull-right">등록</button>
+			<c:choose>
+				<c:when test="${empty USER_KEY != true}">
+						<h4>댓글 쓰기</h4>
+						작성자 : ${USER_KEY.user_nick}
+						<textarea class="form-control" rows="5" placeholder="이 안건에 추가하고 싶은 자료가 있거나 작성자에게 하고 싶은 말이 있다면 적어주세요."></textarea>
+						<button class="btn btn-primary btn-sm pull-right">등록</button>
+				</c:when>
+				<c:otherwise>
+					<div class="alert alert-warning">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						댓글 작성은 로그인한 사용자만 가능합니다. <button class="btn btn-link" onclick="location.href='/member/login'">로그인하기</button>
+					</div>
+				</c:otherwise>
+			</c:choose>
 			</div>
 			
 			<!-- 댓글 -->
+			<div id="divReplies" class="col-md-10 col-md-offset-1">
 			<c:forEach items="${replies}" var="reply">
-			<div class="col-md-10 col-md-offset-1 media">
-				<div class="media-left media-top">
-					<img class="media-object" src="...">
+				<div class="media">
+					<div class="media-left media-top">
+						<img class="media-object" src="${reply.user_profile}">
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">${reply.user_nick}</h4>
+						<p>${reply.reply_content}</p>
+					</div>
 				</div>
-				<div class="media-body">
-					<h4 class="media-heading">${reply.user_nick}</h4>
-					<p>${reply.reply_content}</p>
-				</div>
-			</div>
 			</c:forEach>
+			</div>
 			<!-- 댓글 -->
 		</div><!-- row -->
 	</div><!-- container -->
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

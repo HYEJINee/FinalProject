@@ -1,6 +1,8 @@
 package com.four.myapp.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.four.myapp.domain.ProposalRefDTO;
 import com.four.myapp.domain.ReplyDTO;
 import com.four.myapp.domain.TopicProposalDTO;
-import com.mysql.jdbc.Connection;
 
 @Repository
 public class ProposalDAOImpl implements ProposalDAO {
@@ -45,5 +46,25 @@ public class ProposalDAOImpl implements ProposalDAO {
 	@Override
 	public void registTopic(TopicProposalDTO topicProposalDTO) {
 		sqlSession.insert(NAMESPACE + ".proposalUp", topicProposalDTO);
+	}
+	
+	@Override
+	public void recommend(int topic_no, int user_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("user_no", user_no);
+		sqlSession.insert(NAMESPACE + ".recommend", map);
+	}
+	
+	@Override
+	public boolean checkRecommended(int topic_no, int user_no) {
+		boolean result = false;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("user_no", user_no);
+		if(sqlSession.selectOne(NAMESPACE + ".hadRecommended", map) != null) {
+			result = true;
+		}
+		return result;
 	}
 }

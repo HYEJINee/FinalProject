@@ -4,6 +4,7 @@ public class TopicProposalDTO {
 	private int topic_no;
 	private int user_no;
 	private String user_nick;
+	private String user_profile;
 	private String topic_regdate;
 	private String topic_endate;
 	private int topic_type;
@@ -38,6 +39,12 @@ public class TopicProposalDTO {
 	}
 	public void setUser_nick(String user_nick) {
 		this.user_nick = user_nick;
+	}
+	public String getUser_profile() {
+		return user_profile;
+	}
+	public void setUser_profile(String user_profile) {
+		this.user_profile = user_profile;
 	}
 	public String getTopic_regdate() {
 		return topic_regdate;
