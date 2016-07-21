@@ -29,6 +29,20 @@
 			$("#replyid").val(nick);
 			$("#replyarea").focus();
 		});
+		$("input[name=chk]").click(function() { //id test1 이라는 a태그 클릭시 발생
+			var chkval = $(this).val();
+			alert(chkval);
+			if(chkval == "0"){
+
+			} else if(chkval == "1"){
+				
+			} else {
+				
+			}
+		});
+		
+		
+		
 	});
 </script>
 <body>
@@ -333,19 +347,10 @@
 					<h4>의견 입력 ID</h4>
 					<br />
 				</div>
-				<div class="col-sm-2">
-					<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-  </ul>
-</div>
+				<div class="col-sm-5">
+					<h4 class="radio-inline"><input type="radio" name="chk" id="chkok" value="0" >찬성</h4>
+       				<h4 class="radio-inline"><input type="radio" name="chk" id="chkno" value="1" >반대</h4>
+       				<h4 class="radio-inline"><input type="radio" name="chk" id="chkneut" value="2" >중립</h4>
 				</div>
 			</div>
 			
