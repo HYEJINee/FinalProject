@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -27,7 +28,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/member/mypage">아이디</a></li>
-        <li class="dropdown"><a href="/member/login">로그인</a></li>
+        <li class="dropdown"><a href="/member/member_login">로그인</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

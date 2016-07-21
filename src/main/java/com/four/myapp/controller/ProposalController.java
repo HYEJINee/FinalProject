@@ -1,11 +1,13 @@
 package com.four.myapp.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +22,14 @@ import com.four.myapp.service.TopicProposalService;
 @RequestMapping("/proposal/*")
 public class ProposalController {
 	@Autowired
-	private TopicProposalService service;
+	@Qualifier("topicService")
+	private TopicProposalService topicProposalService;
 	
 	private final static Logger logger = LoggerFactory.getLogger(ProposalController.class);
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String listGet(Model model) {
-		model.addAttribute("topicList", service.listAll());
+		model.addAttribute("topicList", topicProposalService.listAll());
 		return "/proposal/list";
 	}
 	
@@ -45,9 +48,9 @@ public class ProposalController {
 	
 	@RequestMapping(value="/read", method=RequestMethod.GET)
 	public String readGet(int topic_no, Model model) {
-		model.addAttribute("topic", service.callTopic(topic_no));
-		model.addAttribute("ref", service.callRefs(topic_no));
-		model.addAttribute("replies", service.callReplies(topic_no));
+		model.addAttribute("topic", topicProposalService.callTopic(topic_no));
+		model.addAttribute("ref", topicProposalService.callRefs(topic_no));
+		model.addAttribute("replies", topicProposalService.callReplies(topic_no));
 		return "/proposal/read";
 	}
 }
