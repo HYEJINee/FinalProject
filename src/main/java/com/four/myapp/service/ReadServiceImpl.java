@@ -24,13 +24,13 @@ public class ReadServiceImpl implements ReadService {
 	}
 
 	@Override
-	public List<ReadResourceVO> getResource() throws SQLException {
-		return dao.getResource();
+	public List<ReadResourceVO> getResource(int topic_no) throws SQLException {
+		return dao.getResource(topic_no);
 	}
 
 	@Override
-	public List<ReadOpinionVO> getOpinion() throws SQLException {
-		return dao.getOpinion();
+	public List<ReadOpinionVO> getOpinion(int topic_no) throws SQLException {
+		return dao.getOpinion(topic_no);
 	}
 	
 }

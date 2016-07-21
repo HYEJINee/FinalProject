@@ -25,13 +25,13 @@ public class ReadDAOImpl implements ReadDAO {
 	}
 
 	@Override
-	public List<ReadResourceVO> getResource() throws SQLException {
-		return sqlSession.selectList(NAMESPACE+".selectResource");
+	public List<ReadResourceVO> getResource(int topic_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE+".selectResource", topic_no);
 	}
 
 	@Override
-	public List<ReadOpinionVO> getOpinion() throws SQLException {
-		return sqlSession.selectList(NAMESPACE+".selectOpinion");
+	public List<ReadOpinionVO> getOpinion(int topic_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE+".selectOpinion", topic_no);
 	}
 	
 }
