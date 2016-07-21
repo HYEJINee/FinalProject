@@ -20,7 +20,7 @@
 </style>
 
 <body>
-	<%@ include file="../include/header.jsp"%>
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div class="container top">
 		<form class="form-horizontal">
 			<c:choose>
@@ -341,9 +341,18 @@
 				<div class="col-sm-1">
 					<img src="" style="height: 30px; width: 30px" />
 				</div>
-				<div class="col-sm-2">
-					<h4>의견 입력 ID</h4>
-					<br />
+				<div class="col-sm-3">
+				
+				<c:choose>
+					<c:when test="${empty readuser.user_nick != false}">
+						<h4>로그인 후 의견을 작성해주세요.</h4>
+					</c:when>
+				
+					<c:when test="${empty readuser.user_nick != true}"> 
+						<h4>${readuser.user_nick}</h4>
+					</c:when>
+				</c:choose>
+					
 				</div>
 				<div class="col-sm-5">
 					<h4 class="radio-inline">
