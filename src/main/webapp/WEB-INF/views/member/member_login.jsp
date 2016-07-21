@@ -4,7 +4,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -45,7 +44,7 @@ margin-top:200px;
 <body>
 
 <%@include file="../include/header.jsp" %>
-<div class="container body login">
+<div class="container body login ">
 
 		<form class="form-horizontal" method="post" action="/member/member_login" name="form" >
 			<input type="hidden" name="param" value="login"/>

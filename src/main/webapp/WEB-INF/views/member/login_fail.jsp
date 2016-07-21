@@ -47,7 +47,7 @@ margin-top:200px;
 <body>
 
 <%@include file="../include/header.jsp" %>
-<div class="container body login">
+<div class="container body login"  >
 
 		<form class="form-horizontal" method="post" action="/member/member_login" name="form" >
 			<input type="hidden" name="param" value="login"/>
