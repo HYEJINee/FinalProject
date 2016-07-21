@@ -15,7 +15,11 @@
 <script src="/resources/bootstrap/js/bootstrap.js"></script>
 <script src="/resources/bootstrap/js/menu.js"></script>
 </head>
-
+<style>
+.top {
+	margin-top: 50px;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("input[name=rebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
