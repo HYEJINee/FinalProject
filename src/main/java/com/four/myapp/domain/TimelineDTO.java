@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MypageDto {
+public class TimelineDTO {
 	private String user_no;
 	private String topic_no;
 	private String topic_title;
@@ -38,7 +38,6 @@ public class MypageDto {
 		return timeline_type;
 	}
 	public void setTimeline_type(String timeline_type) {
-		System.out.println("setTimeline_type called");
 		this.timeline_type = timeline_type;
 		setTimeline_statement(timeline_type);
 	}
@@ -82,7 +81,6 @@ public class MypageDto {
 			this.timeline_statement = null;
 			break;
 		}
-		System.out.println("setTimeline_statement called : " + this.timeline_statement);
 	}
 	public String getTimeline_statement() {
 		return timeline_statement;
@@ -91,7 +89,6 @@ public class MypageDto {
 		return vote_type;
 	}
 	public void setVote_type(String vote_type) {
-		System.out.println("setVote_type called");
 		this.vote_type = vote_type;
 		setVote_statement(vote_type);
 	}
@@ -106,7 +103,6 @@ public class MypageDto {
 		default : this.vote_statement = null;
 			break;
 		}
-		System.out.println("setVote_statement called : " + this.vote_statement);
 	}
 	public String getVote_statement() {
 		return vote_statement;

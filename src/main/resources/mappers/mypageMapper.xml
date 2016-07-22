@@ -2,12 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.four.mappers.mypageMapper">
-	<select id="timeline" parameterType="String" resultType="com.four.myapp.domain.MypageDto">
+	<select id="timeline" parameterType="String" resultType="com.four.myapp.domain.TimelineDTO">
 		select timeline_tbl.user_no, timeline_tbl.topic_no, vote_type, timeline_type, timeline_date, topic_title
  		from timeline_tbl left join topic_tbl 
  		on timeline_tbl.topic_no=topic_tbl.topic_no
  		where timeline_tbl.user_no=#{user_no} order by timeline_date desc;
 	</select>
-	
+	<select id="getNoti" parameterType="String" resultType="NotiDTO">
+		 select noti_tbl.user_no, noti_tbl.topic_no, other_user_no, noti_type, noti_date, topic_title, user_nick as other_user_nick
+ 		from noti_tbl 
+        left join topic_tbl on noti_tbl.topic_no=topic_tbl.topic_no
+		left join user_tbl on noti_tbl.other_user_no=user_tbl.user_no
+ 		where noti_tbl.user_no=#{user_no} and noti_check='N' order by noti_date desc;
+	</select>
 
 </mapper>

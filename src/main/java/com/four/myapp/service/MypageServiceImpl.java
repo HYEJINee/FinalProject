@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.four.myapp.domain.MypageDto;
+import com.four.myapp.domain.TimelineDTO;
 import com.four.myapp.persistence.MypageDAO;
 import com.four.myapp.persistence.MypageDAOImpl;
 
@@ -17,8 +17,13 @@ public class MypageServiceImpl implements MypageService {
 	MypageDAO dao;
 	
 	@Override
-	public List<MypageDto> timeline(String user_no) throws SQLException {
+	public List<TimelineDTO> timeline(String user_no) throws SQLException {
 		return dao.timeline(user_no);
 	}
 
+	@Override
+	public List<TimelineDTO> getNoti(String user_no) throws SQLException {
+		return dao.getNoti(user_no);
+	}
+	
 }

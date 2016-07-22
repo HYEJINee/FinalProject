@@ -70,12 +70,16 @@
 
 	<%@include file="../include/header.jsp"%>
 	<script>
-	 $(function(){
-		$(".dropdown-menu li a").click(function(){
-		  $(this).parents(".dropdown").find('.btn').html($(this).data('value') + ' <span class="caret"></span>');
-		  $(this).parents(".dropdown").find('.btn').val($(this).text());
+		$(function() {
+			$(".dropdown-menu li a").click(
+					function() {
+						$(this).parents(".dropdown").find('.btn').html(
+								$(this).data('value')
+										+ ' <span class="caret"></span>');
+						$(this).parents(".dropdown").find('.btn').val(
+								$(this).text());
+					});
 		});
-	 });
 
 		function filterAll() {
 			$(".mypage-activity-row").show();
@@ -98,7 +102,7 @@
 			<div class="mypage-header-container">
 				<div class="mypage-header-profile">
 					<img class="center round-profile-150"
-						src="${USER_KEY.user_profile }" />
+						src="/resources/${USER_KEY.user_profile }" />
 				</div>
 				<div class="mypage-header-user">
 					<h3>${USER_KEY.user_nick }의페이지</h3>
@@ -120,6 +124,16 @@
 		<hr />
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="noti">
+				<c:forEach items="${getNoti}" var="notiDTO">
+					<div class="alert alert-danger" role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<a href="#" class="alert-link">${notiDTO.other_user_nick }</a>님이 
+						<a href="#" class="alert-link">${notiDTO.topic_title }</a>${notiDTO.noti_statement }
+					</div>
+				</c:forEach>
 				<div class="alert alert-warning alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert"
 						aria-label="Close">
@@ -145,8 +159,8 @@
 				</div>
 
 			</div>
-			<div role="tabpanel" class="tab-pane active" id="my-topic">my
-				topic list</div>
+			<div role="tabpanel" class="tab-pane" id="my-topic">my topic
+				list</div>
 			<div role="tabpanel" class="tab-pane " id="timeline">
 				<div class="row">
 					<div class="dropdown mypage-activity-filter">
@@ -158,19 +172,20 @@
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<li><a href="javascript:filterAll();" data-value="필터 : 모두">모두</a></li>
 							<li><a href="javascript:filterTopic();" data-value="필터 : 안건">안건</a></li>
-							<li><a href="javascript:filterOpinion();" data-value="필터 : 의견">의견</a></li>
+							<li><a href="javascript:filterOpinion();"
+								data-value="필터 : 의견">의견</a></li>
 							<li><a href="javascript:filterVote();" data-value="필터 : 투표">투표</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="mypage-activity-list">
-					<c:forEach items="${timeline}" var="mypageDto">
+					<c:forEach items="${timeline}" var="mypageDTO">
 						<div
-							class="row mypage-activity-row mypage-row-${mypageDto.timeline_css }">
-							<div class="col-md-3 mypage-activity-date">${mypageDto.timeline_date }</div>
+							class="row mypage-activity-row mypage-row-${mypageDTO.timeline_css }">
+							<div class="col-md-3 mypage-activity-date">${mypageDTO.timeline_date }</div>
 							<div
-								class="col-md-9 mypage-activity-all mypage-activity-${mypageDto.timeline_css }">
-								<a href="/board/read?topic_no=${mypageDto.topic_no }">${mypageDto.topic_title }</a>${mypageDto.timeline_statement }
+								class="col-md-9 mypage-activity-all mypage-activity-${mypageDTO.timeline_css }">
+								<a href="/board/read?topic_no=${mypageDTO.topic_no }">${mypageDTO.topic_title }</a>${mypageDTO.timeline_statement }
 							</div>
 						</div>
 					</c:forEach>
@@ -179,12 +194,14 @@
 			<div role="tabpanel" class="tab-pane" id="profile">
 				<div class="row">
 					<div class="col-md-3 mypage-profile-picture">
-						<img class="round-profile-150" src="${USER_KEY.user_profile }" />
+						<img class="round-profile-150"
+							src="/resources/${USER_KEY.user_profile }" />
 						<button type="button" class="btn btn-default btn-sm">프로필
 							사진 수정</button>
 					</div>
 					<div class="col-md-8 mypage-profile-details">
-						<a href="/member/member_modify"><button type="button" class="btn btn-default">프로필 수정</button></a>
+						<a href="/member/member_modify"><button type="button"
+								class="btn btn-default">프로필 수정</button></a>
 						<table width="100%">
 							<tr>
 								<td>닉네임</td>
@@ -197,15 +214,6 @@
 							<tr>
 								<td>비밀번호</td>
 								<td class="align-right">${USER_KEY.user_pw }</td>
-							</tr>
-
-							<tr>
-								<td>비밀번호 분실 질문</td>
-								<td class="align-right">친한 친구의 이름은?</td>
-							</tr>
-							<tr>
-								<td>비밀번호 분실 답변</td>
-								<td class="align-right">***</td>
 							</tr>
 						</table>
 					</div>
