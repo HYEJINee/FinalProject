@@ -93,7 +93,21 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
+	@RequestMapping(value="/member_modify")
+	public void member_modify() {
+	}
 	
+	@RequestMapping(value = "/member_modify", method = RequestMethod.POST)
+	public String member_modify(@ModelAttribute MemberVO vo,Model model,HttpServletRequest req) throws Exception {
+		MemberVO mem = service.selectMember(vo.getUser_email());
+		String user_email = vo.getUser_email();
+		System.out.println("mem : "+mem);
+		service.modifyMember(mem);
+		mem = service.selectMember(user_email);
+		WebUtils.setSessionAttribute(req, "USER_KEY", mem);
+		logger.info("loginComplete : " + vo.toString());
+		return "/member/mypage";
+	}
 	@RequestMapping(value="/member_logout")
 	public String logout(HttpServletRequest req){
 		req.getSession().invalidate(); 
