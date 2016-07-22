@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -95,18 +97,17 @@ public class MemberController {
 	}
 	@RequestMapping(value="/member_modify")
 	public void member_modify() {
+		
 	}
 	
 	@RequestMapping(value = "/member_modify", method = RequestMethod.POST)
-	public String member_modify(@ModelAttribute MemberVO vo,Model model,HttpServletRequest req) throws Exception {
-		MemberVO mem = service.selectMember(vo.getUser_email());
-		String user_email = vo.getUser_email();
-		System.out.println("mem : "+mem);
+	public String member_modify(@ModelAttribute MemberVO mem,Model model,HttpServletRequest req) throws Exception {
+		MemberVO vo = (MemberVO) WebUtils.getSessionAttribute(req, "USER_KEY");
 		service.modifyMember(mem);
-		mem = service.selectMember(user_email);
-		WebUtils.setSessionAttribute(req, "USER_KEY", mem);
-		logger.info("loginComplete : " + vo.toString());
-		return "/member/mypage";
+		vo = service.selectMember(vo.getUser_email());
+		WebUtils.setSessionAttribute(req, "USER_KEY", vo);
+		logger.info("modifyComplete : " + vo.toString());
+		return "redirect:/member/mypage";
 	}
 	@RequestMapping(value="/member_logout")
 	public String logout(HttpServletRequest req){
