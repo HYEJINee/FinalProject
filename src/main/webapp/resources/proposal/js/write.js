@@ -2,18 +2,12 @@
  * write.js
  */
 
-var topic_type = null;
-
-$(function() {
-	/*$('#formCoverImg').on('change', function() {
-		$('#formCoverImg').trigger('submit');
-	})*/
-});
-	
+	$(function() {
+		$('#btnDebateType').dropdown();
+	});
 	
 	$('#btnCoverImg').on('click', function(event) {
 		$('#coverImgUp').trigger('click');
-//		alert($('#divCoverImg').css('background-image'));
 	});
 	
 	
@@ -78,3 +72,7 @@ $(function() {
 			$('#proposal').submit();
 		}
 	});
+	
+	$('#coverImgUp').on('change', function() {
+		$('#formCoverImg').submit();
+	})

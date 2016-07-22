@@ -20,6 +20,9 @@ public class TopicProposalDTO {
 	private String topic_resource_title;
 	private String topic_resource_link;
 	
+	private String img_file_name;
+	private String img_ext_name;
+	
 	private int recommend;
 	
 	public int getTopic_no() {
@@ -117,6 +120,18 @@ public class TopicProposalDTO {
 	}
 	public void setTopic_resource_link(String topic_resource_link) {
 		this.topic_resource_link = topic_resource_link;
+	}
+	public String getImg_file_name() {
+		return img_file_name;
+	}
+	public void setImg_file_name(String img_file_name) {
+		this.img_file_name = img_file_name;
+	}
+	public String getImg_ext_name() {
+		return img_ext_name;
+	}
+	public void setImg_ext_name(String img_ext_name) {
+		this.img_ext_name = img_ext_name;
 	}
 	public int getRecommend() {
 		return recommend;
