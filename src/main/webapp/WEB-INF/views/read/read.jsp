@@ -174,8 +174,29 @@
 			
 			<div class="form-group">
 				<div class="col-sm-1">
-					<img src="#"
-						style="height: 30px; width: 30px" />
+				<c:choose>
+					<c:when test="${opinion.user_lv eq 0}">
+						<img src="/resources/user_lv/common.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 1}">
+						<img src="/resources/user_lv/prestige.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 2}">
+						<img src="/resources/user_lv/royal.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 3}">
+						<img src="/resources/user_lv/vip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 4}">
+						<img src="/resources/user_lv/vvip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+				</c:choose>
+					
 				</div>
 				<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #46FFFF">
 					<div class="col-sm-6">
@@ -184,7 +205,7 @@
 					</div>
 					<div style="text-align: right">
 						<h3>
-							<em>NO.${opinion.op_no} / ${status.count}</em>
+							<em>NO.${opinion.op_no}</em>
 						</h3>
 					</div>
 					<br />
@@ -261,8 +282,28 @@
 					</div>
 				</div>
 				<div class="col-sm-1">
-					<img src=""
-						style="height: 30px; width: 30px" />
+					<c:choose>
+					<c:when test="${opinion.user_lv eq 0}">
+						<img src="/resources/user_lv/common.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 1}">
+						<img src="/resources/user_lv/prestige.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 2}">
+						<img src="/resources/user_lv/royal.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 3}">
+						<img src="/resources/user_lv/vip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 4}">
+						<img src="/resources/user_lv/vvip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+				</c:choose>
 				</div>
 			</div>
 			</c:when>
@@ -271,12 +312,35 @@
 			<c:choose>
 			<c:when test="${opinion.vote_type eq 2}">
 			<div class="form-group ">
-				<div class="col-sm-offset-2 col-sm-9" style="border-style: solid; border-width: 1px; border-color: #66FF00">
-				<div class="col-sm-6">
+				<div class="col-sm-1">
+					<c:choose>
+					<c:when test="${opinion.user_lv eq 0}">
+						<img src="/resources/user_lv/common.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 1}">
+						<img src="/resources/user_lv/prestige.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 2}">
+						<img src="/resources/user_lv/royal.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 3}">
+						<img src="/resources/user_lv/vip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${opinion.user_lv eq 4}">
+						<img src="/resources/user_lv/vvip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+				</c:choose>
+				</div>
+				<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #66FF00">
+					<div class="col-sm-6">
 						<h3>${opinion.user_nick}&nbsp;&nbsp;
-						<span class="label label-success" style="margin-top: 20px">중립</span></h3>
+						<span class="label label-success" style="margin-top: 20px">찬성</span></h3>
 					</div>
-					
 					<div style="text-align: right">
 						<h3>
 							<em>NO.${opinion.op_no}</em>
@@ -304,15 +368,10 @@
 							</button>
 						</div>
 						<div class="col-sm-1">
-							<input type="button" value="답글" class="btn btn-default"  id="btn${status.count}" name="rebtn"/>
+							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
 							<input type="hidden" value="${opinion.user_nick}">
 						</div>
-						
 					</div>
-				</div>
-				<div class="col-sm-1">
-					<img src=""
-						style="height: 30px; width: 30px" />
 				</div>
 			</div>
 			</c:when>
@@ -334,7 +393,28 @@
 				<h2>의견 작성</h2>
 				<hr />
 				<div class="col-sm-1">
-					<img src="" style="height: 30px; width: 30px" />
+					<c:choose>
+					<c:when test="${readuser.user_lv eq 0}">
+						<img src="/resources/user_lv/common.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${readuser.user_lv eq 1}">
+						<img src="/resources/user_lv/prestige.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${readuser.user_lv eq 2}">
+						<img src="/resources/user_lv/royal.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${readuser.user_lv eq 3}">
+						<img src="/resources/user_lv/vip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+					<c:when test="${readuser.user_lv eq 4}">
+						<img src="/resources/user_lv/vvip.png"
+						style="height: 50px; width: 50px" />
+					</c:when>
+				</c:choose>
 				</div>
 				<div class="col-sm-3">
 				

@@ -26,10 +26,10 @@
 	</select>
 
 	<select id="selectOpinion" resultType="com.four.myapp.domain.ReadOpinionVO">
-		select
-		A.op_no,A.op_content,A.op_like,A.op_rel, A.op_regdate,
-		A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no)
-		AS user_nick from opinion_tbl AS A where topic_no = #{topic_no};
+		select A.op_no,A.op_content,A.op_like,A.op_rel, A.op_regdate,
+		A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick,
+		(Select user_lv From user_tbl where user_no = A.user_no) AS user_lv
+		 from opinion_tbl AS A where topic_no = #{topic_no};
 	</select>
 
 	<insert id="topicvoteinsert">
