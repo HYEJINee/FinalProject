@@ -112,6 +112,12 @@
 			before_nick=document.form.user_nick.value;
 			return false;
 		}
+		if (nick_check == "nick_fail") {
+			alert("중복된 닉네임입니다.");
+			userinput.user_nick.focus();
+			before_nick = document.form.user_nick.value;
+			return false;
+		}
 
 		if (before_nick !== document.form.user_nick.value) {
 			alert("닉네임 중복 체크를 다시 확인해주세요.");
@@ -120,12 +126,7 @@
 		}
 
 		
-		if (nick_check == "nick_fail") {
-			alert("중복된 닉네임입니다.");
-			userinput.user_nick.focus();
-			before_nick = document.form.user_nick.value;
-			return false;
-		}
+		
 		alert("수정이 완료되었습니다.");
 			var url = "/member/mypage";    
 			$(location).attr('href',url);
@@ -172,7 +173,7 @@
 		<form class="form-horizontal" method="post"
 			action="/member/member_modify" name="form">
 			<input type="hidden" name="param" value="join" />
-			<h2 class="text-center">프로필 수정</h2>
+			<h2 class="text-center">회원정보 수정</h2>
 			<hr />
 			<div class="form-group">
 				<label for="user_email" class="col-sm-3 control-label">이메일

@@ -95,6 +95,27 @@ public class MemberController {
 		}
 		return "redirect:/";
 	}
+	@RequestMapping(value="/member_beforeModify")
+	public void member_beforeModify() {
+	}
+
+	@RequestMapping(value="/member_beforeModify", method=RequestMethod.POST)
+	public String member_beforeModify(MemberVO member, HttpServletRequest req) throws Exception {
+
+		try{
+		MemberVO vo = (MemberVO) WebUtils.getSessionAttribute(req, "USER_KEY");
+		logger.info("before :" + member.toString());
+		service.readWithPW(vo.getUser_email(),member.getUser_pw());
+		vo = service.selectMember(vo.getUser_email());
+		WebUtils.setSessionAttribute(req, "USER_KEY", vo);
+		System.out.println(vo.toString());
+		}
+		catch(Exception err){
+			logger.info("beforeModifyFail:"+err.toString());
+			return "/member/beforeModify_fail";
+		}
+		return "redirect:/member/member_modify";
+	}
 	@RequestMapping(value="/member_modify")
 	public void member_modify() {
 		
