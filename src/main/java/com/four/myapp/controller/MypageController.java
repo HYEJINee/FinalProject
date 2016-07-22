@@ -22,6 +22,7 @@ public class MypageController {
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	@Inject
 	MypageServiceImpl service;
+	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String timeline(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
@@ -32,6 +33,7 @@ public class MypageController {
 		else {
 			String user_no = vo.getUser_no();
 			model.addAttribute("timeline", service.timeline(user_no));
+			model.addAttribute("getNoti", service.getNoti(user_no));
 			return "/member/mypage";
 		}
 	}
