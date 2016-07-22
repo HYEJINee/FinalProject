@@ -44,7 +44,7 @@ $(function() {
 	})
 	
 	$('#btnAddRef').on('click', function() {
-		$('#references').append('<div class="reference bs-callout bs-callout-primary"><input type="text" class="form-control" placeholder="참고자료 제목 - 예) [한겨레] 자살, 개인 선택인가 사회문제인가" /><br><input type="text" class="form-control" placeholder="참고자료 링크 - 예) http://www.hani.co.kr/arti/society/schooling/288194.html" /></div>')
+		$('#references').append('<div class="reference bs-callout bs-callout-primary"><input type="text" class="form-control" name="topic_resource_title" placeholder="참고자료 제목 - 예) [한겨레] 자살, 개인 선택인가 사회문제인가" /><br><input type="text" class="form-control" name="topic_resource_link" placeholder="참고자료 링크 - 예) http://www.hani.co.kr/arti/society/schooling/288194.html" /></div>')
 	});
 	
 	$('#btnRemoveRef').on('click', function() {
@@ -55,10 +55,26 @@ $(function() {
 		}
 	});
 
-/*	$('#btnSubmit').on('click', function() {
-		$.post('/proposal/write.do', {
-			topic_type : topic_type
-		}).done(function() {
-			location.href='/proposal/list'
-		})
-	});*/
+	$('#btnSubmit').on('click', function( event ) {
+		event.preventDefault();
+		var topic_type = $('#hid_topic_type').val();
+		var title = $('#prop-title').val().trim();
+		var short_cont = $('#prop-lead').val().trim();
+		var long_cont = $('#prop-body').val().trim();
+		var pro = $('#prop-pro').val().trim();
+		var con = $('#prop-con').val().trim();
+		
+		if(topic_type.length == 0) {
+			alert('토론 형식');
+		} else if(title.length == 0) {
+			alert('제목');
+		} else if(short_cont.length == 0) {
+			alert('요약');
+		} else if(long_cont.length == 0) {
+			alert('본문');
+		} else if(pro.length == 0 || con.length == 0) {
+			alert('찬반');
+		} else {
+			$('#proposal').submit();
+		}
+	});

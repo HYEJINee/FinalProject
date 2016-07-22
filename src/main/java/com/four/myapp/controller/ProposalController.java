@@ -1,5 +1,7 @@
 package com.four.myapp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.four.myapp.domain.MemberVO;
+import com.four.myapp.domain.ProposalRefDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 import com.four.myapp.service.TopicProposalService;
 
@@ -34,16 +38,20 @@ public class ProposalController {
    }
    
    @RequestMapping(value="/write.do", method=RequestMethod.POST)
-   public String writePost(TopicProposalDTO topicProposalDTO) {
-      logger.info("user_no : " + topicProposalDTO.getUser_no());
-      logger.info("topic_type : " + topicProposalDTO.getTopic_type());
-      logger.info("topic_title : " + topicProposalDTO.getTopic_title());
+   public String writePost(@RequestParam(value="topic_resource_title") List<String> refTitles, @RequestParam(value="topic_resource_link") List<String> refLinks, TopicProposalDTO topicProposalDTO, HttpSession session) {
+	  MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+	  if(vo != null) {
+		   int user_no = Integer.parseInt(vo.getUser_no());
+		   topicProposalDTO.setUser_no(user_no);
+	  }
+	  service.submitProposal(topicProposalDTO, refTitles, refLinks);
       return "redirect:/proposal/list";
    }
    
    @RequestMapping(value="/read", method=RequestMethod.GET)
    public String readGet(int topic_no, Model model, HttpSession session) {
       MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+      System.out.println(vo.getUser_no());
       if(vo != null) {
          int user_no = Integer.parseInt(vo.getUser_no());
          model.addAttribute("voted", service.recommendedHistory(topic_no, user_no));

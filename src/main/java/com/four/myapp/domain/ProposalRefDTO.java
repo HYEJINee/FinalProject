@@ -5,6 +5,15 @@ public class ProposalRefDTO {
 	private String topic_resource_title;
 	private String topic_resource_link;
 	
+	public ProposalRefDTO() {
+	}
+	
+	public ProposalRefDTO(int topic_no, String topic_resource_title, String topic_resource_link) {
+		this.topic_no = topic_no;
+		this.topic_resource_title = topic_resource_title;
+		this.topic_resource_link = topic_resource_link;
+	}
+	
 	public int getTopic_no() {
 		return topic_no;
 	}

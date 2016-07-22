@@ -20,28 +20,9 @@
 	margin-top: 50px;
 }
 </style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("input[name=rebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
-			var id =  $(this).attr('id'); 
-			var nick =  $(this).next().val(); 
-			$("#replyid").val(nick);
-			$("#replyarea").focus();
-		});
-		$("input[name=chk]").click(function() { //id test1 이라는 a태그 클릭시 발생
-			var chkval = $(this).val();
-			if(chkval == "0"){
-				$("#areaid").attr("style", "border-color: #46FFFF");
-			} else if(chkval == "1"){
-				$("#areaid").attr("style", "border-color: #FF3232");
-			} else {
-				$("#areaid").attr("style", "border-color: #66FF00");
-			}
-		});
-	});
-</script>
+
 <body>
-<%@ include file="../include/header.jsp" %>
+<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div class="container top">
 		<form class="form-horizontal">
 		<c:choose>
@@ -335,38 +316,80 @@
 				<h2>의견 작성</h2>
 				<hr />
 				<div class="col-sm-1">
-					<img src=""
-						style="height: 30px; width: 30px" />
+					<img src="" style="height: 30px; width: 30px" />
 				</div>
-				<div class="col-sm-2">
-					<h4>의견 입력 ID</h4>
-					<br />
+				<div class="col-sm-3">
+				
+				<c:choose>
+					<c:when test="${empty readuser.user_nick != false}">
+						<h4>로그인 후 의견을 작성해주세요.</h4>
+					</c:when>
+				
+					<c:when test="${empty readuser.user_nick != true}"> 
+						<h4>${readuser.user_nick}</h4>
+					</c:when>
+				</c:choose>
+					
 				</div>
 				<div class="col-sm-5">
-					<h4 class="radio-inline"><input type="radio" name="chk" id="chkok" value="0" >찬성</h4>
-       				<h4 class="radio-inline"><input type="radio" name="chk" id="chkno" value="1" >반대</h4>
-       				<h4 class="radio-inline"><input type="radio" name="chk" id="chkneut" value="2" >중립</h4>
+					<h4 class="radio-inline">
+						<input type="radio" name="chk" id="chkok" value="0">찬성
+					</h4>
+					<h4 class="radio-inline">
+						<input type="radio" name="chk" id="chkno" value="1">반대
+					</h4>
+					<h4 class="radio-inline">
+						<input type="radio" name="chk" id="chkneut" value="2">중립
+					</h4>
+					
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-2">
-					<h4 >
-						 <input type="text" class="form-control" id="replyid" readonly="readonly"></h4>
+					<h4>
+						<input type="text" class="form-control" id="replyid"
+							readonly="readonly">
+					</h4>
 				</div>
 				<div class="col-sm-2">
 					<h4>에 대한 답글</h4>
 				</div>
 			</div>
 			<div class="col-sm-offset-1 col-sm-9">
-				<textarea id="areaid" cols="150" rows="10"  style="border-color: #46FFFF" id="replyarea"></textarea>
+				<textarea id="areaid" cols="150" rows="10"
+					style="border-color: #46FFFF" id="replyarea"></textarea>
 			</div>
 			<br />
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
 				<input type="button" value="등록" class="btn btn-default btn-lg" />
 			</div>
-		
+
 		</form>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("input[name=rebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
+				var id = $(this).attr('id');
+				var nick = $(this).next().val();
+				$("#replyid").val(nick);
+				$("#replyarea").focus();
+			});
+			$("input[name=chk]").click(function() { //id test1 이라는 a태그 클릭시 발생
+				var chkval = $(this).val();
+				if (chkval == "0") {
+					$("#areaid").attr("style", "border-color: #46FFFF");
+				} else if (chkval == "1") {
+					$("#areaid").attr("style", "border-color: #FF3232");
+				} else {
+					$("#areaid").attr("style", "border-color: #66FF00");
+				}
+			});
+			$("input[name=votebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
+				var id = $(this).val();
+				alert(id);
+			});
+		});
+	</script>
 </body>
 </html>

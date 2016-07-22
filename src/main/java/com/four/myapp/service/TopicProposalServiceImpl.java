@@ -55,4 +55,9 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	public boolean recommendedHistory(int topic_no, int user_no) {
 		return proposalDAO.checkRecommended(topic_no, user_no);
 	}
+	
+	@Override
+	public void submitProposal(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks) {
+		proposalDAO.proposalUp(topicProposalDTO, refTitles, refLinks);
+	}
 }

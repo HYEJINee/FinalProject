@@ -184,7 +184,7 @@
 							사진 수정</button>
 					</div>
 					<div class="col-md-8 mypage-profile-details">
-						<button type="button" class="btn btn-default">프로필 수정</button>
+						<a href="/member/member_modify"><button type="button" class="btn btn-default">프로필 수정</button></a>
 						<table width="100%">
 							<tr>
 								<td>닉네임</td>

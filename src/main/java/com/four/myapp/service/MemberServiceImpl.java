@@ -53,6 +53,11 @@ public class MemberServiceImpl implements MemberService {
 	public void member_check(String user_email, String user_check) {
 		dao.member_check(user_email, user_check);
 	}
+
+	@Override
+	public MemberVO selectMember(String user_email) {
+		return dao.selectMember(user_email);
+	}
  
 
 }
