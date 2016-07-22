@@ -72,5 +72,9 @@ public void member_check(String user_check, String user_email) {
     paramMap.put("user_email", user_email);
     sqlSession.update(NAMESPACE+".member_check",paramMap);      
 }
+@Override
+public MemberVO selectMember(String user_email) {
+	return sqlSession.selectOne(NAMESPACE+".selectMember",user_email);
+}
    
 }
