@@ -55,88 +55,102 @@
 			<div class="col-md-12">
 				<center><h3>토론중</h3></center>
 				<hr/>
-				<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}">
-					<c:choose>
-						<c:when test="${mainList.topic_type eq 0}">
-							<div class="item list_item col-md-3 col-md-offset-1">
-								<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
-								<label class="label label-primary">찬반</label><br/>
-								<center><h3>${mainList.topic_title}</h3></center>
-								<hr/>
-								<p>${mainList.topic_short_cont}</p>
-								<span class="glyphicon glyphicon-user"> ${mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut}</span>
-								<c:choose>
-									<c:when test="${mainList.debate_tot_pro eq 0}">
-										<span id="pro"> 찬 0%</span>
-									</c:when>
-									<c:otherwise>
-										<span id="pro"> 찬 <fmt:formatNumber value="${mainList.debate_tot_pro/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${mainList.debate_tot_con eq 0}">
-										<span id="con"> 반 0%</span>
-									</c:when>
-									<c:otherwise>
-										<span id="con"> 반 <fmt:formatNumber value="${mainList.debate_tot_con/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${mainList.debate_tot_neut eq 0}">
-										<span id="neut"> 중 0%</span>
-									</c:when>
-									<c:otherwise>
-										<span id="neut"> 중 <fmt:formatNumber value="${mainList.debate_tot_neut/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
-									</c:otherwise>
-								</c:choose>
-							</div>
-						</c:when>
-						<c:when test="${mainList.topic_type eq 1}">
-							<div class="item list_item type1 col-md-3 col-md-offset-1">
-								<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
-								<label class="label label-danger">의견</label><br/>
-								<center><h3>${mainList.topic_title}</h3></center>
-								<hr/>
-								<p>${mainList.topic_short_cont}</p>
-								<span class="glyphicon glyphicon-education"> ${mainList.op_cnt}</span>
-							</div>
-						</c:when>
-					</c:choose>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${main.size() eq 0}">
+						<center><h3>게시물이 없습니다.</h3></center>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}">
+							<c:choose>
+								<c:when test="${mainList.topic_type eq 0}">
+									<div class="item list_item col-md-3 col-md-offset-1">
+										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
+										<label class="label label-primary">찬반</label><br/>
+										<center><h3>${mainList.topic_title}</h3></center>
+										<hr/>
+										<p>${mainList.topic_short_cont}</p>
+										<span class="glyphicon glyphicon-user"> ${mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut}</span>
+										<c:choose>
+											<c:when test="${mainList.debate_tot_pro eq 0}">
+												<span id="pro"> 찬 0%</span>
+											</c:when>
+											<c:otherwise>
+												<span id="pro"> 찬 <fmt:formatNumber value="${mainList.debate_tot_pro/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+											</c:otherwise>
+										</c:choose>
+										<c:choose>
+											<c:when test="${mainList.debate_tot_con eq 0}">
+												<span id="con"> 반 0%</span>
+											</c:when>
+											<c:otherwise>
+												<span id="con"> 반 <fmt:formatNumber value="${mainList.debate_tot_con/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+											</c:otherwise>
+										</c:choose>
+										<c:choose>
+											<c:when test="${mainList.debate_tot_neut eq 0}">
+												<span id="neut"> 중 0%</span>
+											</c:when>
+											<c:otherwise>
+												<span id="neut"> 중 <fmt:formatNumber value="${mainList.debate_tot_neut/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</c:when>
+								<c:when test="${mainList.topic_type eq 1}">
+									<div class="item list_item type1 col-md-3 col-md-offset-1">
+										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
+										<label class="label label-danger">의견</label><br/>
+										<center><h3>${mainList.topic_title}</h3></center>
+										<hr/>
+										<p>${mainList.topic_short_cont}</p>
+										<span class="glyphicon glyphicon-education"> ${mainList.op_cnt}</span>
+									</div>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<!-- Page -->
-		<div class="row">
-			<div class="col-md-offset-5">
-				<nav>
-				  <ul class="pagination">
-				  	<c:if test="${nowBlock > 0}">
-				  		<li>
-					      <a href="/?nowBlock=${nowBlock-1}&nowPage=${(nowBlock-1)*pagePerBlock}" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-				  	</c:if>
-				  	<c:set var="doneLoop" value="false"/>
-				  	<c:forEach begin="0" end="${pagePerBlock-1}" varStatus="status">
-				  		<c:if test="${not doneLoop}">
-				  			<li><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
-				  		</c:if>
-				  		<c:if test="${status.current+1 + (nowBlock*pagePerBlock) eq totalPage}">
-				  			<c:set var="doneLoop" value="true"/>
-				  		</c:if>
-				  	</c:forEach>
-				  	<c:if test="${nowBlock +1 < totalBlock}">
-				  		<li>
-					      <a href="/?nowBlock=${nowBlock+1}&nowPage=${(nowBlock+1)*pagePerBlock}" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-				  	</c:if>
-				  </ul>
-				</nav>
+		<c:if test="${main.size() > 0}">
+			<div class="row">
+				<div class="col-md-offset-5">
+					<nav>
+					  <ul class="pagination">
+					  	<c:if test="${nowBlock > 0}">
+					  		<li>
+						      <a href="/?nowBlock=${nowBlock-1}&nowPage=${(nowBlock-1)*pagePerBlock}" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+					  	</c:if>
+					  	<c:set var="doneLoop" value="false"/>
+					  	<c:forEach begin="0" end="${pagePerBlock-1}" varStatus="status">
+					  		<c:if test="${not doneLoop}">
+					  			<c:if test="${status.current + (nowBlock*pagePerBlock) eq nowPage}">
+					  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+					  			</c:if>
+					  			<c:if test="${status.current + (nowBlock*pagePerBlock) ne nowPage}">
+					  				<li><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+					  			</c:if>
+					  		</c:if>
+					  		<c:if test="${status.current+1 + (nowBlock*pagePerBlock) eq totalPage}">
+					  			<c:set var="doneLoop" value="true"/>
+					  		</c:if>
+					  	</c:forEach>
+					  	<c:if test="${nowBlock +1 < totalBlock}">
+					  		<li>
+						      <a href="/?nowBlock=${nowBlock+1}&nowPage=${(nowBlock+1)*pagePerBlock}" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+					  	</c:if>
+					  </ul>
+					</nav>
+				</div>
 			</div>
-		</div>
+		</c:if>
 	</div>
 	<hr/>
 	<!-- Board -->
@@ -174,7 +188,7 @@
 			<div id="last" class="col-md-6"">
 				<div class="board_title col-md-10">
 					<h3>종료된 토론</h3>
-					<a href="/finished">전체 토론 보기</a>
+					<a href="/finished/list">전체 토론 보기</a>
 				</div>
 				<div class="col-md-10">
 				<c:set var="fin_loop" value="false"/> 

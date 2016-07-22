@@ -6,9 +6,21 @@
 		insert into recommend_tbl(topic_no, user_no) values(#{topic_no}, #{user_no})
 	</insert>
 
-	<insert id="proposalUp">
-		insert into topic_tbl(user_no, topic_type, topic_title, topic_short_cont, topic_endate) values(#{user_no}, #{topic_type}, #{topic_title}, #{topic_short_cont}, date_add(now(), interval +10 day))
+	<insert id="proposalUp" parameterType="TopicProposalDTO">
+		insert into topic_tbl(user_no, topic_type, topic_title, topic_short_cont, topic_endate, topic_progress) values(#{user_no}, #{topic_type}, #{topic_title}, #{topic_short_cont}, date_add(now(), interval +10 day), 1)
 	</insert>
+	
+	<insert id="proposalDetailUp" parameterType="TopicProposalDTO">
+		insert into topic_detail_tbl(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
+	</insert>
+	
+	<insert id="proposalRefUp" parameterType="ProposalRefDTO">
+		insert into topic_resource_tbl(topic_no, topic_resource_title, topic_resource_link) values(#{topic_no}, #{topic_resource_title}, #{topic_resource_link})
+	</insert>
+	
+	<select id="getLatest" resultType="int">
+		select topic_no from topic_tbl where user_no = #{user_no} order by topic_regdate desc limit 1;
+	</select>
 	
 	<select id="hadRecommended" resultType="hashmap" parameterType="hashmap">
 		select topic_no, user_no from recommend_tbl where topic_no = #{topic_no} and user_no = #{user_no}

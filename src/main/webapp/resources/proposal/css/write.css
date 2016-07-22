@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
 
-#formCoverImg {
+#proposal {
 	margin-top: 50px;
 }
 
@@ -21,6 +21,11 @@ h1, h2, h3, h4, h5, h6 {
 	background-image: url("/myapp/resources/proposal/img/example.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
+}
+
+#divCoverImg {
+	min-height: 300px;
+	text-align: center;
 }
 
 form input, textarea {

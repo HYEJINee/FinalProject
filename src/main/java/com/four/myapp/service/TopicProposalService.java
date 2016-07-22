@@ -16,4 +16,5 @@ public interface TopicProposalService {
 	public void saveProposal(TopicProposalDTO topicProposalDTO);
 	public void voteProposal(int topic_no, int user_no);
 	public boolean recommendedHistory(int topic_no, int user_no);
+	public void submitProposal(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks);
 }

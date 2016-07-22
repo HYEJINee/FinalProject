@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	<div class="container">
+	<div id="content" class="container">
 		<div class="row">
 		
 			<h3 class="col-md-9">안건 건의</h3>

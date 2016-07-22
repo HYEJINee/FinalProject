@@ -14,14 +14,13 @@ import com.four.myapp.domain.ReadVO;
 @Repository
 public class ReadDAOImpl implements ReadDAO {
 	@Inject
-	   private SqlSession sqlSession;
+	private SqlSession sqlSession;
 	
 	private static final String NAMESPACE = "com.four.mappers.readMapper";
 
 	@Override
 	public ReadVO Readdao(int topic_no) throws SQLException {
 		return sqlSession.selectOne(NAMESPACE+".selectRead", topic_no);
-		
 	}
 
 	@Override
