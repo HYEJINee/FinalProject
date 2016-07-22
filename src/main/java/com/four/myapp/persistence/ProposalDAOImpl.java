@@ -76,6 +76,7 @@ public class ProposalDAOImpl implements ProposalDAO {
 		topicProposalDTO.setTopic_no(topic_no);
 		
 		sqlSession.insert(NAMESPACE + ".proposalDetailUp", topicProposalDTO);
+		sqlSession.insert(NAMESPACE + ".imgUp", topicProposalDTO);
 
 		ProposalRefDTO proposalRefDTO = null; 
 		for(int refCnt = 0; refCnt < refTitles.size(); refCnt++) {

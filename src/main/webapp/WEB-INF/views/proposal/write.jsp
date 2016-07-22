@@ -4,28 +4,43 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TAWAR - 안건 건의</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/proposal/css/write.css" rel="stylesheet" />
 </head>
 <body>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/include/header.jsp" />
 <c:choose>
 	<c:when test="${empty USER_KEY == false}">
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/include/header.jsp" />
 	
+	<form id="formCoverImg" action="write.cover" method="post" enctype="multipart/form-data">			
 	<!-- 커버 이미지 등록 -->
-	<form id="proposal" action="write.do" method="post" enctype="multipart/form-data">			
 		<div id="divCoverImg" class="jumbotron col-md-12">
-		<!-- <img alt="" src="/myapp/resources/proposal/img/example.jpg" class="img-responsive"> -->
 			<div id="divBtnCoverImg">
-				<input type="file" id="coverImgUp" name="coverImgUp" class="hidden">
+				<input type="file" id="coverImgUp" name="img_file_name"/>
 				<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
+				<c:if test="${empty imgValidate != true}">
+					<c:choose>
+						<c:when test="${imgValidate == false}">
+							<p class="text-center" style="font-size: 12pt">이미지 파일은 jpeg, gif, png형식만 가능합니다.</p>
+						</c:when>
+						<c:otherwise>
+							<span id="imgPath" hidden="hidden">${imgPath}</span>
+							<span id="imgHeight" hidden="hidden">${imgHeight}</span>
+							<span id="imgWidth" hidden="hidden">${imgWidth}</span>
+							<span id="imgName" hidden="hidden">${imgName}</span>
+							<span id="extension" hidden="hidden">${extension}</span>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
 			</div>
 		</div>
 	<!-- 커버 이미지 등록 -->
-	
+	</form>
+		
+	<form id="proposal" action="write.do" method="post">			
 		<div class="container">
 			<div class="row">
 
@@ -36,7 +51,7 @@
 			<!-- 토론 형식 선택 -->			
 				<div class="col-md-12">
 					<div id="debateType" class="btn-group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						<button type="button" id="btnDebateType" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 							토론 형식 <span class="caret"></span>
 						</button>
 						<ul id="btn_topic_type" class="dropdown-menu" role="menu">
@@ -51,7 +66,7 @@
 			<!-- 안건 세부 사항 입력 -->
 				<div class="col-md-12">
 					<input type="text" id="prop-title" class="form-control" name="topic_title"
-						placeholder="제목을 입력해주세요" />
+						placeholder="제목을 입력해주세요" value="${tempSaved.topic_title}"/>
 					<textarea id="prop-lead" class="form-control" name="topic_short_cont"
 						placeholder="건의하시는 안건에 대하여 간략한 정보를 입력해주세요."></textarea>
 					<textarea id="prop-body" class="form-control" rows="10" name="topic_long_cont"
@@ -97,6 +112,8 @@
 			<!-- 안건 등록 -->
 					<div class="col-md-12">
 						<p class="text-center">
+							<input id="img_file_name" name="img_file_name" type="hidden">
+							<input id="img_ext_name" name="img_ext_name" type="hidden">
 							<button id="btnSubmit" type="submit" class="btn btn-lg btn-primary">안건 건의 글 등록하기</button>
 						</p>
 					</div>
@@ -113,5 +130,22 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/proposal/js/write.js"></script>
+	
+	<c:if test="${empty imgValidate != true}">
+		<c:if test="${imgValidate == true}">
+			<script>
+				var imgPath = $('#imgPath').text().trim();
+				var imgHeight = $('#imgHeight').text().trim();
+				var imgWidth = $('#imgWidth').text().trim();
+				var imgName = $('#imgName').text().trim();
+				var extension = $('#extension').text().trim();
+				$(function() {
+					$('#divCoverImg').css('background', 'url(' + imgPath + ') no-repeat center center').css('width', imgWidth + "px").css('height', imgHeight + "px");
+					$('#img_file_name').val(imgName);
+					$('#img_ext_name').val(extension);
+				})
+			</script>
+		</c:if>
+	</c:if>
 </body>
 </html>

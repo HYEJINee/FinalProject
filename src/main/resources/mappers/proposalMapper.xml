@@ -18,6 +18,10 @@
 		insert into topic_resource_tbl(topic_no, topic_resource_title, topic_resource_link) values(#{topic_no}, #{topic_resource_title}, #{topic_resource_link})
 	</insert>
 	
+	<insert id="imgUp">
+		insert into topic_cover_img_tbl(topic_no, img_file_name, img_ext_name, img_regdate) values(#{topic_no}, #{img_file_name}, #{img_ext_name}, now())
+	</insert>
+	
 	<select id="getLatest" resultType="int">
 		select topic_no from topic_tbl where user_no = #{user_no} order by topic_regdate desc limit 1;
 	</select>

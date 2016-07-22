@@ -1,7 +1,12 @@
 package com.four.myapp.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,11 +17,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.four.myapp.domain.MemberVO;
-import com.four.myapp.domain.ProposalRefDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 import com.four.myapp.service.TopicProposalService;
+import com.four.myapp.util.CoverImgValidation;
 
 @Controller
 @RequestMapping("/proposal/*")
@@ -46,6 +52,33 @@ public class ProposalController {
 	  }
 	  service.submitProposal(topicProposalDTO, refTitles, refLinks);
       return "redirect:/proposal/list";
+   }
+   
+   @RequestMapping(value="/write.cover", method=RequestMethod.POST)
+   public void coverImgUp(@RequestParam(value="img_file_name") MultipartFile multipartFile, HttpSession session, HttpServletRequest request) throws Exception, IOException {
+	   if(multipartFile != null) {
+		   MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+		   String ori_fileName = multipartFile.getOriginalFilename();
+		   String ex = ori_fileName.substring(ori_fileName.length()-3);
+		   
+		   boolean typeValidation = CoverImgValidation.imageValidator(multipartFile.getBytes());
+		   
+		   if(typeValidation == true) {
+			   String fileName = vo.getUser_nick() + "_" + (System.currentTimeMillis()/1000) + ".";
+			   File file = new File(request.getServletContext().getRealPath("/") + "resources/proposal/img/" + fileName + ex);
+			   multipartFile.transferTo(file);
+			   BufferedImage bi = ImageIO.read(file);
+			   
+			   request.setAttribute("imgValidate", true);
+			   request.setAttribute("imgPath", "/resources/proposal/img/" + fileName + ex);
+			   request.setAttribute("imgName", fileName);
+			   request.setAttribute("extension", ex);
+			   request.setAttribute("imgHeight", bi.getHeight());
+			   request.setAttribute("imgWidth", bi.getWidth());
+		   } else {
+			   request.setAttribute("imgValidate", false);
+		   }
+	   }
    }
    
    @RequestMapping(value="/read", method=RequestMethod.GET)
