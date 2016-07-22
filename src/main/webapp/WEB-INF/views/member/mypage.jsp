@@ -184,8 +184,27 @@
 							사진 수정</button>
 					</div>
 					<div class="col-md-8 mypage-profile-details">
-						<a href="/member/member_beforeModify"><button type="button" class="btn btn-default">회원정보 수정</button></a>
+				
 						<table width="100%">
+						<tr>
+								<td>
+								    <c:if test="${USER_KEY.user_lv==0}">
+								    <input type="image"  src="/resources/user_lv/common.png"/>
+								    </c:if>
+								    <c:if test="${USER_KEY.user_lv==1}">
+								    <input type="image" src="/resources/user_lv/prestige.png"/>
+								    </c:if>
+								    <c:if test="${USER_KEY.user_lv==2}">
+								    <input type="image" src="/resources/user_lv/royal.png"/>
+								    </c:if>
+								    <c:if test="${USER_KEY.user_lv==3}">
+								    <input type="image" src="/resources/user_lv/vip.png"/>
+								    </c:if>
+								    <c:if test="${USER_KEY.user_lv==4}">
+								    <input type="image" src="/resources/user_lv/vvip.png"/>
+								    </c:if>
+								    <td>
+							</tr>
 							<tr>
 								<td>닉네임</td>
 								<td class="align-right">${USER_KEY.user_nick }</td>
@@ -194,20 +213,9 @@
 								<td>이메일</td>
 								<td class="align-right">${USER_KEY.user_email }</td>
 							</tr>
-							<tr>
-								<td>비밀번호</td>
-								<td class="align-right">${USER_KEY.user_pw }</td>
-							</tr>
-
-							<tr>
-								<td>비밀번호 분실 질문</td>
-								<td class="align-right">친한 친구의 이름은?</td>
-							</tr>
-							<tr>
-								<td>비밀번호 분실 답변</td>
-								<td class="align-right">***</td>
-							</tr>
+							
 						</table>
+								<a href="/member/member_beforeModify"><button type="button" class="btn btn-default">회원정보 수정</button></a>
 					</div>
 				</div>
 			</div>

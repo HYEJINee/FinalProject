@@ -148,6 +148,13 @@
 			before_email=document.form.user_email.value;
 			return false;
 		}
+
+		if (email_check == "email_fail") {
+			alert("중복된 아이디입니다.");
+			userinput.user_email.focus();
+			before_email = document.form.user_email.value;
+			return false;
+		}
 		if (before_email != document.form.user_email.value) {
 			alert("이메일 중복 체크를 다시 확인해주세요.");
 			before_email=document.form.user_email.value;
@@ -160,6 +167,13 @@
 			return false;
 		}
 
+		if (nick_check == "nick_fail") {
+			alert("중복된 닉네임입니다.");
+			userinput.user_nick.focus();
+			before_nick = document.form.user_nick.value;
+			return false;
+		}
+
 		if (before_nick !== document.form.user_nick.value) {
 			alert("닉네임 중복 체크를 다시 확인해주세요.");
 			before_nick=document.form.user_nick.value;
@@ -167,19 +181,7 @@
 		}
 
 		
-		if (email_check == "email_fail") {
-			alert("중복된 아이디입니다.");
-			userinput.user_email.focus();
-			before_email = document.form.user_email.value;
-			return false;
-		}
 
-		if (nick_check == "nick_fail") {
-			alert("중복된 닉네임입니다.");
-			userinput.user_nick.focus();
-			before_nick = document.form.user_nick.value;
-			return false;
-		}
 
 		return true;
 	}

@@ -68,8 +68,8 @@ margin-top:200px;
 			<div class="form-group">
 				<div class="col-sm-offset-3">&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="submit" class="btn btn-primary" value="로그인" onclick="return checkIt()"/>
-					<a href="/member/member_regist"><input type="button" class="btn btn-default col-sm-offset-3" id="registbtn" value="회원가입"/></a>
-					<a href="member/member_findPw"><input type="button" class="btn btn-default" id="losebtn" value="비밀번호 찾기"/></a>
+					<a href="member_regist"><input type="button" class="btn btn-default col-sm-offset-3" id="registbtn" value="회원가입"/></a>
+					<a href="member_findPw"><input type="button" class="btn btn-default" id="losebtn" value="비밀번호 찾기"/></a>
 				
 				</div>
 			</div>	

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,6 @@
 
 <%@include file="../include/header.jsp" %>
 
-<h2>°¡ÀÔÇÏ½Å ÀÌ¸ÞÀÏ ÁÖ¼Ò·Î ºñ¹Ð¹øÈ£¸¦ Àü¼ÛÇØµå·È½À´Ï´Ù.  ¾ÈÀüÇÑ °³ÀÎ Á¤º¸ º¸È£¸¦ À§ÇØ ·Î±×ÀÎ ÇÏ½Å ÈÄ ºñ¹Ð¹øÈ£¸¦ ¹Ù²ãÁÖ¼¼¿ä. </h2>
+<h2>ê°€ìž…í•˜ì‹  ì´ë©”ì¼ ì£¼ì†Œë¡œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì „ì†¡í•´ë“œë ¸ìŠµë‹ˆë‹¤.  ì•ˆì „í•œ ê°œì¸ ì •ë³´ ë³´í˜¸ë¥¼ ìœ„í•´ ë¡œê·¸ì¸ í•˜ì‹  í›„ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë°”ê¿”ì£¼ì„¸ìš”. </h2>
 </body>
 </html>

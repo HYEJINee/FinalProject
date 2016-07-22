@@ -51,7 +51,6 @@ public class ProposalController {
    @RequestMapping(value="/read", method=RequestMethod.GET)
    public String readGet(int topic_no, Model model, HttpSession session) {
       MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
-      System.out.println(vo.getUser_no());
       if(vo != null) {
          int user_no = Integer.parseInt(vo.getUser_no());
          model.addAttribute("voted", service.recommendedHistory(topic_no, user_no));

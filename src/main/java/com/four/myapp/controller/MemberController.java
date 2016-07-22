@@ -54,7 +54,7 @@ public class MemberController {
 	@RequestMapping(value = "/member_regist", method = RequestMethod.POST)
 	public String member_regist(@ModelAttribute MemberVO vo,Model model) throws Exception {
 		service.registMember(vo);
-		String link = "http://localhost:8080/member/member_check?user_check=Y&&user_email="+vo.getUser_email();
+		String link = "http://192.168.10.81/member/member_check?user_check=Y&&user_email="+vo.getUser_email();
 	            email.setContent(vo.getUser_nick()+"님, 다음 링크를 클릭하여 인증을 완료해주세요.\n" + link);
 	            email.setReceiver(vo.getUser_email());
 	            email.setSubject(vo.getUser_nick()+"님, Tawar 인증 메일입니다.");
@@ -62,7 +62,7 @@ public class MemberController {
 	            System.out.println("controller : "+email);
 	       
 		logger.info("loginComplete : " + vo.toString());
-		return "needCheck";
+		return "/member/needCheck";
 	}
 	@RequestMapping(value="/member_check")
 	public void member_check(String user_check,String user_email) {
@@ -133,7 +133,7 @@ public class MemberController {
 	@RequestMapping(value="/member_logout")
 	public String logout(HttpServletRequest req){
 		req.getSession().invalidate(); 
-		return "home";
+		return "redirect:/";
 	}
 	 @RequestMapping("/member/chkUser_email")
 	 @ResponseBody
@@ -187,7 +187,6 @@ public class MemberController {
 	 
 	 @RequestMapping(value="/member_findPw")
 		public void member_findPw() {
-		
 		}
 	 
 	    @RequestMapping(value="/member_findPw", method=RequestMethod.POST)
@@ -206,7 +205,7 @@ public class MemberController {
 	            System.out.println(find_email+","+find_nick+","+find_pw);
 	            emailSender.SendEmail(email);
 	            System.out.println("controller : "+email);
-	            return "member/findPwDone";
+	            return "/member/findPwDone";
 	        }else {
 	            return "home";
 	        }
