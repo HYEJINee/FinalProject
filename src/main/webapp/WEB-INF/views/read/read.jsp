@@ -79,7 +79,8 @@
 					<h4 style="color: gray">중립 : <fmt:formatNumber value="${readlist.debate_tot_neut/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#"/>%</h4>
 				</div>
 			</div>
-
+		</form>
+		<form class="form-horizontal">
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-sm-6">
 					<div class="progress">
@@ -90,18 +91,38 @@
 					</div>
 				</div>
 			</div>
+			</form>
+			<form class="form-horizontal" action="vote" method="post" id="voteform">
 			<div class="form-group">
-				<div class="col-sm-offset-4">
-					<div class="col-sm-2">
-						<input type="button" value="찬성" class="btn btn-info" />
+				<input type="hidden" name="topic_no" value="${readlist.topic_no}" />
+				<input type="hidden" name="vote_type"/>
+				<c:choose>
+					<c:when test="${empty readuser.user_nick != false}">
+					<div class="col-sm-offset-5">
+						<h4>로그인 후 투표가 가능합니다.</h4>
+						</div>
+					</c:when>
+					<c:when test="${empty readvote.user_no != true}">
+					<div class="col-sm-offset-5">
+						<h4>이미 투표하셨습니다.</h4>
+						</div>
+					</c:when>
+					<c:when test="${empty readuser.user_nick != true}"> 
+					
+					<div class="col-sm-offset-4">
+						<div class="col-sm-2">
+						<input type="button" value="찬성" class="btn btn-info" name = "votebtn" id="0"/>
 					</div>
 					<div class="col-sm-2">
-						<input type="button" value="반대" class="btn btn-danger" />
+						<input type="button" value="반대" class="btn btn-danger" name = "votebtn" id="1"/>
 					</div>
 					<div class="col-sm-2">
-						<input type="button" value="중립" class="btn btn-default" />
+						<input type="button" value="중립" class="btn btn-default" name = "votebtn" id="2"/>
 					</div>
-				</div>
+					</div>
+					</c:when>
+				</c:choose>
+				
 			</div>
 			</form>
 			</div>
@@ -110,13 +131,10 @@
 			<div>
 				<h2>본문</h2>
 				<h4>${readlist.topic_long_cont}</h4>
-				
-				
 				<br />
 				<hr />
 			</div>
 			<div>
-			
 				<h2>참고자료</h2>
 				<c:forEach items="${readResource}" var="resource">
 				<br />
@@ -333,13 +351,13 @@
 				</div>
 				<div class="col-sm-5">
 					<h4 class="radio-inline">
-						<input type="radio" name="chk" id="chkok" value="0">찬성
+						<label for="chkok"><input type="radio" name="chk" id="chkok" value="0">찬성</label>
 					</h4>
 					<h4 class="radio-inline">
-						<input type="radio" name="chk" id="chkno" value="1">반대
+						<label for="chkno"><input type="radio" name="chk" id="chkno" value="1">반대</label>
 					</h4>
 					<h4 class="radio-inline">
-						<input type="radio" name="chk" id="chkneut" value="2">중립
+						<label for="chkneut"><input type="radio" name="chk" id="chkneut" value="2">중립</label>
 					</h4>
 					
 				</div>
@@ -357,8 +375,17 @@
 				</div>
 			</div>
 			<div class="col-sm-offset-1 col-sm-9">
-				<textarea id="areaid" cols="150" rows="10"
+				<c:choose>
+					<c:when test="${empty readuser.user_nick != false}">
+						<textarea id="areaid" cols="150" rows="10"
+					style="border-color: #46FFFF" id="replyarea" readonly="readonly" placeholder="로그인 후 의견 작성이 가능합니다."></textarea>
+					</c:when>
+				
+					<c:when test="${empty readuser.user_nick != true}"> 
+						<textarea id="areaid" cols="150" rows="10"
 					style="border-color: #46FFFF" id="replyarea"></textarea>
+					</c:when>
+				</c:choose>
 			</div>
 			<br />
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
@@ -386,8 +413,10 @@
 				}
 			});
 			$("input[name=votebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
-				var id = $(this).val();
-				alert(id);
+				var vote_type = $(this).attr('id'); //0 , 1, 2
+				$("input[name=vote_type]").val(vote_type);
+				var aaa = $("input[name=vote_type]").val();
+				$("#voteform").submit();
 			});
 		});
 	</script>

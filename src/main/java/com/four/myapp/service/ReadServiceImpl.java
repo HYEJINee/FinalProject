@@ -32,5 +32,35 @@ public class ReadServiceImpl implements ReadService {
 	public List<ReadOpinionVO> getOpinion(int topic_no) throws SQLException {
 		return dao.getOpinion(topic_no);
 	}
+
+	@Override
+	public void topicvote(int topic_no, int user_no, int vote_type) {
+		dao.topicvote(topic_no, user_no, vote_type);
+		
+	}
+
+	@Override
+	public void votepro(int topic_no) {
+		dao.votepro(topic_no);
+		
+	}
+
+	@Override
+	public void votecon(int topic_no) {
+		dao.votecon(topic_no);
+		
+	}
+
+	@Override
+	public void voteneut(int topic_no) {
+		dao.voteneut(topic_no);
+		
+	}
+
+	@Override
+	public ReadVO Readvote(int topic_no, int user_no) throws SQLException {
+		return dao.Readvote(topic_no,user_no);
+	}
+
 	
 }
