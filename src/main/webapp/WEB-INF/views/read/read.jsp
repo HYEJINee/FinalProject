@@ -218,8 +218,8 @@
 						<div class="col-sm-4">
 							<em>작성 날짜 : ${opinion.op_regdate}</em><br/>
 						</div>
-							<c:choose>
-							<c:when test="${empty readuser.user_nick != false}">
+						<c:choose>
+						<c:when test="${empty readuser.user_nick != false}">
 												<div class="col-sm-offset-5 col-sm-1">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" name="opvotebtn0"
@@ -239,8 +239,7 @@
 													<input type="hidden" value="1" />
 												</div>
 												</c:when>
-												
-												<c:otherwise>
+												<c:when test="${empty readoplike}">
 												<div class="col-sm-offset-5 col-sm-1">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" name="opvotebtn0"
@@ -259,8 +258,54 @@
 													</button>
 													<input type="hidden" value="1" />
 												</div>
-												</c:otherwise>
-												</c:choose>
+												</c:when>
+												
+												
+						</c:choose>
+						<c:forEach items="${readoplike}" var="oplike">
+							
+						<c:if test="${oplike.op_no ne opinion.op_no}">
+												<div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+												</c:if>
+												<c:if test="${oplike.op_no eq opinion.op_no}">
+												<div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+												
+												</c:if>
+												</c:forEach>
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
 							<input type="hidden" value="${opinion.user_nick}">
@@ -299,7 +344,7 @@
 							<em>작성 날짜 : ${opinion.op_regdate}</em><br/>
 						</div>
 						<c:choose>
-							<c:when test="${empty readuser.user_nick != false}">
+						<c:when test="${empty readuser.user_nick != false}">
 												<div class="col-sm-offset-5 col-sm-1">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" name="opvotebtn0"
@@ -319,8 +364,7 @@
 													<input type="hidden" value="1" />
 												</div>
 												</c:when>
-												
-												<c:otherwise>
+												<c:when test="${empty readoplike}">
 												<div class="col-sm-offset-5 col-sm-1">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" name="opvotebtn0"
@@ -339,9 +383,54 @@
 													</button>
 													<input type="hidden" value="1" />
 												</div>
-												</c:otherwise>
-												</c:choose>
-											
+												</c:when>
+												
+												
+						</c:choose>
+						<c:forEach items="${readoplike}" var="oplike">
+							
+						<c:if test="${oplike.op_no ne opinion.op_no}">
+												<div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+												</c:if>
+												<c:if test="${oplike.op_no eq opinion.op_no}">
+												<div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+												
+												</c:if>
+												</c:forEach>			
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn"/>
 							<input type="hidden" value="${opinion.user_nick}">
@@ -419,6 +508,7 @@
 					<div style="text-align: right">
 						<h3>
 							<em>NO.${opinion.op_no}</em>
+							<input type="hidden" value="${opinion.op_no}" id="tq" name="tq">
 						</h3>
 					</div>
 					<br />
@@ -429,7 +519,7 @@
 							<em>작성 날짜 : ${opinion.op_regdate}</em><br/>
 						</div>
 						<c:choose>
-							<c:when test="${empty readuser.user_nick != false}">
+						<c:when test="${empty readuser.user_nick != false}">
 												<div class="col-sm-offset-5 col-sm-1">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" name="opvotebtn0"
@@ -449,8 +539,7 @@
 													<input type="hidden" value="1" />
 												</div>
 												</c:when>
-												
-												<c:otherwise>
+												<c:when test="${empty readoplike}">
 												<div class="col-sm-offset-5 col-sm-1">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" name="opvotebtn0"
@@ -469,8 +558,54 @@
 													</button>
 													<input type="hidden" value="1" />
 												</div>
-												</c:otherwise>
-												</c:choose>
+												</c:when>
+												
+												
+						</c:choose>
+						<c:forEach items="${readoplike}" var="oplike">
+							
+						<c:if test="${oplike.op_no ne tq.val()}">
+												<div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+												</c:if>
+												<c:if test="${oplike.op_no eq opinion.op_no}">
+												<div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+												
+												</c:if>
+												</c:forEach>
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
 							<input type="hidden" value="${opinion.user_nick}">
