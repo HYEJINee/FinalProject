@@ -164,16 +164,19 @@
 			</div>
 			</form>
 			</div>
-			<div class="container">
-		<form class="form-horizontal">
+			
 			<h2>의견</h2>
 			<hr />
-			<c:forEach items="${readOpinion}" var="opinion"  varStatus="status">
+			<c:forEach items="${readOpinion}" var="opinion">
 			<c:choose>
 			<c:when test="${opinion.vote_type eq 0}">
-			
+			<div class="container">
+		<form class="form-horizontal" action="like" method="post" id="${opinion.op_no}">
 			<div class="form-group">
 				<div class="col-sm-1">
+				<input type="hidden" name="op_no" value="${opinion.op_no}" />
+				<input type="hidden" name="topic_no" value="${readlist.topic_no}" />
+				<input type="hidden" name="op_like_type"/>
 				<c:choose>
 					<c:when test="${opinion.user_lv eq 0}">
 						<img src="/resources/user_lv/common.png"
@@ -217,17 +220,20 @@
 						</div>
 						<div class="col-sm-offset-5 col-sm-1">
 							<button type="button" class="btn btn btn-info"
-								aria-label="Left Align">
+								aria-label="Left Align" name = "opvotebtn0" value="${opinion.op_no}">
+								
 								<span class="glyphicon glyphicon-triangle-top"
 									aria-hidden="true"></span> ${opinion.op_like}
 							</button>
+							<input type="hidden" value="0" />
 						</div>
 						<div class="col-sm-1">
 							<button type="button" class="btn btn btn-danger"
-								aria-label="Left Align">
+								aria-label="Left Align"  name = "opvotebtn1" value="${opinion.op_no}">
 								<span class="glyphicon glyphicon-triangle-bottom"
-									aria-hidden="true"></span> 00
+									aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
 							</button>
+							<input type="hidden" value="1" />
 						</div>
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
@@ -236,12 +242,18 @@
 					</div>
 				</div>
 			</div>
+			</form>
+			</div>
 			</c:when>
 			</c:choose>
 			<c:choose>
 			<c:when test="${opinion.vote_type eq 1}">
+			<div class="container">
+		<form class="form-horizontal" action="like" method="post" id="${opinion.op_no}">
 			<div class="form-group ">
-			
+			<input type="hidden" name="op_no" value="${opinion.op_no}" />
+			<input type="hidden" name="topic_no" value="${readlist.topic_no}" />
+				<input type="hidden" name="op_like_type"/>
 				<div class="col-sm-offset-2 col-sm-9" style="border-style: solid; border-width: 1px; border-color: #FF3232">
 				<div class="col-sm-6">
 						<h3>${opinion.user_nick}&nbsp;&nbsp;
@@ -262,17 +274,19 @@
 						</div>
 						<div class="col-sm-offset-5 col-sm-1">
 							<button type="button" class="btn btn btn-info"
-								aria-label="Left Align">
+								aria-label="Left Align" name = "opvotebtn0" value="${opinion.op_no}">
 								<span class="glyphicon glyphicon-triangle-top"
 									aria-hidden="true"></span> ${opinion.op_like}
 							</button>
+							<input type="hidden" value="0" />
 						</div>
 						<div class="col-sm-1">
 							<button type="button" class="btn btn btn-danger"
-								aria-label="Left Align">
+								aria-label="Left Align" name = "opvotebtn1" value="${opinion.op_no}">
 								<span class="glyphicon glyphicon-triangle-bottom"
-									aria-hidden="true"></span> 00
+									aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
 							</button>
+							<input type="hidden" value="1" />
 						</div>
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn"/>
@@ -306,12 +320,19 @@
 				</c:choose>
 				</div>
 			</div>
+			</form>
+			</div>
 			</c:when>
 			</c:choose>
 			
 			<c:choose>
 			<c:when test="${opinion.vote_type eq 2}">
+			<div class="container">
+		<form class="form-horizontal" action="like" method="post" id="${opinion.op_no}">
 			<div class="form-group ">
+			<input type="hidden" name="op_no" value="${opinion.op_no}" />
+			<input type="hidden" name="topic_no" value="${readlist.topic_no}" />
+				<input type="hidden" name="op_like_type"/>
 				<div class="col-sm-1">
 					<c:choose>
 					<c:when test="${opinion.user_lv eq 0}">
@@ -339,7 +360,7 @@
 				<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #66FF00">
 					<div class="col-sm-6">
 						<h3>${opinion.user_nick}&nbsp;&nbsp;
-						<span class="label label-success" style="margin-top: 20px">찬성</span></h3>
+						<span class="label label-success" style="margin-top: 20px">중립</span></h3>
 					</div>
 					<div style="text-align: right">
 						<h3>
@@ -353,20 +374,51 @@
 						<div class="col-sm-4">
 							<em>작성 날짜 : ${opinion.op_regdate}</em><br/>
 						</div>
-						<div class="col-sm-offset-5 col-sm-1">
-							<button type="button" class="btn btn btn-info"
-								aria-label="Left Align">
-								<span class="glyphicon glyphicon-triangle-top"
-									aria-hidden="true"></span> ${opinion.op_like}
-							</button>
-						</div>
-						<div class="col-sm-1">
-							<button type="button" class="btn btn btn-danger"
-								aria-label="Left Align">
-								<span class="glyphicon glyphicon-triangle-bottom"
-									aria-hidden="true"></span> 00
-							</button>
-						</div>
+						<c:forEach items="${readOpinion}" var="opinion"  varStatus="status">
+										<c:choose>
+											<c:when test="${oplike.op_no ne opinion.op_no}">
+												<div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+											</c:when>
+											 <c:otherwise>
+											 <div class="col-sm-offset-5 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+													<input type="hidden" value="0" />
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+													<input type="hidden" value="1" />
+												</div>
+											 </c:otherwise>
+
+										</c:choose>
+									</c:forEach>
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
 							<input type="hidden" value="${opinion.user_nick}">
@@ -374,11 +426,15 @@
 					</div>
 				</div>
 			</div>
+			</form>
+			</div>
 			</c:when>
 			</c:choose>
 			
 			
 			</c:forEach>
+			<div class="container">
+		<form class="form-horizontal">
 			<div class="form-group">
 				<div class=" col-sm-offset-5">
 					<input type="button" value="이전 답글" class="btn btn-default" /> <input
@@ -495,8 +551,20 @@
 			$("input[name=votebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var vote_type = $(this).attr('id'); //0 , 1, 2
 				$("input[name=vote_type]").val(vote_type);
-				var aaa = $("input[name=vote_type]").val();
 				$("#voteform").submit();
+			});
+			$("button[name=opvotebtn0]").click(function() { //id test1 이라는 a태그 클릭시 발생
+				var op_like_type = $(this).next().val();
+				var formid = $(this).val(); //0 , 1, 2
+				$("input[name=op_like_type]").val(op_like_type);
+				$("#"+formid).submit();
+			});
+			$("button[name=opvotebtn1]").click(function() { //id test1 이라는 a태그 클릭시 발생
+				var op_like_type =$(this).next().val();
+				var formid = $(this).val(); //0 , 1, 2
+				alert(formid);
+				$("input[name=op_like_type]").val(op_like_type);
+				$("#"+formid).submit();
 			});
 		});
 	</script>

@@ -35,6 +35,7 @@ public class ReadController {
 			model.addAttribute("readuser", vo);
 			 int user_no = Integer.parseInt(vo.getUser_no());
 			 model.addAttribute("readvote",service.Readvote(topic_no, user_no));
+			 model.addAttribute("readoplike",service.getoplike(user_no));
 	      }
 		model.addAttribute("readlist",service.Readdao(topic_no));
 		model.addAttribute("readResource",service.getResource(topic_no));
@@ -58,6 +59,22 @@ public class ReadController {
 	     } else{
 	    	 service.voteneut(topic_no);
 	     }
+	     
+	     return "redirect:/read/read?topic_no="+topic_no;
+	   }
+	 
+	 @RequestMapping(value="/read/like", method=RequestMethod.POST)
+	   public String like(@RequestParam("op_like_type")int op_like_type, int topic_no,int op_no, HttpSession session){
+		 
+		 logger.info("의견 번호 : " + op_no);
+		 logger.info("투표 타입 : " + op_like_type);
+	     MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+	     int user_no = Integer.parseInt(vo.getUser_no());
+	     logger.info("유저 번호 : " + user_no);
+	     logger.info("토론 번호 : " + topic_no);
+	     
+	     service.likevote(op_no, user_no, op_like_type);
+	    
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
 	   }

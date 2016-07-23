@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.four.myapp.domain.ReadOpinionVO;
 import com.four.myapp.domain.ReadResourceVO;
 import com.four.myapp.domain.ReadVO;
+import com.four.myapp.domain.ReadoplikeVO;
 import com.four.myapp.persistence.ReadDAO;
 
 @Service
@@ -60,6 +61,17 @@ public class ReadServiceImpl implements ReadService {
 	@Override
 	public ReadVO Readvote(int topic_no, int user_no) throws SQLException {
 		return dao.Readvote(topic_no,user_no);
+	}
+
+	@Override
+	public void likevote(int op_no, int user_no, int op_like_type) {
+		dao.likevote(op_no, user_no, op_like_type);
+		
+	}
+
+	@Override
+	public List<ReadoplikeVO> getoplike(int user_no) throws SQLException {
+		return dao.getoplike(user_no);
 	}
 
 	

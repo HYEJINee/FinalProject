@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.four.myapp.domain.ReadOpinionVO;
 import com.four.myapp.domain.ReadResourceVO;
 import com.four.myapp.domain.ReadVO;
+import com.four.myapp.domain.ReadoplikeVO;
 @Repository
 public class ReadDAOImpl implements ReadDAO {
 	@Inject
@@ -72,6 +73,21 @@ public class ReadDAOImpl implements ReadDAO {
 		vote.put("user_no", user_no);
 		return sqlSession.selectOne(NAMESPACE + ".readvote", vote);
 		
+	}
+
+	@Override
+	public void likevote(int op_no, int user_no, int op_like_type) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("op_no", op_no);
+		map.put("user_no", user_no);
+		map.put("op_like", op_like_type);
+		sqlSession.insert(NAMESPACE + ".likevoteinsert", map);
+		
+	}
+
+	@Override
+	public List<ReadoplikeVO> getoplike(int user_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE+".readoplike", user_no);
 	}
 
 	
