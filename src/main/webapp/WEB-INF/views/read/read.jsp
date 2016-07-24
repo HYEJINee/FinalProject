@@ -539,7 +539,7 @@
 													<input type="hidden" value="1" />
 												</div>
 												</c:when>
-												<c:when test="${empty readoplike}">
+												<c:otherwise>
 												<div class="col-sm-offset-5 col-sm-1">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" name="opvotebtn0"
@@ -558,54 +558,11 @@
 													</button>
 													<input type="hidden" value="1" />
 												</div>
-												</c:when>
+												</c:otherwise>
 												
 												
 						</c:choose>
-						<c:forEach items="${readoplike}" var="oplike">
-							
-						<c:if test="${oplike.op_no ne tq.val()}">
-												<div class="col-sm-offset-5 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-												</c:if>
-												<c:if test="${oplike.op_no eq opinion.op_no}">
-												<div class="col-sm-offset-5 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-												
-												</c:if>
-												</c:forEach>
+						
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
 							<input type="hidden" value="${opinion.user_nick}">
@@ -714,7 +671,9 @@
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
 				<input type="button" value="등록" class="btn btn-default btn-lg" />
 			</div>
+			ArrayList list1 = new ArrayList();
 
+	
 		</form>
 	</div>
 	<script type="text/javascript">
@@ -743,8 +702,24 @@
 			$("button[name=opvotebtn0]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var op_like_type = $(this).next().val();
 				var formid = $(this).val(); //0 , 1, 2
-				$("input[name=op_like_type]").val(op_like_type);
-				$("#"+formid).submit();
+				
+				var list = new ArrayList();
+				<c:forEach items="${readoplike}" var="readoplike">
+					list.push("${readoplike.op_no}");
+				</c:forEach>
+				for(var i = 0; i < list.length; i++){
+					if(formid == readoplike.op_no){
+						alert("이미 투표함");
+					}else{
+						alert("아직 투표 안함");
+					}
+				}
+				
+
+				alert("의견 번호 / " + formid);
+				
+				//$("input[name=op_like_type]").val(op_like_type);
+				//$("#"+formid).submit();
 			});
 			$("button[name=opvotebtn1]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var op_like_type =$(this).next().val();
