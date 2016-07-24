@@ -614,43 +614,40 @@ list.push("${item.op_no}");
 				$("input[name=vote_type]").val(vote_type);
 				$("#voteform").submit();
 			});
-			$("button[name=opvotebtn0]").click(function(event) { //id test1 이라는 a태그 클릭시 발생
+			$("button[name=opvotebtn0]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var op_like_type = $(this).next().val();
 				var formid = $(this).val(); //0 , 1, 2
-				alert("클릭한 의견 번호 : " + formid);
-				
-				for (var i = 0; i < list.length; i++) {
-					alert("db에 들어가 있는 투표의견 번호" + list[i]);
-				    if(formid == list[i]){
-				    	alert("이미 투표하신 의견입니다.");
-				    	event.preventDefault();
-				    } else {
-				    	
-				    }
-				}
-				$("input[name=op_like_type]").val(op_like_type);
-				$("#"+formid).submit();
+				alert(formid);
+				if(list.length == 0){
+					
+					$("input[name=op_like_type]").val(op_like_type);
+					$("#"+formid).submit();
+				}else{
+					if(list.indexOf(formid) == -1){
+						$("input[name=op_like_type]").val(op_like_type);
+						$("#"+formid).submit();
+					} else if(list.indexOf(formid) != -1){
+						alert("이미 투표에 참여하셨습니다.")
+					}
+					}
+					
 				
 			});
-			$("button[name=opvotebtn1]").click(function(event) { //id test1 이라는 a태그 클릭시 발생
+			$("button[name=opvotebtn1]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var op_like_type =$(this).next().val();
 				var formid = $(this).val(); //0 , 1, 2
-				alert("클릭한 의견 번호 : " + formid);
-				
-				
-				for (var i = 0; i < list.length; i++) {
-					alert("db에 들어가 있는 투표의견 번호" + list[i]);
-				    if(formid == list[i]){
-				    	alert("이미 투표하신 의견입니다.");
-				    	event.preventDefault();
-				    } else {
-				    	
-				    	
-				    }
-				}
-				$("input[name=op_like_type]").val(op_like_type);
-				$("#"+formid).submit();
-				
+				alert(formid);
+				if(list.length == 0){
+					$("input[name=op_like_type]").val(op_like_type);
+					$("#"+formid).submit();
+				}else{
+					if(list.indexOf(formid) == -1){
+						$("input[name=op_like_type]").val(op_like_type);
+						$("#"+formid).submit();
+					} else if(list.indexOf(formid) != -1){
+						alert("이미 투표에 참여하셨습니다.")
+					}
+					}
 			});
 		});
 	</script>
