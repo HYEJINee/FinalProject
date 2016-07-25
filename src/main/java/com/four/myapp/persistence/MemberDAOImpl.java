@@ -20,12 +20,10 @@ public class MemberDAOImpl implements MemberDAO {
 
    @Override
    public void registMember(MemberVO vo) {
-
       sqlSession.insert(NAMESPACE+".registMember", vo);      
    }
    @Override
    public void modifyMember(MemberVO vo) {
-
       sqlSession.update(NAMESPACE+".modifyMember", vo);      
       
    }

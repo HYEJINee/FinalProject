@@ -6,23 +6,18 @@
 <mapper namespace="com.four.mappers.readMapper">
 
 	<select id="selectRead" resultType="com.four.myapp.domain.ReadVO">
-		select A.topic_type,
-		A.topic_title, A.topic_short_cont, A.topic_no, B.topic_long_cont,
-		B.topic_pro, B.topic_con,
-		C.debate_endate, C.debate_tot_pro,
-		C.debate_tot_con, C.debate_tot_neut,
-		(Select user_nick From user_tbl
-		where user_no = A.user_no) AS user_nick
-		FROM topic_tbl AS A INNER JOIN
-		topic_detail_tbl AS B INNER JOIN debate_tbl AS C
-		where A.topic_no =
-		B.topic_no = C.topic_no = #{topic_no};
+		select  A.topic_no, A.topic_endate, A.topic_type, A.topic_title, A.topic_short_cont,
+		B.topic_long_cont, B.topic_pro, B.topic_con,
+		C.debate_endate, C.debate_tot_pro, C.debate_tot_con, C.debate_tot_neut,
+		(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick
+		FROM topic_tbl AS A 
+        INNER JOIN topic_detail_tbl AS B
+        INNER JOIN debate_tbl AS C
+		where A.topic_no = #{topic_no} and  B.topic_no = #{topic_no} and C.topic_no = #{topic_no}
 	</select>
 
 	<select id="selectResource" resultType="com.four.myapp.domain.ReadResourceVO">
-		select
-		topic_resource_title, topic_resource_link from topic_resource_tbl
-		where topic_no = #{topic_no}
+		select topic_resource_title, topic_resource_link from topic_resource_tbl where topic_no = #{topic_no}
 	</select>
 
 	<select id="selectOpinion" resultType="com.four.myapp.domain.ReadOpinionVO">
@@ -31,12 +26,11 @@
       (Select user_lv From user_tbl where user_no = A.user_no) AS user_lv,
       (Select count(op_like) From op_like_tbl where op_no = A.op_no) AS op_count,
         (Select count(op_like) From op_like_tbl where op_no = A.op_no and op_like = 0) AS op_like
-       from opinion_tbl AS A where topic_no = #{topic_no};
+       from opinion_tbl AS A where topic_no = #{topic_no}
 	</select>
 
 	<insert id="topicvoteinsert">
-		insert into vote_tbl (topic_no, user_no, vote_type) values(#{topic_no},
-		#{user_no}, #{vote_type})
+		insert into vote_tbl (topic_no, user_no, vote_type) values(#{topic_no},#{user_no},#{vote_type})
 	</insert>
 	
 	<update id="votepro">
