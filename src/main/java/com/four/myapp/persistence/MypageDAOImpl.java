@@ -27,4 +27,9 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.selectList(NAMESPACE + ".getNoti", user_no);
 	}
 
+	@Override
+	public void dismissNoti(String noti_no) throws SQLException {
+		sqlSession.update(NAMESPACE + ".dismissNoti", noti_no);
+	}
+
 }
