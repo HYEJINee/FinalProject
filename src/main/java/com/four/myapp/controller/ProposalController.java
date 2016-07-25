@@ -1,11 +1,9 @@
 package com.four.myapp.controller;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -44,41 +42,30 @@ public class ProposalController {
    }
    
    @RequestMapping(value="/write.do", method=RequestMethod.POST)
-   public String writePost(@RequestParam(value="topic_resource_title") List<String> refTitles, @RequestParam(value="topic_resource_link") List<String> refLinks, TopicProposalDTO topicProposalDTO, HttpSession session) {
+   public String writePost(@RequestParam(value="topic_resource_title") List<String> refTitles, @RequestParam(value="topic_resource_link") List<String> refLinks, @RequestParam(value="image_file_name") MultipartFile multipartFile, TopicProposalDTO topicProposalDTO, HttpSession session, HttpServletRequest req)  throws Exception, IOException {
+	  System.out.println("hi");
 	  MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 	  if(vo != null) {
 		   int user_no = Integer.parseInt(vo.getUser_no());
 		   topicProposalDTO.setUser_no(user_no);
-	  }
-	  service.submitProposal(topicProposalDTO, refTitles, refLinks);
-      return "redirect:/proposal/list";
-   }
-   
-   @RequestMapping(value="/write.cover", method=RequestMethod.POST)
-   public void coverImgUp(@RequestParam(value="img_file_name") MultipartFile multipartFile, HttpSession session, HttpServletRequest request) throws Exception, IOException {
-	   if(multipartFile != null) {
-		   MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		   String ori_fileName = multipartFile.getOriginalFilename();
-		   String ex = ori_fileName.substring(ori_fileName.length()-3);
+		   String ex = ori_fileName.substring(ori_fileName.lastIndexOf(".") + 1);
 		   
 		   boolean typeValidation = CoverImgValidation.imageValidator(multipartFile.getBytes());
 		   
-		   if(typeValidation == true) {
-			   String fileName = vo.getUser_nick() + "_" + (System.currentTimeMillis()/1000) + ".";
-			   File file = new File(request.getServletContext().getRealPath("/") + "resources/proposal/img/" + fileName + ex);
-			   multipartFile.transferTo(file);
-			   BufferedImage bi = ImageIO.read(file);
+		   if(typeValidation) {
+			   String fileName = vo.getUser_nick() + "_" +(System.currentTimeMillis()/1000);
+			   File file = new File(req.getServletContext().getRealPath("/") + "resources/proposal/img/" + fileName + "." + ex);
 			   
-			   request.setAttribute("imgValidate", true);
-			   request.setAttribute("imgPath", "/resources/proposal/img/" + fileName + ex);
-			   request.setAttribute("imgName", fileName);
-			   request.setAttribute("extension", ex);
-			   request.setAttribute("imgHeight", bi.getHeight());
-			   request.setAttribute("imgWidth", bi.getWidth());
+			   multipartFile.transferTo(file);
+			   topicProposalDTO.setImg_file_name(fileName);
+			   topicProposalDTO.setImg_ext_name(ex);
 		   } else {
-			   request.setAttribute("imgValidate", false);
+			   
 		   }
-	   }
+	  }
+	  service.submitProposal(topicProposalDTO, refTitles, refLinks);
+      return "redirect:/proposal/list";
    }
    
    @RequestMapping(value="/read", method=RequestMethod.GET)
