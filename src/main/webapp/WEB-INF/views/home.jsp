@@ -132,7 +132,7 @@
 					  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
 					  			</c:if>
 					  			<c:if test="${status.current + (nowBlock*pagePerBlock) ne nowPage}">
-					  				<li><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+					  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
 					  			</c:if>
 					  		</c:if>
 					  		<c:if test="${status.current+1 + (nowBlock*pagePerBlock) eq totalPage}">
