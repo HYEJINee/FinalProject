@@ -14,7 +14,6 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
@@ -36,9 +35,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/proposal/list">안건 건의<span class="sr-only"></span></a></li>
-        <li><a href="/ongoing">토론중</a></li>
-        <li><a href="/finished">종료된 토론</a>
+        <li id="proposal"><a href="/proposal/list">안건 건의<span class="sr-only"></span></a></li>
+        <li id="ongoing"><a href="/ongoing/list">토론중</a></li>
+        <li id="finished"><a href="/finished/list">종료된 토론</a>
       </ul>
       <ul class="nav navbar-nav navbar-right">
            <c:if test="${empty USER_KEY != true}">

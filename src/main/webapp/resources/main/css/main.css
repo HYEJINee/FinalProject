@@ -8,6 +8,9 @@
 .item {
 	margin-top: 15px;
 }
+.item h4 {
+	margin-top: 50px;
+}
 .header_item {
 	margin-top: 5px;
 }
@@ -30,11 +33,11 @@ center h3 {
 }
 #pro {
 	color:blue; 
-	margin-left:50px;
+	margin-left:20px;
 }
 #pro_board {
 	color:blue;
-	margin-left:235px;
+	margin-left:50px;
 }
 #con {
 	color:red;

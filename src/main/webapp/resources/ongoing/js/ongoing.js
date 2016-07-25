@@ -1,23 +1,20 @@
 /**
- * 	finished.js
+ * 	ongoing.js
  * 	작성자 : 최락휘
- * 	작성일 : 2016.07.21
+ * 	작성일 : 2016.07.25
  *  내용 : 전체 헤더 탭 활성화, 카테고리 기능 
  */
-// 게시물 선택시 읽기 페이지로 이동
-function fnRead() {
-	$(".item").click(function(){
-		var topic_no = $(this).children().filter("input").val();
-		location.href = "/board/read?topic_no=" + topic_no;
-	});
-}
 
 $(document).ready(function(){
 	// 헤더 탭 부분 종료된 토론 활성화
 	$("#proposal").removeClass("active");
-	$("#ongoing").removeClass("active");
-	$("#finished").addClass("active");
-	fnRead();
+	$("#ongoing").addClass("active");
+	$("#finished").removeClass("active");
+	// 게시글 클릭시 이동
+	$(".item").click(function(){
+		var topic_no = $(this).children().filter("input").val();
+		location.href = "/board/read?topic_no=" + topic_no;
+	});
 	// 상단 카테고리 클릭시 필터링
 	$(".nav-pills li").click(function(){
 		// 이미 선택되있는 카테고리 일시 종료
@@ -43,7 +40,7 @@ $(document).ready(function(){
 		}
 		// 선택된 카테고리를 기준으로 게시글 필터링
 		$.ajax({
-			url: "/finished/tab",
+			url: "/ongoing/tab",
 			type: "GET",
 			data: {"type": type},
 			success: function(data){
@@ -62,15 +59,15 @@ $(document).ready(function(){
 						if(list.debate_tot_pro == 0)
 							html += '<span id="pro"> 찬 0%</span>';
 						else
-							html += '<span id="pro"> 찬 ' + Math.round(list.debate_tot_pro/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut) * 100) + '%</span>';
+							html += '<span id="pro"> 찬 ' + Math.round(list.debate_tot_pro/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100) + '%</span>';
 						if(list.debate_tot_con == 0)
 							html += '<span id="con"> 반 0%</span>';
 						else
-							html += '<span id="con"> 반 ' + Math.round(list.debate_tot_con/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut) * 100) + '%</span>';
+							html += '<span id="con"> 반 ' + Math.round(list.debate_tot_con/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100) + '%</span>';
 						if(list.debate_tot_neut == 0)
 							html += '<span id="neut"> 중 0%</span>';
 						else
-							html += '<span id="neut"> 중 ' + Math.round(list.debate_tot_neut/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut) * 100) + '%</span>';
+							html += '<span id="neut"> 중 ' + Math.round(list.debate_tot_neut/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100) + '%</span>';
 					}
 					else {
 						html += '<h3><label class="label label-danger">의견</label><br/></h3>';
@@ -85,7 +82,6 @@ $(document).ready(function(){
 					$("#List").empty().append(none_list);
 				else
 					$("#List").empty().append(html);
-				fnRead();
 			}
 		});
 	});
