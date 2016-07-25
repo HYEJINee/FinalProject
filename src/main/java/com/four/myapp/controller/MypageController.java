@@ -1,5 +1,7 @@
 package com.four.myapp.controller;
 
+import java.sql.SQLException;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,7 +25,7 @@ public class MypageController {
 	@Inject
 	MypageServiceImpl service;
 	
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage", method=RequestMethod.GET)
 	public String timeline(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("USER_KEY");
@@ -36,5 +38,11 @@ public class MypageController {
 			model.addAttribute("getNoti", service.getNoti(user_no));
 			return "/member/mypage";
 		}
+	}
+	
+	@RequestMapping(value="/dismissNoti", method=RequestMethod.POST )
+	public void dismissNoti(String noti_no) throws SQLException {
+		service.dismissNoti(noti_no);
+		
 	}
 }
