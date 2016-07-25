@@ -195,7 +195,7 @@ list.push("${item.op_no}");
 			</div>
 			
 			
-			<c:forEach items="${readOpinion}" var="opinion">
+			<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<c:choose>
 			<c:when test="${opinion.vote_type eq 0}">
 			<div class="container">
@@ -236,7 +236,7 @@ list.push("${item.op_no}");
 					</div>
 					<div style="text-align: right">
 						<h3>
-							<em>NO.${opinion.op_no}</em>
+							<em>NO.${status.count}</em>
 						</h3>
 					</div>
 					<br />
@@ -315,7 +315,7 @@ list.push("${item.op_no}");
 					
 					<div style="text-align: right">
 						<h3>
-							<em>NO.${opinion.op_no}</em>
+							<em>NO.${status.count}</em>
 						</h3>
 					</div>
 					<br />
@@ -443,7 +443,7 @@ list.push("${item.op_no}");
 					</div>
 					<div style="text-align: right">
 						<h3>
-							<em>NO.${opinion.op_no}</em>
+							<em>NO.${status.count}</em>
 							<input type="hidden" value="${opinion.op_no}" id="tq" name="tq">
 						</h3>
 					</div>
@@ -642,7 +642,7 @@ list.push("${item.op_no}");
 						$("input[name=op_like_type]").val(op_like_type);
 						$("#"+formid).submit();
 					} else if(list.indexOf(formid) != -1){
-						alert("이미 투표에 참여하셨습니다.")
+						alert("이미 투표에 참여하셨습니다.");
 					}
 					}
 			});
@@ -657,7 +657,7 @@ list.push("${item.op_no}");
 						$("input[name=op_like_type]").val(op_like_type);
 						$("#"+formid).submit();
 					} else if(list.indexOf(formid) != -1){
-						alert("이미 투표에 참여하셨습니다.")
+						alert("이미 투표에 참여하셨습니다.");
 					}
 					}
 			});

@@ -74,7 +74,6 @@ public class ReadController {
 	     logger.info("토론 번호 : " + topic_no);
 	     
 	     service.likevote(op_no, user_no, op_like_type);
-	    
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
 	   }
