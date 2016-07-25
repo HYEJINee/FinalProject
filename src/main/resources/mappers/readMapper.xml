@@ -6,11 +6,15 @@
 <mapper namespace="com.four.mappers.readMapper">
 	<select id="selectRead" resultType="com.four.myapp.domain.ReadVO">
 		
-		select A.topic_type, A.topic_title, A.topic_short_cont, B.topic_long_cont, B.topic_pro, B.topic_con,
-		C.debate_endate, C.debate_tot_pro, C.debate_tot_con, C.debate_tot_neut,
-		(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick
-		FROM topic_tbl AS A INNER JOIN topic_detail_tbl AS B INNER JOIN debate_tbl AS C
-		where A.topic_no = B.topic_no = C.topic_no = #{topic_no};
+		select  A.topic_no, A.topic_endate, A.topic_type, A.topic_title, A.topic_short_cont,
+      B.topic_long_cont, B.topic_pro, B.topic_con,
+      C.debate_endate, C.debate_tot_pro, C.debate_tot_con, C.debate_tot_neut,
+      (Select user_nick From user_tbl where user_no = A.user_no) AS user_nick
+      FROM topic_tbl AS A 
+        INNER JOIN topic_detail_tbl AS B
+        INNER JOIN debate_tbl AS C
+      where A.topic_no = #{topic_no} and  B.topic_no = #{topic_no} and C.topic_no = #{topic_no};
+      
 	</select>
 	
 	<select id="selectResource" resultType="com.four.myapp.domain.ReadResourceVO">

@@ -30,7 +30,7 @@ import org.springframework.web.util.WebUtils;
 import com.four.myapp.domain.EmailVO;
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.persistence.EmailSender;
-import com.four.myapp.service.BoardServiceImpl;
+import com.four.myapp.service.MainServiceImpl;
 import com.four.myapp.service.MemberServiceImpl;
 import com.four.myapp.util.MemberValidation;
 

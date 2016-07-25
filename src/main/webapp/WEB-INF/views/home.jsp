@@ -63,9 +63,9 @@
 						<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}">
 							<c:choose>
 								<c:when test="${mainList.topic_type eq 0}">
-									<div class="item list_item col-md-3 col-md-offset-1">
+									<div class="item main_item list_item col-md-3 col-md-offset-1">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
-										<label class="label label-primary">찬반</label><br/>
+										<h4><label class="label label-primary">찬반</label></h4>
 										<center><h3>${mainList.topic_title}</h3></center>
 										<hr/>
 										<p>${mainList.topic_short_cont}</p>
@@ -165,7 +165,7 @@
 				<c:set var="recomnd_loop" value="false"/>
 				<c:forEach items="${recmd}" var="recmdList" varStatus="status">
 					<c:if test="${not recomnd_loop}">
-						<div class="item">
+						<div class="item on_item">
 							<input type="hidden" name="topic_no" value="${recmdList.topic_no}"/>
 							<c:choose>
 								<c:when test="${recmdList.topic_type eq 0}">
@@ -194,7 +194,7 @@
 				<c:set var="fin_loop" value="false"/> 
 				<c:forEach items="${finish}" var="finishList" varStatus="status">
 					<c:if test="${not fin_loop}">
-						<div class="item">
+						<div class="item fin_item ">
 							<input type="hidden" name="topic_no" value="${finishList.topic_no}"/>
 							<c:choose>
 								<c:when test="${finishList.topic_type eq 0}">
@@ -246,12 +246,22 @@
 	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".item").click(function(){
+		// 토론중 게시물
+		$(".main_item").click(function(){
 			var topic_no = $(this).children().filter("input").val();
-			location.href = "/read/read?topic_no=" + topic_no;
+			location.href = "/ongoing/read?topic_no=" + topic_no;
+		});
+		// 안건 건의중인 게시물
+		$(".on_item").click(function(){
+			var topic_no = $(this).children().filter("input").val();
+			location.href = "/proposal/read?topic_no=" + topic_no;
+		});
+		// 종료된 게시물
+		$(".fin_item").click(function(){
+			var topic_no = $(this).children().filter("input").val();
+			location.href = "/finished/read?topic_no=" + topic_no;
 		});
 	});
-	
 </script>
 </body>
 </html>
