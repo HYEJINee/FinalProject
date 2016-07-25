@@ -69,10 +69,10 @@
 		} else if(pro.length == 0 || con.length == 0) {
 			alert('찬반');
 		} else {
-			$('#proposal').submit();
+			$('#formCoverImg').submit();
 		}
 	});
 	
-	$('#coverImgUp').on('change', function() {
+	/*$('#coverImgUp').on('change', function() {
 		$('#formCoverImg').submit();
-	})
+	})*/
