@@ -54,8 +54,7 @@
 	</select>
 	
 	<insert id="likevoteinsert">
-		insert into op_like_tbl (op_no, user_no, op_like) values(#{op_no},
-		#{user_no}, #{op_like})
+		insert into op_like_tbl (op_no, user_no, op_like) values(#{op_no}, #{user_no}, #{op_like})
 	</insert>
 	<select id="readoplike" resultType="com.four.myapp.domain.ReadoplikeVO">
 		select op_no from op_like_tbl where user_no = #{user_no}
