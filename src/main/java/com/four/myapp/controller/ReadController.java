@@ -32,7 +32,7 @@ public class ReadController {
 	public void readget(@RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
 		MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		if(vo != null) {
-			model.addAttribute("readuser", vo);
+			 model.addAttribute("readuser", vo);
 			 int user_no = Integer.parseInt(vo.getUser_no());
 			 model.addAttribute("readvote",service.Readvote(topic_no, user_no));
 			 model.addAttribute("readoplike",service.getoplike(user_no));

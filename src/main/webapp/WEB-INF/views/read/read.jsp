@@ -76,14 +76,35 @@ list.push("${item.op_no}");
 					</h2>
 				</div>
 				<div class="col-sm-2">
-				<h4 style="color: blue">찬성 : <fmt:formatNumber value="${readlist.debate_tot_pro/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
+				<c:choose>
+					<c:when test="${(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut) eq 0}">
+						<h4 style="color: blue">찬성 : 0.0%</h4>
+					</c:when>
+					<c:otherwise>
+						<h4 style="color: blue">찬성 : <fmt:formatNumber value="${readlist.debate_tot_pro/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
+					</c:otherwise>
+				</c:choose>
 				</div>
 				<div class="col-sm-2">
-					<h4 style="color: red">반대 : <fmt:formatNumber value="${readlist.debate_tot_con/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
+				<c:choose>
+					<c:when test="${(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut) eq 0}">
+						<h4 style="color: red">반대 : 0.0%</h4>
+					</c:when>
+					<c:otherwise>
+						<h4 style="color: red">반대 : <fmt:formatNumber value="${readlist.debate_tot_pro/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
+					</c:otherwise>
+				</c:choose>
 				</div>
 				<div class="col-sm-2">
-					<h4 style="color: gray">중립 : <fmt:formatNumber value="${readlist.debate_tot_neut/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
-				</div>
+				<c:choose>
+					<c:when test="${(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut) eq 0}">
+						<h4 style="color: gray">중립 : 0.0%</h4>
+					</c:when>
+					<c:otherwise>
+						<h4 style="color: gray">중립 : <fmt:formatNumber value="${readlist.debate_tot_neut/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
+			</c:otherwise>
+				</c:choose>
+						</div>
 			</div>
 		</form>
 		<form class="form-horizontal">
