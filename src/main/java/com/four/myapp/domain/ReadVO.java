@@ -3,12 +3,29 @@ package com.four.myapp.domain;
 import java.sql.Date;
 
 public class ReadVO {
-	private int  topic_type , debate_tot_pro, debate_tot_con, debate_tot_neut;
+	private int  topic_type , debate_tot_pro, debate_tot_con, debate_tot_neut, topic_no, vote_type, user_no;
 	private Date debate_endate;
-	private String topic_title,topic_short_cont,topic_long_cont,topic_pro,topic_con,
-	user_nick;
+	private String topic_title,topic_short_cont,topic_long_cont,topic_pro,topic_con, user_nick;
 	
 	
+	public int getUser_no() {
+		return user_no;
+	}
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+	public int getVote_type() {
+		return vote_type;
+	}
+	public void setVote_type(int vote_type) {
+		this.vote_type = vote_type;
+	}
+	public int getTopic_no() {
+		return topic_no;
+	}
+	public void setTopic_no(int topic_no) {
+		this.topic_no = topic_no;
+	}
 	public String getUser_nick() {
 		return user_nick;
 	}
