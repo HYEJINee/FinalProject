@@ -34,13 +34,13 @@
 	</insert>
 	
 	<update id="votepro">
-		update debate_tbl set debate_tot_pro = debate_tot_pro+1
+		update debate_tbl set debate_tot_pro = debate_tot_pro+1 where topic_no = #{topic_no}
 	</update>
 	<update id="votecon">
-		update debate_tbl set debate_tot_con = debate_tot_con+1
+		update debate_tbl set debate_tot_con = debate_tot_con+1 where topic_no = #{topic_no}
 	</update>
 	<update id="voteneut">
-		update debate_tbl set debate_tot_neut = debate_tot_neut+1
+		update debate_tbl set debate_tot_neut = debate_tot_neut+1 where topic_no = #{topic_no}
 	</update>
 	
 	<select id="readvote" resultType="com.four.myapp.domain.ReadVO">

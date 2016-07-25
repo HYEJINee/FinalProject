@@ -91,7 +91,7 @@ list.push("${item.op_no}");
 						<h4 style="color: red">반대 : 0.0%</h4>
 					</c:when>
 					<c:otherwise>
-						<h4 style="color: red">반대 : <fmt:formatNumber value="${readlist.debate_tot_pro/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
+						<h4 style="color: red">반대 : <fmt:formatNumber value="${readlist.debate_tot_con/(readlist.debate_tot_pro + readlist.debate_tot_con + readlist.debate_tot_neut)*100}"  pattern="#.#"/>%</h4>
 					</c:otherwise>
 				</c:choose>
 				</div>
