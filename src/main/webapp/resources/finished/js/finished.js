@@ -54,7 +54,7 @@ $(document).ready(function(){
 					html += '<div class="item col-md-3 col-md-offset-1">';
 					html += '<input type="hidden" name="topic_no" value="' + list.topic_no + '"/>';
 					if(list.topic_type == 0) {
-						html += '<h3><label class="label label-primary">찬반</label><br/></h3>';
+						html += '<h4><label class="label label-primary">찬반</label><br/></h4>';
 						html += '<center><h3>' + list.topic_title + '</h3></center>';
 						html += '<hr/>';
 						html += '<p>' + list.topic_short_cont + '</p>';
