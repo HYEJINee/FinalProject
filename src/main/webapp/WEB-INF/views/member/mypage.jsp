@@ -69,6 +69,15 @@
 <body>
 
 	<%@include file="../include/header.jsp"%>
+	<style>
+.noti-reply {
+	border-color: blue;
+}
+
+.noti-topic {
+	border-color: red;
+}
+</style>
 	<script>
 		$(function() {
 			$(".dropdown-menu li a").click(
@@ -96,6 +105,13 @@
 			$(".mypage-activity-row").hide();
 			$(".mypage-row-vote").show();
 		}
+		function dismissNoti(noti_no) {
+	          $.ajax({
+	             type : "POST",
+	             url : "dismissNoti",
+	             data : {"noti_no" : noti_no}    
+	          });
+	      };
 	</script>
 	<div class="container">
 		<div class="row ">
@@ -125,38 +141,19 @@
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="noti">
 				<c:forEach items="${getNoti}" var="notiDTO">
-					<div class="alert alert-danger" role="alert">
+					<div id="noti-${notiDTO.noti_no }"
+						class="alert noti-${notiDTO.noti_css }" role="alert">
 						<button type="button" class="close" data-dismiss="alert"
-							aria-label="Close">
+							aria-label="Close" onclick="dismissNoti(${notiDTO.noti_no })">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<a href="#" class="alert-link">${notiDTO.other_user_nick }</a>님이 
-						<a href="#" class="alert-link">${notiDTO.topic_title }</a>${notiDTO.noti_statement }
+						<c:if test="${notiDTO.noti_css eq 'reply' }">
+							<a href="#" class="alert-link">${notiDTO.other_user_nick }</a>님이  
+							</c:if>
+
+						<a href="/read/read?topic_no=${notiDTO.noti_no } class="alert-link">${notiDTO.topic_title }</a>${notiDTO.noti_statement }
 					</div>
 				</c:forEach>
-				<div class="alert alert-warning alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<a href="#" class="alert-link">정치권 철새현상에 대한 의견</a> 안건에 총 11명이
-					참여했습니다.
-				</div>
-				<div class="alert alert-danger" role="alert">
-					<button type="button" class="close" data-dismiss="alert"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<a href="#" class="alert-link">Spartan1</a>님이 <a href="#"
-						class="alert-link">자살은 개인의 선택이다</a>에 대한 의견에 답글을 달았습니다.
-				</div>
-				<div class="alert alert-info" role="alert">
-					<button type="button" class="close" data-dismiss="alert"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<a href="#" class="alert-link">정치권 철새현상에 대한 의견</a> 안건이 통과되어 토론중입니다.
-				</div>
 
 			</div>
 			<div role="tabpanel" class="tab-pane" id="my-topic">my topic
@@ -199,27 +196,26 @@
 						<button type="button" class="btn btn-default btn-sm">프로필
 							사진 수정</button>
 					</div>
+
 					<div class="col-md-8 mypage-profile-details">
-						
+						<a href="/member/member_modify"><button type="button"
+								class="btn btn-default">프로필 수정</button></a>
+
+
 						<table width="100%">
-						<tr>
+							<tr>
+								<td><c:if test="${USER_KEY.user_lv==0}">
+										<input type="image" src="/resources/user_lv/common.png" />
+									</c:if> <c:if test="${USER_KEY.user_lv==1}">
+										<input type="image" src="/resources/user_lv/prestige.png" />
+									</c:if> <c:if test="${USER_KEY.user_lv==2}">
+										<input type="image" src="/resources/user_lv/royal.png" />
+									</c:if> <c:if test="${USER_KEY.user_lv==3}">
+										<input type="image" src="/resources/user_lv/vip.png" />
+									</c:if> <c:if test="${USER_KEY.user_lv==4}">
+										<input type="image" src="/resources/user_lv/vvip.png" />
+									</c:if>
 								<td>
-								    <c:if test="${USER_KEY.user_lv==0}">
-								    <input type="image"  src="/resources/user_lv/common.png"/>
-								    </c:if>
-								    <c:if test="${USER_KEY.user_lv==1}">
-								    <input type="image" src="/resources/user_lv/prestige.png"/>
-								    </c:if>
-								    <c:if test="${USER_KEY.user_lv==2}">
-								    <input type="image" src="/resources/user_lv/royal.png"/>
-								    </c:if>
-								    <c:if test="${USER_KEY.user_lv==3}">
-								    <input type="image" src="/resources/user_lv/vip.png"/>
-								    </c:if>
-								    <c:if test="${USER_KEY.user_lv==4}">
-								    <input type="image" src="/resources/user_lv/vvip.png"/>
-								    </c:if>
-								    <td>
 							</tr>
 							<tr>
 								<td>닉네임</td>
@@ -236,11 +232,13 @@
 							</tr>
 
 						</table>
-								<a href="/member/member_beforeModify"><button type="button" class="btn btn-default">회원정보 수정</button></a>
+						<a href="/member/member_beforeModify"><button type="button"
+								class="btn btn-default">회원정보 수정</button></a>
 					</div>
 				</div>
 			</div>
 
 		</div>
+	</div>
 </body>
 </html>
