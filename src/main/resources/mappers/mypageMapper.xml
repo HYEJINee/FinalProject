@@ -9,11 +9,13 @@
  		where timeline_tbl.user_no=#{user_no} order by timeline_date desc;
 	</select>
 	<select id="getNoti" parameterType="String" resultType="NotiDTO">
-		 select noti_tbl.user_no, noti_tbl.topic_no, other_user_no, noti_type, noti_date, topic_title, user_nick as other_user_nick
+		 select noti_no, noti_tbl.user_no, noti_tbl.topic_no, other_user_no, noti_type, noti_date, topic_title, user_nick as other_user_nick
  		from noti_tbl 
         left join topic_tbl on noti_tbl.topic_no=topic_tbl.topic_no
 		left join user_tbl on noti_tbl.other_user_no=user_tbl.user_no
- 		where noti_tbl.user_no=#{user_no} and noti_check='N' order by noti_date desc;
+ 		where noti_tbl.user_no=#{user_no} and noti_check='N' order by noti_no desc;
 	</select>
-
+	<update id="dismissNoti" parameterType="String">
+		update noti_tbl set noti_check='Y' where noti_no=#{noti_no};
+	</update>
 </mapper>
