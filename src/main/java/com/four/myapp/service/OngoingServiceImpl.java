@@ -10,23 +10,23 @@ import com.four.myapp.domain.MainDto;
 import com.four.myapp.persistence.ListDAO;
 
 @Service
-public class FinishedServiceImpl implements FinishedService {
+public class OngoingServiceImpl implements OngoingService {
 	@Autowired
 	private ListDAO dao;
 
 	@Override
-	public List<MainDto> getAll_fin() throws SQLException {
-		return dao.getAll_fin();
+	public List<MainDto> getAll_on() throws SQLException {
+		return dao.getAll_on();
 	}
 
 	@Override
-	public List<MainDto> getProCon_fin() throws SQLException {
-		return dao.getProCon_fin();
+	public List<MainDto> getProCon_on() throws SQLException {
+		return dao.getProCon_on();
 	}
 
 	@Override
-	public List<MainDto> getFree_fin() throws SQLException {
-		return dao.getFree_fin();
+	public List<MainDto> getFree_on() throws SQLException {
+		return dao.getFree_on();
 	}
-	
+
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.four.myapp.service.BoardServiceImpl;
+import com.four.myapp.service.MainServiceImpl;
 
 @Controller
 @RequestMapping("/member/*")
@@ -18,7 +18,7 @@ public class SearchController {
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 
 	@Autowired
-	BoardServiceImpl service;
+	MainServiceImpl service;
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String search(@ModelAttribute String search_word, Model model) throws Exception {

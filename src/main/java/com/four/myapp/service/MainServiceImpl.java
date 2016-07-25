@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.four.myapp.domain.MainDto;
-import com.four.myapp.persistence.BoardDAO;
+import com.four.myapp.persistence.ListDAO;
 
 @Service
-public class BoardServiceImpl implements BoardService {
+public class MainServiceImpl implements MainService {
 	@Autowired
-	private BoardDAO dao;
+	private ListDAO dao;
 	
 	@Override
 	public List<MainDto> getMainList() throws SQLException {
@@ -27,10 +27,5 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<MainDto> getFinishedList() throws SQLException {
 		return dao.getFinishedList();
-	}
-	
-	@Override
-	public MainDto read(int topic_no) throws SQLException {
-		return dao.read(topic_no);
 	}
 }
