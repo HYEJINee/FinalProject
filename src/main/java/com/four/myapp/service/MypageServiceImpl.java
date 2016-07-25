@@ -25,5 +25,10 @@ public class MypageServiceImpl implements MypageService {
 	public List<TimelineDTO> getNoti(String user_no) throws SQLException {
 		return dao.getNoti(user_no);
 	}
+
+	@Override
+	public void dismissNoti(String noti_no) throws SQLException {
+		dao.dismissNoti(noti_no);
+	}
 	
 }

@@ -1,6 +1,7 @@
 package com.four.myapp.domain;
 
 public class NotiDTO {
+	private String noti_no;
 	private String user_no;
 	private String topic_no;
 	private String topic_title;
@@ -11,6 +12,14 @@ public class NotiDTO {
 	private String noti_date;
 	private String not_check;
 	private String noti_css;
+	
+	
+	public String getNoti_no() {
+		return noti_no;
+	}
+	public void setNoti_no(String noti_no) {
+		this.noti_no = noti_no;
+	}
 	public String getUser_no() {
 		return user_no;
 	}
@@ -56,6 +65,11 @@ public class NotiDTO {
 		case "0" : 
 			this.noti_css = "reply";
 			this.noti_statement = "의 내 의견에 답글을 달았습니다.";
+			break;
+		case "1" : 
+			this.noti_css = "topic";
+			this.noti_statement = " 안건이 토론 상정을 위해 추천을 받고있습니다.";
+			break;
 		case "2" : 
 			this.noti_css = "topic";
 			this.noti_statement = " 안건이 토론 상정에 실패하여 종료했습니다.";
@@ -88,10 +102,6 @@ public class NotiDTO {
 	}
 	public String getNoti_css() {
 		return noti_css;
-	}
-	public void setNoti_css(String noti_css) {
-		this.noti_css = noti_css;
-	}
-	
+	}	
 	
 }

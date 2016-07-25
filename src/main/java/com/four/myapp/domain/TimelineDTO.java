@@ -16,6 +16,7 @@ public class TimelineDTO {
 	private String timeline_date;
 	private String timeline_css;
 	
+
 	public String getUser_no() {
 		return user_no;
 	}
