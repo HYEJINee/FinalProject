@@ -32,7 +32,7 @@ public class ReadController {
 	public void readget(@RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
 		MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		if(vo != null) {
-			model.addAttribute("readuser", vo);
+			 model.addAttribute("readuser", vo);
 			 int user_no = Integer.parseInt(vo.getUser_no());
 			 model.addAttribute("readvote",service.Readvote(topic_no, user_no));
 			 model.addAttribute("readoplike",service.getoplike(user_no));
@@ -74,6 +74,24 @@ public class ReadController {
 	     logger.info("토론 번호 : " + topic_no);
 	     
 	     service.likevote(op_no, user_no, op_like_type);
+	    
+	     
+	     return "redirect:/read/read?topic_no="+topic_no;
+	   }
+	 
+	 @RequestMapping(value="/read/option", method=RequestMethod.POST)
+	   public String option(@RequestParam("topic_no") int topic_no, @RequestParam("context") String context, int rel, int chk, HttpSession session){
+		 
+		 logger.info("토론 번호 : " + topic_no);
+		 logger.info("의견 내용 : " + context);
+	     MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+	     int user_no = Integer.parseInt(vo.getUser_no());
+	     logger.info("현재 로그인 유저 번호 : " + user_no);
+	     logger.info("반론 유저 no : " + rel);
+	     logger.info("찬반중 선택값 : " + chk);
+	     
+	     service.insertoption(topic_no, context, rel, chk, user_no);
+	    
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
 	   }
