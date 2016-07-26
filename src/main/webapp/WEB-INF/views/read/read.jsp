@@ -289,8 +289,9 @@ list.push("${item.op_no}");
 												</c:otherwise>
 						</c:choose>
 						<div class="col-sm-1">
-							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
+							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn"/>
 							<input type="hidden" value="${opinion.user_nick}">
+							<input type="hidden" value="${opinion.user_no}">
 						</div>
 					</div>
 				</div>
@@ -370,6 +371,7 @@ list.push("${item.op_no}");
 						<div class="col-sm-1">
 							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn"/>
 							<input type="hidden" value="${opinion.user_nick}">
+							<input type="hidden" value="${opinion.user_no}">
 						</div>
 						<br/>
 					</div>
@@ -412,11 +414,11 @@ list.push("${item.op_no}");
 			<input type="hidden" name="op_no" value="${opinion.op_no}" />
 			<input type="hidden" name="topic_no" value="${readlist.topic_no}" />
 				<input type="hidden" name="op_like_type"/>
-				<div class="col-sm-1">
+				<div class="col-sm-2">
 					<c:choose>
 					<c:when test="${opinion.user_lv eq 0}">
 						<img src="/resources/user_lv/common.png"
-						style="height: 50px; width: 50px" />
+						style="height: 100px; width: 100px" />
 					</c:when>
 					<c:when test="${opinion.user_lv eq 1}">
 						<img src="/resources/user_lv/prestige.png"
@@ -497,8 +499,9 @@ list.push("${item.op_no}");
 												</c:otherwise>
 						</c:choose>
 						<div class="col-sm-1">
-							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn" hidden="${opinion.user_nick}"/>
+							<input type="button" value="답글" class="btn btn-default" id="btn${status.count}" name="rebtn"/>
 							<input type="hidden" value="${opinion.user_nick}">
+							<input type="hidden" value="${opinion.user_no}">
 						</div>
 					</div>
 				</div>
@@ -521,7 +524,7 @@ list.push("${item.op_no}");
 		</form>
 	</div>
 	<div class="container">
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="option" method="post" >
 			<div class="form-group">
 				<h2>의견 작성</h2>
 				<hr />
@@ -556,7 +559,6 @@ list.push("${item.op_no}");
 					<c:when test="${empty readuser.user_nick != false}">
 						<h4>로그인 후 의견을 작성해주세요.</h4>
 					</c:when>
-				
 					<c:when test="${empty readuser.user_nick != true}"> 
 						<h4>${readuser.user_nick}</h4>
 					</c:when>
@@ -580,8 +582,9 @@ list.push("${item.op_no}");
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-2">
 					<h4>
-						<input type="text" class="form-control" id="replyid"
-							readonly="readonly">
+						<input type="text" class="form-control" id="relid" readonly="readonly">
+						<input type="hidden" id="rel" name="rel" value="0">
+						
 					</h4>
 				</div>
 				<div class="col-sm-2">
@@ -598,23 +601,36 @@ list.push("${item.op_no}");
 				
 					<c:when test="${empty readuser.user_nick != true}"> 
 						<textarea id="areaid" cols="150" rows="10"
-					style="border-color: #46FFFF" id="replyarea"></textarea>
+					style="border-color: #46FFFF" id="context" name="context"></textarea>
 					</c:when>
 				</c:choose>
 			</div>
 			<br />
+			<input type="hidden" name="topic_no" value="${readlist.topic_no}" />
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
-				<input type="button" value="등록" class="btn btn-default btn-lg" />
+			<c:choose>
+					<c:when test="${empty readuser.user_nick != false}">
+						<input type="submit" value="등록" class="btn btn-default btn-lg" disabled="disabled"/>
+					</c:when>
+					<c:when test="${empty readuser.user_nick != true}"> 
+						<input type="submit" value="등록" class="btn btn-default btn-lg" />
+					</c:when>
+				</c:choose>
+				
 			</div>
+			<br/><br/><br/><br/><br/><br/><br/><br/>
 		</form>
+		
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("input[name=rebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var id = $(this).attr('id');
 				var nick = $(this).next().val();
-				$("#replyid").val(nick);
-				$("#replyarea").focus();
+				var userno = $(this).next().next().val();
+				$("#relid").val(nick);
+				$("#rel").val(userno);
+				$("#context").focus();
 			});
 			$("input[name=chk]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var chkval = $(this).val();
