@@ -443,6 +443,7 @@ list.push("${item.op_no}");
 						<h3>${opinion.user_nick}&nbsp;&nbsp;
 						<span class="label label-success" style="margin-top: 20px">중립</span></h3>
 					</div>
+					
 					<div style="text-align: right">
 						<h3>
 							<em>NO.${status.count}</em>
@@ -602,6 +603,7 @@ list.push("${item.op_no}");
 					<c:when test="${empty readuser.user_nick != true}"> 
 						<textarea id="context" cols="150" rows="10"
 					style="border-color: #46FFFF" name="context"></textarea>
+					<input type="hidden" name="recontent">
 					</c:when>
 				</c:choose>
 			</div>
@@ -687,6 +689,8 @@ list.push("${item.op_no}");
 				}  else if(contentchk == ""){
 					alert("의견을 입력해주세요.");
 				}  else{
+					var recontent = $("textarea[name=context]").val().replace(/\n/g, "<br/>");
+					$("input[name=recontent]").val(recontent);
 					$("#optionform").submit();
 				}
 			});
