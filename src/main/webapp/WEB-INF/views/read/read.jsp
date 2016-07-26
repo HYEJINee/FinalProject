@@ -665,14 +665,16 @@
 					<c:when test="${empty readuser.user_nick != false}">
 						<input type="button" value="등록" class="btn btn-default btn-lg"
 							disabled="disabled" />
+							<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 					</c:when>
 					<c:when test="${empty readuser.user_nick != true}">
 						<input type="button" value="등록" class="btn btn-default btn-lg"
 							id="optionbtn" />
+							<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 					</c:when>
 				</c:choose>
-
 			</div>
+			
 		</form>
 
 	</div>
