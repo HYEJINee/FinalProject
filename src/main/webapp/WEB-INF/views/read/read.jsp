@@ -524,7 +524,7 @@ list.push("${item.op_no}");
 		</form>
 	</div>
 	<div class="container">
-		<form class="form-horizontal" action="option" method="post" >
+		<form class="form-horizontal" action="option" method="post" id="optionform" >
 			<div class="form-group">
 				<h2>의견 작성</h2>
 				<hr />
@@ -595,13 +595,13 @@ list.push("${item.op_no}");
 			
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<textarea id="areaid" cols="150" rows="10"
-					style="border-color: #46FFFF" id="replyarea" readonly="readonly" placeholder="로그인 후 의견 작성이 가능합니다."></textarea>
+						<textarea id="context" cols="150" rows="10"
+					style="border-color: #46FFFF" readonly="readonly" placeholder="로그인 후 의견 작성이 가능합니다."></textarea>
 					</c:when>
 				
 					<c:when test="${empty readuser.user_nick != true}"> 
-						<textarea id="areaid" cols="150" rows="10"
-					style="border-color: #46FFFF" id="context" name="context"></textarea>
+						<textarea id="context" cols="150" rows="10"
+					style="border-color: #46FFFF" name="context"></textarea>
 					</c:when>
 				</c:choose>
 			</div>
@@ -610,10 +610,10 @@ list.push("${item.op_no}");
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
 			<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<input type="submit" value="등록" class="btn btn-default btn-lg" disabled="disabled"/>
+						<input type="button"" value="등록" class="btn btn-default btn-lg" disabled="disabled" />
 					</c:when>
 					<c:when test="${empty readuser.user_nick != true}"> 
-						<input type="submit" value="등록" class="btn btn-default btn-lg" />
+						<input type="button" value="등록" class="btn btn-default btn-lg" id="optionbtn" />
 					</c:when>
 				</c:choose>
 				
@@ -635,11 +635,11 @@ list.push("${item.op_no}");
 			$("input[name=chk]").click(function() { //id test1 이라는 a태그 클릭시 발생
 				var chkval = $(this).val();
 				if (chkval == "0") {
-					$("#areaid").attr("style", "border-color: #46FFFF");
+					$("#context").attr("style", "border-color: #46FFFF");
 				} else if (chkval == "1") {
-					$("#areaid").attr("style", "border-color: #FF3232");
+					$("#context").attr("style", "border-color: #FF3232");
 				} else {
-					$("#areaid").attr("style", "border-color: #66FF00");
+					$("#context").attr("style", "border-color: #66FF00");
 				}
 			});
 			$("input[name=votebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
@@ -676,6 +676,19 @@ list.push("${item.op_no}");
 						alert("이미 투표에 참여하셨습니다.");
 					}
 					}
+			});
+			
+			
+			$("#optionbtn").click(function() { //id test1 이라는 a태그 클릭시 발생
+				var radioValue = $("input:radio[name='chk']:checked").val();
+				var contentchk = $("textarea[name=context]").val();
+				if(radioValue == null){
+					alert("의견의 찬성, 반대, 중립을 선택해주세요.");
+				}  else if(contentchk == ""){
+					alert("의견을 입력해주세요.");
+				}  else{
+					$("#optionform").submit();
+				}
 			});
 		});
 	</script>
