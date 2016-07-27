@@ -89,4 +89,9 @@ public class ProposalDAOImpl implements ProposalDAO {
 	public void replyUp(ReplyDTO replyDTO) {
 		sqlSession.insert(NAMESPACE + ".commentUp", replyDTO);
 	}
+
+	@Override
+	public void makeProgress(int topic_no) {
+		sqlSession.update(NAMESPACE + ".makeProgress", topic_no);
+	}
 }

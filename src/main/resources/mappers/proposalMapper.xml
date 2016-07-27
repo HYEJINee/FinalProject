@@ -53,4 +53,8 @@
 	<select id="getReplies" resultType="ReplyDTO" parameterType="int">
 		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no}
 	</select>
+	
+	<update id="makeProgress" parameterType="int">
+		update topic_tbl set topic_progress = 3 where topic_no = #{topic_no}
+	</update>
 </mapper>

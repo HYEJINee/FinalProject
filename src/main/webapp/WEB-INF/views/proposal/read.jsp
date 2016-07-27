@@ -12,6 +12,8 @@
 <link href="${pageContext.request.contextPath}/resources/proposal/css/read.css" rel="stylesheet">
 </head>
 <body>
+<c:choose>
+<c:when test="${topic.recommend < 20}">
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	
 	<div id="content" class="container">
@@ -24,7 +26,7 @@
 				<img id="coverImg" alt="커버 이미지" src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}">
 			</div>
 		</c:if>
-	<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
+		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
 		<div class="row">
 	
 
@@ -43,6 +45,7 @@
 								<c:when test="${voted != true}">
 									<form action="read.vote" method="post">
 										<input type="hidden" name="topic_no" value="${topic.topic_no}" />
+										<input type="hidden" name="recommend" value="${topic.recommend}" />
 										<p class="text-center"><button id="btnVote" class="btn btn-success btn-sm">투표하기</button></p>
 									</form>
 								</c:when>
@@ -114,7 +117,7 @@
 				<p class="text-center">댓글이 없습니다.</p>
 			</c:when>
 			<c:otherwise>
-			<c:forEach items="${replies}" var="reply">
+			<c:forEach items="${replies}" var="reply" varStatus="status">
 				<div class="media">
 					<div class="media-left media-top">
 						<img class="media-object" src="/resources/${reply.user_profile}">
@@ -126,8 +129,8 @@
 						<c:if test="${empty USER_KEY == false}">
 							<c:if test="${reply.user_no == USER_KEY.user_no}">
 							<div class="btn-group pull-right">
-								<button type="button" class="btn btn-link">수정</button>
-								<button type="button" class="btn btn-link">삭제</button>
+								<button id="btnModRep" type="button" class="btn btn-link" onclick="modSetup()">수정</button>
+								<button id="btnDelRep" type="button" class="btn btn-link">삭제</button>
 							</div>
 							</c:if>
 						</c:if>
@@ -141,7 +144,13 @@
 		</div><!-- row -->
 	</div><!-- container -->
 	<div id="bottom"></div>
-	
+</c:when>
+
+<c:otherwise>
+	<c:redirect url="/proposal/list"></c:redirect>
+</c:otherwise>
+
+</c:choose>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>

@@ -83,11 +83,16 @@ public class ProposalController {
    }
    
    @RequestMapping(value="/read.vote", method=RequestMethod.POST)
-   public String vote(int topic_no, HttpSession session) {
+   public String vote(int topic_no, int recommend, HttpSession session) {
       MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
       int user_no = Integer.parseInt(vo.getUser_no());
 
       service.voteProposal(topic_no, user_no);
+      
+      if(recommend + 1 >= 20) {
+    	  service.proposalToGo(topic_no);
+    	  return "redirect:/ongoing/list";
+      }
       return "redirect:/proposal/read?topic_no=" + topic_no;
    }
    
@@ -100,5 +105,10 @@ public class ProposalController {
 	   
 	   service.commentUp(replyDTO);
 	   return "redirect:/proposal/read?topic_no=" + replyDTO.getTopic_no() + "#bottom";
+   }
+   
+   @RequestMapping(value="/read.reply", method=RequestMethod.GET)
+   public void commentMod(int topic_no, int reply_no) {
+	   
    }
 }
