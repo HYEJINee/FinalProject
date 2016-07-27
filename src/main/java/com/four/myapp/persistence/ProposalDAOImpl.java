@@ -94,4 +94,14 @@ public class ProposalDAOImpl implements ProposalDAO {
 	public void makeProgress(int topic_no) {
 		sqlSession.update(NAMESPACE + ".makeProgress", topic_no);
 	}
+	
+	@Override
+	public void replyUpdate(ReplyDTO replyDTO) {
+		sqlSession.update(NAMESPACE + ".modReply", replyDTO);
+	}
+	
+	@Override
+	public void replyDelete(int reply_no) {
+		sqlSession.delete(NAMESPACE + ".delReply", reply_no);
+	}
 }

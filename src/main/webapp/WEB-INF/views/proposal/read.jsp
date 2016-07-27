@@ -118,22 +118,26 @@
 			</c:when>
 			<c:otherwise>
 			<c:forEach items="${replies}" var="reply" varStatus="status">
-				<div class="media">
+				<div id='reply${reply.reply_no}' class="media">
 					<div class="media-left media-top">
 						<img class="media-object" src="/resources/${reply.user_profile}">
 					</div>
 					<div class="media-body">
+					<form action="reply.update" method="post">
+						<input type="hidden" name="topic_no" value="${topic.topic_no}">
+						<input type="hidden" name="reply_no" value="${reply.reply_no}">
 						<h4 class="media-heading">${reply.user_nick}</h4>
 						<h6 style="color:silver;">${reply.reply_regdate}</h6>
 						<p>${reply.reply_content}</p>
 						<c:if test="${empty USER_KEY == false}">
 							<c:if test="${reply.user_no == USER_KEY.user_no}">
 							<div class="btn-group pull-right">
-								<button id="btnModRep" type="button" class="btn btn-link" onclick="modSetup()">수정</button>
-								<button id="btnDelRep" type="button" class="btn btn-link">삭제</button>
+								<button type="button" class="btn btn-link" onclick="modSetup(this)">수정</button>
+								<button type="button" class="btn btn-link" onclick="checkDelete(this)">삭제</button>
 							</div>
 							</c:if>
 						</c:if>
+					</form>
 					</div>
 				</div>
 			</c:forEach>
@@ -153,5 +157,6 @@
 </c:choose>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/proposal/js/read.js"></script>
 </body>
 </html>

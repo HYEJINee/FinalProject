@@ -70,4 +70,14 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	public void proposalToGo(int topic_no) {
 		proposalDAO.makeProgress(topic_no);
 	}
+	
+	@Override
+	public void modReply(ReplyDTO replyDTO) {
+		proposalDAO.replyUpdate(replyDTO);
+	}
+	
+	@Override
+	public void delReply(int reply_no) {
+		proposalDAO.replyDelete(reply_no);
+	}
 }

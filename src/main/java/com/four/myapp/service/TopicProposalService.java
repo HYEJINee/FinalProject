@@ -19,4 +19,6 @@ public interface TopicProposalService {
 	public void submitProposal(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks);
 	public void commentUp(ReplyDTO replyDTO);
 	public void proposalToGo(int topic_no);
+	public void modReply(ReplyDTO replyDTO);
+	public void delReply(int reply_no);
 }

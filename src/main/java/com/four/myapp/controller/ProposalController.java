@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.ReplyDTO;
@@ -107,8 +108,16 @@ public class ProposalController {
 	   return "redirect:/proposal/read?topic_no=" + replyDTO.getTopic_no() + "#bottom";
    }
    
-   @RequestMapping(value="/read.reply", method=RequestMethod.GET)
-   public void commentMod(int topic_no, int reply_no) {
-	   
+   @RequestMapping(value="/reply.update", method=RequestMethod.POST)
+   public String commentMod(ReplyDTO replyDTO, HttpSession session) {
+	   replyDTO.setReply_content(replyDTO.getReply_content().replaceAll("\r\n", "<br>"));
+	   service.modReply(replyDTO);
+	   return "redirect:/proposal/read?topic_no=" + replyDTO.getTopic_no() + "#reply" + replyDTO.getReply_no();
+   }
+
+   @RequestMapping(value="/reply.delete", method=RequestMethod.POST)
+   public String commentDel(int topic_no, int reply_no, HttpSession session) {
+	   service.delReply(reply_no);
+	   return "redirect:/proposal/read?topic_no=" + topic_no;
    }
 }

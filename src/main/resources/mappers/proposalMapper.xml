@@ -51,10 +51,18 @@
 	</select>
 	
 	<select id="getReplies" resultType="ReplyDTO" parameterType="int">
-		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no}
+		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no}
 	</select>
 	
 	<update id="makeProgress" parameterType="int">
 		update topic_tbl set topic_progress = 3 where topic_no = #{topic_no}
 	</update>
+	
+	<update id="modReply" parameterType="ReplyDTO">
+		update reply_tbl set reply_content = #{reply_content} where reply_no = #{reply_no}
+	</update>
+	
+	<delete id="delReply" parameterType="int">
+		delete from reply_tbl where reply_no = #{reply_no}
+	</delete>
 </mapper>
