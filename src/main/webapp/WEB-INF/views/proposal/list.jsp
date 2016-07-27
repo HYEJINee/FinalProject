@@ -41,13 +41,27 @@
 						<c:forEach items="${topicList}" var="topic">
 							<div class="col-md-4">
 								<div class="card" topic-no="${topic.topic_no}">
-									<div class="card-header">
-										<c:choose>
-											<c:when test="${topic.topic_type == 0}">찬반 토론</c:when>
-											<c:when test="${topic.topic_type == 1}">자유 토론</c:when>
-										</c:choose><br>
-										<h4>${topic.topic_title}</h4>
-									</div>
+									<c:choose>
+										<c:when test="${topic.img_file_name != '' && topic.img_file_name != null}">
+											<div class="card-header">
+												<c:choose>
+													<c:when test="${topic.topic_type == 0}">찬반 토론</c:when>
+													<c:when test="${topic.topic_type == 1}">자유 토론</c:when>
+												</c:choose><br>
+												<h4>${topic.topic_title}</h4>
+												<img src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}" style="position: absolute; left:0; top:-50%; width:100%; height:auto; opacity:0.5;z-index:-1;">
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="card-header" style="background-color: rgba(230, 230, 230, 0.5);">
+												<c:choose>
+													<c:when test="${topic.topic_type == 0}">찬반 토론</c:when>
+													<c:when test="${topic.topic_type == 1}">자유 토론</c:when>
+												</c:choose><br>
+												<h4>${topic.topic_title}</h4>
+											</div>
+										</c:otherwise>
+									</c:choose>
 									<div class="card-body">
 										${topic.topic_short_cont}
 									</div>
@@ -68,10 +82,22 @@
 							<c:if test="${topic.topic_type == 0}">
 							<div class="col-md-4">
 								<div class="card" topic-no="${topic.topic_no}">
-									<div class="card-header">
-										찬반 토론
-										<h4>${topic.topic_title}</h4>
-									</div>
+									<c:choose>
+										<c:when test="${topic.img_file_name != '' && topic.img_file_name != null}">
+											<%-- <div class="card-header" style="background: rgba(0, 0, 0, 0.3) url('/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}') center center no-repeat; background-size: cover;"> --%>
+											<div class="card-header">
+												찬반 토론
+												<h4>${topic.topic_title}</h4>
+												<img src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}" style="position: absolute; left:0; top:-50%; width:100%; height:auto; opacity:0.5;z-index:-1;">
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="card-header" style="background-color: rgba(230, 230, 230, 0.5);">
+												찬반 토론
+												<h4>${topic.topic_title}</h4>
+											</div>
+										</c:otherwise>
+									</c:choose>
 									<div class="card-body">
 										${topic.topic_short_cont}
 									</div>
@@ -93,10 +119,27 @@
 							<c:if test="${topic.topic_type == 1}">
 							<div class="col-md-4">
 								<div class="card" topic-no="${topic.topic_no}">
+
+									<c:choose>
+									<c:when test="${topic.img_file_name != '' && topic.img_file_name != null}">
+
 									<div class="card-header">
 										자유 토론
 										<h4>${topic.topic_title}</h4>
+										<img src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}" style="position: absolute; left:0; top:-50%; width:100%; height:auto; opacity:0.5;z-index:-1;">
 									</div>
+
+									</c:when>
+									<c:otherwise>
+
+									<div class="card-header" style="background-color: rgba(230, 230, 230, 0.5);">
+										자유 토론
+										<h4>${topic.topic_title}</h4>
+									</div>
+
+									</c:otherwise>
+									</c:choose>
+	
 									<div class="card-body">
 										${topic.topic_short_cont}<br>
 									</div>
