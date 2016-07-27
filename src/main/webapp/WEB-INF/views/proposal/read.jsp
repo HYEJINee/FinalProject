@@ -101,7 +101,7 @@
 				<c:otherwise>
 					<div class="alert alert-warning">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						댓글 작성은 로그인한 사용자만 가능합니다. <button class="btn btn-link" onclick="location.href='/member/login'">로그인하기</button>
+						댓글 작성은 로그인한 사용자만 가능합니다. <button class="btn btn-link" onclick="location.href='/member/member_login'">로그인하기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
