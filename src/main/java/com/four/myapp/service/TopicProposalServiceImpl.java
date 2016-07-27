@@ -65,4 +65,9 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	public void commentUp(ReplyDTO replyDTO) {
 		proposalDAO.replyUp(replyDTO);
 	}
+	
+	@Override
+	public void proposalToGo(int topic_no) {
+		proposalDAO.makeProgress(topic_no);
+	}
 }
