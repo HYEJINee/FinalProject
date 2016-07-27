@@ -249,7 +249,7 @@
 		// 토론중 게시물
 		$(".main_item").click(function(){
 			var topic_no = $(this).children().filter("input").val();
-			location.href = "/ongoing/read?topic_no=" + topic_no;
+			location.href = "/read/read?topic_no=" + topic_no;
 		});
 		// 안건 건의중인 게시물
 		$(".on_item").click(function(){
