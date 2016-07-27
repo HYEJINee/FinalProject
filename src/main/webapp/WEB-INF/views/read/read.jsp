@@ -10,21 +10,13 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="/resources/bootstrap/js/bootstrap.js"></script>
 <script src="/resources/bootstrap/js/menu.js"></script>
+<script src="${pageContext.request.contextPath}/resources/read/js/read.js"></script>
 </head>
-<style>
-.top {
-	margin-top: 50px;
-}
-
-.minibottom {
-	margin-bottom: 10px;
-}
-</style>
-
 <body>
 	<script type="text/javascript">
 		var list = new Array();
@@ -274,7 +266,7 @@
 									</h3>
 								</div>
 								<hr />
-								<br /> ${opinion.op_content} <br />
+								 ${opinion.op_content} <br />
 								<hr />
 								<div>
 									<div class="col-sm-4">
@@ -358,7 +350,7 @@
 									</h3>
 								</div>
 								<hr />
-								<br /> ${opinion.op_content} <br />
+								 ${opinion.op_content} <br />
 								<hr />
 								<div>
 									<div class="col-sm-4">
@@ -493,7 +485,7 @@
 									</h3>
 								</div>
 								<hr />
-								<br /> ${opinion.op_content} <br />
+								${opinion.op_content} <br />
 								<hr />
 								<div>
 									<div class="col-sm-4">
@@ -613,19 +605,17 @@
 
 				</div>
 				<div class="col-sm-5">
-					<h4 class="radio-inline">
-						<label for="chkok"><input type="radio" name="chk"
-							id="chkok" value="0">찬성</label>
-					</h4>
-					<h4 class="radio-inline">
-						<label for="chkno"><input type="radio" name="chk"
-							id="chkno" value="1">반대</label>
-					</h4>
-					<h4 class="radio-inline">
-						<label for="chkneut"><input type="radio" name="chk"
-							id="chkneut" value="2">중립</label>
-					</h4>
-
+				 <div id="debateType" class="btn-group">
+						<button type="button" id="btnDebateType" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							토론 형식 <span class="caret"></span>
+						</button>
+						<ul id="btn_topic_type" class="dropdown-menu" role="menu">
+							<li><a>찬성 </a></li>
+							<li><a>반대 </a></li>
+							<li><a>중립 </a></li>
+						</ul>
+						<input type="hidden" id="hid_topic_type" name="optionchk"/>
+					</div>
 				</div>
 			</div>
 
@@ -635,7 +625,6 @@
 						<input type="text" class="form-control" id="relid"
 							readonly="readonly"> <input type="hidden" id="rel"
 							name="rel" value="0">
-
 					</h4>
 				</div>
 				<div class="col-sm-2">
@@ -674,96 +663,7 @@
 					</c:when>
 				</c:choose>
 			</div>
-			
 		</form>
-
 	</div>
-	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					$("input[name=rebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
-						var id = $(this).attr('id');
-						var nick = $(this).next().val();
-						var userno = $(this).next().next().val();
-						$("#relid").val(nick);
-						$("#rel").val(userno);
-						$("#context").focus();
-					});
-					$("input[name=chk]").click(
-							function() { //id test1 이라는 a태그 클릭시 발생
-								var chkval = $(this).val();
-								if (chkval == "0") {
-									$("#context").attr("style",
-											"border-color: #46FFFF");
-								} else if (chkval == "1") {
-									$("#context").attr("style",
-											"border-color: #FF3232");
-								} else {
-									$("#context").attr("style",
-											"border-color: #66FF00");
-								}
-							});
-					$("input[name=votebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
-						var vote_type = $(this).attr('id'); //0 , 1, 2
-						$("input[name=vote_type]").val(vote_type);
-						$("#voteform").submit();
-					});
-					$("button[name=opvotebtn0]").click(
-							function() { //id test1 이라는 a태그 클릭시 발생
-								var op_like_type = $(this).next().val();
-								var formid = $(this).val(); //0 , 1, 2
-								if (list.length == 0) {
-									$("input[name=op_like_type]").val(
-											op_like_type);
-									$("#" + formid).submit();
-								} else {
-									if (list.indexOf(formid) == -1) {
-										$("input[name=op_like_type]").val(
-												op_like_type);
-										$("#" + formid).submit();
-									} else if (list.indexOf(formid) != -1) {
-										alert("이미 투표에 참여하셨습니다.");
-									}
-								}
-							});
-					$("button[name=opvotebtn1]").click(
-							function() { //id test1 이라는 a태그 클릭시 발생
-								var op_like_type = $(this).next().val();
-								var formid = $(this).val(); //0 , 1, 2
-								if (list.length == 0) {
-									$("input[name=op_like_type]").val(
-											op_like_type);
-									$("#" + formid).submit();
-								} else {
-									if (list.indexOf(formid) == -1) {
-										$("input[name=op_like_type]").val(
-												op_like_type);
-										$("#" + formid).submit();
-									} else if (list.indexOf(formid) != -1) {
-										alert("이미 투표에 참여하셨습니다.");
-									}
-								}
-							});
-
-					$("#optionbtn").click(
-							function() { //id test1 이라는 a태그 클릭시 발생
-								var radioValue = $(
-										"input:radio[name='chk']:checked")
-										.val();
-								var contentchk = $("textarea[name=context]")
-										.val();
-								if (radioValue == null) {
-									alert("의견의 찬성, 반대, 중립을 선택해주세요.");
-								} else if (contentchk == "") {
-									alert("의견을 입력해주세요.");
-								} else {
-									var recontent = $("textarea[name=context]")
-											.val().replace(/\n/g, "<br/>");
-									$("input[name=recontent]").val(recontent);
-									$("#optionform").submit();
-								}
-							});
-				});
-	</script>
 </body>
 </html>

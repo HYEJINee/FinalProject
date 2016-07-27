@@ -20,5 +20,5 @@ public interface ReadService {
 	public ReadVO Readvote(int topic_no, int user_no) throws SQLException;
 	public void likevote(int op_no, int user_no, int op_like_type);
 	public List<ReadoplikeVO> getoplike(int user_no) throws SQLException;
-	public void insertoption(int topic_no, String recontent,int rel, int chk, int user_no);
+	public void insertoption(int topic_no, String recontent,int rel, int optionchk, int user_no);
 }

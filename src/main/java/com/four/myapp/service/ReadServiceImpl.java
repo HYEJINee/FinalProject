@@ -75,8 +75,8 @@ public class ReadServiceImpl implements ReadService {
 	}
 
 	@Override
-	public void insertoption(int topic_no, String recontent, int rel, int chk, int user_no) {
-		dao.insertoption(topic_no, recontent, rel, chk, user_no);
+	public void insertoption(int topic_no, String recontent, int rel, int optionchk, int user_no) {
+		dao.insertoption(topic_no, recontent, rel, optionchk, user_no);
 		
 	}
 
