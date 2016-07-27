@@ -14,18 +14,19 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	
+	<div id="content" class="container">
+		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
+		<c:if test='${topic.img_file_name != "" && topic.img_file_name != null}'>
+			<div id="divCoverImg" class="jumbotron">
+				<p class="text-center" style="font-size:16pt;">${topic.topic_title}</p>
+				<p id="short_cont">${topic.topic_short_cont}<br></p>
+				<p id="writer" class="text-right">건의자 : ${topic.user_nick}</p>
+				<img id="coverImg" alt="커버 이미지" src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}">
+			</div>
+		</c:if>
 	<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
-	<div id="divCoverImg" class="jumbotron">
-		<div class="container">
-			<h3>${topic.topic_title}</h3>
-			<p>${topic.topic_short_cont}</p>
-			<p class="text-right">건의자 : ${topic.user_nick}</p>
-		</div>
-	</div>	
-	<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
-	
-	<div class="container">
 		<div class="row">
+	
 
 			<!-- 안건 투표 -->
 			<div id=divRecommend>
@@ -86,13 +87,16 @@
 			</div>
 			<!-- 찬성 반대 의견 -->
 			
-			<div class="col-md-10 col-md-offset-1">
+			<div id="divWriteRep" class="col-md-10 col-md-offset-1">
 			<c:choose>
 				<c:when test="${empty USER_KEY != true}">
+				<form id="formReply" action="read.reply" method="post">
 						<h4>댓글 쓰기</h4>
-						작성자 : ${USER_KEY.user_nick}
-						<textarea class="form-control" rows="5" placeholder="이 안건에 추가하고 싶은 자료가 있거나 작성자에게 하고 싶은 말이 있다면 적어주세요."></textarea>
-						<button class="btn btn-primary btn-sm pull-right">등록</button>
+						<p>작성자 : ${USER_KEY.user_nick}</p>
+						<input type="hidden" name="topic_no" value="${topic.topic_no}">
+						<textarea class="form-control" name="reply_content" rows="5" placeholder="이 안건에 추가하고 싶은 자료가 있거나 작성자에게 하고 싶은 말이 있다면 적어주세요."></textarea>
+						<button role="button" class="btn btn-primary pull-right">등록</button>
+				</form>
 				</c:when>
 				<c:otherwise>
 					<div class="alert alert-warning">
@@ -105,21 +109,38 @@
 			
 			<!-- 댓글 -->
 			<div id="divReplies" class="col-md-10 col-md-offset-1">
+			<c:choose>
+			<c:when test="${empty replies}">
+				<p class="text-center">댓글이 없습니다.</p>
+			</c:when>
+			<c:otherwise>
 			<c:forEach items="${replies}" var="reply">
 				<div class="media">
 					<div class="media-left media-top">
-						<img class="media-object" src="${reply.user_profile}">
+						<img class="media-object" src="/resources/${reply.user_profile}">
 					</div>
 					<div class="media-body">
 						<h4 class="media-heading">${reply.user_nick}</h4>
+						<h6 style="color:silver;">${reply.reply_regdate}</h6>
 						<p>${reply.reply_content}</p>
+						<c:if test="${empty USER_KEY == false}">
+							<c:if test="${reply.user_no == USER_KEY.user_no}">
+							<div class="btn-group pull-right">
+								<button type="button" class="btn btn-link">수정</button>
+								<button type="button" class="btn btn-link">삭제</button>
+							</div>
+							</c:if>
+						</c:if>
 					</div>
 				</div>
 			</c:forEach>
+			</c:otherwise>
+			</c:choose>
 			</div>
 			<!-- 댓글 -->
 		</div><!-- row -->
 	</div><!-- container -->
+	<div id="bottom"></div>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>

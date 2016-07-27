@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.four.myapp.domain.MemberVO;
+import com.four.myapp.domain.ReplyDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 import com.four.myapp.service.TopicProposalService;
 import com.four.myapp.util.CoverImgValidation;
@@ -61,7 +62,7 @@ public class ProposalController {
 			   topicProposalDTO.setImg_file_name(fileName);
 			   topicProposalDTO.setImg_ext_name(ex);
 		   } else {
-			   
+			   return "redirect:/proposal/list";
 		   }
 	  }
 	  service.submitProposal(topicProposalDTO, refTitles, refLinks);
@@ -85,7 +86,19 @@ public class ProposalController {
    public String vote(int topic_no, HttpSession session) {
       MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
       int user_no = Integer.parseInt(vo.getUser_no());
+
       service.voteProposal(topic_no, user_no);
-      return "redirect:/proposal/read?topic_no="+topic_no;
+      return "redirect:/proposal/read?topic_no=" + topic_no;
+   }
+   
+   @RequestMapping(value="/read.reply", method=RequestMethod.POST)
+   public String commentPost(ReplyDTO replyDTO, HttpSession session) {
+	   MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+	   int user_no = Integer.parseInt(vo.getUser_no());
+	   replyDTO.setUser_no(user_no);
+	   replyDTO.setReply_content(replyDTO.getReply_content().replaceAll("\r\n", "<br>"));
+	   
+	   service.commentUp(replyDTO);
+	   return "redirect:/proposal/read?topic_no=" + replyDTO.getTopic_no() + "#bottom";
    }
 }

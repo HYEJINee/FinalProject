@@ -60,4 +60,9 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	public void submitProposal(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks) {
 		proposalDAO.proposalUp(topicProposalDTO, refTitles, refLinks);
 	}
+	
+	@Override
+	public void commentUp(ReplyDTO replyDTO) {
+		proposalDAO.replyUp(replyDTO);
+	}
 }

@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TAWAR - 안건 건의</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />
@@ -23,13 +23,7 @@
 					<div id="divBtnCoverImg">
 						<input type="file" id="coverImgUp" name="image_file_name"/>
 						<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
-						<c:if test="${empty imgValidate != true}">
-							<c:choose>
-								<c:when test="${imgValidate == false}">
-									<p class="text-center" style="font-size: 12pt">이미지 파일은 jpeg, gif, png형식만 가능합니다.</p>
-								</c:when>
-							</c:choose>
-						</c:if>
+						<p class="text-center" style="font-size: 12pt">이미지 파일은 JPG, JPEG, GIF, PNG형식만 가능합니다.</p>
 					</div>
 				</div>
 			<!-- 커버 이미지 등록 -->
@@ -120,45 +114,5 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="http://malsup.github.io/jquery.form.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/proposal/js/write.js"></script>
-	
-<%-- 	<c:if test="${empty imgValidate != true}">
-		<c:if test="${imgValidate == true}">
-			<script>
-				var imgPath = $('#imgPath').text().trim();
-				var imgHeight = $('#imgHeight').text().trim();
-				var imgWidth = $('#imgWidth').text().trim();
-				var imgName = $('#imgName').text().trim();
-				var extension = $('#extension').text().trim();
-				$(function() {
-					$('#divCoverImg').css('background', 'url(' + imgPath + ') no-repeat center center').css('height', imgHeight + "px");
-					$('#img_file_name').val(imgName);
-					$('#img_ext_name').val(extension);
-				})
-			</script>
-		</c:if>
-	</c:if> --%>
-	
-	<script>
-				var _URL = window.URL || window.webkitURL;
-				
-				$('#coverImgUp').on('change', function(e) {
-					var image, file;
-					var _height;
-					var _width;
-					
-					if ((file = this.files[0])) {
-						image = new Image();
-
-						image.src = _URL.createObjectURL(file);
-						
-						image.onload = function() {
-							_width = this.width;
-							_height = this.height;
-							
-							$('#divCoverImg').css('background', 'url(' + image.src + ') no-repeat center center').css('height', _height + "px");
-						};
-					}
-				});
-	</script>
 </body>
 </html>
