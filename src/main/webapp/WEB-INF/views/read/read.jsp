@@ -597,7 +597,7 @@
 											</div>
 										</c:when>
 										<c:otherwise>
-											<div class="col-sm-offset-4 col-sm-1">
+											<div class="col-sm-offset-3 col-sm-1 ">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
 													value="${opinion.op_no}">
@@ -615,19 +615,27 @@
 												</button>
 												<input type="hidden" value="1" />
 											</div>
-											<div class="col-sm-1">
-											<button type="button" class="btn btn-warning" name="Modal" >수정
-											</button>
-											<input type="hidden" value="${opinion.op_content}"/>
-											<input type="hidden" value="${opinion.op_no}">
-											
-											</div>
-											<div class="col-sm-1 minibottom">
+											<div class="col-sm-1 minibottom ">
 												<input type="button" value="답글" class="btn btn-default"
 													id="btn${status.count}" name="rebtn" /> <input
 													type="hidden" value="${opinion.user_nick}"> <input
 													type="hidden" value="${opinion.user_no}">
 											</div>
+											<div class="col-sm-2">
+											<div class="btn-group">
+  												<button type="button" class="btn btn-default" name="Modal">수정</button>
+  													<input type="hidden" value="${opinion.op_content}"/>
+													<input type="hidden" value="${opinion.op_no}">
+  												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    												<span class="caret"></span>
+    												<span class="sr-only"></span>
+ 												 </button>
+  													<ul class="dropdown-menu" role="menu">
+    												<li><a href="/read/delete?op_no=${opinion.op_no}">삭제</a></li>
+  													</ul>
+												</div>
+											</div>
+											
 										</c:otherwise>
 									</c:choose>
 								</div>
