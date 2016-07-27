@@ -81,16 +81,23 @@ public class ReadController {
 	 
 	 @RequestMapping(value="/read/option", method=RequestMethod.POST)
 	   public String option(@RequestParam("topic_no") int topic_no, @RequestParam("recontent") String recontent, int rel, int optionchk, HttpSession session){
-		 
-		 logger.info("토론 번호 : " + topic_no);
-		 logger.info("의견 내용 : " + recontent);
 	     MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 	     int user_no = Integer.parseInt(vo.getUser_no());
-	     logger.info("현재 로그인 유저 번호 : " + user_no);
-	     logger.info("반론 유저 no : " + rel);
-	     logger.info("찬반중 선택값 : " + optionchk);
 	     
 	     service.insertoption(topic_no, recontent, rel, optionchk, user_no);
+	    
+	     
+	     return "redirect:/read/read?topic_no="+topic_no;
+	   }
+	 @RequestMapping(value="/read/reup", method=RequestMethod.POST)
+	   public String reup(@RequestParam("topic_no") int topic_no, @RequestParam("reupcontent") String reupcontent,@RequestParam("reupopno")  int reupopno){
+		 
+		 logger.info("수정되는 의견 번호 : " + reupopno);
+		 logger.info("수정된 의견 : " + reupcontent);
+	    
+	     logger.info("토론 번호 : " + topic_no);
+	     
+	     service.updateoption(reupopno, reupcontent);
 	    
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;

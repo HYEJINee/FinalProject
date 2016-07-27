@@ -2,8 +2,24 @@
  * read.js
  */
 
-	$(document).ready(
-				function() {
+	$(document).ready(function() {
+		$(function() {
+			$('#btnDebateType').dropdown();
+		});
+		$("button[name=Modal]").click(function() { //id test1 이라는 a태그 클릭시 발생
+			var content = $(this).next().val();
+			var opno = $(this).next().next().val();
+			var recontent = $(this).next().val().replace(/<br\s*[\/]?>/gi, "\n");
+			$('#myModal').modal();
+			$("#upcontent").val(recontent);	
+			$("#reupopno").val(opno);		
+			
+		});
+		$("#optupbtn").click(function() {
+			var recontent = $("#upcontent").val().replace(/\n/gi, "<br/>");
+			$("#reupcontent").val(recontent);
+			$("#optupform").submit();
+		});
 					$("input[name=rebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
 						var id = $(this).attr('id');
 						var nick = $(this).next().val();
@@ -77,15 +93,12 @@
 								} else if (contentchk == "") {
 									alert("의견을 입력해주세요.");
 								} else {
-									var recontent = $("textarea[name=context]").val().replace(/\n/g, "<br/>");
+									var recontent = $("textarea[name=context]").val().replace(/\n/gi, "<br/>");
 									$("input[name=recontent]").val(recontent);
 									$("#optionform").submit();
 								}
 					});
-					$("input[name=recontent]").focus(
-							function(){
-									$("input[name=recontent]").attr("rows", "rows=15");
-							});
+					
 					$('#btn_topic_type li').on('click', function() {
 						var topic_type_name = $(this).text().trim(); 
 						if(topic_type_name == '찬성') {

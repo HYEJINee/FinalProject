@@ -58,4 +58,8 @@
 		insert into opinion_tbl (user_no, topic_no, op_content, op_rel, vote_type) 
 		values(#{user_no}, #{topic_no}, #{op_content}, #{op_rel}, #{vote_type})
 	</insert>
+	
+	<update id="updateoption">
+		update opinion_tbl set op_content = #{op_content} where op_no = #{op_no}
+	</update>
 </mapper>

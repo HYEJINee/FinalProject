@@ -101,6 +101,15 @@ public class ReadDAOImpl implements ReadDAO {
 		
 	}
 
+	@Override
+	public void updateoption(int reupopno, String reupcontent) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("op_no", reupopno);
+		map.put("op_content", reupcontent);
+		sqlSession.update(NAMESPACE + ".updateoption", map);
+		
+	}
+
 	
 	
 }

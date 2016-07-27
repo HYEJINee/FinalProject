@@ -80,5 +80,11 @@ public class ReadServiceImpl implements ReadService {
 		
 	}
 
+	@Override
+	public void updateoption(int reupopno, String reupcontent) {
+		dao.updateoption(reupopno, reupcontent);
+		
+	}
+
 	
 }
