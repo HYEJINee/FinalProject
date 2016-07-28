@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 50px;
 }
 
+#formCoverImg input, textarea {
+	margin: 10px 0px;
+}
+
 #notice {
 	margin: 20px 0px;
 	color: #ff3399;
@@ -38,8 +42,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 10px 0px;
 }
 
-form input, textarea {
-	margin: 10px 0px;
+#divProCon {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid silver;
 }
 
 .bs-callout {

@@ -68,10 +68,11 @@ $('#btn_topic_type li').on('click', function() {
 	var topic_type_name = $(this).text().trim();
 	if (topic_type_name == '찬반 토론') {
 		$('#hid_topic_type').val(0);
+		$('#divProCon').css('display', 'block');
 	} else if (topic_type_name == '자유 토론') {
 		$('#hid_topic_type').val(1);
-	}
-	;
+		$('#divProCon').css('display', 'none');
+	};
 })
 
 $('#btnAddRef')
@@ -108,9 +109,12 @@ $('#btnSubmit').on('click', function(event) {
 		alert('요약');
 	} else if (long_cont.length == 0) {
 		alert('본문');
-	} else if (pro.length == 0 || con.length == 0) {
+	} else if (topic_type != 1 && (pro.length == 0 || con.length == 0)) {
 		alert('찬반');
 	} else {
+		if(topic_type == 1) {
+			$('#divProCon').remove();
+		}
 		$('#formCoverImg').submit();
 	}
 });

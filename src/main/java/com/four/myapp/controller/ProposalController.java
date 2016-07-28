@@ -45,25 +45,26 @@ public class ProposalController {
    
    @RequestMapping(value="/write.do", method=RequestMethod.POST)
    public String writePost(@RequestParam(value="topic_resource_title") List<String> refTitles, @RequestParam(value="topic_resource_link") List<String> refLinks, @RequestParam(value="image_file_name") MultipartFile multipartFile, TopicProposalDTO topicProposalDTO, HttpSession session, HttpServletRequest req)  throws Exception, IOException {
-	  System.out.println("hi");
 	  MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 	  if(vo != null) {
 		   int user_no = Integer.parseInt(vo.getUser_no());
 		   topicProposalDTO.setUser_no(user_no);
-		   String ori_fileName = multipartFile.getOriginalFilename();
-		   String ex = ori_fileName.substring(ori_fileName.lastIndexOf(".") + 1);
-		   
-		   boolean typeValidation = CoverImgValidation.imageValidator(multipartFile.getBytes());
-		   
-		   if(typeValidation) {
-			   String fileName = vo.getUser_nick() + "_" +(System.currentTimeMillis()/1000);
-			   File file = new File(req.getServletContext().getRealPath("/") + "resources/proposal/img/" + fileName + "." + ex);
+		   if(multipartFile.isEmpty() == false) {
+			   String ori_fileName = multipartFile.getOriginalFilename();
+			   String ex = ori_fileName.substring(ori_fileName.lastIndexOf(".") + 1);
 			   
-			   multipartFile.transferTo(file);
-			   topicProposalDTO.setImg_file_name(fileName);
-			   topicProposalDTO.setImg_ext_name(ex);
-		   } else {
-			   return "redirect:/proposal/list";
+			   boolean typeValidation = CoverImgValidation.imageValidator(multipartFile.getBytes());
+			   
+			   if(typeValidation) {
+				   String fileName = vo.getUser_nick() + "_" +(System.currentTimeMillis()/1000);
+				   File file = new File(req.getServletContext().getRealPath("/") + "resources/proposal/img/" + fileName + "." + ex);
+				   
+				   multipartFile.transferTo(file);
+				   topicProposalDTO.setImg_file_name(fileName);
+				   topicProposalDTO.setImg_ext_name(ex);
+			   } else {
+				   return "redirect:/proposal/list";
+			   }
 		   }
 	  }
 	  service.submitProposal(topicProposalDTO, refTitles, refLinks);
