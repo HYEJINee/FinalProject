@@ -35,24 +35,24 @@
 					style="margin-top: 10px">
 					<ul class="nav nav-pills" id="searchTab" role="tablist">
 						<li class="all active" role="presentation"
-							style="margin-left: 15px;"><h4>
-								<strong> <a href="#all" aria-controls="all" role="tab"
-									data-toggle="pill">전체 토론&nbsp;&nbsp;</a></strong>
-							</h4></li>
-						<li class="ongoing" role="presentation"><h4>
+							style="margin-left: 15px;">
+								<a href="#all" aria-controls="all" role="tab" data-toggle="pill">전체
+									토론&nbsp;&nbsp;</a>
+							</li>
+						<li class="ongoing" role="presentation">
 								<a href="#ongoing" aria-controls="ongoing" role="tab"
 									data-toggle="pill"> 진행 중 토론 </a>
-							</h4></li>
+							</li>
 						<li class="proposal" role="presentation"
-							style="margin-left: 15px;"><h4>
+							style="margin-left: 15px;">
 								<a href="#proposal" aria-controls="proposal" role="tab"
 									data-toggle="pill">투표 중 안건</a>
-							</h4></li>
+							</li>
 						<li class="finished" role="presentation"
-							style="margin-left: 15px;"><h4>
+							style="margin-left: 15px;">
 								<a href="#finished" aria-controls="finished" role="tab"
 									data-toggle="pill">종료된 토론</a>
-							</h4></li>
+							</li>
 					</ul>
 
 				</div>
@@ -83,7 +83,7 @@
 										<div class="card-footer">
 											<p class="text-right">
 												<span class="glyphicon glyphicon-thumbs-up"
-													aria-hidden="true"></span> 
+													aria-hidden="true"></span>
 											</p>
 										</div>
 									</div>
@@ -113,7 +113,7 @@
 											<div class="card-footer">
 												<p class="text-right">
 													<span class="glyphicon glyphicon-thumbs-up"
-														aria-hidden="true"></span> 
+														aria-hidden="true"></span>
 												</p>
 											</div>
 										</div>
@@ -146,7 +146,7 @@
 											<div class="card-footer">
 												<p class="text-right">
 													<span class="glyphicon glyphicon-thumbs-up"
-														aria-hidden="true"></span> 
+														aria-hidden="true"></span>
 												</p>
 											</div>
 										</div>
@@ -177,7 +177,7 @@
 											<div class="card-footer">
 												<p class="text-right">
 													<span class="glyphicon glyphicon-thumbs-up"
-														aria-hidden="true"></span> 
+														aria-hidden="true"></span>
 												</p>
 											</div>
 										</div>

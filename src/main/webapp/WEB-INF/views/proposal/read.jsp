@@ -78,6 +78,7 @@
 			<!-- 참고 자료 -->			
 			
 			<!-- 찬성 반대 의견 -->
+			<c:if test="${topic.topic_type == 0}">
 			<div id=divProCon class="col-md-12">
 				<div class="col-md-6">
 					<h4>찬성 의견</h4>
@@ -88,6 +89,7 @@
 					<p>${topic.topic_con}</p>
 				</div>
 			</div>
+			</c:if>
 			<!-- 찬성 반대 의견 -->
 			
 			<div id="divWriteRep" class="col-md-10 col-md-offset-1">

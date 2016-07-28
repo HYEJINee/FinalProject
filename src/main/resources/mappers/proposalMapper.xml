@@ -11,7 +11,15 @@
 	</insert>
 	
 	<insert id="proposalDetailUp" parameterType="TopicProposalDTO">
-		insert into topic_detail_tbl(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
+	insert into topic_detail_tbl
+	<choose>
+		<when test="topic_pro != null">
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
+		</when>
+		<otherwise>
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', '');
+		</otherwise>
+	</choose>
 	</insert>
 	
 	<insert id="proposalRefUp" parameterType="ProposalRefDTO">
