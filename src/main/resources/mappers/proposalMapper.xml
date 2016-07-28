@@ -7,7 +7,7 @@
 	</insert>
 
 	<insert id="proposalUp" parameterType="TopicProposalDTO">
-		insert into topic_tbl(user_no, topic_type, topic_title, topic_short_cont, topic_endate, topic_progress) values(#{user_no}, #{topic_type}, #{topic_title}, #{topic_short_cont}, date_add(now(), interval +10 day), 1)
+		insert into topic_tbl(user_no, topic_type, topic_title, topic_short_cont, topic_regdate, topic_endate, topic_progress) values(#{user_no}, #{topic_type}, #{topic_title}, #{topic_short_cont}, now(), date_add(now(), interval +10 day), 1)
 	</insert>
 	
 	<insert id="proposalDetailUp" parameterType="TopicProposalDTO">

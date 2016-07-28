@@ -18,14 +18,23 @@
 	
 	<div id="content" class="container">
 		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
-		<c:if test='${topic.img_file_name != "" && topic.img_file_name != null}'>
+		<c:choose>
+		<c:when test='${topic.img_file_name != "" && topic.img_file_name != null}'>
 			<div id="divCoverImg" class="jumbotron">
 				<p class="text-center" style="font-size:16pt;">${topic.topic_title}</p>
 				<p id="short_cont">${topic.topic_short_cont}<br></p>
 				<p id="writer" class="text-right">건의자 : ${topic.user_nick}</p>
 				<img id="coverImg" alt="커버 이미지" src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}">
 			</div>
-		</c:if>
+		</c:when>
+		<c:otherwise>
+			<div id="divCoverImg" class="jumbotron" style="background-color: rgba(230, 230, 230, 0.5);">
+				<p class="text-center" style="font-size:16pt;">${topic.topic_title}</p>
+				<p id="short_cont">${topic.topic_short_cont}<br></p>
+				<p id="writer" class="text-right">건의자 : ${topic.user_nick}</p>
+			</div>
+		</c:otherwise>
+		</c:choose>
 		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
 		<div class="row">
 	
