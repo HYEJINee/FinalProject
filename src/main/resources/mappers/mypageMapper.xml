@@ -18,4 +18,9 @@
 	<update id="dismissNoti" parameterType="String">
 		update noti_tbl set noti_check='Y' where noti_no=#{noti_no};
 	</update>
+	<select id="getMyList" parameterType="String" resultType="com.four.myapp.domain.MainDto">
+		select topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, 
+		debate_tot_neut, op_cnt from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no left join (select count(op_no) as op_cnt, 
+		topic_no from opinion_tbl) as op_tbl on topic_tbl.topic_no = op_tbl.topic_no where topic_progress = 3 and topic_tbl.user_no=#{user_no} order by topic_no desc;
+	</select>
 </mapper>

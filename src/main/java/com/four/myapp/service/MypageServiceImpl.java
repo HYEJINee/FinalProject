@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.four.myapp.domain.MainDto;
 import com.four.myapp.domain.TimelineDTO;
 import com.four.myapp.persistence.MypageDAO;
 import com.four.myapp.persistence.MypageDAOImpl;
@@ -29,6 +30,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void dismissNoti(String noti_no) throws SQLException {
 		dao.dismissNoti(noti_no);
+	}
+
+	@Override
+	public List<MainDto> getMyList(String user_no) throws SQLException {
+		return dao.getMyList(user_no);
 	}
 	
 }
