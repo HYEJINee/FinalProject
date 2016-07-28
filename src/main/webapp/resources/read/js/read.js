@@ -14,9 +14,13 @@
 		$('body').scrollspy({ target: '#scroll' })
 	})
 */
+/*
 	$(function(){
-    $('body').scrollspy({ target: '#scroll' })
-})
+	
+    $("body").scrollspy({target : "#scrolldiv"})
+   // $("body").affix({offset: {top: 150} });
+   
+	});*/
 	$(document).ready(function() {
 		$(function() {
 			$('#btnDebateType').dropdown();

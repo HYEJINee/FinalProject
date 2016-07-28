@@ -14,7 +14,7 @@
 <script src="/resources/bootstrap/js/menu.js"></script>
 <script src="${pageContext.request.contextPath}/resources/read/js/read.js"></script>
 </head>
-<body>
+<body data-spy="scroll" data-target=".ScrollSpy"  data-offset="50">
 	<script type="text/javascript">
 		var list = new Array();
 		<c:forEach items="${readoplike}" var="item">
@@ -22,7 +22,7 @@
 		</c:forEach>
 	</script>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	<div class="container top bodyposit">
+	<div class="container top">
 		<form class="form-horizontal">
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
@@ -166,7 +166,7 @@
 			</div>
 		</form>
 	</div>
-	<div class="container">
+	<div class="container" data-offset="150">
 		<form class="form-horizontal">
 			<div>
 				<h2>본문</h2>
@@ -204,11 +204,11 @@
 		<hr />
 	</div>
 
-	<div id="scroll" class="bodyposit">
+	<div class="ScrollSpy">
 	<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 		<c:choose>
 			<c:when test="${opinion.vote_type eq 0}">
-				<div class="container">
+				<div class="container" id="${opinion.op_no}#">
 					<form class="form-horizontal" action="like" method="post"
 						id="${opinion.op_no}">
 						<div class="form-group">
@@ -243,7 +243,7 @@
 							<div class="col-sm-9"
 								style="border-style: solid; border-width: 1px; border-color: #46FFFF">
 								<div class="col-sm-6">
-									<h3 id="${opinion.op_no}#">${opinion.user_nick}&nbsp;&nbsp;
+									<h3>${opinion.user_nick}&nbsp;&nbsp;
 										<span class="label label-info" style="margin-top: 20px">찬성${opinion.op_no}#</span>
 									</h3>
 									<h4>
@@ -370,7 +370,7 @@
 		</c:choose>
 		<c:choose>
 			<c:when test="${opinion.vote_type eq 1}">
-				<div class="container">
+				<div class="container" id="${opinion.op_no}#">
 					<form class="form-horizontal" action="like" method="post"
 						id="${opinion.op_no}">
 						<div class="form-group">
@@ -380,7 +380,7 @@
 							<div class="col-sm-offset-2 col-sm-9"  id="blog_intro"
 								style="border-style: solid; border-width: 1px; border-color: #FF3232">
 								<div class="col-sm-6">
-									<h3 id="${opinion.op_no}#">${opinion.user_nick}&nbsp;&nbsp;
+									<h3>${opinion.user_nick}&nbsp;&nbsp;
 										<span class="label label-danger" style="margin-top: 20px">반대${opinion.op_no}abc</span>
 									</h3>
 									<h4>
