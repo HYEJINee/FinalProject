@@ -22,7 +22,7 @@
 		</c:forEach>
 	</script>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	<div class="container top">
+	<div class="container top bodyposit">
 		<form class="form-horizontal">
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
@@ -204,7 +204,7 @@
 		<hr />
 	</div>
 
-
+	<div id="scroll" class="bodyposit">
 	<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 		<c:choose>
 			<c:when test="${opinion.vote_type eq 0}">
@@ -243,10 +243,17 @@
 							<div class="col-sm-9"
 								style="border-style: solid; border-width: 1px; border-color: #46FFFF">
 								<div class="col-sm-6">
-									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-info" style="margin-top: 20px">찬성</span>
+									<h3 id="${opinion.op_no}#">${opinion.user_nick}&nbsp;&nbsp;
+										<span class="label label-info" style="margin-top: 20px">찬성${opinion.op_no}#</span>
 									</h3>
+									<h4>
+										<c:if test="${opinion.op_rel != 0}">
+										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
+										<!-- <a href="javascript:fn('${opinion.op_rel}')">#${opinion.op_rel}</a> -->
+										</c:if>
+									</h4>
 								</div>
+								
 								<div style="text-align: right">
 									<h3>
 										<em>NO.${status.count}</em>
@@ -256,11 +263,11 @@
 								${opinion.op_content} <br />
 								<hr />
 								<div>
-									<div class="col-sm-4">
-										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-									</div>
 									<c:choose>
 										<c:when test="${empty readuser.user_nick != false}">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
 											<div class="col-sm-offset-4 col-sm-1">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
@@ -283,6 +290,9 @@
 											</div>
 										</c:when>
 										<c:when test="${readuser.user_nick != opinion.user_nick}">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
 											<div class="col-sm-offset-4 col-sm-1">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
@@ -305,11 +315,26 @@
 												<input type="button" value="답글" class="btn btn-default"
 													id="btn${status.count}" name="rebtn" /> <input
 													type="hidden" value="${opinion.user_nick}"> <input
-													type="hidden" value="${opinion.user_no}">
+													type="hidden" value="${opinion.op_no}">
 											</div>
 										</c:when>
 										<c:otherwise>
-											<div class="col-sm-offset-4 col-sm-1">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
+									<div class="col-sm-1">
+											<button type="button" class="btn btn-default" name="Modal" >수정
+											</button>
+											<input type="hidden" value="${opinion.op_content}"/>
+											<input type="hidden" value="${opinion.op_no}">
+											</div>
+											<div class="col-sm-1">
+											<button type="button" class="btn btn-default" name="del" >삭제
+											</button>
+											<input type="hidden" value="${readlist.topic_no}"/>
+											<input type="hidden" value="${opinion.op_no}">
+											</div>
+											<div class="col-sm-offset-2 col-sm-1">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
 													value="${opinion.op_no}">
@@ -327,18 +352,12 @@
 												</button>
 												<input type="hidden" value="1" />
 											</div>
-											<div class="col-sm-1">
-											<button type="button" class="btn btn-warning" name="Modal" >수정
-											</button>
-											<input type="hidden" value="${opinion.op_content}"/>
-											<input type="hidden" value="${opinion.op_no}">
 											
-											</div>
-											<div class="col-sm-1 minibottom">
+											<div class="col-sm-offset-1 col-sm-1 minibottom">
 												<input type="button" value="답글" class="btn btn-default"
 													id="btn${status.count}" name="rebtn" /> <input
 													type="hidden" value="${opinion.user_nick}"> <input
-													type="hidden" value="${opinion.user_no}">
+													type="hidden" value="${opinion.op_no}">
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -358,12 +377,18 @@
 							<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 								type="hidden" name="topic_no" value="${readlist.topic_no}" /> <input
 								type="hidden" name="op_like_type" />
-							<div class="col-sm-offset-2 col-sm-9"
+							<div class="col-sm-offset-2 col-sm-9"  id="blog_intro"
 								style="border-style: solid; border-width: 1px; border-color: #FF3232">
 								<div class="col-sm-6">
-									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-danger" style="margin-top: 20px">반대</span>
+									<h3 id="${opinion.op_no}#">${opinion.user_nick}&nbsp;&nbsp;
+										<span class="label label-danger" style="margin-top: 20px">반대${opinion.op_no}abc</span>
 									</h3>
+									<h4>
+										<c:if test="${opinion.op_rel != 0}">
+										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
+										<!-- <a href="javascript:fn('${opinion.op_rel}')">#${opinion.op_rel}</a> -->
+										</c:if>
+									</h4>
 								</div>
 
 								<div style="text-align: right">
@@ -375,11 +400,11 @@
 								${opinion.op_content} <br />
 								<hr />
 								<div>
-									<div class="col-sm-4">
-										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-									</div>
 									<c:choose>
 										<c:when test="${empty readuser.user_nick != false}">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
 											<div class="col-sm-offset-4 col-sm-1">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
@@ -402,6 +427,9 @@
 											</div>
 										</c:when>
 										<c:when test="${readuser.user_nick != opinion.user_nick}">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
 											<div class="col-sm-offset-4 col-sm-1">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
@@ -424,11 +452,26 @@
 												<input type="button" value="답글" class="btn btn-default"
 													id="btn${status.count}" name="rebtn" /> <input
 													type="hidden" value="${opinion.user_nick}"> <input
-													type="hidden" value="${opinion.user_no}">
+													type="hidden" value="${opinion.op_no}">
 											</div>
 										</c:when>
 										<c:otherwise>
-											<div class="col-sm-offset-4 col-sm-1">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
+									<div class="col-sm-1">
+											<button type="button" class="btn btn-default" name="Modal" >수정
+											</button>
+											<input type="hidden" value="${opinion.op_content}"/>
+											<input type="hidden" value="${opinion.op_no}">
+											</div>
+											<div class="col-sm-1">
+											<button type="button" class="btn btn-default" name="del" >삭제
+											</button>
+											<input type="hidden" value="${readlist.topic_no}"/>
+											<input type="hidden" value="${opinion.op_no}">
+											</div>
+											<div class="col-sm-offset-2 col-sm-1">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
 													value="${opinion.op_no}">
@@ -446,18 +489,12 @@
 												</button>
 												<input type="hidden" value="1" />
 											</div>
-											<div class="col-sm-1">
-											<button type="button" class="btn btn-warning" name="Modal" >수정
-											</button>
-											<input type="hidden" value="${opinion.op_content}"/>
-											<input type="hidden" value="${opinion.op_no}">
 											
-											</div>
-											<div class="col-sm-1 minibottom">
+											<div class="col-sm-offset-1 col-sm-1 minibottom">
 												<input type="button" value="답글" class="btn btn-default"
 													id="btn${status.count}" name="rebtn" /> <input
 													type="hidden" value="${opinion.user_nick}"> <input
-													type="hidden" value="${opinion.user_no}">
+													type="hidden" value="${opinion.op_no}">
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -495,7 +532,7 @@
 
 		<c:choose>
 			<c:when test="${opinion.vote_type eq 2}">
-				<div class="container">
+				<div class="container" id="${opinion.op_no}#">
 					<form class="form-horizontal" action="like" method="post"
 						id="${opinion.op_no}">
 						<div class="form-group ">
@@ -532,6 +569,12 @@
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
 										<span class="label label-success" style="margin-top: 20px">중립</span>
 									</h3>
+									<h4>
+										<c:if test="${opinion.op_rel != 0}">
+										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
+										<!-- <a href="javascript:fn('${opinion.op_rel}')">#${opinion.op_rel}</a> -->
+										</c:if>
+									</h4>
 								</div>
 
 								<div style="text-align: right">
@@ -544,11 +587,11 @@
 								${opinion.op_content} <br />
 								<hr />
 								<div>
-									<div class="col-sm-4">
-										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-									</div>
 									<c:choose>
 										<c:when test="${empty readuser.user_nick != false}">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
 											<div class="col-sm-offset-4 col-sm-1">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
@@ -571,33 +614,10 @@
 											</div>
 										</c:when>
 										<c:when test="${readuser.user_nick != opinion.user_nick}">
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
 											<div class="col-sm-offset-4 col-sm-1">
-												<button type="button" class="btn btn btn-info"
-													aria-label="Left Align" name="opvotebtn0"
-													value="${opinion.op_no}">
-													<span class="glyphicon glyphicon-triangle-top"
-														aria-hidden="true"></span> ${opinion.op_like}
-												</button>
-												<input type="hidden" value="0" />
-											</div>
-											<div class="col-sm-1">
-												<button type="button" class="btn btn btn-danger"
-													aria-label="Left Align" name="opvotebtn1"
-													value="${opinion.op_no}">
-													<span class="glyphicon glyphicon-triangle-bottom"
-														aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-												</button>
-												<input type="hidden" value="1" ${opinion.op_content}/>
-											</div>
-											<div class="col-sm-offset-1 col-sm-1 minibottom">
-												<input type="button" value="답글" class="btn btn-default"
-													id="btn${status.count}" name="rebtn" /> <input
-													type="hidden" value="${opinion.user_nick}"> <input
-													type="hidden" value="${opinion.user_no}">
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="col-sm-offset-3 col-sm-1 ">
 												<button type="button" class="btn btn btn-info"
 													aria-label="Left Align" name="opvotebtn0"
 													value="${opinion.op_no}">
@@ -615,27 +635,54 @@
 												</button>
 												<input type="hidden" value="1" />
 											</div>
-											<div class="col-sm-1 minibottom ">
+											<div class="col-sm-offset-1 col-sm-1 minibottom">
 												<input type="button" value="답글" class="btn btn-default"
 													id="btn${status.count}" name="rebtn" /> <input
 													type="hidden" value="${opinion.user_nick}"> <input
-													type="hidden" value="${opinion.user_no}">
+													type="hidden" value="${opinion.op_no}">
 											</div>
-											<div class="col-sm-2">
-											<div class="btn-group">
-  												<button type="button" class="btn btn-default" name="Modal">수정</button>
-  													<input type="hidden" value="${opinion.op_content}"/>
-													<input type="hidden" value="${opinion.op_no}">
-  												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-    												<span class="caret"></span>
-    												<span class="sr-only"></span>
- 												 </button>
-  													<ul class="dropdown-menu" role="menu">
-    												<li><a href="/read/delete?op_no=${opinion.op_no}">삭제</a></li>
-  													</ul>
-												</div>
+										</c:when>
+										<c:otherwise>
+										<div class="col-sm-4">
+										<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+									</div>
+									<div class="col-sm-1">
+											<button type="button" class="btn btn-default" name="Modal" >수정
+											</button>
+											<input type="hidden" value="${opinion.op_content}"/>
+											<input type="hidden" value="${opinion.op_no}">
+											</div>
+											<div class="col-sm-1">
+											<button type="button" class="btn btn-default" name="del" >삭제
+											</button>
+											<input type="hidden" value="${readlist.topic_no}"/>
+											<input type="hidden" value="${opinion.op_no}">
+											</div>
+											<div class="col-sm-offset-2 col-sm-1">
+												<button type="button" class="btn btn btn-info"
+													aria-label="Left Align" name="opvotebtn0"
+													value="${opinion.op_no}">
+													<span class="glyphicon glyphicon-triangle-top"
+														aria-hidden="true"></span> ${opinion.op_like}
+												</button>
+												<input type="hidden" value="0" />
+											</div>
+											<div class="col-sm-1">
+												<button type="button" class="btn btn btn-danger"
+													aria-label="Left Align" name="opvotebtn1"
+													value="${opinion.op_no}">
+													<span class="glyphicon glyphicon-triangle-bottom"
+														aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+												</button>
+												<input type="hidden" value="1" />
 											</div>
 											
+											<div class="col-sm-offset-1 col-sm-1 minibottom">
+												<input type="button" value="답글" class="btn btn-default"
+													id="btn${status.count}" name="rebtn" /> <input
+													type="hidden" value="${opinion.user_nick}"> <input
+													type="hidden" value="${opinion.op_no}">
+											</div>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -648,6 +695,7 @@
 
 
 	</c:forEach>
+	</div>
 	<div class="container">
 		<form class="form-horizontal">
 			<div class="form-group">
@@ -766,6 +814,10 @@
 					</c:when>
 				</c:choose>
 			</div>
+		</form>
+		<form id="delform" action="delete" method="post">
+				<input type="hidden" name="delopno" id="delopno">
+				<input type="hidden" name="deltopicno" id="deltopicno">
 		</form>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >

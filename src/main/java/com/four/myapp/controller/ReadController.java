@@ -100,14 +100,11 @@ public class ReadController {
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
 	   }
-	 @RequestMapping(value="/read/delete", method=RequestMethod.GET)
-	   public String delete(@RequestParam("topic_no") int topic_no, int op_no){
-		 logger.info("삭제 컨트롤러로 옴" + op_no);
-	    
-	     
-	     //service.deletelike(op_no);
-	    // service.deleteoption(op_no);
-	     
-	    return "redirect:/read/read?topic_no="+topic_no;
+	 @RequestMapping(value="/read/delete", method=RequestMethod.POST)
+	   public String delete(@RequestParam("deltopicno") int deltopicno, int delopno){
+		 logger.info("삭제 컨트롤러로 옴" + delopno);
+	     service.deletelike(delopno);
+	     service.deleteoption(delopno);
+	    return "redirect:/read/read?topic_no="+deltopicno;
 	   }
 }

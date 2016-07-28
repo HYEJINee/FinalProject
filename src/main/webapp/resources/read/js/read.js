@@ -1,9 +1,33 @@
 /**
  * read.js
  */
+/*
+	function fn(rel) {
+       alert(rel)
+       var aaa = rel+"#";
+       alert(aaa)
+       $("#" + aaa).focus();
+    }
+    */
+/*
+	$(function(){
+		$('body').scrollspy({ target: '#scroll' })
+	})
+*/
+	$(function(){
+    $('body').scrollspy({ target: '#scroll' })
+})
 	$(document).ready(function() {
 		$(function() {
 			$('#btnDebateType').dropdown();
+		});
+		$("button[name=del]").click(function() { //id test1 이라는 a태그 클릭시 발생
+			var topicno = $(this).next().val();
+			var opno = $(this).next().next().val();
+			$("#delopno").val(opno);	
+			$("#deltopicno").val(topicno);
+			$("#delform").submit();
+			
 		});
 		$("button[name=Modal]").click(function() { //id test1 이라는 a태그 클릭시 발생
 			var content = $(this).next().val();
@@ -22,9 +46,9 @@
 					$("input[name=rebtn]").click(function() { //id test1 이라는 a태그 클릭시 발생
 						var id = $(this).attr('id');
 						var nick = $(this).next().val();
-						var userno = $(this).next().next().val();
+						var op_no = $(this).next().next().val();
 						$("#relid").val(nick);
-						$("#rel").val(userno);
+						$("#rel").val(op_no);
 						$("#context").focus();
 					});
 					$("input[name=chk]").click(

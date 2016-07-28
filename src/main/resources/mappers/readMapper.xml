@@ -55,8 +55,8 @@
 	</select>
 	
 	<insert id="insertoption">
-		insert into opinion_tbl (user_no, topic_no, op_content, op_rel, vote_type) 
-		values(#{user_no}, #{topic_no}, #{op_content}, #{op_rel}, #{vote_type})
+		insert into opinion_tbl (user_no, topic_no, op_content, op_rel, op_regdate, vote_type) 
+		values(#{user_no}, #{topic_no}, #{op_content}, #{op_rel}, now() ,#{vote_type})
 	</insert>
 	
 	<update id="updateoption">
