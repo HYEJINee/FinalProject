@@ -166,7 +166,7 @@
 						</center>
 						<hr />
 						<c:choose>
-							<c:when test="${main.size() eq 0}">
+							<c:when test="${getMyList.size() eq 0}">
 								<center>
 									<h3>게시물이 없습니다.</h3>
 								</center>
@@ -178,7 +178,7 @@
 										<c:when test="${myList.topic_type eq 0}">
 											<div class="item list_item col-md-3 col-md-offset-1">
 												<input type="hidden" name="topic_no"
-													value="${mainList.topic_no}" /> <label
+													value="${myList.topic_no}" /> <label
 													class="label label-primary">찬반</label><br />
 												<center>
 													<h3>${myList.topic_title}</h3>
@@ -210,7 +210,7 @@
 													</c:otherwise>
 												</c:choose>
 												<c:choose>
-													<c:when test="${mainList.debate_tot_neut eq 0}">
+													<c:when test="${myList.debate_tot_neut eq 0}">
 														<span id="neut"> 중 0%</span>
 													</c:when>
 													<c:otherwise>
@@ -242,7 +242,106 @@
 						</c:choose>
 					</div>
 				</div>
-
+				<div class="row">
+					<div class="col-md-6">
+						<div class="board_title col-md-10">
+							<h3>안건 건의</h3>
+							<a href="/proposal/list">전체 안건 보기</a>
+						</div>
+						<div class="col-md-10">
+							<c:set var="recomnd_loop" value="false" />
+							<c:forEach items="${getMyRecmdList}" var="recmdList" varStatus="status">
+								<c:if test="${not recomnd_loop}">
+									<div class="item">
+										<input type="hidden" name="topic_no"
+											value="${recmdList.topic_no}" />
+										<c:choose>
+											<c:when test="${recmdList.topic_type eq 0}">
+												<label class="label label-primary">찬반</label>
+											</c:when>
+											<c:when test="${recmdList.topic_type eq 1}">
+												<label class="label label-danger">의견</label>
+											</c:when>
+										</c:choose>
+										<span id="board_title"">${recmdList.topic_title}</span> <span
+											id="board_icon" class="glyphicon glyphicon-star">${recmdList.recomnd_cnt}</span>
+									</div>
+								</c:if>
+								<c:if test="${status.count eq 7}">
+									<c:set var="recomnd_loop" value="true" />
+								</c:if>
+							</c:forEach>
+						</div>
+					</div>
+					<div id="last" class="col-md-6"">
+						<div class="board_title col-md-10">
+							<h3>종료된 토론</h3>
+							<a href="/finished/list">전체 토론 보기</a>
+						</div>
+						<div class="col-md-10">
+							<c:set var="fin_loop" value="false" />
+							<c:forEach items="${getMyFinishList}" var="finishList" varStatus="status">
+								<c:if test="${not fin_loop}">
+									<div class="item">
+										<input type="hidden" name="topic_no"
+											value="${finishList.topic_no}" />
+										<c:choose>
+											<c:when test="${finishList.topic_type eq 0}">
+												<label class="label label-primary">찬반</label>
+											</c:when>
+											<c:when test="${finishList.topic_type eq 1}">
+												<label class="label label-danger">의견</label>
+											</c:when>
+										</c:choose>
+										<span id="board_title">${finishList.topic_title}</span>
+										<c:if test="${finishList.topic_type eq 0}">
+											<c:choose>
+												<c:when test="${finishList.debate_tot_pro eq 0}">
+													<span id="pro_board"> 찬 0%</span>
+												</c:when>
+												<c:otherwise>
+													<span id="pro_board"> 찬 <fmt:formatNumber
+															value="${finishList.debate_tot_pro/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}"
+															pattern=".0" />%
+													</span>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${finishList.debate_tot_con eq 0}">
+													<span id="con"> 반 0%</span>
+												</c:when>
+												<c:otherwise>
+													<span id="con"> 반 <fmt:formatNumber
+															value="${finishList.debate_tot_con/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}"
+															pattern=".0" />%
+													</span>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${finishList.debate_tot_neut eq 0}">
+													<span id="neut"> 중 0%</span>
+												</c:when>
+												<c:otherwise>
+													<span id="neut"> 중 <fmt:formatNumber
+															value="${finishList.debate_tot_neut/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}"
+															pattern=".0" />%
+													</span>
+												</c:otherwise>
+											</c:choose>
+										</c:if>
+										<c:if test="${finishList.topic_type eq 1}">
+											<span id="board_icon" class="glyphicon glyphicon-education">
+												${finishList.op_cnt}</span>
+										</c:if>
+									</div>
+								</c:if>
+								<c:if test="${status.count eq 7}">
+									<c:set var="fin_loop" value="true" />
+								</c:if>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane " id="timeline">
 				<div class="row">

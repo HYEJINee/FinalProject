@@ -38,4 +38,14 @@ public class MypageDAOImpl implements MypageDAO {
 		return sqlSession.selectList(NAMESPACE + ".getMyList", user_no);
 	}
 
+	@Override
+	public List<MainDto> getMyRecmdList(String user_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE + ".getMyRecmdList", user_no);
+	}
+
+	@Override
+	public List<MainDto> getMyFinishList(String user_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE + ".getMyFinishList", user_no);
+	}
+
 }
