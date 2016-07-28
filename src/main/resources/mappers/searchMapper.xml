@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.four.mappers.searchMapper">
-	<select id="getSearchResult" resultType="com.four.myapp.domain.MainDto"  parameterType="String">
+	<select id="getSearchResult" resultType="com.four.myapp.domain.MainDto" >
 		select topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, 
 		op_cnt from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no left join (select count(op_no) as op_cnt, topic_no from opinion_tbl) 
-		as op_tbl on topic_tbl.topic_no = op_tbl.topic_no where topic_title like concat('%',#{search_word},'%') or topic_short_cont like concat('%',#{search_word},'%');
-	</select>
-	
+		as op_tbl on topic_tbl.topic_no = op_tbl.topic_no where (topic_title ${search}) or (topic_short_cont ${search2})
+		</select>
+		
 	
 </mapper>

@@ -1,7 +1,9 @@
 package com.four.myapp.persistence;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,12 @@ public class SearchDAOImpl implements SearchDAO {
 
 	private static final String NAMESPACE = "com.four.mappers.searchMapper";
 	@Override
-	public List<MainDto> getSearchResult(String search_word) throws SQLException {
+	public List<MainDto> getSearchResult(String search, String search2) throws SQLException {
+		Map<String, String> paramMap = new HashMap<String, String>();
+	    paramMap.put("search", search);
+	    paramMap.put("search2", search2);
 
-		System.out.println("dao: "+search_word);
-		return sqlsession.selectList(NAMESPACE+".getSearchResult", search_word);
+		return sqlsession.selectList(NAMESPACE+".getSearchResult", paramMap);
 		 
 	}
 
