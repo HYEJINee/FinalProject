@@ -1,7 +1,6 @@
 /**
  * read.js
  */
-
 	$(document).ready(function() {
 		$(function() {
 			$('#btnDebateType').dropdown();

@@ -86,5 +86,17 @@ public class ReadServiceImpl implements ReadService {
 		
 	}
 
+	@Override
+	public void deletelike(int op_no) {
+		dao.deletelike(op_no);
+		
+	}
+
+	@Override
+	public void deleteoption(int op_no) {
+		dao.deleteoption(op_no);
+		
+	}
+
 	
 }

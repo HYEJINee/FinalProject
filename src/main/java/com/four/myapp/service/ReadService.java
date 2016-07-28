@@ -22,4 +22,6 @@ public interface ReadService {
 	public List<ReadoplikeVO> getoplike(int user_no) throws SQLException;
 	public void insertoption(int topic_no, String recontent,int rel, int optionchk, int user_no);
 	public void updateoption(int reupopno, String reupcontent);
+	public void deletelike(int op_no);
+	public void deleteoption(int op_no);
 }

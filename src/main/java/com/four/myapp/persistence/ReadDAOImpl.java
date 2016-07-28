@@ -110,6 +110,18 @@ public class ReadDAOImpl implements ReadDAO {
 		
 	}
 
+	@Override
+	public void deletelike(int op_no) {
+		sqlSession.insert(NAMESPACE + ".deletelike", op_no);
+		
+	}
+
+	@Override
+	public void deleteoption(int op_no) {
+		sqlSession.insert(NAMESPACE + ".deleteoption", op_no);
+		
+	}
+
 	
 	
 }

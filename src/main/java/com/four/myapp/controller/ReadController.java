@@ -24,7 +24,6 @@ import com.four.myapp.service.ReadService;
 public class ReadController {
 	@Autowired
 	private ReadService service;
-
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReadController.class);
 	
@@ -97,23 +96,18 @@ public class ReadController {
 	    
 	     logger.info("토론 번호 : " + topic_no);
 	     
-	     service.updateoption(reupopno, reupcontent);
-	    
+	    service.updateoption(reupopno, reupcontent);
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
 	   }
 	 @RequestMapping(value="/read/delete", method=RequestMethod.GET)
-	   public void delete(int op_no, HttpSession session){
-		 MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
-	     int user_no = Integer.parseInt(vo.getUser_no());
+	   public String delete(@RequestParam("topic_no") int topic_no, int op_no){
 		 logger.info("삭제 컨트롤러로 옴" + op_no);
-		 logger.info("수정된 의견 : " + user_no);
-	    
-	     //logger.info("토론 번호 : " + topic_no);
-	     
-	     //service.updateoption(reupopno, reupcontent);
 	    
 	     
-	    // return "redirect:/read/read?topic_no="+topic_no;
+	     //service.deletelike(op_no);
+	    // service.deleteoption(op_no);
+	     
+	    return "redirect:/read/read?topic_no="+topic_no;
 	   }
 }
