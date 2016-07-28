@@ -78,7 +78,7 @@
 				</div>
 
 				<div class="col-md-12">
-					<div class="row">
+					<div id="divProCon" class="row">
 						<div class="col-md-6">
 							<h4>찬성 의견</h4>
 							<textarea id="prop-pro" class="form-control" rows="10" name="topic_pro"
@@ -91,8 +91,6 @@
 						</div>
 					</div>
 			<!-- 안건 세부 사항 입력 -->
-
-					<hr>
 
 			<!-- 안건 등록 -->
 					<div class="col-md-12">
