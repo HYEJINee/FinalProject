@@ -7,6 +7,6 @@ import com.four.myapp.domain.MainDto;
 
 public interface SearchService {
 
-	public List<MainDto> getSearchResult(String search_word) throws SQLException;
+	public List<MainDto> getSearchResult(String search, String search2) throws SQLException;
 
 }
