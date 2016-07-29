@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>TAWAR - 로그인</title>
+
+<%@include file="../include/header.jsp"%>
 <link rel="stylesheet" href="/resources/member/css/member.css">
 <script>
 	$(document).ready(function() {
@@ -11,7 +13,6 @@
 </script>
 </head>
 <body>
-	<%@include file="../include/header.jsp"%>
 	<div class="container body login">
 		<form class="form-horizontal" method="post"
 			action="/member/member_login" name="form">

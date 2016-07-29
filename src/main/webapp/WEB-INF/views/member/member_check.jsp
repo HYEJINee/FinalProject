@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>TAWAR - 메일 인증</title>
+
+<%@include file="../include/header.jsp"%>
 <link rel="stylesheet" href="/resources/member/css/member.css">
 <script>
 	$(document).ready(function() {
@@ -13,7 +15,6 @@
 </script>
 </head>
 <body>
-	<%@include file="../include/header.jsp"%>
 	<div class="col-sm-12 notice"></div>
 	<script src="/resources/member/js/member.js"></script>
 

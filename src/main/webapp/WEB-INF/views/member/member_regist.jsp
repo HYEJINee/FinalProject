@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>TAWAR - 회원 가입</title>
+
+<%@include file="../include/header.jsp"%>
 <link rel="stylesheet" href="/resources/member/css/member.css">
 <script>
 	var email_check = "email_none";
@@ -193,7 +195,6 @@
 </script>
 </head>
 <body>
-	<%@include file="../include/header.jsp"%>
 	<div class="container body ">
 		<form class="form-horizontal" method="post"
 			action="/member/member_regist" name="form">

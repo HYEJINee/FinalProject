@@ -3,6 +3,8 @@
 <html>
 <head>
 <title>TAWAR - 회원 정보 수정</title>
+
+<%@include file="../include/header.jsp"%>
 <link rel="stylesheet" href="/resources/member/css/member.css">
 <script>
 	$(document).ready(function() {
@@ -11,7 +13,6 @@
 </script>
 </head>
 <body>
-	<%@include file="../include/header.jsp"%>
 	<div class="container body login ">
 		<form class="form-horizontal" method="post"
 			action="/member/member_beforeModify" name="form">

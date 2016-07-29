@@ -3,10 +3,11 @@
 <html>
 <head>
 <title>TAWAR - 비밀번호 찾기</title>
+
+<%@include file="../include/header.jsp"%>
 <link rel="stylesheet" href="/resources/member/css/member.css">
 </head>
 <body>
-	<%@include file="../include/header.jsp"%>
 	<div class="container body">
 		<div class="col-sm-12 notice  findPw">
 			<h2>비밀번호 찾기입니다.</h2>
