@@ -55,6 +55,7 @@
 
 #divContent {
 	padding: 5px 50px;
+	min-height: 400px;
 }
 
 #divContent p {
@@ -62,7 +63,6 @@
 	line-height: 1.8;
 	word-spacing: 3px;
 	font-size: 13pt;
-	min-height: 400px;
 }
 
 #divRef {
