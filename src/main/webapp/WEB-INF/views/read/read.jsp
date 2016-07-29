@@ -27,7 +27,7 @@
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
 					<h1>
-						<span class="label label-primary">찬반</span>
+						<span class="label label-primary">찬반 / ${list2.size()}</span>
 					</h1>
 				</c:when>
 			</c:choose>
@@ -202,8 +202,12 @@
 		</form>
 		<h2>의견</h2>
 		<hr />
-	</div>
-
+	</div>${status.count}
+	<!--  
+	<c:forEach items="${taglist}" var="tag" varStatus="status">
+		<c:set var="${status.count}" value="${tag_op_no}"/>
+		<c:set var="taged${status.count}" value="${tagged_op_no}"/>
+	</c:forEach>-->
 	<div class="ScrollSpy">
 	<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 		<c:choose>
@@ -242,14 +246,20 @@
 							</div>
 							<div class="col-sm-9"
 								style="border-style: solid; border-width: 1px; border-color: #46FFFF">
-								<div class="col-sm-6">
+								<div class="col-sm-3">
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-info" style="margin-top: 20px">찬성</span>
+										<span class="label label-success" style="margin-top: 20px">중립</span>
 									</h3>
+								</div>
+								<div class="col-sm-3 minitop">
 									<h4>
+										
+										&nbsp;
+										<c:if test="${opinion.op_rel == 0}">
+										
+										</c:if>
 										<c:if test="${opinion.op_rel != 0}">
 										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
-										<!-- <a href="javascript:fn('${opinion.op_rel}')">#${opinion.op_rel}</a> -->
 										</c:if>
 									</h4>
 								</div>
@@ -379,17 +389,20 @@
 								type="hidden" name="op_like_type" />
 							<div class="col-sm-offset-2 col-sm-9"  id="blog_intro"
 								style="border-style: solid; border-width: 1px; border-color: #FF3232">
-								<div class="col-sm-6">
+								<div class="col-sm-3">
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-danger" style="margin-top: 20px">반대</span>
+										<span class="label label-success" style="margin-top: 20px">중립</span>
 									</h3>
+								</div>
+								<div class="col-sm-3 minitop">
 									<h4>
+										
+										&nbsp;
 										<c:if test="${opinion.op_rel != 0}">
 										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
 										</c:if>
 									</h4>
 								</div>
-
 								<div style="text-align: right">
 									<h3>
 										<em>NO.${status.count}</em>
@@ -564,17 +577,20 @@
 							</div>
 							<div class="col-sm-9"
 								style="border-style: solid; border-width: 1px; border-color: #66FF00">
-								<div class="col-sm-6">
+								<div class="col-sm-3">
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
 										<span class="label label-success" style="margin-top: 20px">중립</span>
 									</h3>
+								</div>
+								<div class="col-sm-3 minitop">
 									<h4>
+										
+										&nbsp;
 										<c:if test="${opinion.op_rel != 0}">
 										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
 										</c:if>
 									</h4>
 								</div>
-
 								<div style="text-align: right">
 									<h3>
 										<em>NO.${status.count}</em> <input type="hidden"

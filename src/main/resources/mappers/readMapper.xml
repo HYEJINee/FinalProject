@@ -69,6 +69,13 @@
 		delete from opinion_tbl where op_no = #{op_no};
 	</delete>
 	<select id="selectcomment" resultType="com.four.myapp.domain.ReadVO">
-		select op_no from opinion_tbl where op_rel = #{rel}
+		select op_no from opinion_tbl where op_rel = #{op_rel} and op_content = #{op_content} and vote_type = #{vote_type} and user_no = #{user_no}
+	</select>
+	
+	<insert id="inserttag">
+		insert into tag_tbl (tag_op_no, tagged_op_no, topic_no) values(#{tag_op_no},#{tagged_op_no}, #{topic_no})
+	</insert>
+	<select id="taglist" resultType="com.four.myapp.domain.ReadtagVO">
+		select tag_op_no, tagged_op_no from tag_tbl where topic_no = #{topic_no}
 	</select>
 </mapper>

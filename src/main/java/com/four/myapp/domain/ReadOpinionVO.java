@@ -1,16 +1,10 @@
 package com.four.myapp.domain;
 import java.sql.Date;
 public class ReadOpinionVO {
-	private int op_no, op_like, vote_type, op_rel, user_lv, op_count, user_no, op_comment;
+	private int op_no, op_like, vote_type, op_rel, user_lv, op_count, user_no;
 	private String op_content,  user_nick;
 	private Date op_regdate;
 	
-	public int getOp_comment() {
-		return op_comment;
-	}
-	public void setOp_comment(int op_comment) {
-		this.op_comment = op_comment;
-	}
 	public Date getOp_regdate() {
 		return op_regdate;
 	}

@@ -14,6 +14,7 @@ import com.four.myapp.domain.ReadOpinionVO;
 import com.four.myapp.domain.ReadResourceVO;
 import com.four.myapp.domain.ReadVO;
 import com.four.myapp.domain.ReadoplikeVO;
+import com.four.myapp.domain.ReadtagVO;
 @Repository
 public class ReadDAOImpl implements ReadDAO {
 	@Inject
@@ -122,8 +123,28 @@ public class ReadDAOImpl implements ReadDAO {
 	}
 
 	@Override
-	public ReadVO selectcomment(int rel) throws SQLException {
-		return sqlSession.selectOne(NAMESPACE + ".selectcomment", rel);
+	public void inserttag(int rel, int reop_no , int topic_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tagged_op_no", rel);
+		map.put("tag_op_no", reop_no);
+		map.put("topic_no", topic_no);
+		sqlSession.update(NAMESPACE + ".inserttag", map);
+		
+	}
+
+	@Override
+	public ReadVO selectcomment(int rel, String recontent, int optionchk, int user_no) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("op_rel", rel);
+		map.put("op_content", recontent);
+		map.put("vote_type", optionchk);
+		map.put("user_no", user_no);
+		return sqlSession.selectOne(NAMESPACE + ".selectcomment", map);
+	}
+
+	@Override
+	public List<ReadtagVO> getTaglist(int topic_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE+".taglist", topic_no);
 	}
 
 	

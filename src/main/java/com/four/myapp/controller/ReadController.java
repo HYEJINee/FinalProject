@@ -40,6 +40,7 @@ public class ReadController {
 		model.addAttribute("readlist",service.Readdao(topic_no));
 		model.addAttribute("readResource",service.getResource(topic_no));
 		model.addAttribute("readOpinion",service.getOpinion(topic_no));
+		model.addAttribute("taglist",service.getTaglist(topic_no));
 	}
 	
 	 @RequestMapping(value="/read/vote", method=RequestMethod.POST)
@@ -83,11 +84,15 @@ public class ReadController {
 	   public String option(@RequestParam("topic_no") int topic_no, @RequestParam("recontent") String recontent, int rel, int optionchk, HttpSession session) throws SQLException{
 	     MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 	     int user_no = Integer.parseInt(vo.getUser_no());
+	     logger.info("왜 : " + rel);
+	     service.insertoption(topic_no, recontent, rel, optionchk, user_no); // insert
+	   
 	     
-	     service.insertoption(topic_no, recontent, rel, optionchk, user_no);
-	     service.selectcomment(rel);
-	     ReadVO comment = (ReadVO)service.selectcomment(rel);
-	     logger.info("검색한 댓글 유저 번호 : " + comment);
+	     if(rel != 0) {
+	    	int reop_no = service.selectcomment(rel, recontent, optionchk, user_no).getOp_no();
+	    	service.inserttag(rel, reop_no, topic_no);
+	     }
+	    
 	     return "redirect:/read/read?topic_no="+topic_no;
 	   }
 	 @RequestMapping(value="/read/reup", method=RequestMethod.POST)
