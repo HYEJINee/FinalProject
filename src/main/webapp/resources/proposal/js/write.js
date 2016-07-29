@@ -2,8 +2,14 @@
  * write.js
  */
 
-var _URL = window.URL || window.webkitURL;
+// ckeditor 설정
+var editor = CKEDITOR.replace('prop_body');
+CKEDITOR.config.height=500;
+CKEDITOR.config.autoGrow_onStartup = true
+// ckeditor 설정
 
+
+var _URL = window.URL || window.webkitURL;
 $('#coverImgUp').on('change',
 		function(e) {
 			var image, file;
@@ -75,6 +81,33 @@ $('#btn_topic_type li').on('click', function() {
 	};
 })
 
+
+$('#btnSubmit').on('click', function(event) {
+	event.preventDefault();
+	var topic_type = $('#hid_topic_type').val();
+	var title = $('#prop-title').val().trim();
+	var short_cont = $('#prop-lead').val().trim();
+	var pro = $('#prop-pro').val().trim();
+	var con = $('#prop-con').val().trim();
+	
+	if (short_cont.length > 300 || short_cont.length == 0) {
+		alert('요약문은 비워두거나 150자를 넘을 수 없습니다.');
+	} else if(topic_type.length == 0) {
+		alert('토론 형식');
+	} else if (title.length == 0) {
+		alert('제목');
+	} else if (short_cont.length == 0) {
+		alert('요약');
+	} else if (topic_type != 1 && (pro.length == 0 || con.length == 0)) {
+		alert('찬반');
+	} else {
+		if(topic_type == 1) {
+			$('#divProCon').remove();
+		}
+		$('#formCoverImg').submit();
+	}
+});
+
 $('#btnAddRef')
 		.on('click',
 				function() {
@@ -90,34 +123,7 @@ $('#btnRemoveRef').on('click', function() {
 	}
 });
 
-$('#btnSubmit').on('click', function(event) {
-	event.preventDefault();
-	var topic_type = $('#hid_topic_type').val();
-	var title = $('#prop-title').val().trim();
-	var short_cont = $('#prop-lead').val().trim();
-	var long_cont = $('#prop-body').val().trim();
-	var pro = $('#prop-pro').val().trim();
-	var con = $('#prop-con').val().trim();
 
-	if (short_cont.length > 300) {
-		alert('요약문은 150자를 넘을 수 없습니다.');
-	} else if(topic_type.length == 0) {
-		alert('토론 형식');
-	} else if (title.length == 0) {
-		alert('제목');
-	} else if (short_cont.length == 0) {
-		alert('요약');
-	} else if (long_cont.length == 0) {
-		alert('본문');
-	} else if (topic_type != 1 && (pro.length == 0 || con.length == 0)) {
-		alert('찬반');
-	} else {
-		if(topic_type == 1) {
-			$('#divProCon').remove();
-		}
-		$('#formCoverImg').submit();
-	}
-});
 
 /*
  * $('#coverImgUp').on('change', function() { $('#formCoverImg').submit(); })
