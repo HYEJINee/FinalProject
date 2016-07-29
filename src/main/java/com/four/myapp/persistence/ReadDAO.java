@@ -23,5 +23,6 @@ public interface ReadDAO {
 	public void updateoption(int reupopno, String reupcontent);
 	public void deletelike(int op_no);
 	public void deleteoption(int op_no);
+	public ReadVO selectcomment(int rel) throws SQLException;
 }
 

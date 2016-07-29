@@ -1,7 +1,6 @@
 package com.four.myapp.persistence;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,6 +119,11 @@ public class ReadDAOImpl implements ReadDAO {
 	public void deleteoption(int op_no) {
 		sqlSession.insert(NAMESPACE + ".deleteoption", op_no);
 		
+	}
+
+	@Override
+	public ReadVO selectcomment(int rel) throws SQLException {
+		return sqlSession.selectOne(NAMESPACE + ".selectcomment", rel);
 	}
 
 	

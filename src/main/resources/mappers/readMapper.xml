@@ -68,4 +68,7 @@
 	<delete id="deleteoption">
 		delete from opinion_tbl where op_no = #{op_no};
 	</delete>
+	<select id="selectcomment" resultType="com.four.myapp.domain.ReadVO">
+		select op_no from opinion_tbl where op_rel = #{rel}
+	</select>
 </mapper>

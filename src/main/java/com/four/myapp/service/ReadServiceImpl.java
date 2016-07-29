@@ -98,5 +98,10 @@ public class ReadServiceImpl implements ReadService {
 		
 	}
 
+	@Override
+	public ReadVO selectcomment(int rel) throws SQLException {
+		return dao.selectcomment(rel);
+	}
+
 	
 }
