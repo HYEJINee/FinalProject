@@ -31,34 +31,34 @@
 	text-align: center;
 }
 
-.mypage-activity-filter {
+.mypage-timeline-filter {
 	float: right;
 	margin-bottom: 15px;
 }
 
-.mypage-activity-row {
+.mypage-timeline-row {
 	margin-bottom: 7px;
 }
 
-.mypage-activity-date {
+.mypage-timeline-date {
 	padding-top: 1em;
 }
 
-.mypage-activity-all {
+.mypage-timeline-all {
 	padding: 1em;
 	border-radius: 4px;
 	border: blue 1px solid;
 }
 
-.mypage-activity-topic {
+.mypage-timeline-topic {
 	border-color: blue;
 }
 
-.mypage-activity-opinion {
+.mypage-timeline-opinion {
 	border-color: red;
 }
 
-.mypage-activity-vote {
+.mypage-timeline-vote {
 	border-color: grey;
 }
 
@@ -91,18 +91,18 @@
 		});
 
 		function filterAll() {
-			$(".mypage-activity-row").show();
+			$(".mypage-timeline-row").show();
 		}
 		function filterTopic() {
-			$(".mypage-activity-row").hide();
+			$(".mypage-timeline-row").hide();
 			$(".mypage-row-topic").show();
 		}
 		function filterOpinion() {
-			$(".mypage-activity-row").hide();
+			$(".mypage-timeline-row").hide();
 			$(".mypage-row-opinion").show();
 		}
 		function filterVote() {
-			$(".mypage-activity-row").hide();
+			$(".mypage-timeline-row").hide();
 			$(".mypage-row-vote").show();
 		}
 		function dismissNoti(noti_no) {
@@ -148,19 +148,204 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<c:if test="${notiDTO.noti_css eq 'reply' }">
-							<a href="#" class="alert-link">${notiDTO.other_user_nick }</a>님이  
+							<a href="/read/read?topic_no=${notiDTO.topic_no }"
+								onclick="dismissNoti(${notiDTO.noti_no })" class="alert-link">${notiDTO.other_user_nick }</a>님이  
 							</c:if>
 
-						<a href="/read/read?topic_no=${notiDTO.noti_no } class="alert-link">${notiDTO.topic_title }</a>${notiDTO.noti_statement }
+						<a href="/read/read?topic_no=${notiDTO.noti_no }"
+							class="alert-link">${notiDTO.topic_title }</a>${notiDTO.noti_statement }
 					</div>
 				</c:forEach>
 
 			</div>
-			<div role="tabpanel" class="tab-pane" id="my-topic">my topic
-				list</div>
+			<div role="tabpanel" class="tab-pane" id="my-topic">
+				<div class="row">
+					<div class="col-md-12">
+						<center>
+							<h3>토론중</h3>
+						</center>
+						<hr />
+						<c:choose>
+							<c:when test="${getMyList.size() eq 0}">
+								<center>
+									<h3>게시물이 없습니다.</h3>
+								</center>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${getMyList}" var="myList">
+									<!-- begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}" -->
+									<c:choose>
+										<c:when test="${myList.topic_type eq 0}">
+											<div class="item list_item col-md-3 col-md-offset-1">
+												<input type="hidden" name="topic_no"
+													value="${myList.topic_no}" /> <label
+													class="label label-primary">찬반</label><br />
+												<center>
+													<h3>${myList.topic_title}</h3>
+												</center>
+												<hr />
+												<p>${myList.topic_short_cont}</p>
+												<span class="glyphicon glyphicon-user">
+													${myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut}</span>
+												<c:choose>
+													<c:when test="${myList.debate_tot_pro eq 0}">
+														<span id="pro"> 찬 0%</span>
+													</c:when>
+													<c:otherwise>
+														<span id="pro"> 찬 <fmt:formatNumber
+																value="${myList.debate_tot_pro/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
+																pattern=".0" />%
+														</span>
+													</c:otherwise>
+												</c:choose>
+												<c:choose>
+													<c:when test="${myList.debate_tot_con eq 0}">
+														<span id="con"> 반 0%</span>
+													</c:when>
+													<c:otherwise>
+														<span id="con"> 반 <fmt:formatNumber
+																value="${myList.debate_tot_con/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
+																pattern=".0" />%
+														</span>
+													</c:otherwise>
+												</c:choose>
+												<c:choose>
+													<c:when test="${myList.debate_tot_neut eq 0}">
+														<span id="neut"> 중 0%</span>
+													</c:when>
+													<c:otherwise>
+														<span id="neut"> 중 <fmt:formatNumber
+																value="${myList.debate_tot_neut/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
+																pattern=".0" />%
+														</span>
+													</c:otherwise>
+												</c:choose>
+											</div>
+										</c:when>
+										<c:when test="${myList.topic_type eq 1}">
+											<div class="item list_item type1 col-md-3 col-md-offset-1">
+												<input type="hidden" name="topic_no"
+													value="${myList.topic_no}" /> <label
+													class="label label-danger">의견</label><br />
+												<center>
+													<h3>${myList.topic_title}</h3>
+												</center>
+												<hr />
+												<p>${myList.topic_short_cont}</p>
+												<span class="glyphicon glyphicon-education">
+													${myList.op_cnt}</span>
+											</div>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="board_title col-md-10">
+							<h3>안건 건의</h3>
+							<a href="/proposal/list">전체 안건 보기</a>
+						</div>
+						<div class="col-md-10">
+							<c:set var="recomnd_loop" value="false" />
+							<c:forEach items="${getMyRecmdList}" var="recmdList" varStatus="status">
+								<c:if test="${not recomnd_loop}">
+									<div class="item">
+										<input type="hidden" name="topic_no"
+											value="${recmdList.topic_no}" />
+										<c:choose>
+											<c:when test="${recmdList.topic_type eq 0}">
+												<label class="label label-primary">찬반</label>
+											</c:when>
+											<c:when test="${recmdList.topic_type eq 1}">
+												<label class="label label-danger">의견</label>
+											</c:when>
+										</c:choose>
+										<span id="board_title"">${recmdList.topic_title}</span> <span
+											id="board_icon" class="glyphicon glyphicon-star">${recmdList.recomnd_cnt}</span>
+									</div>
+								</c:if>
+								<c:if test="${status.count eq 7}">
+									<c:set var="recomnd_loop" value="true" />
+								</c:if>
+							</c:forEach>
+						</div>
+					</div>
+					<div id="last" class="col-md-6"">
+						<div class="board_title col-md-10">
+							<h3>종료된 토론</h3>
+							<a href="/finished/list">전체 토론 보기</a>
+						</div>
+						<div class="col-md-10">
+							<c:set var="fin_loop" value="false" />
+							<c:forEach items="${getMyFinishList}" var="finishList" varStatus="status">
+								<c:if test="${not fin_loop}">
+									<div class="item">
+										<input type="hidden" name="topic_no"
+											value="${finishList.topic_no}" />
+										<c:choose>
+											<c:when test="${finishList.topic_type eq 0}">
+												<label class="label label-primary">찬반</label>
+											</c:when>
+											<c:when test="${finishList.topic_type eq 1}">
+												<label class="label label-danger">의견</label>
+											</c:when>
+										</c:choose>
+										<span id="board_title">${finishList.topic_title}</span>
+										<c:if test="${finishList.topic_type eq 0}">
+											<c:choose>
+												<c:when test="${finishList.debate_tot_pro eq 0}">
+													<span id="pro_board"> 찬 0%</span>
+												</c:when>
+												<c:otherwise>
+													<span id="pro_board"> 찬 <fmt:formatNumber
+															value="${finishList.debate_tot_pro/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}"
+															pattern=".0" />%
+													</span>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${finishList.debate_tot_con eq 0}">
+													<span id="con"> 반 0%</span>
+												</c:when>
+												<c:otherwise>
+													<span id="con"> 반 <fmt:formatNumber
+															value="${finishList.debate_tot_con/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}"
+															pattern=".0" />%
+													</span>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${finishList.debate_tot_neut eq 0}">
+													<span id="neut"> 중 0%</span>
+												</c:when>
+												<c:otherwise>
+													<span id="neut"> 중 <fmt:formatNumber
+															value="${finishList.debate_tot_neut/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}"
+															pattern=".0" />%
+													</span>
+												</c:otherwise>
+											</c:choose>
+										</c:if>
+										<c:if test="${finishList.topic_type eq 1}">
+											<span id="board_icon" class="glyphicon glyphicon-education">
+												${finishList.op_cnt}</span>
+										</c:if>
+									</div>
+								</c:if>
+								<c:if test="${status.count eq 7}">
+									<c:set var="fin_loop" value="true" />
+								</c:if>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div role="tabpanel" class="tab-pane " id="timeline">
 				<div class="row">
-					<div class="dropdown mypage-activity-filter">
+					<div class="dropdown mypage-timeline-filter">
 						<button class="btn btn-default dropdown-toggle" type="button"
 							id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="true">
@@ -175,13 +360,13 @@
 						</ul>
 					</div>
 				</div>
-				<div class="mypage-activity-list">
+				<div class="mypage-timeline-list">
 					<c:forEach items="${timeline}" var="mypageDTO">
 						<div
-							class="row mypage-activity-row mypage-row-${mypageDTO.timeline_css }">
-							<div class="col-md-3 mypage-activity-date">${mypageDTO.timeline_date }</div>
+							class="row mypage-timeline-row mypage-row-${mypageDTO.timeline_css }">
+							<div class="col-md-3 mypage-timeline-date">${mypageDTO.timeline_date }</div>
 							<div
-								class="col-md-9 mypage-activity-all mypage-activity-${mypageDTO.timeline_css }">
+								class="col-md-9 mypage-timeline-all mypage-timeline-${mypageDTO.timeline_css }">
 								<a href="/board/read?topic_no=${mypageDTO.topic_no }">${mypageDTO.topic_title }</a>${mypageDTO.timeline_statement }
 							</div>
 						</div>
