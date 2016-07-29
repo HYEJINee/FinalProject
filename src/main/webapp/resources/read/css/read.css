@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+.top {
+	margin-top: 50px;
+}
+
+.minibottom {
+	margin-bottom: 10px;
+}
+.bodyposit {
+	position: relative
+}

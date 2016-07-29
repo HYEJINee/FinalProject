@@ -74,5 +74,29 @@ public class ReadServiceImpl implements ReadService {
 		return dao.getoplike(user_no);
 	}
 
+	@Override
+	public void insertoption(int topic_no, String recontent, int rel, int optionchk, int user_no) {
+		dao.insertoption(topic_no, recontent, rel, optionchk, user_no);
+		
+	}
+
+	@Override
+	public void updateoption(int reupopno, String reupcontent) {
+		dao.updateoption(reupopno, reupcontent);
+		
+	}
+
+	@Override
+	public void deletelike(int op_no) {
+		dao.deletelike(op_no);
+		
+	}
+
+	@Override
+	public void deleteoption(int op_no) {
+		dao.deleteoption(op_no);
+		
+	}
+
 	
 }

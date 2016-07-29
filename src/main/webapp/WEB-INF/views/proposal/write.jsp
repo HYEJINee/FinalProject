@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TAWAR - 안건 건의</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" />
@@ -15,34 +15,19 @@
 <c:choose>
 	<c:when test="${empty USER_KEY == false}">
 	
-	<form id="formCoverImg" action="write.cover" method="post" enctype="multipart/form-data">			
-	<!-- 커버 이미지 등록 -->
-		<div id="divCoverImg" class="jumbotron col-md-12">
-			<div id="divBtnCoverImg">
-				<input type="file" id="coverImgUp" name="img_file_name"/>
-				<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
-				<c:if test="${empty imgValidate != true}">
-					<c:choose>
-						<c:when test="${imgValidate == false}">
-							<p class="text-center" style="font-size: 12pt">이미지 파일은 jpeg, gif, png형식만 가능합니다.</p>
-						</c:when>
-						<c:otherwise>
-							<span id="imgPath" hidden="hidden">${imgPath}</span>
-							<span id="imgHeight" hidden="hidden">${imgHeight}</span>
-							<span id="imgWidth" hidden="hidden">${imgWidth}</span>
-							<span id="imgName" hidden="hidden">${imgName}</span>
-							<span id="extension" hidden="hidden">${extension}</span>
-						</c:otherwise>
-					</c:choose>
-				</c:if>
-			</div>
-		</div>
-	<!-- 커버 이미지 등록 -->
-	</form>
+	<div class="container">
+		<div class="row">
+			<form id="formCoverImg" action="write.do" method="post" enctype="multipart/form-data">
+			<!-- 커버 이미지 등록 -->
+				<div id="divCoverImg" class="jumbotron col-md-12">
+					<div id="divBtnCoverImg">
+						<input type="file" id="coverImgUp" name="image_file_name"/>
+						<button id="btnCoverImg" type="button" class="btn btn-default">커버 이미지 등록</button>
+						<p class="text-center" style="font-size: 12pt">이미지 파일은 JPG, JPEG, GIF, PNG형식만 가능합니다.</p>
+					</div>
+				</div>
+			<!-- 커버 이미지 등록 -->
 		
-	<form id="proposal" action="write.do" method="post">			
-		<div class="container">
-			<div class="row">
 
 				<div class="col-md-12">
 					<h5 id="notice" class="text-center">공지 : 안건이 토론주제로 승인 받기 위해서는 글 작성시부터 10일 이내에 20표가 필요합니다.</h5>
@@ -93,7 +78,7 @@
 				</div>
 
 				<div class="col-md-12">
-					<div class="row">
+					<div id="divProCon" class="row">
 						<div class="col-md-6">
 							<h4>찬성 의견</h4>
 							<textarea id="prop-pro" class="form-control" rows="10" name="topic_pro"
@@ -107,21 +92,17 @@
 					</div>
 			<!-- 안건 세부 사항 입력 -->
 
-					<hr>
-
 			<!-- 안건 등록 -->
 					<div class="col-md-12">
 						<p class="text-center">
-							<input id="img_file_name" name="img_file_name" type="hidden">
-							<input id="img_ext_name" name="img_ext_name" type="hidden">
 							<button id="btnSubmit" type="submit" class="btn btn-lg btn-primary">안건 건의 글 등록하기</button>
 						</p>
 					</div>
 			<!-- 안건 등록 -->
 				</div>
-			</div><!-- row -->
-		</div><!-- container -->
-	</form>
+			</form>
+		</div><!-- row -->
+	</div><!-- container -->
 	</c:when>
 	<c:otherwise>
 		<c:redirect url="/proposal/list" />
@@ -129,23 +110,7 @@
 </c:choose>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="http://malsup.github.io/jquery.form.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/proposal/js/write.js"></script>
-	
-	<c:if test="${empty imgValidate != true}">
-		<c:if test="${imgValidate == true}">
-			<script>
-				var imgPath = $('#imgPath').text().trim();
-				var imgHeight = $('#imgHeight').text().trim();
-				var imgWidth = $('#imgWidth').text().trim();
-				var imgName = $('#imgName').text().trim();
-				var extension = $('#extension').text().trim();
-				$(function() {
-					$('#divCoverImg').css('background', 'url(' + imgPath + ') no-repeat center center').css('width', imgWidth + "px").css('height', imgHeight + "px");
-					$('#img_file_name').val(imgName);
-					$('#img_ext_name').val(extension);
-				})
-			</script>
-		</c:if>
-	</c:if>
 </body>
 </html>

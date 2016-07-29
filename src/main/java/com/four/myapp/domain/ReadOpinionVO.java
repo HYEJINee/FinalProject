@@ -1,10 +1,16 @@
 package com.four.myapp.domain;
 
 public class ReadOpinionVO {
-	private int op_no, op_like, vote_type, op_rel, user_lv, op_count;
+	private int op_no, op_like, vote_type, op_rel, user_lv, op_count, user_no;
 	private String op_content,  op_regdate, user_nick;
 	
 	
+	public int getUser_no() {
+		return user_no;
+	}
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
 	public int getOp_count() {
 		return op_count;
 	}

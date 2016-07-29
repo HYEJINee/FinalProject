@@ -12,20 +12,23 @@
 <link href="${pageContext.request.contextPath}/resources/proposal/css/read.css" rel="stylesheet">
 </head>
 <body>
+<c:choose>
+<c:when test="${topic.recommend < 20}">
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	
-	<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
-	<div id="divCoverImg" class="jumbotron">
-		<div class="container">
-			<h3>${topic.topic_title}</h3>
-			<p>${topic.topic_short_cont}</p>
-			<p class="text-right">건의자 : ${topic.user_nick}</p>
-		</div>
-	</div>	
-	<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
-	
-	<div class="container">
+	<div id="content" class="container">
+		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
+		<c:if test='${topic.img_file_name != "" && topic.img_file_name != null}'>
+			<div id="divCoverImg" class="jumbotron">
+				<p class="text-center" style="font-size:16pt;">${topic.topic_title}</p>
+				<p id="short_cont">${topic.topic_short_cont}<br></p>
+				<p id="writer" class="text-right">건의자 : ${topic.user_nick}</p>
+				<img id="coverImg" alt="커버 이미지" src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}">
+			</div>
+		</c:if>
+		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
 		<div class="row">
+	
 
 			<!-- 안건 투표 -->
 			<div id=divRecommend>
@@ -42,6 +45,7 @@
 								<c:when test="${voted != true}">
 									<form action="read.vote" method="post">
 										<input type="hidden" name="topic_no" value="${topic.topic_no}" />
+										<input type="hidden" name="recommend" value="${topic.recommend}" />
 										<p class="text-center"><button id="btnVote" class="btn btn-success btn-sm">투표하기</button></p>
 									</form>
 								</c:when>
@@ -74,6 +78,7 @@
 			<!-- 참고 자료 -->			
 			
 			<!-- 찬성 반대 의견 -->
+			<c:if test="${topic.topic_type == 0}">
 			<div id=divProCon class="col-md-12">
 				<div class="col-md-6">
 					<h4>찬성 의견</h4>
@@ -84,20 +89,24 @@
 					<p>${topic.topic_con}</p>
 				</div>
 			</div>
+			</c:if>
 			<!-- 찬성 반대 의견 -->
 			
-			<div class="col-md-10 col-md-offset-1">
+			<div id="divWriteRep" class="col-md-10 col-md-offset-1">
 			<c:choose>
 				<c:when test="${empty USER_KEY != true}">
+				<form id="formReply" action="read.reply" method="post">
 						<h4>댓글 쓰기</h4>
-						작성자 : ${USER_KEY.user_nick}
-						<textarea class="form-control" rows="5" placeholder="이 안건에 추가하고 싶은 자료가 있거나 작성자에게 하고 싶은 말이 있다면 적어주세요."></textarea>
-						<button class="btn btn-primary btn-sm pull-right">등록</button>
+						<p>작성자 : ${USER_KEY.user_nick}</p>
+						<input type="hidden" name="topic_no" value="${topic.topic_no}">
+						<textarea class="form-control" name="reply_content" rows="5" placeholder="이 안건에 추가하고 싶은 자료가 있거나 작성자에게 하고 싶은 말이 있다면 적어주세요."></textarea>
+						<button role="button" class="btn btn-primary pull-right">등록</button>
+				</form>
 				</c:when>
 				<c:otherwise>
 					<div class="alert alert-warning">
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						댓글 작성은 로그인한 사용자만 가능합니다. <button class="btn btn-link" onclick="location.href='/member/login'">로그인하기</button>
+						댓글 작성은 로그인한 사용자만 가능합니다. <button class="btn btn-link" onclick="location.href='/member/member_login'">로그인하기</button>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -105,23 +114,51 @@
 			
 			<!-- 댓글 -->
 			<div id="divReplies" class="col-md-10 col-md-offset-1">
-			<c:forEach items="${replies}" var="reply">
-				<div class="media">
+			<c:choose>
+			<c:when test="${empty replies}">
+				<p class="text-center">댓글이 없습니다.</p>
+			</c:when>
+			<c:otherwise>
+			<c:forEach items="${replies}" var="reply" varStatus="status">
+				<div id='reply${reply.reply_no}' class="media">
 					<div class="media-left media-top">
-						<img class="media-object" src="${reply.user_profile}">
+						<img class="media-object" src="/resources/${reply.user_profile}">
 					</div>
 					<div class="media-body">
+					<form action="reply.update" method="post">
+						<input type="hidden" name="topic_no" value="${topic.topic_no}">
+						<input type="hidden" name="reply_no" value="${reply.reply_no}">
 						<h4 class="media-heading">${reply.user_nick}</h4>
+						<h6 style="color:silver;">${reply.reply_regdate}</h6>
 						<p>${reply.reply_content}</p>
+						<c:if test="${empty USER_KEY == false}">
+							<c:if test="${reply.user_no == USER_KEY.user_no}">
+							<div class="btn-group pull-right">
+								<button type="button" class="btn btn-link" onclick="modSetup(this)">수정</button>
+								<button type="button" class="btn btn-link" onclick="checkDelete(this)">삭제</button>
+							</div>
+							</c:if>
+						</c:if>
+					</form>
 					</div>
 				</div>
 			</c:forEach>
+			</c:otherwise>
+			</c:choose>
 			</div>
 			<!-- 댓글 -->
 		</div><!-- row -->
 	</div><!-- container -->
-	
+	<div id="bottom"></div>
+</c:when>
+
+<c:otherwise>
+	<c:redirect url="/proposal/list"></c:redirect>
+</c:otherwise>
+
+</c:choose>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/proposal/js/read.js"></script>
 </body>
 </html>

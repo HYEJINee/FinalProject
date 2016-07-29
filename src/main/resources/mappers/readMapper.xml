@@ -21,7 +21,7 @@
 	</select>
 
 	<select id="selectOpinion" resultType="com.four.myapp.domain.ReadOpinionVO">
-		select A.op_no,A.op_content,A.op_rel, A.op_regdate,
+		select A.op_no, A.user_no, A.op_content,A.op_rel, A.op_regdate,
       A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick,
       (Select user_lv From user_tbl where user_no = A.user_no) AS user_lv,
       (Select count(op_like) From op_like_tbl where op_no = A.op_no) AS op_count,
@@ -53,4 +53,19 @@
 	<select id="readoplike" resultType="com.four.myapp.domain.ReadoplikeVO">
 		select op_no from op_like_tbl where user_no = #{user_no}
 	</select>
+	
+	<insert id="insertoption">
+		insert into opinion_tbl (user_no, topic_no, op_content, op_rel, op_regdate, vote_type) 
+		values(#{user_no}, #{topic_no}, #{op_content}, #{op_rel}, now() ,#{vote_type})
+	</insert>
+	
+	<update id="updateoption">
+		update opinion_tbl set op_content = #{op_content} where op_no = #{op_no}
+	</update>
+	<delete id="deletelike">
+		delete from op_like_tbl where op_no = #{op_no};
+	</delete>
+	<delete id="deleteoption">
+		delete from opinion_tbl where op_no = #{op_no};
+	</delete>
 </mapper>

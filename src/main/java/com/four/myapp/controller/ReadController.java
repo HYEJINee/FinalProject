@@ -24,7 +24,6 @@ import com.four.myapp.service.ReadService;
 public class ReadController {
 	@Autowired
 	private ReadService service;
-
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReadController.class);
 	
@@ -32,7 +31,7 @@ public class ReadController {
 	public void readget(@RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
 		MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		if(vo != null) {
-			model.addAttribute("readuser", vo);
+			 model.addAttribute("readuser", vo);
 			 int user_no = Integer.parseInt(vo.getUser_no());
 			 model.addAttribute("readvote",service.Readvote(topic_no, user_no));
 			 model.addAttribute("readoplike",service.getoplike(user_no));
@@ -77,5 +76,35 @@ public class ReadController {
 	    
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
+	   }
+	 
+	 @RequestMapping(value="/read/option", method=RequestMethod.POST)
+	   public String option(@RequestParam("topic_no") int topic_no, @RequestParam("recontent") String recontent, int rel, int optionchk, HttpSession session){
+	     MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+	     int user_no = Integer.parseInt(vo.getUser_no());
+	     
+	     service.insertoption(topic_no, recontent, rel, optionchk, user_no);
+	    
+	     
+	     return "redirect:/read/read?topic_no="+topic_no;
+	   }
+	 @RequestMapping(value="/read/reup", method=RequestMethod.POST)
+	   public String reup(@RequestParam("topic_no") int topic_no, @RequestParam("reupcontent") String reupcontent,@RequestParam("reupopno")  int reupopno){
+		 
+		 logger.info("수정되는 의견 번호 : " + reupopno);
+		 logger.info("수정된 의견 : " + reupcontent);
+	    
+	     logger.info("토론 번호 : " + topic_no);
+	     
+	    service.updateoption(reupopno, reupcontent);
+	     
+	     return "redirect:/read/read?topic_no="+topic_no;
+	   }
+	 @RequestMapping(value="/read/delete", method=RequestMethod.POST)
+	   public String delete(@RequestParam("deltopicno") int deltopicno, int delopno){
+		 logger.info("삭제 컨트롤러로 옴" + delopno);
+	     service.deletelike(delopno);
+	     service.deleteoption(delopno);
+	    return "redirect:/read/read?topic_no="+deltopicno;
 	   }
 }

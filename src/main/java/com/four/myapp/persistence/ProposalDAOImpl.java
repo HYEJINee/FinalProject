@@ -76,12 +76,35 @@ public class ProposalDAOImpl implements ProposalDAO {
 		topicProposalDTO.setTopic_no(topic_no);
 		
 		sqlSession.insert(NAMESPACE + ".proposalDetailUp", topicProposalDTO);
-		sqlSession.insert(NAMESPACE + ".imgUp", topicProposalDTO);
+		
+		if(topicProposalDTO.getImg_file_name() != null) {
+			sqlSession.insert(NAMESPACE + ".imgUp", topicProposalDTO);
+		}
 
 		ProposalRefDTO proposalRefDTO = null; 
 		for(int refCnt = 0; refCnt < refTitles.size(); refCnt++) {
 			proposalRefDTO = new ProposalRefDTO(topicProposalDTO.getTopic_no(), refTitles.get(refCnt), refLinks.get(refCnt));
 			sqlSession.insert(NAMESPACE + ".proposalRefUp", proposalRefDTO);
 		}
+	}
+	
+	@Override
+	public void replyUp(ReplyDTO replyDTO) {
+		sqlSession.insert(NAMESPACE + ".commentUp", replyDTO);
+	}
+
+	@Override
+	public void makeProgress(int topic_no) {
+		sqlSession.update(NAMESPACE + ".makeProgress", topic_no);
+	}
+	
+	@Override
+	public void replyUpdate(ReplyDTO replyDTO) {
+		sqlSession.update(NAMESPACE + ".modReply", replyDTO);
+	}
+	
+	@Override
+	public void replyDelete(int reply_no) {
+		sqlSession.delete(NAMESPACE + ".delReply", reply_no);
 	}
 }

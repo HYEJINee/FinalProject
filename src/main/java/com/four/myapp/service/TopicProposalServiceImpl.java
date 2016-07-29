@@ -60,4 +60,24 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	public void submitProposal(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks) {
 		proposalDAO.proposalUp(topicProposalDTO, refTitles, refLinks);
 	}
+	
+	@Override
+	public void commentUp(ReplyDTO replyDTO) {
+		proposalDAO.replyUp(replyDTO);
+	}
+	
+	@Override
+	public void proposalToGo(int topic_no) {
+		proposalDAO.makeProgress(topic_no);
+	}
+	
+	@Override
+	public void modReply(ReplyDTO replyDTO) {
+		proposalDAO.replyUpdate(replyDTO);
+	}
+	
+	@Override
+	public void delReply(int reply_no) {
+		proposalDAO.replyDelete(reply_no);
+	}
 }

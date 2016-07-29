@@ -17,4 +17,8 @@ public interface ProposalDAO {
 	public void recommend(int topic_no, int user_no);
 	public boolean checkRecommended(int topic_no, int user_no);
 	public void proposalUp(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks);
+	public void replyUp(ReplyDTO replyDTO);
+	public void makeProgress(int topic_no);
+	public void replyUpdate(ReplyDTO replyDTO);
+	public void replyDelete(int reply_no);
 }

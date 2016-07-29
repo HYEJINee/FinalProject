@@ -89,6 +89,39 @@ public class ReadDAOImpl implements ReadDAO {
 		return sqlSession.selectList(NAMESPACE+".readoplike", user_no);
 	}
 
+	@Override
+	public void insertoption(int topic_no, String recontent, int rel, int optionchk, int user_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("op_content", recontent);
+		map.put("op_rel", rel);
+		map.put("vote_type", optionchk);
+		map.put("user_no", user_no);
+		sqlSession.insert(NAMESPACE + ".insertoption", map);
+		
+	}
+
+	@Override
+	public void updateoption(int reupopno, String reupcontent) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("op_no", reupopno);
+		map.put("op_content", reupcontent);
+		sqlSession.update(NAMESPACE + ".updateoption", map);
+		
+	}
+
+	@Override
+	public void deletelike(int op_no) {
+		sqlSession.insert(NAMESPACE + ".deletelike", op_no);
+		
+	}
+
+	@Override
+	public void deleteoption(int op_no) {
+		sqlSession.insert(NAMESPACE + ".deleteoption", op_no);
+		
+	}
+
 	
 	
 }

@@ -5,6 +5,7 @@ public class ReplyDTO {
 	private int user_no;
 	private String user_nick;
 	private String user_profile;
+	private String user_email;
 	private int topic_no;
 	private String reply_content;
 	private String reply_regdate;
@@ -32,6 +33,12 @@ public class ReplyDTO {
 	}
 	public void setUser_profile(String user_profile) {
 		this.user_profile = user_profile;
+	}
+	public String getUser_email() {
+		return user_email;
+	}
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 	public int getTopic_no() {
 		return topic_no;
