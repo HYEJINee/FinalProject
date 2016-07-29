@@ -13,4 +13,5 @@ public interface MypageDAO {
 	public List<MainDto> getMyList(String user_no) throws SQLException;
 	public List<MainDto> getMyRecmdList(String user_no) throws SQLException;
 	public List<MainDto> getMyFinishList(String user_no) throws SQLException;
+
 }
