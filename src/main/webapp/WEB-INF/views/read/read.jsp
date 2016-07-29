@@ -262,7 +262,7 @@
 									</div>
 									<div class="col-sm-5 minitop">
 										<h4>
-											<c:forEach items="${taglist}" var="tag" varStatus="status">
+											<c:forEach items="${taglist}" var="tag">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
 														<a href="#${tag.tagged_op_no}#">${tag.tagged_op_no}</a>
@@ -409,7 +409,7 @@
 									</div>
 									<div class="col-sm-5 minitop">
 										<h4>
-											<c:forEach items="${taglist}" var="tag" varStatus="status">
+											<c:forEach items="${taglist}" var="tag">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
 														<a href="#${tag.tagged_op_no}#">${tag.tagged_op_no}</a>
@@ -604,7 +604,7 @@
 									</div>
 									<div class="col-sm-5 minitop">
 										<h4>
-											<c:forEach items="${taglist}" var="tag" varStatus="status">
+											<c:forEach items="${taglist}" var="tag">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
 														<a href="#${tag.tagged_op_no}#">${tag.tagged_op_no}</a>
