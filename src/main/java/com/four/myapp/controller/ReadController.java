@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.four.myapp.domain.MemberVO;
+import com.four.myapp.domain.ReadVO;
 import com.four.myapp.service.ReadService;
 
 /**
@@ -79,13 +80,14 @@ public class ReadController {
 	   }
 	 
 	 @RequestMapping(value="/read/option", method=RequestMethod.POST)
-	   public String option(@RequestParam("topic_no") int topic_no, @RequestParam("recontent") String recontent, int rel, int optionchk, HttpSession session){
+	   public String option(@RequestParam("topic_no") int topic_no, @RequestParam("recontent") String recontent, int rel, int optionchk, HttpSession session) throws SQLException{
 	     MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 	     int user_no = Integer.parseInt(vo.getUser_no());
 	     
 	     service.insertoption(topic_no, recontent, rel, optionchk, user_no);
-	    
-	     
+	     service.selectcomment(rel);
+	     ReadVO comment = (ReadVO)service.selectcomment(rel);
+	     logger.info("검색한 댓글 유저 번호 : " + comment);
 	     return "redirect:/read/read?topic_no="+topic_no;
 	   }
 	 @RequestMapping(value="/read/reup", method=RequestMethod.POST)
