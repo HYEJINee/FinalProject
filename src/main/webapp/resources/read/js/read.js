@@ -21,6 +21,7 @@
    // $("body").affix({offset: {top: 150} });
    
 	});*/
+
 	$(document).ready(function() {
 		$(function() {
 			$('#btnDebateType').dropdown();

@@ -16,10 +16,10 @@
 </head>
 <body data-spy="scroll" data-target=".ScrollSpy"  data-offset="50">
 	<script type="text/javascript">
-		var list = new Array();
-		<c:forEach items="${readoplike}" var="item">
-		list.push("${item.op_no}");
-		</c:forEach>
+	var list = new Array();
+	<c:forEach items="${readoplike}" var="item">
+	list.push("${item.op_no}");
+	</c:forEach>
 	</script>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div class="container top">
@@ -203,11 +203,6 @@
 		<h2>의견</h2>
 		<hr />
 	</div>${status.count}
-	<!--  
-	<c:forEach items="${taglist}" var="tag" varStatus="status">
-		<c:set var="${status.count}" value="${tag_op_no}"/>
-		<c:set var="taged${status.count}" value="${tagged_op_no}"/>
-	</c:forEach>-->
 	<div class="ScrollSpy">
 	<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 		<c:choose>
@@ -248,7 +243,7 @@
 								style="border-style: solid; border-width: 1px; border-color: #46FFFF">
 								<div class="col-sm-3">
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-success" style="margin-top: 20px">중립</span>
+										<span class="label label-info" style="margin-top: 20px">찬성</span>
 									</h3>
 								</div>
 								<div class="col-sm-3 minitop">
@@ -273,6 +268,19 @@
 								${opinion.op_content} <br />
 								<hr />
 								<div>
+								<c:forEach items="${taglist}" var="tag" varStatus="status">
+								<c:choose>
+									<c:when test="${tag.tag_op_no == opinion.op_no}">
+										${tag.tagged_op_no}
+									</c:when>
+									</c:choose>
+									<c:choose>
+									<c:when test="${tag.tagged_op_no == opinion.op_no}">
+										
+										${tag.tag_op_no}
+									</c:when>
+									</c:choose>
+								</c:forEach>
 									<c:choose>
 										<c:when test="${empty readuser.user_nick != false}">
 										<div class="col-sm-4">
@@ -391,7 +399,7 @@
 								style="border-style: solid; border-width: 1px; border-color: #FF3232">
 								<div class="col-sm-3">
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-success" style="margin-top: 20px">중립</span>
+										<span class="label label-danger" style="margin-top: 20px">반대</span>
 									</h3>
 								</div>
 								<div class="col-sm-3 minitop">
@@ -408,6 +416,19 @@
 										<em>NO.${status.count}</em>
 									</h3>
 								</div>
+								<c:forEach items="${taglist}" var="tag" varStatus="status">
+								<c:choose>
+									<c:when test="${tag.tag_op_no == opinion.op_no}">
+										${tag.tagged_op_no}
+									</c:when>
+									</c:choose>
+									<c:choose>
+									<c:when test="${tag.tagged_op_no == opinion.op_no}">
+										
+										${tag.tag_op_no}
+									</c:when>
+									</c:choose>
+								</c:forEach>
 								<hr />
 								${opinion.op_content} <br />
 								<hr />
@@ -600,6 +621,19 @@
 								<hr />
 								${opinion.op_content} <br />
 								<hr />
+								<c:forEach items="${taglist}" var="tag" varStatus="status">
+								<c:choose>
+									<c:when test="${tag.tag_op_no == opinion.op_no}">
+										${tag.tagged_op_no}
+									</c:when>
+									</c:choose>
+									<c:choose>
+									<c:when test="${tag.tagged_op_no == opinion.op_no}">
+										
+										${tag.tag_op_no}
+									</c:when>
+									</c:choose>
+								</c:forEach>
 								<div>
 									<c:choose>
 										<c:when test="${empty readuser.user_nick != false}">
