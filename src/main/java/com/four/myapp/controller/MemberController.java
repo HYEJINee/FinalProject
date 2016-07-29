@@ -43,7 +43,7 @@ public class MemberController {
    @RequestMapping(value = "/member_regist", method = RequestMethod.POST)
    public String member_regist(@ModelAttribute MemberVO vo,Model model) throws Exception {
       service.registMember(vo);
-      String link = "http://192.168.10.81/member/member_check?user_check=Y&&user_email="+vo.getUser_email();
+      String link = "http://gowls2nj.cafe24.com/member/member_check?user_check=Y&&user_email="+vo.getUser_email();
                email.setContent(vo.getUser_nick()+"님, 다음 링크를 클릭하여 인증을 완료해주세요.\n" + link);
                email.setReceiver(vo.getUser_email());
                email.setSubject(vo.getUser_nick()+"님, Tawar 인증 메일입니다.");

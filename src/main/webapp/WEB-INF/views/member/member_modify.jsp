@@ -2,36 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>프로필 수정 페이지</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-<style>
-.body {
-	margin-top: 50px
-}
-.notice{
- text-align: center;
- text-size : 15pt;
-}
-</style>
-
-<script type="text/javascript">
+<title>TAWAR - 회원 정보 수정</title>
+<%@include file="../include/header.jsp"%>
+<link rel="stylesheet" href="/resources/member/css/member.css">
+<script>
+	//정보 수정 시 유효성 검사
 	var email_check = "none";
 	var nick_check = "none";
 	var before_nick = " ";
-
-	
 
 	function chkUser_nick() {
 		$.ajax({
@@ -67,10 +45,9 @@
 			}
 		});
 	}
-	function checkIt() {
+	function ModCheckIt() {
 		var userinput = document.form;
 
-	
 		if (!userinput.user_pw.value) {
 			alert("비밀번호를 입력하세요.");
 			userinput.user_pw.focus();
@@ -105,31 +82,26 @@
 			return false;
 		}
 
-	
-		if (nick_check == "none") {
+		if (nick_check == "nick_none") {
 			alert("닉네임 중복체크를 확인해주세요.");
-
-			before_nick=document.form.user_nick.value;
+			before_nick = document.form.user_nick.value;
 			return false;
-		}
-		if (nick_check == "nick_fail") {
+		} else if (nick_check == "nick_fail"
+				&& before_nick !== document.form.user_nick.value) {
+			alert("닉네임 중복 체크를 다시 확인해주세요.");
+			before_nick = document.form.user_nick.value;
+			return false;
+
+		} else if (nick_check == "nick_fail") {
 			alert("중복된 닉네임입니다.");
 			userinput.user_nick.focus();
 			before_nick = document.form.user_nick.value;
 			return false;
 		}
 
-		if (before_nick !== document.form.user_nick.value) {
-			alert("닉네임 중복 체크를 다시 확인해주세요.");
-			before_nick=document.form.user_nick.value;
-			return false;
-		}
-
-		
-		
 		alert("수정이 완료되었습니다.");
-			var url = "/member/mypage";    
-			$(location).attr('href',url);
+		var url = "/member/mypage";
+		$(location).attr('href', url);
 		return true;
 	}
 
@@ -166,10 +138,7 @@
 </script>
 </head>
 <body>
-
-<%@include file="../include/header.jsp" %>
 	<div class="container body ">
-
 		<form class="form-horizontal" method="post"
 			action="/member/member_modify" name="form">
 			<input type="hidden" name="param" value="join" />
@@ -178,11 +147,8 @@
 			<div class="form-group">
 				<label for="user_email" class="col-sm-3 control-label">이메일
 					주소</label>
-				<div class="col-sm-6">
-					${USER_KEY.user_email }
-				</div>
+				<div class="col-sm-6">${USER_KEY.user_email }</div>
 			</div>
-
 			<div class="form-group">
 				<label for="user_pw" class="col-sm-3 control-label">비밀번호</label>
 				<div class="col-sm-6">
@@ -192,7 +158,6 @@
 				</div>
 				<div class="col-sm-3" id="checkPwd"></div>
 			</div>
-
 			<div class="form-group">
 				<label for="user_pw2" class="col-sm-3 control-label">비밀번호 확인</label>
 				<div class="col-sm-6">
@@ -201,7 +166,6 @@
 				</div>
 				<div class="col-sm-3" id="checkPwd2"></div>
 			</div>
-
 			<div class="form-group">
 				<label for="user_nick" class="col-sm-3 control-label">닉네임 </label>
 				<div class="col-sm-6">
@@ -213,22 +177,18 @@
 						onclick="return chkUser_nick()" />
 				</div>
 			</div>
-
-
-
 			<div class="form-group">
 				<div class="col-sm-offset-5 col-sm-2">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-						type="submit" class="btn btn-primary" value="가입하기"
-						onclick="return checkIt()" />
+						type="submit" class="btn btn-primary" value="수정하기"
+						onclick="return ModCheckIt()" />
 				</div>
 			</div>
 		</form>
 		<form name="nickform">
 			<input type="hidden" id="nick" />
 		</form>
-	
-
 	</div>
+	<script src="/resources/member/js/member.js"></script>
 </body>
 </html>
