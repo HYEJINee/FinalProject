@@ -1,6 +1,9 @@
 package com.four.myapp.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +15,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.four.myapp.domain.MemberVO;
+import com.four.myapp.domain.TopicProposalDTO;
 import com.four.myapp.service.MypageServiceImpl;
+import com.four.myapp.util.CoverImgValidation;
 
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/mypage/*")
 public class MypageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
@@ -39,14 +46,41 @@ public class MypageController {
 			model.addAttribute("getMyList", service.getMyList(user_no));
 			model.addAttribute("getMyRecmdList", service.getMyRecmdList(user_no));
 			model.addAttribute("getMyFinishList", service.getMyFinishList(user_no));
-			return "/member/mypage";
+			return "/mypage/mypage_home";
 		}
 	}
 	
 	@RequestMapping(value="/dismissNoti", method=RequestMethod.POST )
 	public void dismissNoti(String noti_no) throws SQLException {
 		service.dismissNoti(noti_no);
-		
 	}
 	
+	 @RequestMapping(value="/uploadProfile", method=RequestMethod.POST)
+	   public String uploadProfile(@RequestParam(value="image_file_name") MultipartFile multipartFile, MemberVO memberVO, HttpSession session, HttpServletRequest req)  throws Exception, IOException {
+		  MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+		  if(vo != null) {
+			   String user_no = vo.getUser_no();
+			   memberVO.setUser_no(user_no);
+			   if(multipartFile.isEmpty() == false) {
+				   String ori_fileName = multipartFile.getOriginalFilename();
+				   String ex = ori_fileName.substring(ori_fileName.lastIndexOf(".") + 1);
+				   
+				   boolean typeValidation = CoverImgValidation.imageValidator(multipartFile.getBytes());
+				   
+				   if(typeValidation) {
+					   String fileName = vo.getUser_nick() + "_" +(System.currentTimeMillis()/1000);
+					   File file = new File(req.getServletContext().getRealPath("/") + "resources/mypage/img/" + fileName + "." + ex);
+					   
+					   multipartFile.transferTo(file);
+					   memberVO.setProfile_file_name(fileName);
+					   memberVO.setProfile_ext_name(ex);
+				   } else {
+					   return "redirect:/mypage/mypage_home";
+				   }
+			   }
+		  }
+		  service.uploadProfile(memberVO);
+	      return "redirect:/mypage/mypage_home";
+	   }
+
 }

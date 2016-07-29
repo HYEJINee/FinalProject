@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+.center {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.mypage-header {
+	
+}
+
+.round-profile-150 {
+	display: block;
+	width: 150px;
+	height: 150px;
+	border-radius: 150px;
+}
+
+.mypage-header-user {
+	text-align: center;
+}
+
+.mypage-timeline-filter {
+	float: right;
+	margin-bottom: 15px;
+}
+
+.mypage-timeline-row {
+	margin-bottom: 7px;
+}
+
+.mypage-timeline-date {
+	padding-top: 1em;
+}
+
+.mypage-timeline-all {
+	padding: 1em;
+	border-radius: 4px;
+	border: blue 1px solid;
+}
+
+.mypage-timeline-topic {
+	border-color: blue;
+}
+
+.mypage-timeline-opinion {
+	border-color: red;
+}
+
+.mypage-timeline-vote {
+	border-color: grey;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.noti-reply {
+	border-color: blue;
+}
+
+.noti-topic {
+	border-color: red;
+}
+#coverImgUp {
+	display: none;
+}

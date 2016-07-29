@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.four.myapp.domain.MainDto;
+import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.TimelineDTO;
 
 @Repository
@@ -46,6 +47,11 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public List<MainDto> getMyFinishList(String user_no) throws SQLException {
 		return sqlSession.selectList(NAMESPACE + ".getMyFinishList", user_no);
+	}
+
+	@Override
+	public void uploadProfile(MemberVO memberVO) {
+		sqlSession.insert(NAMESPACE + ".uploadProfile", memberVO);
 	}
 
 }

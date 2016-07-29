@@ -5,7 +5,9 @@
 
 <mapper namespace="com.four.mappers.memberMapper">
 	<select id="selectMember" resultType="MemberVO">
-		select * from user_tbl
+		select user_tbl.user_no, user_email, user_pw, user_nick, user_lv, user_check, profile_file_name, profile_ext_name
+        from user_tbl
+        left join user_profile_tbl on user_tbl.user_no=user_profile_tbl.user_no
 		where user_email=#{user_email}
 	</select>
 
