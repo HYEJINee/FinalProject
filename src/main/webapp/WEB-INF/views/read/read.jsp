@@ -244,7 +244,7 @@
 								style="border-style: solid; border-width: 1px; border-color: #46FFFF">
 								<div class="col-sm-6">
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-info" style="margin-top: 20px">찬성${opinion.op_no}#</span>
+										<span class="label label-info" style="margin-top: 20px">찬성</span>
 									</h3>
 									<h4>
 										<c:if test="${opinion.op_rel != 0}">
@@ -381,12 +381,11 @@
 								style="border-style: solid; border-width: 1px; border-color: #FF3232">
 								<div class="col-sm-6">
 									<h3>${opinion.user_nick}&nbsp;&nbsp;
-										<span class="label label-danger" style="margin-top: 20px">반대${opinion.op_no}abc</span>
+										<span class="label label-danger" style="margin-top: 20px">반대</span>
 									</h3>
 									<h4>
 										<c:if test="${opinion.op_rel != 0}">
 										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
-										<!-- <a href="javascript:fn('${opinion.op_rel}')">#${opinion.op_rel}</a> -->
 										</c:if>
 									</h4>
 								</div>
@@ -572,7 +571,6 @@
 									<h4>
 										<c:if test="${opinion.op_rel != 0}">
 										<a href="#${opinion.op_rel}#">#${opinion.op_rel}#${opinion.op_no}</a>
-										<!-- <a href="javascript:fn('${opinion.op_rel}')">#${opinion.op_rel}</a> -->
 										</c:if>
 									</h4>
 								</div>

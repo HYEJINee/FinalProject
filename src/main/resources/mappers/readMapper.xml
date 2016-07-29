@@ -21,7 +21,7 @@
 	</select>
 
 	<select id="selectOpinion" resultType="com.four.myapp.domain.ReadOpinionVO">
-		select A.op_no, A.user_no, A.op_content,A.op_rel, A.op_regdate,
+		select A.op_no, A.user_no, A.op_content,A.op_rel, A.op_regdate, A.op_comment,
       A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick,
       (Select user_lv From user_tbl where user_no = A.user_no) AS user_lv,
       (Select count(op_like) From op_like_tbl where op_no = A.op_no) AS op_count,
