@@ -255,7 +255,7 @@
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
-									<div class="col-sm-3">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-info" style="margin-top: 20px">찬성</span>
 										</h3>
@@ -402,7 +402,7 @@
 								<input type="hidden" name="op_like_type" />
 								<div class="col-sm-offset-2 col-sm-9" id="blog_intro"
 									style="border-style: solid; border-width: 1px; border-color: #FF3232">
-									<div class="col-sm-3">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;
 											<span class="label label-danger" style="margin-top: 20px">반대</span>
 										</h3>
@@ -597,7 +597,7 @@
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #66FF00">
-									<div class="col-sm-3">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-success" style="margin-top: 20px">중립</span>
 										</h3>
