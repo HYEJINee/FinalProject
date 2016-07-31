@@ -115,4 +115,10 @@ public class ReadServiceImpl implements ReadService {
 	public List<ReadtagVO> getTaglist(int topic_no) throws SQLException {
 		return dao.getTaglist(topic_no);
 	}
+
+	@Override
+	public void deletetag(int op_no) {
+		dao.deletetag(op_no);
+		
+	}
 }

@@ -112,13 +112,13 @@ public class ReadDAOImpl implements ReadDAO {
 
 	@Override
 	public void deletelike(int op_no) {
-		sqlSession.insert(NAMESPACE + ".deletelike", op_no);
+		sqlSession.delete(NAMESPACE + ".deletelike", op_no);
 		
 	}
 
 	@Override
 	public void deleteoption(int op_no) {
-		sqlSession.insert(NAMESPACE + ".deleteoption", op_no);
+		sqlSession.delete(NAMESPACE + ".deleteoption", op_no);
 		
 	}
 
@@ -145,6 +145,12 @@ public class ReadDAOImpl implements ReadDAO {
 	@Override
 	public List<ReadtagVO> getTaglist(int topic_no) throws SQLException {
 		return sqlSession.selectList(NAMESPACE+".taglist", topic_no);
+	}
+
+	@Override
+	public void deletetag(int op_no) {
+		sqlSession.delete(NAMESPACE + ".deletetag", op_no);
+		
 	}
 
 	

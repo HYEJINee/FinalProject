@@ -110,7 +110,9 @@ public class ReadController {
 	 @RequestMapping(value="/read/delete", method=RequestMethod.POST)
 	   public String delete(@RequestParam("deltopicno") int deltopicno, int delopno){
 		 logger.info("삭제 컨트롤러로 옴" + delopno);
-	     service.deletelike(delopno);
+		 
+		 service.deletetag(delopno);
+		 service.deletelike(delopno);
 	     service.deleteoption(delopno);
 	    return "redirect:/read/read?topic_no="+deltopicno;
 	   }
