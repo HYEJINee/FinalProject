@@ -3,11 +3,17 @@ package com.four.myapp.domain;
 import java.sql.Date;
 
 public class ReadVO {
-	private int  topic_type , debate_tot_pro, debate_tot_con, debate_tot_neut, topic_no, vote_type, user_no;
+	private int  topic_type , debate_tot_pro, debate_tot_con, debate_tot_neut, topic_no, vote_type, user_no, op_no;
 	private Date debate_endate;
 	private String topic_title,topic_short_cont,topic_long_cont,topic_pro,topic_con, user_nick;
 	
 	
+	public int getOp_no() {
+		return op_no;
+	}
+	public void setOp_no(int op_no) {
+		this.op_no = op_no;
+	}
 	public int getUser_no() {
 		return user_no;
 	}

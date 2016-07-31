@@ -62,10 +62,24 @@
 	<update id="updateoption">
 		update opinion_tbl set op_content = #{op_content} where op_no = #{op_no}
 	</update>
+	<delete id="deletetag">
+	DELETE FROM t1, t2 USING tag_tbl t1 INNER JOIN tag_tbl t2 WHERE t1.tag_op_no = #{op_no} 
+  AND t2.tagged_op_no = #{op_no};
+	</delete>
 	<delete id="deletelike">
 		delete from op_like_tbl where op_no = #{op_no};
 	</delete>
 	<delete id="deleteoption">
 		delete from opinion_tbl where op_no = #{op_no};
 	</delete>
+	<select id="selectcomment" resultType="com.four.myapp.domain.ReadVO">
+		select op_no from opinion_tbl where op_rel = #{op_rel} and op_content = #{op_content} and vote_type = #{vote_type} and user_no = #{user_no}
+	</select>
+	
+	<insert id="inserttag">
+		insert into tag_tbl (tag_op_no, tagged_op_no, topic_no) values(#{tag_op_no},#{tagged_op_no}, #{topic_no})
+	</insert>
+	<select id="taglist" resultType="com.four.myapp.domain.ReadtagVO">
+		select tag_op_no, tagged_op_no from tag_tbl where topic_no = #{topic_no}
+	</select>
 </mapper>
