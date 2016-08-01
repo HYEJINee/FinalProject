@@ -122,14 +122,14 @@
 			</div>
 			
 			<!-- 댓글 -->
-			<div id="divReplies" class="col-md-10 col-md-offset-1">
+			<div id="divReplies" class="grid col-md-10 col-md-offset-1">
 			<c:choose>
 			<c:when test="${empty replies}">
 				<p class="text-center">댓글이 없습니다.</p>
 			</c:when>
 			<c:otherwise>
 			<c:forEach items="${replies}" var="reply" varStatus="status">
-				<div id='reply${reply.reply_no}' class="media">
+				<div id='reply${reply.reply_no}' class="grid-item media">
 					<div class="media-left media-top">
 						<img class="media-object" src="/resources/${reply.user_profile}">
 					</div>
@@ -159,6 +159,9 @@
 		</div><!-- row -->
 	</div><!-- container -->
 	<div id="bottom"></div>
+	<nav id="page_nav" style="display:none">
+		<p><a href="/proposal/read?topic_no=${topic.topic_no}&pageNo=2"></a></p>
+	</nav>
 </c:when>
 
 <c:otherwise>
@@ -168,6 +171,9 @@
 </c:choose>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/proposal/js/jquery.infinitescroll.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/proposal/js/read.js"></script>
 </body>
 </html>

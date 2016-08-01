@@ -38,7 +38,8 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	
 	@Override
 	public List<ReplyDTO> callReplies(int topic_no, int pageNo) {
-		return proposalDAO.getReplies(topic_no, pageNo);
+		int index = (pageNo-1) * 7;
+		return proposalDAO.getReplies(topic_no, index);
 	}
 	
 	@Override

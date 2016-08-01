@@ -65,7 +65,7 @@
 	</select>
 	
 	<select id="getReplies" resultType="ReplyDTO" parameterType="hashmap">
-		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no} limit #{pageNo}, 7;
+		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no} limit #{index}, 7;
 	</select>
 	
 	<update id="makeProgress" parameterType="int">

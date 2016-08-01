@@ -34,11 +34,11 @@ public class ProposalDAOImpl implements ProposalDAO {
 	}
 	
 	@Override
-	public List<ReplyDTO> getReplies(int topic_no, int pageNo) {
+	public List<ReplyDTO> getReplies(int topic_no, int index) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("topic_no", topic_no);
-		map.put("pageNo", pageNo);
-		return sqlSession.selectList(NAMESPACE + ".getReplies", topic_no);
+		map.put("index", index);
+		return sqlSession.selectList(NAMESPACE + ".getReplies", map);
 	}
 	
 	@Override

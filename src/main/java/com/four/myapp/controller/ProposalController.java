@@ -60,8 +60,6 @@ public class ProposalController {
          model.addAttribute("voted", service.recommendedHistory(topic_no, user_no));
       }
       if(pageNo == null) { pageNo = 1; }
-      logger.info("pageNo : " + pageNo);
-      
       model.addAttribute("topic", service.callTopic(topic_no));
       model.addAttribute("ref", service.callRefs(topic_no));
       model.addAttribute("replies", service.callReplies(topic_no, pageNo));
