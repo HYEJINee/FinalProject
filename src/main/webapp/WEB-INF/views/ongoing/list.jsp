@@ -19,9 +19,9 @@
 					<h2>토론중</h2>
 				</div>
 				<ul id="topic-tab" class="nav nav-pills">
-					<li role="presentation" data-filter="*"><a href="" data-toggle="pill"><strong>1.모든안건</strong></a></li>
-		  			<li role="presentation" data-filter=".topic_0" style="margin-left: 15px;"><a href="" data-toggle="pill"><strong>찬반토론</strong></a></li>
-					<li role="presentation" data-filter=".topic_1" style="margin-left: 15px;"><a href="" data-toggle="pill"><strong>자유토론</strong></a></li>
+					<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
+		  			<li role="presentation" data-filter=".topic_0"><a href="" data-toggle="pill">찬반 토론</a></li>
+					<li role="presentation" data-filter=".topic_1"><a href="" data-toggle="pill">자유 토론</a></li>
 				</ul>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 				</c:if>
 				<c:if test="${list.size() > 0}">
 					<c:forEach items="${list}" var="list">
-					<div class="item col-md-3" style="padding-left: 0px; padding-right: 0px;">
+					<div class="item col-md-3 topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;">
 					<input type="hidden" name="topic_no" value="${list.topic_no}"/>
 					<c:choose>
 						<c:when test="${list.topic_type eq 0}">
@@ -111,7 +111,7 @@
 			</div>
 		</div>
 	</div>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	<div id="load"></div>
 		
 	<nav id="page_nav" style="display:none;">

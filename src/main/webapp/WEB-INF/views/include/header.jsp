@@ -37,9 +37,9 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/proposal/list">안건 건의<span class="sr-only"></span></a></li>
-					<li><a href="/ongoing/list">토론중</a></li>
-					<li><a href="/finished/list">종료된 토론</a>
+					<li id="proposal"><a href="/proposal/list">안건 건의<span class="sr-only"></span></a></li>
+					<li id="ongoing"><a href="/ongoing/list">토론중</a></li>
+					<li id="finished"><a href="/finished/list">종료된 토론</a>
 				</ul>
 				<form class="navbar-form navbar-left" action="/search/search_result"  method="post">
 					<div class="form-group">
