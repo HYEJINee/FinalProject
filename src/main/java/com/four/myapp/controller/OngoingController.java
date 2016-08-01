@@ -14,25 +14,38 @@ import com.four.myapp.domain.MainDto;
 import com.four.myapp.service.OngoingService;
 
 @Controller
+@RequestMapping("/ongoing/*")
 public class OngoingController {
 	@Autowired
 	private OngoingService service;
 	
-	@RequestMapping("/ongoing/list")
-	public void OngoingHandler(Model model) throws SQLException {
-		model.addAttribute("list", service.getAll_on());
+	@RequestMapping("/list")
+	public void OngoingHandler(@RequestParam(required=false) Integer pageNo, Model model) throws SQLException {
+		if(pageNo == null) {
+			  pageNo = 1;
+			  int index = (pageNo-1) * 9;
+			  model.addAttribute("list", service.getAll_on(index));
+		  } else {
+			  int index = (pageNo-1) * 9;
+			  model.addAttribute("list", service.getAll_on(index));
+		  }
 	}
 	
 	@RequestMapping("/ongoing/tab")
-	public @ResponseBody List<MainDto> TabHandler(@RequestParam("type") String type, Model model) throws SQLException {
+	public @ResponseBody List<MainDto> TabHandler(@RequestParam(required=false) Integer pageNo, @RequestParam("type") String type, Model model) throws SQLException {
+		int index = 0;
+		if(pageNo == null)
+			  pageNo = 1;
+		index = (pageNo-1) * 9;
+		
 		if(type.equals("all")) {
-			return service.getAll_on();
+			return service.getAll_on(index);
 		}
 		else if(type.equals("pro-con")) {
-			return service.getProCon_on();
+			return service.getProCon_on(index);
 		}
 		else {
-			return service.getFree_on();
+			return service.getFree_on(index);
 		}
 	}
 }

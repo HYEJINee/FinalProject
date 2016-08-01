@@ -7,6 +7,34 @@
  */
 
 $(document).ready(function(){
+	var $grid = $('#list');
+	
+	$grid.isotope({
+		// set itemSelector so .grid-sizer is not used in layout
+		itemSelector: '.item',
+		// use element for option
+		columnWidth: 358,
+		masonry: {
+			gutter: 30
+		}
+	});
+			
+	$grid.infinitescroll({
+		navSelector : '#page_nav',
+		nextSelector : '#page_nav p a',
+		itemSelector : '.item',
+		loading: {
+			selector: '#load',
+		    finishedMsg: "<em>모든 안건을 불러왔습니다.</em>",
+		                img: 'http://i.imgur.com/qkKy8.gif',
+		    msgText: "<em>안건을 불러오는 중...</em>"
+		}
+	},
+		function(newElements) {
+			$grid.isotope('appended', $(newElements));
+		}
+	);
+
 	// 헤더 탭 부분 종료된 토론 활성화
 	$("#proposal").removeClass("active");
 	$("#ongoing").addClass("active");
