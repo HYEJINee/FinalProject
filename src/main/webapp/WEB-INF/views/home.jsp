@@ -281,7 +281,6 @@
 	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		
 		// 메인 제목
 		$(".main_title").click(function(){
 			location.href = "/";
