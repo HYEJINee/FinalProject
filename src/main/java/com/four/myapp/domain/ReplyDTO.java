@@ -4,7 +4,8 @@ public class ReplyDTO {
 	private int reply_no;
 	private int user_no;
 	private String user_nick;
-	private String user_profile;
+	private String profile_file_name;
+	private String profile_ext_name;
 	private String user_email;
 	private int topic_no;
 	private String reply_content;
@@ -28,11 +29,17 @@ public class ReplyDTO {
 	public void setUser_nick(String user_nick) {
 		this.user_nick = user_nick;
 	}
-	public String getUser_profile() {
-		return user_profile;
+	public String getProfile_file_name() {
+		return profile_file_name;
 	}
-	public void setUser_profile(String user_profile) {
-		this.user_profile = user_profile;
+	public void setProfile_file_name(String profile_file_name) {
+		this.profile_file_name = profile_file_name;
+	}
+	public String getProfile_ext_name() {
+		return profile_ext_name;
+	}
+	public void setProfile_ext_name(String profile_ext_name) {
+		this.profile_ext_name = profile_ext_name;
 	}
 	public String getUser_email() {
 		return user_email;
