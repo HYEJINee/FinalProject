@@ -88,14 +88,14 @@ $(document).ready(function(){
 					else {
 						if(list.img_file_name != null) {
 							html += '<div id="card_header">';
-							html += '<h4><label class="label label-primary">의견</label></h4>';
+							html += '<h4><label class="label label-danger">의견</label></h4>';
 							html += '<center><h3>' + list.topic_title + '</h3></center>';
 							html += '<img id="coverImg" src="/resources/proposal/img/' + list.img_file_name + '.' + list.img_ext_name + '">';
 							html += '</div>';
 						}
 						else {
 							html += '<div id="card_header_noneImg">';
-							html += '<h4><label class="label label-primary">의견</label></h4>';
+							html += '<h4><label class="label label-danger">의견</label></h4>';
 							html += '<center><h3>' + list.topic_title + '</h3></center>';
 							html += '</div>';
 						}

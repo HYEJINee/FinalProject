@@ -6,16 +6,15 @@
  *  내용 : 전체 헤더 탭 활성화, 카테고리 기능 
  */
 
-$(document).ready(function(){
-	var $grid = $('#list');
+function fnInfiniteScroll() {
+var $grid = $('.list');
 	
 	$grid.isotope({
 		// set itemSelector so .grid-sizer is not used in layout
 		itemSelector: '.item',
 		// use element for option
-		columnWidth: 358,
 		masonry: {
-			gutter: 30
+			gutter: 80
 		}
 	});
 			
@@ -34,7 +33,15 @@ $(document).ready(function(){
 			$grid.isotope('appended', $(newElements));
 		}
 	);
+	
+	$('.nav-pills').on('click', 'li', function() {
+		var filterValue = $(this).attr('data-filter');
+		$grid.isotope({filter: filterValue});
+	})
+}
 
+$(document).ready(function(){
+	fnInfiniteScroll();
 	// 헤더 탭 부분 종료된 토론 활성화
 	$("#proposal").removeClass("active");
 	$("#ongoing").addClass("active");
@@ -45,28 +52,8 @@ $(document).ready(function(){
 		location.href = "/read/read?topic_no=" + topic_no;
 	});
 	// 상단 카테고리 클릭시 필터링
+	/*
 	$(".nav-pills li").click(function(){
-		// 이미 선택되있는 카테고리 일시 종료
-		if($(this).hasClass("on")) {
-			return;
-		}
-		var type = $(this).attr("class");
-		// 선택된 카테고리 활성화
-		if(type == "all") {
-			$(this).html("<h4><strong>1.모든안건</strong></h4>").addClass("on");
-			$(".pro-con").html("<h4>찬반토론</h4>").removeClass("on");
-			$(".free").html("<h4>자유의견</h4>").removeClass("on");
-		} 
-		else if(type == "pro-con") {
-			$(this).html("<h4><strong>2.찬반토론</strong></h4>").addClass("on");
-			$(".all").html("<h4>모든안건</h4>").removeClass("on");
-			$(".free").html("<h4>자유의견</h4>").removeClass("on");
-		}
-		else {
-			$(this).html("<h4><strong>3.자유의견</strong></h4>").addClass("on");
-			$(".pro-con").html("<h4>찬반토론</h4>").removeClass("on");
-			$(".all").html("<h4>모든안건</h4>").removeClass("on");
-		}
 		// 선택된 카테고리를 기준으로 게시글 필터링
 		$.ajax({
 			url: "/ongoing/tab",
@@ -113,14 +100,14 @@ $(document).ready(function(){
 					else {
 						if(list.img_file_name != null) {
 							html += '<div id="card_header">';
-							html += '<h4><label class="label label-primary">의견</label></h4>';
+							html += '<h4><label class="label label-danger">의견</label></h4>';
 							html += '<center><h3>' + list.topic_title + '</h3></center>';
 							html += '<img id="coverImg" src="/resources/proposal/img/' + list.img_file_name + '.' + list.img_ext_name + '">';
 							html += '</div>';
 						}
 						else {
 							html += '<div id="card_header_noneImg">';
-							html += '<h4><label class="label label-primary">의견</label></h4>';
+							html += '<h4><label class="label label-danger">의견</label></h4>';
 							html += '<center><h3>' + list.topic_title + '</h3></center>';
 							html += '</div>';
 						}
@@ -132,10 +119,14 @@ $(document).ready(function(){
 					html += '</div>';
 				});
 				if(html == "")
-					$("#List").empty().append(none_list);
+					$(".list").empty().append(none_list);
 				else
-					$("#List").empty().append(html);
+					$(".list").empty().append(html);
+				$(".container").after("<br/><br/><br/><br/><br/><br/><br/><br/>");
+				fnInfiniteScroll();
 			}
 		});
+		
 	});
+	*/
 });

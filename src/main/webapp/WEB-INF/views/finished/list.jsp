@@ -94,7 +94,7 @@
 								<!-- 1) 커버이미지 있을 때 -->
 								<c:if test="${list.img_file_name != null}">
 									<div id="card_header">
-										<h4><label class="label label-primary">의견</label></h4>
+										<h4><label class="label label-danger">의견</label></h4>
 										<center><h3>${list.topic_title}</h3></center>
 										<img id="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
 									</div>
@@ -102,7 +102,7 @@
 								<!-- 2) 커버이미지 없을 때 -->
 								<c:if test="${list.img_file_name eq null}">
 									<div id="card_header_noneImg">
-										<h4><label class="label label-primary">의견</label></h4>
+										<h4><label class="label label-danger">의견</label></h4>
 										<center><h3>${list.topic_title}</h3></center>
 									</div>
 								</c:if>
