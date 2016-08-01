@@ -21,7 +21,6 @@ public class ReadServiceImpl implements ReadService {
 	
 	@Override
 	public ReadVO Readdao(int topic_no) throws SQLException {
-		// TODO Auto-generated method stub
 		return dao.Readdao(topic_no);
 	}
 

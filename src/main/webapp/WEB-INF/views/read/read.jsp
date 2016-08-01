@@ -217,7 +217,7 @@
 		<hr />
 	</div>${status.count}
 	<div class="ScrollSpy">
-		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
+		<c:forEach items="${readOpinion}" var="opinion" varStatus="status" begin="0" end="2">
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
 					<div class="container" id="${opinion.op_no}#">
@@ -251,7 +251,6 @@
 												style="height: 50px; width: 50px" />
 										</c:when>
 									</c:choose>
-
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
@@ -741,8 +740,8 @@
 		<form class="form-horizontal">
 			<div class="form-group">
 				<div class=" col-sm-offset-5">
-					<input type="button" value="이전 답글" class="btn btn-default" /> <input
-						type="button" value="다음 답글" class="btn btn-default" /><br /> <br />
+					<input type="button" value="이전 답글" class="btn btn-default" /> 
+					<input type="button" value="다음 답글" class="btn btn-default" id="nextoption"/><br /> <br />
 				</div>
 			</div>
 		</form>
