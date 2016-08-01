@@ -49,7 +49,7 @@
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${empty USER_KEY != true}">
-						<li><a href="/member/mypage">마이페이지</a></li>
+						<li><a href="/mypage/mypage">마이페이지</a></li>
 					</c:if>
 					<c:if test="${empty USER_KEY != false}">
 						<li class="dropdown"><a href="/member/member_login">로그인</a></li>

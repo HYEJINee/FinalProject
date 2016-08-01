@@ -13,11 +13,17 @@
 	<insert id="proposalDetailUp" parameterType="TopicProposalDTO">
 	insert into topic_detail_tbl
 	<choose>
+		<when test="topic_pro == null and topic_con == null">
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', '');
+		</when>
 		<when test="topic_pro != null">
-			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, '')
+		</when>
+		<when test="topic_con != null">
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', #{topic_con})
 		</when>
 		<otherwise>
-			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', '');
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
 		</otherwise>
 	</choose>
 	</insert>
@@ -51,15 +57,15 @@
 	</select>
 	
 	<select id="getTopic" resultType="TopicProposalDTO" parameterType="int">
-		SELECT t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, d.topic_long_cont, d.topic_pro, d.topic_con, u.user_nick, u.user_profile, count(r.user_no) as recommend, c.img_file_name, c.img_ext_name FROM topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no LEFT JOIN topic_detail_tbl d ON t.topic_no = d.topic_no JOIN user_tbl u on t.user_no = u.user_no LEFT JOIN topic_cover_img_tbl c on t.topic_no = c.topic_no WHERE t.topic_no = #{topic_no} group by t.topic_no;
+		SELECT t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, d.topic_long_cont, d.topic_pro, d.topic_con, u.user_nick, u.profile_file_name, u.profile_ext_name, count(r.user_no) as recommend, c.img_file_name, c.img_ext_name FROM topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no LEFT JOIN topic_detail_tbl d ON t.topic_no = d.topic_no JOIN user_tbl u on t.user_no = u.user_no LEFT JOIN topic_cover_img_tbl c on t.topic_no = c.topic_no WHERE t.topic_no = #{topic_no} group by t.topic_no;
 	</select>
 	
 	<select id="getRef" resultType="ProposalRefDTO" parameterType="int">
 		select topic_no, topic_resource_title, topic_resource_link from topic_resource_tbl where topic_no = #{topic_no}
 	</select>
 	
-	<select id="getReplies" resultType="ReplyDTO" parameterType="int">
-		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no}
+	<select id="getReplies" resultType="ReplyDTO" parameterType="hashmap">
+		select u.user_no, u.user_nick, u.profile_file_name, u.profile_ext_name, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no} limit #{index}, 7;
 	</select>
 	
 	<update id="makeProgress" parameterType="int">

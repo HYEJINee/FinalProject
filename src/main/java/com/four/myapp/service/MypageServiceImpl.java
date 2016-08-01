@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.four.myapp.domain.MainDto;
+import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.TimelineDTO;
 import com.four.myapp.persistence.MypageDAO;
 import com.four.myapp.persistence.MypageDAOImpl;
@@ -45,6 +46,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<MainDto> getMyFinishList(String user_no) throws SQLException {
 		return dao.getMyFinishList(user_no);
+	}
+
+	@Override
+	public void uploadProfile(MemberVO memberVO) throws SQLException {
+		dao.uploadProfile(memberVO);
 	}
 	
 }
