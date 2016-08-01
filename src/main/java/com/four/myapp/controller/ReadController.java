@@ -112,6 +112,7 @@ public class ReadController {
 		 logger.info("삭제 컨트롤러로 옴" + delopno);
 		 
 		 service.deletetag(delopno);
+		 service.deletetagged(delopno);
 		 service.deletelike(delopno);
 	     service.deleteoption(delopno);
 	    return "redirect:/read/read?topic_no="+deltopicno;

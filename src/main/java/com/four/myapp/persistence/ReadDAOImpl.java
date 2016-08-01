@@ -153,6 +153,12 @@ public class ReadDAOImpl implements ReadDAO {
 		
 	}
 
+	@Override
+	public void deletetagged(int op_no) {
+		sqlSession.delete(NAMESPACE + ".deletetagged", op_no);
+		
+	}
+
 	
 	
 }

@@ -63,8 +63,10 @@
 		update opinion_tbl set op_content = #{op_content} where op_no = #{op_no}
 	</update>
 	<delete id="deletetag">
-	DELETE FROM t1, t2 USING tag_tbl t1 INNER JOIN tag_tbl t2 WHERE t1.tag_op_no = #{op_no} 
-  AND t2.tagged_op_no = #{op_no};
+	delete from tag_tbl where tag_op_no = #{op_no};
+	</delete>
+	<delete id="deletetagged">
+	delete from tag_tbl where tagged_op_no = #{op_no};
 	</delete>
 	<delete id="deletelike">
 		delete from op_like_tbl where op_no = #{op_no};
