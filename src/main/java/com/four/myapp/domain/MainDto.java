@@ -7,6 +7,7 @@ public class MainDto {
 	private int debate_tot_pro, debate_tot_con, debate_tot_neut;
 	private int op_cnt;
 	private int recomnd_cnt;
+	private String img_file_name, img_ext_name;
 	
 	public int getTopic_no() {
 		return topic_no;
@@ -85,6 +86,18 @@ public class MainDto {
 	}
 	public void setRecomnd_cnt(int recomnd_cnt) {
 		this.recomnd_cnt = recomnd_cnt;
+	}
+	public String getImg_file_name() {
+		return img_file_name;
+	}
+	public void setImg_file_name(String img_file_name) {
+		this.img_file_name = img_file_name;
+	}
+	public String getImg_ext_name() {
+		return img_ext_name;
+	}
+	public void setImg_ext_name(String img_ext_name) {
+		this.img_ext_name = img_ext_name;
 	}
 	
 }
