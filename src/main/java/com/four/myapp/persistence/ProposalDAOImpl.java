@@ -19,8 +19,8 @@ public class ProposalDAOImpl implements ProposalDAO {
 	private static final String NAMESPACE = "com.four.myapp.mappers.proposalMapper";
 
 	@Override
-	public List<TopicProposalDTO> getTopicList() {
-		return sqlSession.selectList(NAMESPACE + ".getList");
+	public List<TopicProposalDTO> getTopicList(int index) {
+		return sqlSession.selectList(NAMESPACE + ".getList", index);
 	}
 	
 	@Override

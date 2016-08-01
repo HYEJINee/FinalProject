@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.util.WebUtils;
 
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.ReplyDTO;
@@ -33,9 +32,17 @@ public class ProposalController {
    private final static Logger logger = LoggerFactory.getLogger(ProposalController.class);
    
    @RequestMapping(value="/list", method=RequestMethod.GET)
-   public String listGet(Model model) {
-      model.addAttribute("topicList", service.listAll());
-      return "/proposal/list";
+   public String listGet(@RequestParam(required=false) Integer pageNo, Model model) {
+	  if(pageNo == null) {
+		  pageNo = 1;
+		  int index = (pageNo-1) * 10;
+		  model.addAttribute("topicList", service.listAll(index));
+		  return "/proposal/list";
+	  } else {
+		  int index = (pageNo-1) * 10;
+		  model.addAttribute("topicList", service.listAll(index));
+		  return "/proposal/list";
+	  }
    }
    
    @RequestMapping(value="/write.do", method=RequestMethod.GET)
