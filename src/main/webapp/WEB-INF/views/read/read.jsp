@@ -217,7 +217,7 @@
 		<hr />
 	</div>${status.count}
 	<div class="ScrollSpy">
-		<c:forEach items="${readOpinion}" var="opinion" varStatus="status" begin="0" end="2">
+		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
 					<div class="container" id="${opinion.op_no}#">
