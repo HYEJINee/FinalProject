@@ -121,4 +121,10 @@ public class ReadServiceImpl implements ReadService {
 		dao.deletetag(op_no);
 		
 	}
+
+	@Override
+	public void deletetagged(int op_no) {
+		dao.deletetagged(op_no);
+		
+	}
 }
