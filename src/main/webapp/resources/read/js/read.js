@@ -126,7 +126,17 @@
 									$("#optionform").submit();
 								}
 					});
-					
+					$("#freebtn").click(
+							function() { //id test1 이라는 a태그 클릭시 발생
+								var contentchk = $("textarea[name=context]").val();
+								if (contentchk == "") {
+									alert("의견을 입력해주세요.");
+								} else {
+									var recontent = $("textarea[name=context]").val().replace(/\n/gi, "<br/>");
+									$("input[name=recontent]").val(recontent);
+									$("#optionform").submit();
+								}
+					});
 					$('#btn_topic_type li').on('click', function() {
 						var topic_type_name = $(this).text().trim(); 
 						if(topic_type_name == '찬성') {

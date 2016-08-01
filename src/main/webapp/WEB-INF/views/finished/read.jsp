@@ -31,7 +31,7 @@
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
 					<h1>
-						<span class="label label-primary">찬반 / ${list2.size()}</span>
+						<span class="label label-primary">찬반</span>
 					</h1>
 				</c:when>
 			</c:choose>
@@ -66,6 +66,8 @@
 	</div>
 	<div class="container">
 		<form class="form-horizontal">
+		<c:choose>
+				<c:when test="${readlist.topic_type eq 0}">
 			<div class="form-group">
 				<div class=" col-sm-offset-1 col-sm-2">
 					<h2>
@@ -124,8 +126,12 @@
 					</c:choose>
 				</div>
 			</div>
+			</c:when>
+			</c:choose>
 		</form>
 		<form class="form-horizontal">
+		<c:choose>
+				<c:when test="${readlist.topic_type eq 0}">
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-sm-6">
 					<div class="progress">
@@ -138,16 +144,22 @@
 					</div>
 				</div>
 			</div>
+			</c:when>
+			</c:choose>
 		</form>
 		<form class="form-horizontal" action="vote" method="post"
 			id="voteform">
+			<c:choose>
+				<c:when test="${readlist.topic_type eq 0}">
 			<div class="form-group">
 				<input type="hidden" name="topic_no" value="${readlist.topic_no}" />
 				<input type="hidden" name="vote_type" />
-					<div class="col-sm-offset-5">
+				<div class="col-sm-offset-5">
 							<h4>종료된 토론입니다.</h4>
-					</div>
+						</div>
 			</div>
+			</c:when>
+			</c:choose>
 		</form>
 	</div>
 	<div class="container" data-offset="150">
@@ -169,15 +181,15 @@
 				</c:forEach>
 			</div>
 			<hr />
+			<c:choose>
+				<c:when test="${readlist.topic_type eq 0}">
 			<div class="row marketing">
 				<div class="col-lg-6">
 					<h2 style="text-align: center">찬성 의견</h2>
 					<br />
 					<h4>${readlist.topic_pro}</h4>
 					<br />
-
 				</div>
-
 				<div class="col-lg-6">
 					<h2 style="text-align: center">반대 의견</h2>
 					<br />
@@ -186,12 +198,16 @@
 
 				</div>
 			</div>
+			</c:when>
+			</c:choose>
 		</form>
 		<h2>의견</h2>
 		<hr />
-	</div>${status.count}
+	</div>
 	<div class="ScrollSpy">
+			
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
+		
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
 					<div class="container" id="${opinion.op_no}#">
@@ -450,6 +466,103 @@
 									${opinion.op_content} <br />
 									<hr />
 									
+									<div>
+												<div class="col-sm-4">
+													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+												</div>
+												<div class="col-sm-offset-4 col-sm-1">
+													<button type="button" class="btn btn btn-info"
+														aria-label="Left Align" name="opvotebtn0"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-top"
+															aria-hidden="true"></span> ${opinion.op_like}
+													</button>
+												</div>
+												<div class="col-sm-1">
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align" name="opvotebtn1"
+														value="${opinion.op_no}" disabled="disabled">
+														<span class="glyphicon glyphicon-triangle-bottom"
+															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+													</button>
+												</div>
+												<div class="col-sm-offset-1 col-sm-1 minibottom">
+													<button type="button" class="btn btn-default"
+														id="btn${status.count}" name="rebtn" disabled="disabled">답글</button>
+												</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${opinion.vote_type eq 3}">
+					<div class="container" id="${opinion.op_no}#">
+						<form class="form-horizontal" action="like" method="post"
+							id="${opinion.op_no}">
+							<div class="form-group">
+								<div class="col-sm-1">
+									<input type="hidden" name="op_no" value="${opinion.op_no}" />
+									<input type="hidden" name="topic_no"
+										value="${readlist.topic_no}" /> <input type="hidden"
+										name="op_like_type" />
+									<c:choose>
+										<c:when test="${opinion.user_lv eq 0}">
+											<img src="/resources/user_lv/common.png"
+												style="height: 50px; width: 50px" />
+										</c:when>
+										<c:when test="${opinion.user_lv eq 1}">
+											<img src="/resources/user_lv/prestige.png"
+												style="height: 50px; width: 50px" />
+										</c:when>
+										<c:when test="${opinion.user_lv eq 2}">
+											<img src="/resources/user_lv/royal.png"
+												style="height: 50px; width: 50px" />
+										</c:when>
+										<c:when test="${opinion.user_lv eq 3}">
+											<img src="/resources/user_lv/vip.png"
+												style="height: 50px; width: 50px" />
+										</c:when>
+										<c:when test="${opinion.user_lv eq 4}">
+											<img src="/resources/user_lv/vvip.png"
+												style="height: 50px; width: 50px" />
+										</c:when>
+									</c:choose>
+								</div>
+								<div class="col-sm-9"
+									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
+									<div class="col-sm-3">
+										<h3>${opinion.user_nick}&nbsp;&nbsp;
+											<span class="label label-info" style="margin-top: 20px">의견</span>
+										</h3>
+									</div>
+									<div class="col-sm-5 minitop">
+										<h4>
+											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
+												<c:choose>
+													<c:when test="${tag.tag_op_no == opinion.op_no}">
+														<a href="#${tag.tagged_op_no}#">#참조</a>
+													</c:when>
+												</c:choose>
+												<c:choose>
+													<c:when test="${tag.tagged_op_no == opinion.op_no}">
+														<a href="#${tag.tag_op_no}#">#반박</a>
+													</c:when>
+												</c:choose>
+											</c:forEach>
+										</h4>
+									</div>
+
+									<div style="text-align: right">
+										<h3>
+											<em>NO.${status.count}</em>
+										</h3>
+									</div>
+									<hr />
+									${opinion.op_content} <br />
+									<hr />
 									<div>
 												<div class="col-sm-4">
 													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
