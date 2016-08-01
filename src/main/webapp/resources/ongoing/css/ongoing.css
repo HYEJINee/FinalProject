@@ -1,14 +1,12 @@
 /*
 	ongoing.css
 	작성자 : 최락휘
-	작성일 : 2016.07.25
+	작성일 : 2016.07.29
+	최종수정 : 2016.07.29
 */
 @CHARSET "UTF-8";
 
 .container {
-	margin-top: 50px;
-}
-.item h4 {
 	margin-top: 50px;
 }
 #category {
@@ -21,6 +19,33 @@
 .item {
 	margin-top: 15px;
 	border:1px #d9edf7 solid;
+}
+#card_header {
+	padding-top : 25px;
+	padding-bottom: 25px;
+}
+#card_header label {
+	margin-left: 15px;
+}
+#card_header_noneImg {
+	padding-top : 25px;
+	padding-bottom: 25px;
+	background-color: rgba(230, 230, 230, 0.5);	
+}
+#card_header_noneImg label {
+	margin-left: 15px;
+}
+#card_body {
+	padding: 5px;
+}
+#coverImg {
+	position: absolute;
+	left:0; 
+	top:0; 
+	width:100%; 
+	height:130px; 
+	opacity:0.5;
+	z-index:-1;"
 }
 #pro {
 	color:blue; 

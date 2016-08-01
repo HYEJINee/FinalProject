@@ -8,10 +8,10 @@ import com.four.myapp.domain.ReplyDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 
 public interface ProposalDAO {
-	public List<TopicProposalDTO> getTopicList();
+	public List<TopicProposalDTO> getTopicList(int index);
 	public TopicProposalDTO getTopic(int topic_no);
 	public List<ProposalRefDTO> getTopicRefList(int topic_no);
-	public List<ReplyDTO> getReplies(int topic_no);
+	public List<ReplyDTO> getReplies(int topic_no, int index);
 	public TopicProposalDTO checkSaved(int user_no) throws Exception;
 	public void registTopic(TopicProposalDTO topicProposalDTO);
 	public void recommend(int topic_no, int user_no);

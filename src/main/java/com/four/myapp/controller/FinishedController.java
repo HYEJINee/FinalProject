@@ -53,5 +53,6 @@ public class FinishedController {
 		model.addAttribute("readlist",read_service.Readdao(topic_no));
 		model.addAttribute("readResource",read_service.getResource(topic_no));
 		model.addAttribute("readOpinion",read_service.getOpinion(topic_no));
+		model.addAttribute("taglist",read_service.getTaglist(topic_no));
 	}
 }

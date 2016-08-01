@@ -18,14 +18,23 @@
 	
 	<div id="content" class="container">
 		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
-		<c:if test='${topic.img_file_name != "" && topic.img_file_name != null}'>
+		<c:choose>
+		<c:when test='${topic.img_file_name != "" && topic.img_file_name != null}'>
 			<div id="divCoverImg" class="jumbotron">
 				<p class="text-center" style="font-size:16pt;">${topic.topic_title}</p>
 				<p id="short_cont">${topic.topic_short_cont}<br></p>
 				<p id="writer" class="text-right">건의자 : ${topic.user_nick}</p>
 				<img id="coverImg" alt="커버 이미지" src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}">
 			</div>
-		</c:if>
+		</c:when>
+		<c:otherwise>
+			<div id="divCoverImg" class="jumbotron" style="background-color: rgba(230, 230, 230, 0.5);">
+				<p class="text-center" style="font-size:16pt;">${topic.topic_title}</p>
+				<p id="short_cont">${topic.topic_short_cont}<br></p>
+				<p id="writer" class="text-right">건의자 : ${topic.user_nick}</p>
+			</div>
+		</c:otherwise>
+		</c:choose>
 		<!-- 커버 이미지 / 제목 / 요약문 / 건의자 -->
 		<div class="row">
 	
@@ -113,14 +122,14 @@
 			</div>
 			
 			<!-- 댓글 -->
-			<div id="divReplies" class="col-md-10 col-md-offset-1">
+			<div id="divReplies" class="grid col-md-10 col-md-offset-1">
 			<c:choose>
 			<c:when test="${empty replies}">
 				<p class="text-center">댓글이 없습니다.</p>
 			</c:when>
 			<c:otherwise>
 			<c:forEach items="${replies}" var="reply" varStatus="status">
-				<div id='reply${reply.reply_no}' class="media">
+				<div id='reply${reply.reply_no}' class="grid-item media">
 					<div class="media-left media-top">
 						<img class="media-object" src="/resources/${reply.user_profile}">
 					</div>
@@ -150,6 +159,9 @@
 		</div><!-- row -->
 	</div><!-- container -->
 	<div id="bottom"></div>
+	<nav id="page_nav" style="display:none">
+		<p><a href="/proposal/read?topic_no=${topic.topic_no}&pageNo=2"></a></p>
+	</nav>
 </c:when>
 
 <c:otherwise>
@@ -159,6 +171,9 @@
 </c:choose>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/proposal/js/jquery.infinitescroll.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/proposal/js/read.js"></script>
 </body>
 </html>

@@ -12,6 +12,24 @@ h3 {
 	margin-top:10px !important;
 }
 
+.grid-item {
+	width: 358px;
+	height: 260px;
+}
+
+.grid-item {
+	margin-bottom: 10px;
+}
+	
+.grid-item--width2 { width: 600px; }
+
+#load {
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+	padding-bottom: 80px;
+}
+
 .customBtn {
 	display: inline-block;
 	padding: 6px 12px;
@@ -55,8 +73,8 @@ h3 {
 .card {
 	border: 1px solid transparent;
 	padding-left: 0px;
-	margin-top:20px;
-	margin-bottom: 20px;
+	/* margin-top:20px;
+	margin-bottom: 20px; */
 	cursor: pointer;
 }
 
@@ -82,7 +100,7 @@ h3 {
 	height:100px;
 	padding: 10px 20px;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	/* white-space: nowrap; */
 	overflow:hidden;
 	word-break:break-all;
 }
@@ -106,10 +124,6 @@ h3 {
 
 #topic-tab>li>a {
 	border-radius: 4px
-}
-
-#topic-tab>li+li {
-	margin-left: 2px
 }
 
 #topic-tab>li.active>a, #topic-tab>li.active>a:focus, #topic-tab>li.active>a:hover

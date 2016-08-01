@@ -19,8 +19,8 @@ public class ProposalDAOImpl implements ProposalDAO {
 	private static final String NAMESPACE = "com.four.myapp.mappers.proposalMapper";
 
 	@Override
-	public List<TopicProposalDTO> getTopicList() {
-		return sqlSession.selectList(NAMESPACE + ".getList");
+	public List<TopicProposalDTO> getTopicList(int index) {
+		return sqlSession.selectList(NAMESPACE + ".getList", index);
 	}
 	
 	@Override
@@ -34,8 +34,11 @@ public class ProposalDAOImpl implements ProposalDAO {
 	}
 	
 	@Override
-	public List<ReplyDTO> getReplies(int topic_no) {
-		return sqlSession.selectList(NAMESPACE + ".getReplies", topic_no);
+	public List<ReplyDTO> getReplies(int topic_no, int index) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("index", index);
+		return sqlSession.selectList(NAMESPACE + ".getReplies", map);
 	}
 	
 	@Override
@@ -71,16 +74,11 @@ public class ProposalDAOImpl implements ProposalDAO {
 	@Override
 	public void proposalUp(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks) {
 		sqlSession.insert(NAMESPACE + ".proposalUp", topicProposalDTO);
-		
-		int topic_no = sqlSession.selectOne(NAMESPACE + ".getLatest", topicProposalDTO.getUser_no());
-		topicProposalDTO.setTopic_no(topic_no);
-		
+		topicProposalDTO.setTopic_no((int)sqlSession.selectOne(NAMESPACE + ".getLatest", topicProposalDTO.getUser_no()));
 		sqlSession.insert(NAMESPACE + ".proposalDetailUp", topicProposalDTO);
-		
 		if(topicProposalDTO.getImg_file_name() != null) {
 			sqlSession.insert(NAMESPACE + ".imgUp", topicProposalDTO);
 		}
-
 		ProposalRefDTO proposalRefDTO = null; 
 		for(int refCnt = 0; refCnt < refTitles.size(); refCnt++) {
 			proposalRefDTO = new ProposalRefDTO(topicProposalDTO.getTopic_no(), refTitles.get(refCnt), refLinks.get(refCnt));

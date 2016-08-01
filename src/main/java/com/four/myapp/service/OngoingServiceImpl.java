@@ -15,18 +15,18 @@ public class OngoingServiceImpl implements OngoingService {
 	private ListDAO dao;
 
 	@Override
-	public List<MainDto> getAll_on() throws SQLException {
-		return dao.getAll_on();
+	public List<MainDto> getAll_on(int index) throws SQLException {
+		return dao.getAll_on(index);
 	}
 
 	@Override
-	public List<MainDto> getProCon_on() throws SQLException {
-		return dao.getProCon_on();
+	public List<MainDto> getProCon_on(int index) throws SQLException {
+		return dao.getProCon_on(index);
 	}
 
 	@Override
-	public List<MainDto> getFree_on() throws SQLException {
-		return dao.getFree_on();
+	public List<MainDto> getFree_on(int index) throws SQLException {
+		return dao.getFree_on(index);
 	}
 
 }

@@ -2,22 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.four.myapp.mappers.proposalMapper">
 
-	<insert id="recommend" parameterType="hashmap">
-		insert into recommend_tbl(topic_no, user_no) values(#{topic_no}, #{user_no})
+	<insert id="proposalUp" parameterType="TopicProposalDTO">
+		insert into topic_tbl(user_no, topic_type, topic_title, topic_short_cont, topic_regdate, topic_endate, topic_progress) values(#{user_no}, #{topic_type}, #{topic_title}, #{topic_short_cont}, now(), date_add(now(), interval +10 day), 1)
 	</insert>
 
-	<insert id="proposalUp" parameterType="TopicProposalDTO">
-		insert into topic_tbl(user_no, topic_type, topic_title, topic_short_cont, topic_endate, topic_progress) values(#{user_no}, #{topic_type}, #{topic_title}, #{topic_short_cont}, date_add(now(), interval +10 day), 1)
+	<insert id="recommend" parameterType="hashmap">
+		insert into recommend_tbl(topic_no, user_no) values(#{topic_no}, #{user_no})
 	</insert>
 	
 	<insert id="proposalDetailUp" parameterType="TopicProposalDTO">
 	insert into topic_detail_tbl
 	<choose>
+		<when test="topic_pro == null and topic_con == null">
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', '');
+		</when>
 		<when test="topic_pro != null">
-			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, '')
+		</when>
+		<when test="topic_con != null">
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', #{topic_con})
 		</when>
 		<otherwise>
-			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', '');
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
 		</otherwise>
 	</choose>
 	</insert>
@@ -46,8 +52,8 @@
 		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont from topic_tbl t left join topic_detail_tbl d on t.topic_no = d.topic_no left join topic_cover_img_tbl c on t.topic_no = c.topic_no where t.topic_progress = 0 and t.user_no = #{user_no}
 	</select>
 	
-	<select id="getList" resultType="TopicProposalDTO">
-		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, t.topic_progress, count(r.user_no) as recommend, t.topic_regdate, t.topic_endate, c.img_file_name, c.img_ext_name from topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no left join topic_cover_img_tbl c on t.topic_no = c.topic_no where t.topic_progress = 1 group by t.topic_no order by topic_regdate
+	<select id="getList" resultType="TopicProposalDTO" parameterType="Integer">
+		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, t.topic_progress, count(r.user_no) as recommend, t.topic_regdate, t.topic_endate, c.img_file_name, c.img_ext_name from topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no left join topic_cover_img_tbl c on t.topic_no = c.topic_no where t.topic_progress = 1 group by t.topic_no order by topic_regdate limit #{index}, 10;
 	</select>
 	
 	<select id="getTopic" resultType="TopicProposalDTO" parameterType="int">
@@ -58,8 +64,8 @@
 		select topic_no, topic_resource_title, topic_resource_link from topic_resource_tbl where topic_no = #{topic_no}
 	</select>
 	
-	<select id="getReplies" resultType="ReplyDTO" parameterType="int">
-		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no}
+	<select id="getReplies" resultType="ReplyDTO" parameterType="hashmap">
+		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no} limit #{index}, 7;
 	</select>
 	
 	<update id="makeProgress" parameterType="int">

@@ -1,6 +1,6 @@
 /*
 	작성자 : 최락휘
-	작성일 : 2016.07.20
+	작성일 : 2016.07.29
 */
 @CHARSET "utf-8";
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -8,22 +8,42 @@
 .item {
 	margin-top: 15px;
 }
-.item h4 {
-	margin-top: 50px;
-}
 .header_item {
 	margin-top: 5px;
 }
 .list_item{
 	margin-top: 30px;
-	padding: 20px;
 	border:1px #d9edf7 solid;
 }
-.type1 {
-	padding: 23px;
+#card_header {
+	padding-top : 25px;
+	padding-bottom: 25px;
+}
+#card_header label {
+	margin-left: 15px;
+}
+#card_header_noneImg {
+	padding-top : 25px;
+	padding-bottom: 25px;
+	background-color: rgba(230, 230, 230, 0.5);	
+}
+#card_header_noneImg label{
+	margin-left: 15px;
+}
+#card_body {
+	padding: 5px;
+}
+#coverImg {
+	position: absolute;
+	left:0; 
+	top:0; 
+	width:100%; 
+	height:130px; 
+	opacity:0.5;
+	z-index:-1;"
 }
 #main_title {
-	margin-top: 50px;
+	margin-top: 60px;
 }
 #main_title h2 {
 	font-family: 'Jeju Gothic', sans-serif;
@@ -37,7 +57,7 @@ center h3 {
 }
 #pro_board {
 	color:blue;
-	margin-left:50px;
+	margin-left:40px;
 }
 #con {
 	color:red;

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/resources/main/css/main.css">
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <head>
-	<title>Home</title>
+	<title>TAWAR</title>
 </head>
 <body>
 	<!-- pageInfo -->
@@ -25,7 +25,7 @@
 	<!-- Content Title -->
 	<div class="container" id="main_title">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="main_title col-md-3">
 				<h2>인권을<br>자유를<br/>논하다</h2>
 			</div>
 			<c:forEach items="${main}" var="mainList" begin="0" end="2">
@@ -63,11 +63,25 @@
 						<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}">
 							<c:choose>
 								<c:when test="${mainList.topic_type eq 0}">
-									<div class="item main_item list_item col-md-3 col-md-offset-1">
+									<div class="item list_item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
-										<h4><label class="label label-primary">찬반</label></h4>
-										<center><h3>${mainList.topic_title}</h3></center>
-										<hr/>
+										<!-- card_header -->
+										<!-- 1) 커버이미지 있을 때 -->
+										<c:if test="${mainList.img_file_name != null}">
+											<div id="card_header">
+												<h4><label class="label label-primary">찬반</label></h4>
+												<center><h3>${mainList.topic_title}</h3></center>
+												<img id="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
+											</div>
+										</c:if>
+										<!-- 2) 커버이미지 없을 때 -->
+										<c:if test="${mainList.img_file_name eq null}">
+											<div id="card_header_noneImg">
+												<h4><label class="label label-primary">찬반</label></h4>
+												<center><h3>${mainList.topic_title}</h3></center>
+											</div>
+										</c:if>
+										<div id="card_body">
 										<p>${mainList.topic_short_cont}</p>
 										<span class="glyphicon glyphicon-user"> ${mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut}</span>
 										<c:choose>
@@ -94,16 +108,32 @@
 												<span id="neut"> 중 <fmt:formatNumber value="${mainList.debate_tot_neut/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
 											</c:otherwise>
 										</c:choose>
+										</div>
 									</div>
 								</c:when>
 								<c:when test="${mainList.topic_type eq 1}">
-									<div class="item list_item type1 col-md-3 col-md-offset-1">
+									<div class="item list_item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
-										<label class="label label-danger">의견</label><br/>
-										<center><h3>${mainList.topic_title}</h3></center>
-										<hr/>
-										<p>${mainList.topic_short_cont}</p>
-										<span class="glyphicon glyphicon-education"> ${mainList.op_cnt}</span>
+										<!-- card_header -->
+										<!-- 1) 커버이미지 있을 때 -->
+										<c:if test="${mainList.img_file_name != null}">
+											<div id="card_header">
+												<h4><label class="label label-danger">의견</label><br/></h4>
+												<center><h3>${mainList.topic_title}</h3></center>
+												<img id="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
+											</div>
+										</c:if>
+										<!-- 2) 커버이미지 없을 때 -->
+										<c:if test="${mainList.img_file_name eq null}">
+											<div id="card_header_noneImg">
+												<h4><label class="label label-danger">의견</label><br/></h4>
+												<center><h3>${mainList.topic_title}</h3></center>
+											</div>
+										</c:if>
+										<div id="card_body">
+											<p>${mainList.topic_short_cont}</p>
+											<span class="glyphicon glyphicon-education"> ${mainList.op_cnt}</span>
+										</div>
 									</div>
 								</c:when>
 							</c:choose>
@@ -128,12 +158,17 @@
 					  	<c:set var="doneLoop" value="false"/>
 					  	<c:forEach begin="0" end="${pagePerBlock-1}" varStatus="status">
 					  		<c:if test="${not doneLoop}">
-					  			<c:if test="${status.current + (nowBlock*pagePerBlock) eq nowPage}">
-					  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
-					  			</c:if>
-					  			<c:if test="${status.current + (nowBlock*pagePerBlock) ne nowPage}">
-					  				<li><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
-					  			</c:if>
+					  			<c:choose>
+					  				<c:when test="${nowPage eq null && status.current eq 0}">
+					  					<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+						  			</c:when>
+						  			<c:when test="${status.current + (nowBlock*pagePerBlock) eq nowPage && nowPage ne null}">
+						  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+						  			</c:when>
+						  			<c:otherwise>
+						  				<li><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+						  			</c:otherwise>
+					  			</c:choose>
 					  		</c:if>
 					  		<c:if test="${status.current+1 + (nowBlock*pagePerBlock) eq totalPage}">
 					  			<c:set var="doneLoop" value="true"/>
@@ -246,8 +281,17 @@
 	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		// 메인 제목
+		$(".main_title").click(function(){
+			location.href = "/";
+		});
+		// 메인 헤더 게시물
+		$(".header_item").click(function(){
+			var topic_no = $(this).children().filter("input").val();
+			location.href = "/read/read?topic_no=" + topic_no;
+		});
 		// 토론중 게시물
-		$(".main_item").click(function(){
+		$(".list_item").click(function(){
 			var topic_no = $(this).children().filter("input").val();
 			location.href = "/read/read?topic_no=" + topic_no;
 		});

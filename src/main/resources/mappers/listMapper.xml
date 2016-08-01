@@ -4,9 +4,11 @@
 <mapper namespace="com.four.mappers.listMapper">
 	<!-- 메인페이지에서 이용하는 쿼리 -->
 	<select id="getMainList" resultType="com.four.myapp.domain.MainDto">
-		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt 
-		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
+		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, img_file_name, img_ext_name
+		FROM topic_tbl 
+        LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
 		LEFT JOIN (SELECT count(op_no) AS op_cnt, topic_no FROM opinion_tbl) AS op_tbl ON topic_tbl.topic_no = op_tbl.topic_no
+        LEFT JOIN topic_cover_img_tbl AS img_tbl ON topic_tbl.topic_no = img_tbl.topic_no
 		WHERE topic_progress = 3 ORDER BY topic_no desc;
 	</select>
 	
@@ -26,53 +28,57 @@
 		WHERE topic_progress = 4 ORDER BY topic_no desc;
 	</select>
 	<!-- 각각의 게시판에서 이용하는 쿼리 -->
-	<select id="getAll_on" resultType="MainDto">
-		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt
+	<select id="getAll_on" resultType="MainDto" parameterType="Integer">
+		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt, img_file_name, img_ext_name
 		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
 		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no
 		LEFT JOIN (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl ON topic_tbl.topic_no = recommend_tbl.topic_no
-		WHERE topic_progress = 3 ORDER BY topic_no desc;
+        LEFT JOIN topic_cover_img_tbl AS img_tbl ON topic_tbl.topic_no = img_tbl.topic_no
+		WHERE topic_progress = 3 ORDER BY topic_no desc limit #{index}, 9;
 	</select>
 	
-	<select id="getProCon_on" resultType="MainDto">
-		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt
-		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no 
-		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no 
-		LEFT JOIN (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl ON topic_tbl.topic_no = recommend_tbl.topic_no
-		WHERE topic_progress = 3 and topic_type=0 ORDER BY topic_no desc;
-	</select>
-	
-	<select id="getFree_on" resultType="MainDto">
-		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt
-		FROM topic_tbl
-		LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
+	<select id="getProCon_on" resultType="MainDto" parameterType="Integer">
+		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt, img_file_name, img_ext_name
+		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
 		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no
 		LEFT JOIN (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl ON topic_tbl.topic_no = recommend_tbl.topic_no
-		WHERE topic_progress = 3 and topic_type=1 ORDER BY topic_no desc;
+        LEFT JOIN topic_cover_img_tbl AS img_tbl ON topic_tbl.topic_no = img_tbl.topic_no
+		WHERE topic_progress = 3 and topic_type=0 ORDER BY topic_no desc limit #{index}, 9;
+	</select>
+	
+	<select id="getFree_on" resultType="MainDto" parameterType="Integer">
+		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt, img_file_name, img_ext_name
+		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
+		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no
+		LEFT JOIN (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl ON topic_tbl.topic_no = recommend_tbl.topic_no
+        LEFT JOIN topic_cover_img_tbl AS img_tbl ON topic_tbl.topic_no = img_tbl.topic_no
+		WHERE topic_progress = 3 and topic_type=1 ORDER BY topic_no desc limit #{index}, 9;
 	</select>
 
 	<select id="getAll_fin" resultType="MainDto">
-		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt
+		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt, img_file_name, img_ext_name
 		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
 		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no
 		LEFT JOIN (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl ON topic_tbl.topic_no = recommend_tbl.topic_no
-		WHERE topic_progress = 4 order by topic_no desc;
+        LEFT JOIN topic_cover_img_tbl AS img_tbl ON topic_tbl.topic_no = img_tbl.topic_no
+		WHERE topic_progress = 4 ORDER BY topic_no desc;
 	</select>
 	
 	<select id="getProCon_fin" resultType="MainDto">
-		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt
-		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no 
-		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no 
+		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt, img_file_name, img_ext_name
+		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
+		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no
 		LEFT JOIN (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl ON topic_tbl.topic_no = recommend_tbl.topic_no
-		WHERE topic_progress = 4 and topic_type=0 ORDER BY topic_no desc;
+        LEFT JOIN topic_cover_img_tbl AS img_tbl ON topic_tbl.topic_no = img_tbl.topic_no
+		WHERE topic_progress = 4 and topic_type = 0 ORDER BY topic_no desc;
 	</select>
 	
 	<select id="getFree_fin" resultType="MainDto">
-		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt
-		FROM topic_tbl
-		LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
+		SELECT topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt, recomnd_cnt, img_file_name, img_ext_name
+		FROM topic_tbl LEFT JOIN debate_tbl ON topic_tbl.topic_no = debate_tbl.topic_no
 		LEFT JOIN (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl ON topic_tbl.topic_no = op_tbl.topic_no
 		LEFT JOIN (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl ON topic_tbl.topic_no = recommend_tbl.topic_no
-		WHERE topic_progress = 4 and topic_type=1 ORDER BY topic_no desc;
+        LEFT JOIN topic_cover_img_tbl AS img_tbl ON topic_tbl.topic_no = img_tbl.topic_no
+		WHERE topic_progress = 4 and topic_type = 1 ORDER BY topic_no desc;
 	</select>
 </mapper>
