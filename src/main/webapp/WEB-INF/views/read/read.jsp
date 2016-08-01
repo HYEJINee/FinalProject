@@ -262,15 +262,15 @@
 									</div>
 									<div class="col-sm-5 minitop">
 										<h4>
-											<c:forEach items="${taglist}" var="tag">
+											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">${tag.tagged_op_no}</a>
+														<a href="#${tag.tagged_op_no}#">#참조</a>
 													</c:when>
 												</c:choose>
 												<c:choose>
 													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">${tag.tag_op_no}</a>
+														<a href="#${tag.tag_op_no}#">#반박</a>
 													</c:when>
 												</c:choose>
 											</c:forEach>
@@ -409,15 +409,15 @@
 									</div>
 									<div class="col-sm-5 minitop">
 										<h4>
-											<c:forEach items="${taglist}" var="tag">
+											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">${tag.tagged_op_no}</a>
+														<a href="#${tag.tagged_op_no}#">#참조</a>
 													</c:when>
 												</c:choose>
 												<c:choose>
 													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">${tag.tag_op_no}</a>
+														<a href="#${tag.tag_op_no}#">#반박</a>
 													</c:when>
 												</c:choose>
 											</c:forEach>
@@ -575,7 +575,7 @@
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 100px; width: 100px" />
+												style="height: 50px; width: 50px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
@@ -604,15 +604,15 @@
 									</div>
 									<div class="col-sm-5 minitop">
 										<h4>
-											<c:forEach items="${taglist}" var="tag">
+											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">${tag.tagged_op_no}</a>
+														<a href="#${tag.tagged_op_no}#">#참조</a>
 													</c:when>
 												</c:choose>
 												<c:choose>
 													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">${tag.tag_op_no}</a>
+														<a href="#${tag.tag_op_no}#">#반박</a>
 													</c:when>
 												</c:choose>
 											</c:forEach>
