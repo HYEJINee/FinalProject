@@ -15,9 +15,6 @@
 	margin-top: 30px;
 	border:1px #d9edf7 solid;
 }
-.type1 {
-	padding: 23px;
-}
 #card_header {
 	padding-top : 25px;
 	padding-bottom: 25px;
@@ -46,7 +43,7 @@
 	z-index:-1;"
 }
 #main_title {
-	margin-top: 50px;
+	margin-top: 60px;
 }
 #main_title h2 {
 	font-family: 'Jeju Gothic', sans-serif;
@@ -60,7 +57,7 @@ center h3 {
 }
 #pro_board {
 	color:blue;
-	margin-left:50px;
+	margin-left:40px;
 }
 #con {
 	color:red;

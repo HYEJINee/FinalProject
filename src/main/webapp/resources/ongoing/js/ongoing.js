@@ -14,7 +14,7 @@ $(document).ready(function(){
 	// 게시글 클릭시 이동
 	$(".item").click(function(){
 		var topic_no = $(this).children().filter("input").val();
-		location.href = "/ongoing/read?topic_no=" + topic_no;
+		location.href = "/read/read?topic_no=" + topic_no;
 	});
 	// 상단 카테고리 클릭시 필터링
 	$(".nav-pills li").click(function(){

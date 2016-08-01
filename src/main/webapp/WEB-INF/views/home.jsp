@@ -112,22 +112,28 @@
 									</div>
 								</c:when>
 								<c:when test="${mainList.topic_type eq 1}">
-									<div class="item list_item type1 col-md-3 col-md-offset-1">
+									<div class="item list_item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 										<!-- card_header -->
 										<!-- 1) 커버이미지 있을 때 -->
 										<c:if test="${mainList.img_file_name != null}">
-											<label class="label label-danger">의견</label><br/>
-											<center><h3>${mainList.topic_title}</h3></center>
-											<img id="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
+											<div id="card_header">
+												<h4><label class="label label-danger">의견</label><br/></h4>
+												<center><h3>${mainList.topic_title}</h3></center>
+												<img id="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
+											</div>
 										</c:if>
 										<!-- 2) 커버이미지 없을 때 -->
-										<c:if test="${mainList.img_name eq null}">
-											<label class="label label-danger">의견</label><br/>
-											<center><h3>${mainList.topic_title}</h3></center>
+										<c:if test="${mainList.img_file_name eq null}">
+											<div id="card_header_noneImg">
+												<h4><label class="label label-danger">의견</label><br/></h4>
+												<center><h3>${mainList.topic_title}</h3></center>
+											</div>
 										</c:if>
-										<p>${mainList.topic_short_cont}</p>
-										<span class="glyphicon glyphicon-education"> ${mainList.op_cnt}</span>
+										<div id="card_body">
+											<p>${mainList.topic_short_cont}</p>
+											<span class="glyphicon glyphicon-education"> ${mainList.op_cnt}</span>
+										</div>
 									</div>
 								</c:when>
 							</c:choose>
@@ -152,12 +158,17 @@
 					  	<c:set var="doneLoop" value="false"/>
 					  	<c:forEach begin="0" end="${pagePerBlock-1}" varStatus="status">
 					  		<c:if test="${not doneLoop}">
-					  			<c:if test="${status.current + (nowBlock*pagePerBlock) eq nowPage}">
-					  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
-					  			</c:if>
-					  			<c:if test="${status.current + (nowBlock*pagePerBlock) ne nowPage}">
-					  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
-					  			</c:if>
+					  			<c:choose>
+					  				<c:when test="${nowPage eq null && status.current eq 0}">
+					  					<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+						  			</c:when>
+						  			<c:when test="${status.current + (nowBlock*pagePerBlock) eq nowPage && nowPage ne null}">
+						  				<li class="active"><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+						  			</c:when>
+						  			<c:otherwise>
+						  				<li><a href="/?nowBlock=${nowBlock}&nowPage=${status.current + (nowBlock*pagePerBlock)}">${status.current+1 + (nowBlock*pagePerBlock)}</a></li>
+						  			</c:otherwise>
+					  			</c:choose>
 					  		</c:if>
 					  		<c:if test="${status.current+1 + (nowBlock*pagePerBlock) eq totalPage}">
 					  			<c:set var="doneLoop" value="true"/>
@@ -270,6 +281,7 @@
 	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		// 메인 제목
 		$(".main_title").click(function(){
 			location.href = "/";
