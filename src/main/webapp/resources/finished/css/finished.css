@@ -10,9 +10,6 @@
 .container {
 	margin-top: 50px;
 }
-.item h4 {
-	margin-top: 50px;
-}
 #category {
 	margin-top: 20px;
 }
@@ -26,6 +23,27 @@ h2 {
 .item {
 	margin-top: 15px;
 	border:1px #d9edf7 solid;
+}
+#card_header {
+	padding-top : 25px;
+	padding-bottom: 25px;
+}
+#card_header_noneImg {
+	padding-top : 25px;
+	padding-bottom: 25px;
+	background-color: rgba(230, 230, 230, 0.5);	
+}
+#card_body {
+	padding: 5px;
+}
+#coverImg {
+	position: absolute;
+	left:0; 
+	top:0; 
+	width:100%; 
+	height:130px; 
+	opacity:0.5;
+	z-index:-1;"
 }
 #pro {
 	color:blue;
