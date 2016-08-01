@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.WebUtils;
 
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.TopicProposalDTO;
+import com.four.myapp.service.MemberServiceImpl;
 import com.four.myapp.service.MypageServiceImpl;
 import com.four.myapp.util.CoverImgValidation;
 
@@ -31,6 +33,9 @@ public class MypageController {
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	@Inject
 	MypageServiceImpl service;
+	
+	@Inject
+	MemberServiceImpl memService;
 	
 	@RequestMapping(value = "/mypage", method=RequestMethod.GET)
 	public String timeline(HttpServletRequest request, Model model) throws Exception {
@@ -57,12 +62,15 @@ public class MypageController {
 	
 	 @RequestMapping(value="/uploadProfile", method=RequestMethod.POST)
 	   public String uploadProfile(@RequestParam(value="image_file_name") MultipartFile multipartFile, MemberVO memberVO, HttpSession session, HttpServletRequest req)  throws Exception, IOException {
-		  MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+		 
+		 MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+		 System.out.println(vo.getProfile_file_name()); //파일이름
 		  if(vo != null) {
 			   String user_no = vo.getUser_no();
 			   memberVO.setUser_no(user_no);
 			   if(multipartFile.isEmpty() == false) {
 				   String ori_fileName = multipartFile.getOriginalFilename();
+				   System.out.println("after ori filename");
 				   String ex = ori_fileName.substring(ori_fileName.lastIndexOf(".") + 1);
 				   
 				   boolean typeValidation = CoverImgValidation.imageValidator(multipartFile.getBytes());
@@ -75,12 +83,14 @@ public class MypageController {
 					   memberVO.setProfile_file_name(fileName);
 					   memberVO.setProfile_ext_name(ex);
 				   } else {
-					   return "redirect:/mypage/mypage_home";
+					   return "redirect:/mypage/mypage";
 				   }
 			   }
 		  }
 		  service.uploadProfile(memberVO);
-	      return "redirect:/mypage/mypage_home";
+		  vo = memService.selectMember(vo.getUser_email());
+		   WebUtils.setSessionAttribute(req, "USER_KEY", vo);
+	      return "redirect:/mypage/mypage";
 	   }
 
 }

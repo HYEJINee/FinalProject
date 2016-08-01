@@ -2,6 +2,7 @@
  * mypage.js
  */
 
+
 var _URL = window.URL || window.webkitURL;
 
 $('#profile-img-btn').on('click', function(event) {
@@ -14,7 +15,6 @@ $('#profile-img-up').on('change',
 			var _width;
 			var ex;
 			var authorizedTypes = ['jpg', 'jpeg', 'png', 'gif'];
-
 			if ((file = this.files[0])) {
 				ex = this.value.substring(this.value.lastIndexOf('.') + 1);
 				

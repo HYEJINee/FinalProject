@@ -51,7 +51,7 @@ public class MypageDAOImpl implements MypageDAO {
 
 	@Override
 	public void uploadProfile(MemberVO memberVO) {
-		sqlSession.insert(NAMESPACE + ".uploadProfile", memberVO);
+		sqlSession.update(NAMESPACE + ".uploadProfile", memberVO);
 	}
 
 }
