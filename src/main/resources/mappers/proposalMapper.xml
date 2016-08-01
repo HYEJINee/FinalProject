@@ -13,11 +13,17 @@
 	<insert id="proposalDetailUp" parameterType="TopicProposalDTO">
 	insert into topic_detail_tbl
 	<choose>
+		<when test="topic_pro == null and topic_con == null">
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', '');
+		</when>
 		<when test="topic_pro != null">
-			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, '')
+		</when>
+		<when test="topic_con != null">
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', #{topic_con})
 		</when>
 		<otherwise>
-			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, '', '');
+			(topic_no, topic_long_cont, topic_pro, topic_con) values (#{topic_no}, #{topic_long_cont}, #{topic_pro}, #{topic_con})
 		</otherwise>
 	</choose>
 	</insert>
@@ -58,8 +64,8 @@
 		select topic_no, topic_resource_title, topic_resource_link from topic_resource_tbl where topic_no = #{topic_no}
 	</select>
 	
-	<select id="getReplies" resultType="ReplyDTO" parameterType="int">
-		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no}
+	<select id="getReplies" resultType="ReplyDTO" parameterType="hashmap">
+		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no} limit #{pageNo}, 7;
 	</select>
 	
 	<update id="makeProgress" parameterType="int">

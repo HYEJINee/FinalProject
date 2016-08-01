@@ -1,6 +1,5 @@
 package com.four.myapp.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.ReplyDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 import com.four.myapp.service.TopicProposalService;
-import com.four.myapp.util.CoverImgValidation;
 
 @Controller
 @RequestMapping("/proposal/*")
@@ -33,16 +31,9 @@ public class ProposalController {
    
    @RequestMapping(value="/list", method=RequestMethod.GET)
    public String listGet(@RequestParam(required=false) Integer pageNo, Model model) {
-	  if(pageNo == null) {
-		  pageNo = 1;
-		  int index = (pageNo-1) * 10;
-		  model.addAttribute("topicList", service.listAll(index));
-		  return "/proposal/list";
-	  } else {
-		  int index = (pageNo-1) * 10;
-		  model.addAttribute("topicList", service.listAll(index));
-		  return "/proposal/list";
-	  }
+	  if(pageNo == null) { pageNo = 1; }
+	  model.addAttribute("topicList", service.listAll(pageNo));
+	  return "/proposal/list";
    }
    
    @RequestMapping(value="/write.do", method=RequestMethod.GET)
@@ -51,74 +42,53 @@ public class ProposalController {
    }
    
    @RequestMapping(value="/write.do", method=RequestMethod.POST)
-   public String writePost(@RequestParam(value="topic_resource_title") List<String> refTitles, @RequestParam(value="topic_resource_link") List<String> refLinks, @RequestParam(value="image_file_name") MultipartFile multipartFile, TopicProposalDTO topicProposalDTO, HttpSession session, HttpServletRequest req)  throws Exception, IOException {
-	  MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+   public String writePost(@RequestParam(value="topic_resource_title") List<String> refTitles, @RequestParam(value="topic_resource_link") List<String> refLinks, @RequestParam(value="image_file_name") MultipartFile multipartFile, TopicProposalDTO topicProposalDTO, HttpServletRequest req)  throws Exception, IOException {
+	  MemberVO vo = (MemberVO)req.getSession().getAttribute("USER_KEY");
+	  String filePath = req.getServletContext().getRealPath("/") + "resources/proposal/img/";
+	  
 	  if(vo != null) {
-		   int user_no = Integer.parseInt(vo.getUser_no());
-		   topicProposalDTO.setUser_no(user_no);
-		   if(multipartFile.isEmpty() == false) {
-			   String ori_fileName = multipartFile.getOriginalFilename();
-			   String ex = ori_fileName.substring(ori_fileName.lastIndexOf(".") + 1);
-			   
-			   boolean typeValidation = CoverImgValidation.imageValidator(multipartFile.getBytes());
-			   
-			   if(typeValidation) {
-				   String fileName = vo.getUser_nick() + "_" +(System.currentTimeMillis()/1000);
-				   File file = new File(req.getServletContext().getRealPath("/") + "resources/proposal/img/" + fileName + "." + ex);
-				   
-				   multipartFile.transferTo(file);
-				   topicProposalDTO.setImg_file_name(fileName);
-				   topicProposalDTO.setImg_ext_name(ex);
-			   } else {
-				   return "redirect:/proposal/list";
-			   }
-		   }
+		  service.submitProposal(vo, multipartFile, filePath, topicProposalDTO, refTitles, refLinks);
 	  }
-	  service.submitProposal(topicProposalDTO, refTitles, refLinks);
-      return "redirect:/proposal/list";
+	  return "redirect:/proposal/list";
    }
    
    @RequestMapping(value="/read", method=RequestMethod.GET)
-   public String readGet(int topic_no, Model model, HttpSession session) {
+   public String readGet(@RequestParam(required=false) Integer pageNo, int topic_no, Model model, HttpSession session) {
       MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
       if(vo != null) {
          int user_no = Integer.parseInt(vo.getUser_no());
          model.addAttribute("voted", service.recommendedHistory(topic_no, user_no));
       }
+      if(pageNo == null) { pageNo = 1; }
+      logger.info("pageNo : " + pageNo);
+      
       model.addAttribute("topic", service.callTopic(topic_no));
       model.addAttribute("ref", service.callRefs(topic_no));
-      model.addAttribute("replies", service.callReplies(topic_no));
+      model.addAttribute("replies", service.callReplies(topic_no, pageNo));
       return "/proposal/read";
    }
    
    @RequestMapping(value="/read.vote", method=RequestMethod.POST)
    public String vote(int topic_no, int recommend, HttpSession session) {
-      MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
-      int user_no = Integer.parseInt(vo.getUser_no());
-
-      service.voteProposal(topic_no, user_no);
-      
       if(recommend + 1 >= 20) {
     	  service.proposalToGo(topic_no);
     	  return "redirect:/ongoing/list";
       }
-      return "redirect:/proposal/read?topic_no=" + topic_no;
+
+      MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
+      service.voteProposal(vo, topic_no);
+   	  return "redirect:/proposal/read?topic_no=" + topic_no;
    }
    
    @RequestMapping(value="/read.reply", method=RequestMethod.POST)
    public String commentPost(ReplyDTO replyDTO, HttpSession session) {
 	   MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
-	   int user_no = Integer.parseInt(vo.getUser_no());
-	   replyDTO.setUser_no(user_no);
-	   replyDTO.setReply_content(replyDTO.getReply_content().replaceAll("\r\n", "<br>"));
-	   
-	   service.commentUp(replyDTO);
+	   service.commentUp(vo, replyDTO);
 	   return "redirect:/proposal/read?topic_no=" + replyDTO.getTopic_no() + "#bottom";
    }
    
    @RequestMapping(value="/reply.update", method=RequestMethod.POST)
    public String commentMod(ReplyDTO replyDTO, HttpSession session) {
-	   replyDTO.setReply_content(replyDTO.getReply_content().replaceAll("\r\n", "<br>"));
 	   service.modReply(replyDTO);
 	   return "redirect:/proposal/read?topic_no=" + replyDTO.getTopic_no() + "#reply" + replyDTO.getReply_no();
    }
