@@ -10,8 +10,6 @@
 </style>
 </head>
 <body>
-	<input type="hidden" id="beginPage" value="0"/>
-	<c:set var="numPerPage" value="9"/>
 	<!-- Header -->
 	<%@ include file="../include/header.jsp" %>
 	<div class="container">
@@ -20,27 +18,22 @@
 				<div class="col-md-3">
 					<h2>종료된 토론</h2>
 				</div>
-				<div id="category" class="col-md-offset-9">
-				<ul class="nav nav-pills">
-					<li class="all" role="presentation"><h4><strong>1.모든안건</strong></h4></li>
-					<li class="pro-con" role="presentation" style="margin-left: 15px;"><h4>찬반토론</h4></li>
-					<li class="free" role="presentation" style="margin-left: 15px;"><h4>자유의견</h4></li>
+				<ul id="topic-tab" class="nav nav-pills">
+					<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
+		  			<li role="presentation" data-filter=".topic_0"><a href="" data-toggle="pill">찬반 토론</a></li>
+					<li role="presentation" data-filter=".topic_1"><a href="" data-toggle="pill">자유 토론</a></li>
 				</ul>
-				</div>
 			</div>
 		</div>
 		<hr/>
 		<div class="row">
-			<div id="List" class="col-md-12">
+			<div class="list col-md-12">
 				<c:if test="${list.size() eq 0}">
 					<center><h2>등록된 게시물이 없습니다.</h2></center>
 				</c:if>
 				<c:if test="${list.size() > 0}">
-					<c:forEach items="${list}" var="list" begin="${beginPage}" end="${numPerPage -1}" varStatus="idx">
-						<c:if test="${idx.index eq numPerPage}">
-							<c:set var="beginPage" value="${idx.current +1}"/>
-						</c:if>
-						<div class="item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+					<c:forEach items="${list}" var="list">
+						<div class="item col-md-3 topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;">
 						<input type="hidden" name="topic_no" value="${list.topic_no}"/>
 						<c:choose>
 							<c:when test="${list.topic_type eq 0}">
@@ -94,7 +87,7 @@
 								<!-- 1) 커버이미지 있을 때 -->
 								<c:if test="${list.img_file_name != null}">
 									<div id="card_header">
-										<h4><label class="label label-primary">의견</label></h4>
+										<h4><label class="label label-danger">의견</label></h4>
 										<center><h3>${list.topic_title}</h3></center>
 										<img id="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
 									</div>
@@ -102,7 +95,7 @@
 								<!-- 2) 커버이미지 없을 때 -->
 								<c:if test="${list.img_file_name eq null}">
 									<div id="card_header_noneImg">
-										<h4><label class="label label-primary">의견</label></h4>
+										<h4><label class="label label-danger">의견</label></h4>
 										<center><h3>${list.topic_title}</h3></center>
 									</div>
 								</c:if>
@@ -117,19 +110,16 @@
 				</c:if>
 			</div>
 		</div>
-		<br/><br/>
-		<center><button id="moreInfo">더 불러오기..</button></center>
 	</div>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<div id="load"></div>
+		
+	<nav id="page_nav" style="display:none;">
+		<p><a href="/ongoing/list?pageNo=2"></a></p>
+	</nav>
 <script src="/resources/finished/js/finished.js"></script>
-<script>
-	$(document).ready(function(){
-		$("#moreInfo").click(function(){
-			var html = "";
-			for(var idx=$("#beginPage").val(); idx<=<c:out value='${numPerPage}'/>; idx++){
-				alert(idx);
-			}
-		});
-	});
-</script>
+<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+<script src="/resources/proposal/js/jquery.infinitescroll.min.js"></script>
 </body>
 </html>
