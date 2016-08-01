@@ -35,4 +35,7 @@
 		as op_tbl on topic_tbl.topic_no = op_tbl.topic_no left join (select count(recommend_tbl.topic_no) as recomnd_cnt, topic_no from recommend_tbl) as recommend_tbl 
 		on topic_tbl.topic_no = recommend_tbl.topic_no and topic_tbl.user_no=#{user_no} where topic_progress in (1,4) order by topic_no desc;
 	</select>
+	<update id="uploadProfile" parameterType="MemberVO">
+		update user_tbl set profile_file_name=#{profile_file_name}, profile_ext_name=#{profile_ext_name} where user_no=#{user_no};
+	</update>
 </mapper>
