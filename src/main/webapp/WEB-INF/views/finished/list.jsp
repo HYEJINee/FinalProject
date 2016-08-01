@@ -10,6 +10,8 @@
 </style>
 </head>
 <body>
+	<input type="hidden" id="beginPage" value="0"/>
+	<c:set var="numPerPage" value="9"/>
 	<!-- Header -->
 	<%@ include file="../include/header.jsp" %>
 	<div class="container">
@@ -34,7 +36,10 @@
 					<center><h2>등록된 게시물이 없습니다.</h2></center>
 				</c:if>
 				<c:if test="${list.size() > 0}">
-					<c:forEach items="${list}" var="list">
+					<c:forEach items="${list}" var="list" begin="${beginPage}" end="${numPerPage -1}" varStatus="idx">
+						<c:if test="${idx.index eq numPerPage}">
+							<c:set var="beginPage" value="${idx.current +1}"/>
+						</c:if>
 						<div class="item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
 						<input type="hidden" name="topic_no" value="${list.topic_no}"/>
 						<c:choose>
@@ -112,7 +117,19 @@
 				</c:if>
 			</div>
 		</div>
+		<br/><br/>
+		<center><button id="moreInfo">더 불러오기..</button></center>
 	</div>
 <script src="/resources/finished/js/finished.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#moreInfo").click(function(){
+			var html = "";
+			for(var idx=$("#beginPage").val(); idx<=<c:out value='${numPerPage}'/>; idx++){
+				alert(idx);
+			}
+		});
+	});
+</script>
 </body>
 </html>

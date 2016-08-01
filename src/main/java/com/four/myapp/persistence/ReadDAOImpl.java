@@ -153,6 +153,4 @@ public class ReadDAOImpl implements ReadDAO {
 		
 	}
 
-	
-	
 }

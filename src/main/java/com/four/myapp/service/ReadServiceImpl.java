@@ -99,26 +99,29 @@ public class ReadServiceImpl implements ReadService {
 		
 	}
 
-	
-
 	@Override
-	public void inserttag(int rel, int reop_no, int topic_no) {
-		dao.inserttag(rel, reop_no, topic_no);
+	public void deletetag(int op_no) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public ReadVO selectcomment(int rel, String recontent, int optionchk, int user_no) throws SQLException {
-		return dao.selectcomment(rel, recontent, optionchk, user_no);
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void inserttag(int rel, int reop_no, int topic_no) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public List<ReadtagVO> getTaglist(int topic_no) throws SQLException {
-		return dao.getTaglist(topic_no);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@Override
-	public void deletetag(int op_no) {
-		dao.deletetag(op_no);
-		
-	}
+	
 }
