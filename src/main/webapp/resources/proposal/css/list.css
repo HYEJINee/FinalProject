@@ -12,6 +12,24 @@ h3 {
 	margin-top:10px !important;
 }
 
+.grid-item {
+	width: 358px;
+	height: 260px;
+}
+
+.grid-item {
+	margin-bottom: 10px;
+}
+	
+.grid-item--width2 { width: 600px; }
+
+#load {
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+	padding-bottom: 80px;
+}
+
 .customBtn {
 	display: inline-block;
 	padding: 6px 12px;
