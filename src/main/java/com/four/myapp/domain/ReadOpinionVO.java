@@ -1,10 +1,16 @@
 package com.four.myapp.domain;
-
+import java.sql.Date;
 public class ReadOpinionVO {
 	private int op_no, op_like, vote_type, op_rel, user_lv, op_count, user_no;
-	private String op_content,  op_regdate, user_nick;
+	private String op_content,  user_nick;
+	private Date op_regdate;
 	
-	
+	public Date getOp_regdate() {
+		return op_regdate;
+	}
+	public void setOp_regdate(Date op_regdate) {
+		this.op_regdate = op_regdate;
+	}
 	public int getUser_no() {
 		return user_no;
 	}
@@ -53,12 +59,7 @@ public class ReadOpinionVO {
 	public void setOp_content(String op_content) {
 		this.op_content = op_content;
 	}
-	public String getOp_regdate() {
-		return op_regdate;
-	}
-	public void setOp_regdate(String op_regdate) {
-		this.op_regdate = op_regdate;
-	}
+	
 	public String getUser_nick() {
 		return user_nick;
 	}

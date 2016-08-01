@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.four.myapp.domain.MainDto;
 import com.four.myapp.domain.TimelineDTO;
 
 @Repository
@@ -30,6 +31,22 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public void dismissNoti(String noti_no) throws SQLException {
 		sqlSession.update(NAMESPACE + ".dismissNoti", noti_no);
+	}
+
+	@Override
+	public List<MainDto> getMyList(String user_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE + ".getMyList", user_no);
+	}
+
+	@Override
+	public List<MainDto> getMyRecmdList(String user_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE + ".getMyRecmdList", user_no);
+	}
+
+	@Override
+	public List<MainDto> getMyFinishList(String user_no) throws SQLException {
+		return sqlSession.selectList(NAMESPACE + ".getMyFinishList", user_no);
+
 	}
 
 }

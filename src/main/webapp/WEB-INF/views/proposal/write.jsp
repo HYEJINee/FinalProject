@@ -35,9 +35,10 @@
 			
 			<!-- 토론 형식 선택 -->			
 				<div class="col-md-12">
+					<h4>토론 형식</h4>
 					<div id="debateType" class="btn-group">
 						<button type="button" id="btnDebateType" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-							토론 형식 <span class="caret"></span>
+							선택하기<span class="caret"></span>
 						</button>
 						<ul id="btn_topic_type" class="dropdown-menu" role="menu">
 							<li><a>찬반 토론 </a></li>
@@ -45,16 +46,22 @@
 						</ul>
 						<input type="hidden" id="hid_topic_type" name="topic_type"/>
 					</div>
+					<hr>
 				</div>
 			<!-- 토론 형식 선택 -->			
 
 			<!-- 안건 세부 사항 입력 -->
 				<div class="col-md-12">
+					<h4>제목</h4>
 					<input type="text" id="prop-title" class="form-control" name="topic_title"
 						placeholder="제목을 입력해주세요" value="${tempSaved.topic_title}"/>
-					<textarea id="prop-lead" class="form-control" name="topic_short_cont"
+						<hr>
+					<h4>주제 요약</h4>
+					<textarea id="prop-lead" class="form-control" rows="5" name="topic_short_cont"
 						placeholder="건의하시는 안건에 대하여 간략한 정보를 입력해주세요."></textarea>
-					<textarea id="prop-body" class="form-control" rows="10" name="topic_long_cont"
+						<hr>
+					<h4>주제 본문</h4>
+					<textarea id="prop_body" class="form-control" name="topic_long_cont"
 						placeholder="건의하시는 안건에 대한 상세한 정보를 입력해주세요."></textarea>
 					<hr />
 					<h4>참고자료</h4>
@@ -110,7 +117,7 @@
 </c:choose>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<script src="http://malsup.github.io/jquery.form.js"></script>
+	<script src="//cdn.ckeditor.com/4.5.10/standard/ckeditor.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/proposal/js/write.js"></script>
 </body>
 </html>

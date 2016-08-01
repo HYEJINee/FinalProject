@@ -36,6 +36,9 @@ public class MypageController {
 			String user_no = vo.getUser_no();
 			model.addAttribute("timeline", service.timeline(user_no));
 			model.addAttribute("getNoti", service.getNoti(user_no));
+			model.addAttribute("getMyList", service.getMyList(user_no));
+			model.addAttribute("getMyRecmdList", service.getMyRecmdList(user_no));
+			model.addAttribute("getMyFinishList", service.getMyFinishList(user_no));
 			return "/member/mypage";
 		}
 	}
@@ -45,4 +48,5 @@ public class MypageController {
 		service.dismissNoti(noti_no);
 		
 	}
+	
 }
