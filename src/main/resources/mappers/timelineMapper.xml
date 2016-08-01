@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.four.mappers.timelineMapper">
+	<insert id="timelineTopic" parameterType="TimelineDTO">
+		insert into timeline_tbl (user_no, topic_no, timeline_type) values (#{user_no}, #{topic_no}, #{timeline_type});
+	</insert>
+	<insert id="timelineVote" parameterType="TimelineDTO">
+		insert into timeline_tbl (user_no, topic_no, timeline_type, vote_type) values (#{user_no}, #{topic_no}, #{timeline_type}, #{vote_type});
+	</insert>
+</mapper>
