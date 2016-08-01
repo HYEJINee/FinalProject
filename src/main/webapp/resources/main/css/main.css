@@ -22,10 +22,16 @@
 	padding-top : 25px;
 	padding-bottom: 25px;
 }
+#card_header label {
+	margin-left: 15px;
+}
 #card_header_noneImg {
 	padding-top : 25px;
 	padding-bottom: 25px;
 	background-color: rgba(230, 230, 230, 0.5);	
+}
+#card_header_noneImg label{
+	margin-left: 15px;
 }
 #card_body {
 	padding: 5px;
