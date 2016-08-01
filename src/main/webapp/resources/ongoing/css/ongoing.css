@@ -9,7 +9,7 @@
 .container {
 	margin-top: 50px;
 }
-#category {
+.nav-pills {
 	margin-top: 20px;
 }
 .nav-pills li{
@@ -56,4 +56,9 @@
 }
 #neut {
 	color:gray;
+}
+#load {
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
 }

@@ -131,7 +131,7 @@
 			<c:forEach items="${replies}" var="reply" varStatus="status">
 				<div id='reply${reply.reply_no}' class="grid-item media">
 					<div class="media-left media-top">
-						<img class="media-object" src="/resources/${reply.user_profile}">
+						<img class="media-object" src="/resources/mypage/img/${reply.profile_file_name}.${reply.profile_ext_name}">
 					</div>
 					<div class="media-body">
 					<form action="reply.update" method="post">

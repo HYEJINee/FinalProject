@@ -53,11 +53,11 @@
 	</select>
 	
 	<select id="getList" resultType="TopicProposalDTO" parameterType="Integer">
-		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, t.topic_progress, count(r.user_no) as recommend, t.topic_regdate, t.topic_endate, c.img_file_name, c.img_ext_name from topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no left join topic_cover_img_tbl c on t.topic_no = c.topic_no where t.topic_progress = 1 group by t.topic_no order by topic_regdate limit #{index}, 10;
+		select t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, t.topic_progress, count(r.user_no) as recommend, t.topic_regdate, t.topic_endate, c.img_file_name, c.img_ext_name from topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no left join topic_cover_img_tbl c on t.topic_no = c.topic_no where t.topic_progress = 1 group by t.topic_no order by topic_regdate limit #{index}, 9;
 	</select>
 	
 	<select id="getTopic" resultType="TopicProposalDTO" parameterType="int">
-		SELECT t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, d.topic_long_cont, d.topic_pro, d.topic_con, u.user_nick, u.user_profile, count(r.user_no) as recommend, c.img_file_name, c.img_ext_name FROM topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no LEFT JOIN topic_detail_tbl d ON t.topic_no = d.topic_no JOIN user_tbl u on t.user_no = u.user_no LEFT JOIN topic_cover_img_tbl c on t.topic_no = c.topic_no WHERE t.topic_no = #{topic_no} group by t.topic_no;
+		SELECT t.topic_no, t.topic_type, t.topic_title, t.topic_short_cont, d.topic_long_cont, d.topic_pro, d.topic_con, u.user_nick, u.profile_file_name, u.profile_ext_name, count(r.user_no) as recommend, c.img_file_name, c.img_ext_name FROM topic_tbl t left join recommend_tbl r on t.topic_no = r.topic_no LEFT JOIN topic_detail_tbl d ON t.topic_no = d.topic_no JOIN user_tbl u on t.user_no = u.user_no LEFT JOIN topic_cover_img_tbl c on t.topic_no = c.topic_no WHERE t.topic_no = #{topic_no} group by t.topic_no;
 	</select>
 	
 	<select id="getRef" resultType="ProposalRefDTO" parameterType="int">
@@ -65,7 +65,7 @@
 	</select>
 	
 	<select id="getReplies" resultType="ReplyDTO" parameterType="hashmap">
-		select u.user_no, u.user_nick, u.user_profile, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no} limit #{index}, 7;
+		select u.user_no, u.user_nick, u.profile_file_name, u.profile_ext_name, u.user_email, r.reply_no, r.reply_content, r.reply_regdate from reply_tbl r join user_tbl u on r.user_no = u.user_no where r.topic_no = #{topic_no} limit #{index}, 7;
 	</select>
 	
 	<update id="makeProgress" parameterType="int">
