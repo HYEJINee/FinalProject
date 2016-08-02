@@ -3,12 +3,7 @@
 <!DOCTYPE html>
 <html>
 <div class="row">
-	<!-- div class="col-md-3 mypage-profile-picture">
-						<img class="round-profile-150"
-							src="/resources/${USER_KEY.user_profile }" />
-						<button type="button" class="btn btn-default btn-sm">프로필
-							사진 수정</button>
-					</div-->
+
 	<!-- 커버 이미지 등록 -->
 	<div class="jumbotron col-md-3 mypage-profile-picture">
 		<div id="profile-img-div" >

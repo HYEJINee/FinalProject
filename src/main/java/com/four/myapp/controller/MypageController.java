@@ -78,10 +78,11 @@ public class MypageController {
 				   if(typeValidation) {
 					   String fileName = vo.getUser_nick() + "_" +(System.currentTimeMillis()/1000);
 					   File file = new File(req.getServletContext().getRealPath("/") + "resources/mypage/img/" + fileName + "." + ex);
-					   
+					   String user_profile = file.getName().toString();
 					   multipartFile.transferTo(file);
 					   memberVO.setProfile_file_name(fileName);
 					   memberVO.setProfile_ext_name(ex);
+					   memberVO.setUser_profile(user_profile);
 				   } else {
 					   return "redirect:/mypage/mypage";
 				   }
