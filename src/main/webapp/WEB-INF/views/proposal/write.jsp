@@ -67,9 +67,9 @@
 					<h4>참고자료</h4>
 					<div id="references">
 						<div class="reference bs-callout bs-callout-primary">
-							<input type="text" class="form-control" name="topic_resource_title"
+							<input type="text" class="topic_resource_title form-control" name="topic_resource_title"
 								placeholder="참고자료 제목 - 예) [한겨레] 자살, 개인 선택인가 사회문제인가" /><br>
-							<input type="text" class="form-control" name="topic_resource_link"
+							<input type="text" class="topic_resource_link form-control" name="topic_resource_link"
 								placeholder="참고자료 링크 - 예) http://www.hani.co.kr/arti/society/schooling/288194.html" />
 						</div>
 					</div>
@@ -102,7 +102,7 @@
 			<!-- 안건 등록 -->
 					<div class="col-md-12">
 						<p class="text-center">
-							<button id="btnSubmit" type="submit" class="btn btn-lg btn-primary">안건 건의 글 등록하기</button>
+							<button id="btnSubmit" type="submit" class="btn btn-lg btn-primary">등록하기</button>
 						</p>
 					</div>
 			<!-- 안건 등록 -->
