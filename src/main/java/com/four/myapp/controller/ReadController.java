@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.ReadVO;
 import com.four.myapp.service.ReadService;
+import com.four.myapp.service.TimelineService;
 
 /**
  * Handles requests for the application home page.
@@ -25,6 +26,9 @@ import com.four.myapp.service.ReadService;
 public class ReadController {
 	@Autowired
 	private ReadService service;
+	
+	@Autowired
+	private TimelineService timelineService; //timeline 생성용 service
 	
 	private static final Logger logger = LoggerFactory.getLogger(ReadController.class);
 	
@@ -45,7 +49,7 @@ public class ReadController {
 	}
 	
 	 @RequestMapping(value="/read/vote", method=RequestMethod.POST)
-	   public String vote(@RequestParam("vote_type")int vote_type, int topic_no, HttpSession session){
+	   public String vote(@RequestParam("vote_type")int vote_type, int topic_no, HttpSession session) throws SQLException{
 		 
 		 logger.info("글번호 : " + topic_no);
 		 logger.info("투표 타입 : " + vote_type);
@@ -55,11 +59,15 @@ public class ReadController {
 	     service.topicvote(topic_no, user_no,vote_type);
 	     
 	     if(vote_type == 0){
-	    	 service.votepro(topic_no);
+	    	 service.votepro(topic_no); 
+	    	//Timeline : 유저가 투표함 (timeline_type="6") 
+			  timelineService.timelineVote(topic_no, user_no, 0, "6");
 	     } else if(vote_type == 1){
 	    	 service.votecon(topic_no);
+	    	 timelineService.timelineVote(topic_no, user_no, 1, "6");
 	     } else{
 	    	 service.voteneut(topic_no);
+	    	 timelineService.timelineVote(topic_no, user_no, 2, "6");
 	     }
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
@@ -87,7 +95,9 @@ public class ReadController {
 	     int user_no = Integer.parseInt(vo.getUser_no());
 	     logger.info("왜 : " + rel);
 	     service.insertoption(topic_no, recontent, rel, optionchk, user_no); // insert
-	   
+	     
+	     //Timeline : 유저가 의견을 남김 (timeline_type="7") 
+		  timelineService.timelineVote(topic_no, user_no, optionchk, "7");
 	     
 	     if(rel != 0) {
 	    	int reop_no = service.selectcomment(rel, recontent, optionchk, user_no).getOp_no();

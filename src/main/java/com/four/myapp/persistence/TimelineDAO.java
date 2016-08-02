@@ -7,6 +7,6 @@ import com.four.myapp.domain.TopicProposalDTO;
 
 public interface TimelineDAO {
 	public void timelineTopic1(TopicProposalDTO topicProposalDTO, String timeline_type) throws SQLException;
-	public void timelineVote(TimelineDTO timelineDTO, String timeline_type) throws SQLException;
 	public void timelineTopic2to4(int topic_no, String timeline_type) throws SQLException;
+	public void timelineVote(int topic_no, int user_no, int vote_type, String timeline_type) throws SQLException;
 }

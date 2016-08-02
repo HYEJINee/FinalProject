@@ -25,10 +25,7 @@ public class TimelineServiceImpl implements TimelineService {
 	}
 	
 	@Override
-	public void timelineVote(TimelineDTO timelineDTO, String timeline_type) throws SQLException {
-		dao.timelineVote(timelineDTO, timeline_type);
+	public void timelineVote(int topic_no, int user_no, int vote_type, String timeline_type) throws SQLException {
+		dao.timelineVote(topic_no, user_no, vote_type, timeline_type);
 	}
-
-
-
 }

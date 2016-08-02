@@ -37,7 +37,11 @@ public class TimelineDAOImpl implements TimelineDAO {
 	}
 
 	@Override
-	public void timelineVote(TimelineDTO timelineDTO, String timeline_type) throws SQLException {
+	public void timelineVote(int topic_no, int user_no, int vote_type, String timeline_type) throws SQLException {
+		timelineDTO = sqlSession.selectOne(NAMESPACE + ".getTopic", topic_no);
+		timelineDTO.setTopic_no(topic_no);
+		timelineDTO.setUser_no(user_no);
+		timelineDTO.setVote_type(vote_type);
 		timelineDTO.setTimeline_type(timeline_type);
 		sqlSession.insert(NAMESPACE + ".timelineTopic", timelineDTO);
 	}

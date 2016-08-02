@@ -10,8 +10,7 @@
 	<insert id="timelineVote" parameterType="TimelineDTO">
 		insert into timeline_tbl
 		(user_no, topic_no, topic_type, timeline_type, vote_type) values
-		(#{user_no}, #{topic_no}, #{topic_type}, #{timeline_type},
-		#{vote_type});
+		(#{user_no}, #{topic_no}, #{topic_type}, #{timeline_type}, #{vote_type});
 	</insert>
 	<select id="getLatest" resultType="int">
 		select topic_no from topic_tbl
