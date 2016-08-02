@@ -1,6 +1,7 @@
 package com.four.myapp.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,8 +55,8 @@ public class ProposalController {
 	  if(vo != null) {
 		  service.submitProposal(vo, multipartFile, filePath, topicProposalDTO, refTitles, refLinks);
 		  
-		  //Timeline : 유저가 새글 추가 (timeline_type="0") 
-		  timelineService.timelineTopic(topicProposalDTO, "0");
+		  //Timeline : 유저가 새글 추가 (timeline_type="1") 
+		  timelineService.timelineTopic1(topicProposalDTO, "0");
 	  }
 	  return "redirect:/proposal/list";
    }
@@ -75,9 +76,13 @@ public class ProposalController {
    }
    
    @RequestMapping(value="/read.vote", method=RequestMethod.POST)
-   public String vote(int topic_no, int recommend, HttpSession session) {
+   public String vote(int topic_no, int recommend, HttpSession session) throws SQLException {
       if(recommend + 1 >= 20) {
+    	  
+    	//Timeline : 안건이 투표중으로 바뀜 (timeline_type="3") 
+		  timelineService.timelineTopic2to4(topic_no, "3");
     	  service.proposalToGo(topic_no);
+    	
     	  return "redirect:/ongoing/list";
       }
 

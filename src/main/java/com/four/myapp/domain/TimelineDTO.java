@@ -52,7 +52,7 @@ public class TimelineDTO {
 			break;
 		case "1" : 
 			this.timeline_css = "topic";
-			this.timeline_statement = " 안건이 토론 상정을 위해 추천을 받고있습니다. ";
+			this.timeline_statement = " 안건이 토론 상정을 위해 추천을 받고있습니다. ";//임시저장을 안하기 때문에 안쓰지만 일단 남겨둠 
 			break;
 		case "2" : 
 			this.timeline_css = "topic";

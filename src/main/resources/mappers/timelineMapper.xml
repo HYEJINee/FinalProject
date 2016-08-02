@@ -17,4 +17,8 @@
 		select topic_no from topic_tbl
 		where user_no = #{user_no} order by topic_regdate desc limit 1;
 	</select>
+	<select id="getTopic" parameterType="int" resultType="TimelineDTO">
+		select user_no, topic_no, topic_type from topic_tbl
+		where topic_no = #{topic_no};
+	</select>
 </mapper>

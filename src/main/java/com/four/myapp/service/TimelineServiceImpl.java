@@ -15,13 +15,20 @@ public class TimelineServiceImpl implements TimelineService {
 	private TimelineDAO dao;
 
 	@Override
-	public void timelineTopic(TopicProposalDTO topicProposalDTO, String timeline_type) throws SQLException {
-		dao.timelineTopic(topicProposalDTO, timeline_type);
+	public void timelineTopic1(TopicProposalDTO topicProposalDTO, String timeline_type) throws SQLException {
+		dao.timelineTopic1(topicProposalDTO, timeline_type);
 	}
-
+	
+	@Override
+	public void timelineTopic2to4(int topic_no, String timeline_type) throws SQLException {
+		dao.timelineTopic2to4(topic_no, timeline_type);
+	}
+	
 	@Override
 	public void timelineVote(TimelineDTO timelineDTO, String timeline_type) throws SQLException {
 		dao.timelineVote(timelineDTO, timeline_type);
 	}
+
+
 
 }
