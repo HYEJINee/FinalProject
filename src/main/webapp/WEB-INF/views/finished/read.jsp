@@ -222,31 +222,31 @@
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
 								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
+									style="border-style: solid; border-width: 1px; border-color: #3333FF">
 									<div class="col-sm-3">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
-											<span class="label label-info" style="margin-top: 20px">찬성</span>
+											<span class="label label-primary" style="margin-top: 20px">찬성</span>
 										</h3>
 									</div>
 									<div class="col-sm-5 minitop">
@@ -375,23 +375,23 @@
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
@@ -414,23 +414,23 @@
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
@@ -511,23 +511,23 @@
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
@@ -535,7 +535,7 @@
 									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
 									<div class="col-sm-3">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
-											<span class="label label-info" style="margin-top: 20px">의견</span>
+											<span class="label label-info" style="margin-top: 20px">자유</span>
 										</h3>
 									</div>
 									<div class="col-sm-5 minitop">
@@ -543,12 +543,12 @@
 											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">#참조</a>
+														<a href="#${tag.tagged_op_no}#">#의견</a>
 													</c:when>
 												</c:choose>
 												<c:choose>
 													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">#반박</a>
+														<a href="#${tag.tag_op_no}#">#의견</a>
 													</c:when>
 												</c:choose>
 											</c:forEach>
@@ -613,27 +613,26 @@
 				<h2>의견 작성</h2>
 				<hr />
 				<div class="col-sm-1">
-					<img src="" style="height: 30px; width: 30px" />
 					<c:choose>
 						<c:when test="${readuser.user_lv eq 0}">
 							<img src="/resources/user_lv/common.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 1}">
 							<img src="/resources/user_lv/prestige.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 2}">
 							<img src="/resources/user_lv/royal.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 3}">
 							<img src="/resources/user_lv/vip.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 4}">
 							<img src="/resources/user_lv/vvip.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 					</c:choose>
 				</div>
