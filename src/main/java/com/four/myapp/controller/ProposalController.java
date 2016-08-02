@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.ReplyDTO;
+import com.four.myapp.domain.TimelineDTO;
 import com.four.myapp.domain.TopicProposalDTO;
+import com.four.myapp.service.TimelineService;
 import com.four.myapp.service.TopicProposalService;
 
 @Controller
@@ -26,6 +28,9 @@ import com.four.myapp.service.TopicProposalService;
 public class ProposalController {
    @Autowired
    private TopicProposalService service;
+   
+   @Autowired
+   private TimelineService timelineService; //timeline 생성용 service
    
    private final static Logger logger = LoggerFactory.getLogger(ProposalController.class);
    
@@ -48,6 +53,9 @@ public class ProposalController {
 	  
 	  if(vo != null) {
 		  service.submitProposal(vo, multipartFile, filePath, topicProposalDTO, refTitles, refLinks);
+		  
+		  //Timeline : 유저가 새글 추가 (timeline_type="0") 
+		  timelineService.timelineTopic(topicProposalDTO, "0");
 	  }
 	  return "redirect:/proposal/list";
    }

@@ -19,8 +19,7 @@
 		<div class="row ">
 			<div class="mypage-header-container">
 				<div class="mypage-header-profile">
-					<img class="center round-profile-150"
-						src="/resources/mypage/img/${USER_KEY.user_profile}" />
+					<img class="center round-profile-150" src="/resources/mypage/img/${USER_KEY.user_profile}" />
 				</div>
 				<div class="mypage-header-user">
 					<h3>${USER_KEY.user_nick }의페이지</h3>
