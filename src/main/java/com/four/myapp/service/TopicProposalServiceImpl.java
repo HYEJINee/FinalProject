@@ -2,7 +2,9 @@ package com.four.myapp.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +41,10 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	@Override
 	public List<ReplyDTO> callReplies(int topic_no, int pageNo) {
 		int index = (pageNo-1) * 7;
-		return proposalDAO.getReplies(topic_no, index);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("index", index);
+		return proposalDAO.getReplies(map);
 	}
 	
 	@Override
@@ -55,13 +60,20 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	@Override
 	public void voteProposal(MemberVO memberVO,int topic_no) {
 	    int user_no = Integer.parseInt(memberVO.getUser_no());
-		
-		proposalDAO.recommend(topic_no, user_no);
+	    Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("user_no", user_no);
+
+		proposalDAO.recommend(map);
 	}
 	
 	@Override
 	public boolean recommendedHistory(int topic_no, int user_no) {
-		return proposalDAO.checkRecommended(topic_no, user_no);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("user_no", user_no);
+		
+		return proposalDAO.checkRecommended(map);
 	}
 	
 	@Override
