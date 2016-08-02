@@ -195,7 +195,7 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="grid ScrollSpy col-sm-9 col-sm-offset-3">
+	<div class="grid ScrollSpy col-sm-offset-2 col-sm-10">
 			
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 		
@@ -205,7 +205,7 @@
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
 							<div class="form-group">
-								<div class="col-sm-1">
+								<div class="col-sm-offset-1 col-sm-2">
 									<input type="hidden" name="op_no" value="${opinion.op_no}" />
 									<input type="hidden" name="topic_no"
 										value="${readlist.topic_no}" /> <input type="hidden"
@@ -233,9 +233,11 @@
 										</c:when>
 									</c:choose>
 								</div>
+								
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #3333FF">
-									<div class="col-sm-3">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-primary" style="margin-top: 20px">찬성</span>
 										</h3>
@@ -256,12 +258,8 @@
 											</c:forEach>
 										</h4>
 									</div>
-
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
 									</div>
+									
 									<hr />
 									${opinion.op_content} <br />
 									<hr />
@@ -307,7 +305,8 @@
 								<input type="hidden" name="op_like_type" />
 								<div class="col-sm-offset-2 col-sm-9" id="blog_intro"
 									style="border-style: solid; border-width: 1px; border-color: #FF3232">
-									<div class="col-sm-3">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;
 											<span class="label label-danger" style="margin-top: 20px">반대</span>
 										</h3>
@@ -328,10 +327,6 @@
 											</c:forEach>
 										</h4>
 									</div>
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
 									</div>
 									<hr />
 									${opinion.op_content} <br />
@@ -362,7 +357,7 @@
 												</div>
 									</div>
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-2 col-sm-offset-1">
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
@@ -401,7 +396,7 @@
 								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
-								<div class="col-sm-2">
+								<div class="col-sm-offset-1 col-sm-2">
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
@@ -427,7 +422,8 @@
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #66FF00">
-									<div class="col-sm-3">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-success" style="margin-top: 20px">중립</span>
 										</h3>
@@ -448,10 +444,7 @@
 											</c:forEach>
 										</h4>
 									</div>
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
+									
 									</div>
 									<hr />
 									${opinion.op_content} <br />
@@ -494,7 +487,7 @@
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
 							<div class="form-group">
-								<div class="col-sm-1">
+								<div class="col-sm-offset-1 col-sm-2">
 									<input type="hidden" name="op_no" value="${opinion.op_no}" />
 									<input type="hidden" name="topic_no"
 										value="${readlist.topic_no}" /> <input type="hidden"
@@ -524,7 +517,8 @@
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
-									<div class="col-sm-3">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-info" style="margin-top: 20px">자유</span>
 										</h3>
@@ -546,10 +540,6 @@
 										</h4>
 									</div>
 
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
 									</div>
 									<hr />
 									${opinion.op_content} <br />
