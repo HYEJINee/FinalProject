@@ -6,17 +6,8 @@
 <html>
 <head>
 <title>Read Page</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link
-	href="${pageContext.request.contextPath}/resources/read/css/read.css"
-	rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.js"></script>
-<script src="/resources/bootstrap/js/menu.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/read/js/read.js"></script>
+<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
 </head>
 <body data-spy="scroll" data-target=".ScrollSpy" data-offset="50">
 	<script type="text/javascript">
@@ -189,7 +180,7 @@
 			</c:choose>
 		</form>
 	</div>
-	<div class="container" data-offset="150">
+	<div class="container">
 		<form class="form-horizontal">
 			<div>
 				<h2>본문</h2>
@@ -233,13 +224,12 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="ScrollSpy">
+	<div class="grid ScrollSpy col-sm-9 col-sm-offset-3">
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
-					<div class="container" id="${opinion.op_no}#">
-						<form class="form-horizontal" action="like" method="post"
-							id="${opinion.op_no}">
+					<div class="container grid-item" id="${opinion.op_no}#">
+						<form class="form-horizontal" action="like" method="post" id="${opinion.op_no}">
 							<div class="form-group">
 								<div class="col-sm-1">
 									<input type="hidden" name="op_no" value="${opinion.op_no}" />
@@ -409,14 +399,14 @@
 			</c:choose>
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 1}">
-					<div class="container" id="${opinion.op_no}#">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
 							<div class="form-group">
 								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
-								<div class="col-sm-offset-2 col-sm-9" id="blog_intro"
+								<div class="col-sm-offset-1 col-sm-9" id="blog_intro"
 									style="border-style: solid; border-width: 1px; border-color: #FF3232">
 									<div class="col-sm-3">
 										<h3>${opinion.user_nick}&nbsp;
@@ -580,10 +570,10 @@
 
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 2}">
-					<div class="container" id="${opinion.op_no}#">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
-							<div class="form-group ">
+							<div class="form-group">
 								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
@@ -751,10 +741,10 @@
 			</c:choose>
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 3}">
-					<div class="container" id="${opinion.op_no}#">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
-							<div class="form-group ">
+							<div class="form-group">
 								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
@@ -923,18 +913,11 @@
 
 		</c:forEach>
 	</div>
+	<div id="bottom"></div>
+	<nav id="page_nav" style="display:none">
+		<p><a href="/read/read?topic_no=${readlist.topic_no}&pageNo=2"></a></p>
+	</nav>
 	<div class="container">
-		<form class="form-horizontal">
-			<div class="form-group">
-				<div class=" col-sm-offset-5">
-					<input type="button" value="이전 답글" class="btn btn-default" /> 
-					<input type="button" value="다음 답글" class="btn btn-default" id="nextoption"/><br /> <br />
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="container">
-	
 		<form class="form-horizontal" action="option" method="post" id="optionform">
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
@@ -1180,6 +1163,7 @@
 			</c:when>
 			</c:choose>
 		</form>
+		
 		<form id="delform" action="delete" method="post">
 			<input type="hidden" name="delopno" id="delopno"> <input
 				type="hidden" name="deltopicno" id="deltopicno">
@@ -1210,5 +1194,11 @@
 			</div>
 		</div>
 	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/read/js/jquery.infinitescroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/read/js/read.js"></script>
 </body>
 </html>

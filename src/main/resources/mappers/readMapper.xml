@@ -26,7 +26,7 @@
       (Select user_lv From user_tbl where user_no = A.user_no) AS user_lv,
       (Select count(op_like) From op_like_tbl where op_no = A.op_no) AS op_count,
         (Select count(op_like) From op_like_tbl where op_no = A.op_no and op_like = 0) AS op_like
-       from opinion_tbl AS A where topic_no = #{topic_no}
+       from opinion_tbl AS A where topic_no = #{topic_no} limit #{index}, 4
 	</select>
 
 	<insert id="topicvoteinsert">

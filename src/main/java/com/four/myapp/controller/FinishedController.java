@@ -45,14 +45,15 @@ public class FinishedController {
 	private ReadService read_service;
 	
 	@RequestMapping(value="/finished/read", method=RequestMethod.GET)
-	public void readget(@RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
+	public void readget(@RequestParam(required=false) Integer pageNo, @RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
 		MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		if(vo != null) {
 			model.addAttribute("readuser", vo);
 	      }
+		if(pageNo == null) { pageNo = 1; }
 		model.addAttribute("readlist",read_service.Readdao(topic_no));
 		model.addAttribute("readResource",read_service.getResource(topic_no));
-		model.addAttribute("readOpinion",read_service.getOpinion(topic_no));
+		model.addAttribute("readOpinion",read_service.getOpinion(topic_no, pageNo));
 		model.addAttribute("taglist",read_service.getTaglist(topic_no));
 	}
 }

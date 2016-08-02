@@ -29,7 +29,7 @@ public class ReadController {
 	private static final Logger logger = LoggerFactory.getLogger(ReadController.class);
 	
 	@RequestMapping(value="/read/read", method=RequestMethod.GET)
-	public void readget(@RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
+	public void readget(@RequestParam(required=false) Integer pageNo, @RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
 		MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		if(vo != null) {
 			 model.addAttribute("readuser", vo);
@@ -37,9 +37,10 @@ public class ReadController {
 			 model.addAttribute("readvote",service.Readvote(topic_no, user_no));
 			 model.addAttribute("readoplike",service.getoplike(user_no));
 	      }
+		if(pageNo == null) { pageNo = 1; }
 		model.addAttribute("readlist",service.Readdao(topic_no));
 		model.addAttribute("readResource",service.getResource(topic_no));
-		model.addAttribute("readOpinion",service.getOpinion(topic_no));
+		model.addAttribute("readOpinion",service.getOpinion(topic_no, pageNo));
 		model.addAttribute("taglist",service.getTaglist(topic_no));
 	}
 	

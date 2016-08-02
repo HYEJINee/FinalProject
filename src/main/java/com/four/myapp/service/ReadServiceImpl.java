@@ -31,8 +31,9 @@ public class ReadServiceImpl implements ReadService {
 	}
 
 	@Override
-	public List<ReadOpinionVO> getOpinion(int topic_no) throws SQLException {
-		return dao.getOpinion(topic_no);
+	public List<ReadOpinionVO> getOpinion(int topic_no, int pageNo) throws SQLException {
+		int index = (pageNo-1) * 4;
+		return dao.getOpinion(topic_no, index);
 	}
 
 	@Override

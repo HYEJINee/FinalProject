@@ -1,26 +1,27 @@
 /**
  * read.js
  */
-/*
-	function fn(rel) {
-       alert(rel)
-       var aaa = rel+"#";
-       alert(aaa)
-       $("#" + aaa).focus();
-    }
-    */
-/*
-	$(function(){
-		$('body').scrollspy({ target: '#scroll' })
-	})
-*/
-/*
-	$(function(){
+$(function() {
+	var $grid = $('.grid');
 	
-    $("body").scrollspy({target : "#scrolldiv"})
-   // $("body").affix({offset: {top: 150} });
-   
-	});*/
+	$grid.isotope();
+	
+	$grid.infinitescroll({
+		navSelector : '#page_nav',
+		nextSelector : '#page_nav p a',
+		itemSelector : '.grid-item',
+		loading: {
+			selector: '#bottom',
+			finishedMsg: '<em>모든 의견을 불러왔습니다.<em>',
+			img: 'http://i.imgur.com/qkKy8.gif',
+			msgText: '<em>의견을 불러오는 중...</em>'
+		}
+	},
+		function(newElements) {
+			$grid.isotope('appended', $(newElements));
+		}
+	);
+})
 
 	$(document).ready(function() {
 		$(function() {
