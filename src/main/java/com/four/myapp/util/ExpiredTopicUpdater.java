@@ -23,7 +23,12 @@ public class ExpiredTopicUpdater {
 	@Before("targetMethod()")
 	public void beforeTragetMethod(JoinPoint joinPoint) {
 		logger.info("AspectUsingAnnotation.beforeTargetMethod executed.");
-		sqlSession.update(NAMESPACE + ".expiredProposal2");
+		
+		if(sqlSession.selectList(NAMESPACE + ".checkExpired2").isEmpty() == false) {
+			sqlSession.update(NAMESPACE + ".expiredProposal2");
+        	logger.info("expired proposal updated.");
+        }
+		
         if(sqlSession.selectList(NAMESPACE + ".checkExpired").isEmpty() == false) {
         	sqlSession.update(NAMESPACE + ".expiredProposal");
         	logger.info("expired proposal updated.");

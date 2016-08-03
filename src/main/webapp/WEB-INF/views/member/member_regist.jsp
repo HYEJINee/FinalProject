@@ -4,6 +4,7 @@
 <head>
 <title>TAWAR - 회원 가입</title>
 
+<%@include file="../include/header.jsp" %>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -18,6 +19,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/member/css/member.css">
+
 <script>
 	var email_check = "email_none";
 	var nick_check = "nick_none";
@@ -205,16 +207,20 @@
 		}
 	}
 </script>
+
 </head>
 <body>
-	<div class="container body ">
+
+
+	<div class="container body " style="margin-top:150px;">
 		<form class="col s12" method="post" action="/member/member_regist"
 			name="form">
-			<h2 style="text-align: center">회원가입</h2>
+			<h4 style="text-align: center">회원가입</h4>
 			<hr />
 			<div class="row"  style="margin-top:40px;">
-				<div class="input-field col s4 offset-s4">
-					<input id="user_email" type="text"> <label for="user_email">이메일
+				<div class="input-field col s4 offset-s3">
+				<i class="small material-icons prefix">email</i>
+					<input id="user_email" type="text"><label for="user_email">이메일
 						주소</label>
 				</div>
 				<div class="col s1">
@@ -223,14 +229,15 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4 offset-s4">
+				<div class="input-field col s4 offset-s3">
+				<i class="small material-icons prefix">vpn_key</i>
 					<input placeholder="영문과 숫자 조합 8자리 이상 입력하세요." id="user_pw"
 						type="password" onkeyup="checkPwd()"> <label for="user_pw">비밀번호</label>
 				</div>
 				<div class="col s3" id="checkPwd"></div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4 offset-s4">
+				<div class="input-field col s4 offset-s3">	<i class="small material-icons prefix">vpn_key</i>
 					<input id="user_pw2" type="password" onkeyup="checkPwd2()">
 					<label for="user_pw2">비밀번호 확인</label>
 				</div>
@@ -238,7 +245,7 @@
 				<div class="col s3" id="checkPwd2"></div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4 offset-s4">
+				<div class="input-field col s4 offset-s3">	<i class="small material-icons prefix">perm_identity</i>
 					<input id="user_nick" type="text"> <label for="user_nick">닉네임</label>
 				</div>
 				<div class="col s1">
@@ -246,10 +253,11 @@
 						value="중복확인" onclick="return chkUser_nick()" />
 				</div>
 			</div>
-			<div class="row">
-				<div class="col s4 offset-s8">
-					<button class="btn-large waves-effect waves-light" type="submit"
-						onclick="return RegCheckIt()">가입하기</button>
+			<hr/>
+			<div class="row" style="margin-top:40px;">
+				<div class="col s4 offset-s10">
+					<button class="btn waves-effect waves-light blue accent-3" type="submit"
+						onclick="return RegCheckIt()">가입하기  <i class="material-icons right">send</i></button>
 				</div>
 			</div>
 		</form>

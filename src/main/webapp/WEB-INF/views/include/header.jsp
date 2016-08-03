@@ -46,7 +46,7 @@
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search_word"  id="search_word">
 					</div>
-					<button type="submit" class="btn btn-default">검색</button>
+					<button type="submit" class="btn btnBoot"    >검색</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${empty USER_KEY != true}">
