@@ -6,8 +6,21 @@ public class ReadVO {
 	private int  topic_type , debate_tot_pro, debate_tot_con, debate_tot_neut, topic_no, vote_type, user_no, op_no;
 	private Date debate_endate;
 	private String topic_title,topic_short_cont,topic_long_cont,topic_pro,topic_con, user_nick;
+	private String img_file_name;
+	private String img_ext_name;
 	
-	
+	public String getImg_file_name() {
+		return img_file_name;
+	}
+	public void setImg_file_name(String img_file_name) {
+		this.img_file_name = img_file_name;
+	}
+	public String getImg_ext_name() {
+		return img_ext_name;
+	}
+	public void setImg_ext_name(String img_ext_name) {
+		this.img_ext_name = img_ext_name;
+	}
 	public int getOp_no() {
 		return op_no;
 	}

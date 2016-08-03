@@ -15,42 +15,61 @@
 	<div class="container top">
 		<form class="form-horizontal">
 		<!-- 토론 주제에 따른 타이틀 변경 -->
-			<c:choose>
+		<c:choose>
+		<c:when test='${readlist.img_file_name != "" && readlist.img_file_name != null}'>
+			<div id="divCoverImg" class="jumbotron">
+				<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
-					<h1>
+					<h2>
 						<span class="label label-primary">찬반</span>
-					</h1>
+					</h2>
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 1}">
-					<h1>
+					<h2>
 						<span class="label label-info">자유</span>
-					</h1>
+					</h2>
 				</c:when>
 			</c:choose>
-			<br />
-			<!-- 토론 제목 및 종료 날짜 -->
-			<div class="form-group">
-				<div class="col-sm-5">
-					<h2>${readlist.topic_title}</h2>
-				</div>
-
+				
+				<p class="text-center" style="font-size:16pt;">${readlist.topic_title}</p>
+				<p id="short_cont">${readlist.topic_short_cont}<br></p>
+				<p id="writer" class="text-right">건의자 : ${readlist.user_nick}</p>
+				<img id="coverImg" alt="커버 이미지" src="/resources/proposal/img/${readlist.img_file_name}.${readlist.img_ext_name}">
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div id="divCoverImg" class="jumbotron" style="background-color: rgba(230, 230, 230, 0.5);">
+				<c:choose>
+				<c:when test="${readlist.topic_type eq 0}">
+					<h2>
+						<span class="label label-primary">찬반</span>
+					</h2>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${readlist.topic_type eq 1}">
+					<h2>
+						<span class="label label-info">자유</span>
+					</h2>
+				</c:when>
+			</c:choose>
+			
+				<p class="text-center" style="font-size:16pt;">${readlist.topic_title}</p>
+				<p id="short_cont">${readlist.topic_short_cont}<br></p>
+				<p id="writer" class="text-right">건의자 : ${readlist.user_nick}</p>
+			</div>
+		</c:otherwise>
+		</c:choose>
+		
 				<div style="text-align: right; color: red">
 					<h3>
 						<em>토론 종료 날짜 : ${readlist.debate_endate}</em><br />
-					</h3>
+					</h3><hr/>
 				</div>
-			</div>
+			
 			<br />
-			<!-- 토론의 소제목과 건의자 -->
-			<div class="form-group">
-				<h3>${readlist.topic_short_cont}</h3>
-			</div>
-			<div style="text-align: right">
-				<h4>건의자 : ${readlist.user_nick}</h4>
-				<hr />
-			</div>
 		</form>
 	</div>
 	<div class="container">
