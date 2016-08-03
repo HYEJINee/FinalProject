@@ -212,7 +212,7 @@
 <body>
 
 
-	<div class="container body " style="margin-top:0px;">
+	<div class="container body " style="margin-top:150px;">
 		<form class="col s12" method="post" action="/member/member_regist"
 			name="form">
 			<h4 style="text-align: center">회원가입</h4>
