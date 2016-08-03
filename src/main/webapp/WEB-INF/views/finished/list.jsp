@@ -6,6 +6,7 @@
 <head>
 <title>TAWAR</title>
 <link rel="stylesheet" href="/resources/finished/css/finished.css">
+<link rel="stylesheet" href="/resources/css/list_item.css">
 <style>
 </style>
 </head>
@@ -35,7 +36,7 @@
 				</c:if>
 				<c:if test="${list.size() > 0}">
 					<c:forEach items="${list}" var="list">
-						<div class="item col-md-3 topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;">
+						<div class="item col-md-3 topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;" onClick="fnRead(this)">
 						<input type="hidden" name="topic_no" value="${list.topic_no}"/>
 						<c:choose>
 							<c:when test="${list.topic_type eq 0}">

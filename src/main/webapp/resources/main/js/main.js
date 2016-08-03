@@ -14,7 +14,7 @@ $(document).ready(function(){
 			location.href = "/read/read?topic_no=" + topic_no;
 		});
 		// 토론중 게시물
-		$(".list_item").click(function(){
+		$(".grid-item").click(function(){
 			var topic_no = $(this).children().filter("input").val();
 			location.href = "/read/read?topic_no=" + topic_no;
 		});

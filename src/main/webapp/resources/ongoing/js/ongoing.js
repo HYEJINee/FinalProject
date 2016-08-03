@@ -39,6 +39,11 @@ var $grid = $('.list');
 		$grid.isotope({filter: filterValue});
 	})
 }
+// 게시글 클릭시 이동
+function fnRead(div) {
+	var topic_no = $(div).children().filter("input").val();
+		location.href = "/read/read?topic_no=" + topic_no;
+}
 
 $(document).ready(function(){
 	fnInfiScroll();
@@ -46,9 +51,4 @@ $(document).ready(function(){
 	$("#proposal").removeClass("active");
 	$("#ongoing").addClass("active");
 	$("#finished").removeClass("active");
-	// 게시글 클릭시 이동
-	$(".item").click(function(){
-		var topic_no = $(this).children().filter("input").val();
-		location.href = "/read/read?topic_no=" + topic_no;
-	});
 });

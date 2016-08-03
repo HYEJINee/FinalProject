@@ -5,6 +5,8 @@
 	최종수정 : 2016.07.29
 */
 @CHARSET "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 body {
 	overflow-x: hidden;
@@ -20,6 +22,10 @@ body {
 .nav-pills li{
 	/* 부트스트랩 우선순위 때문에 직접 지정 */
 	cursor: pointer;
+}
+.nav-pills li a {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-size: 13pt;	
 }
 .item {
 	margin-top: 15px;

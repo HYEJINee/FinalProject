@@ -9,6 +9,7 @@
 <title>TAWAR</title>
 <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/proposal/css/list.css" rel="stylesheet">
+<link rel="stylesheet" href="/resources/css/list_item.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -38,27 +39,27 @@
 				<div class="grid-item card topic_${topic.topic_type}" topic-no="${topic.topic_no}" onclick="toTopic(this)">
 					<c:choose>
 						<c:when test="${topic.img_file_name != '' && topic.img_file_name != null}">
-							<div class="card-header">
+							<div class="card_header">
 								<c:choose>
-									<c:when test="${topic.topic_type == 0}">찬반 토론</c:when>
-									<c:when test="${topic.topic_type == 1}">자유 토론</c:when>
+									<c:when test="${topic.topic_type == 0}"><h4><label class="label label-primary">찬반</label></h4></c:when>
+									<c:when test="${topic.topic_type == 1}"><h4><label class="label label-danger">의견</label></h4></c:when>
 								</c:choose><br>
 								<h4>${topic.topic_title}</h4>
-								<img src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}" style="position: absolute; left:0; top:-50%; width:100%; height:auto; opacity:0.5;z-index:-1;">
+								<img id="coverImg" src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}" style="position: absolute; left:0; top:-50%; width:100%; height:auto; opacity:0.5;z-index:-1;">
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div class="card-header" style="background-color: rgba(230, 230, 230, 0.5);">
+							<div class="card_header_noneImg">
 								<c:choose>
-									<c:when test="${topic.topic_type == 0}">찬반 토론</c:when>
-									<c:when test="${topic.topic_type == 1}">자유 토론</c:when>
+									<c:when test="${topic.topic_type == 0}"><h4><label class="label label-primary">찬반</label></h4></c:when>
+									<c:when test="${topic.topic_type == 1}"><h4><label class="label label-danger">의견</label></h4></c:when>
 								</c:choose><br>
-								<h4>${topic.topic_title}</h4>
+								<h3>${topic.topic_title}</h3>
 							</div>
 						</c:otherwise>
 					</c:choose>
-					<div class="card-body">
-						${topic.topic_short_cont}
+					<div class="card_body">
+						<p>${topic.topic_short_cont}</p>
 					</div>
 					<div class="card-footer">
 						<p class="text-right">

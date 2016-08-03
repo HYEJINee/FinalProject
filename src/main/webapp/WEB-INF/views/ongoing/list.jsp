@@ -6,6 +6,7 @@
 <head>
 <title>TAWAR</title>
 <link rel="stylesheet" href="/resources/ongoing/css/ongoing.css">
+<link rel="stylesheet" href="/resources/css/list_item.css">
 <style>
 </style>
 </head>
@@ -18,7 +19,7 @@
 				<div class="col-md-3">
 					<h2>토론중</h2>
 				</div>
-				<div class="col-md-offset-9">
+				<div class="col-md-offset-8">
 					<ul id="topic-tab" class="nav nav-pills">
 						<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
 			  			<li role="presentation" data-filter=".topic_0"><a href="" data-toggle="pill">찬반 토론</a></li>
@@ -35,7 +36,7 @@
 				</c:if>
 				<c:if test="${list.size() > 0}">
 					<c:forEach items="${list}" var="list">
-					<div class="item col-md-3 topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;">
+					<div class="col-md-3 item grid-item card topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;" onClick="fnRead(this)">
 					<input type="hidden" name="topic_no" value="${list.topic_no}"/>
 					<c:choose>
 						<c:when test="${list.topic_type eq 0}">
@@ -55,7 +56,7 @@
 									<center><h3>${list.topic_title}</h3></center>
 								</div>
 							</c:if>
-							<div id="card_body">
+							<div class="card_body">
 								<p>${list.topic_short_cont}</p>
 								<span class="glyphicon glyphicon-user"> ${list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut}</span>
 								<c:choose>
@@ -88,7 +89,7 @@
 						<!-- card_header -->
 							<!-- 1) 커버이미지 있을 때 -->
 							<c:if test="${list.img_file_name != null}">
-								<div id="card_header">
+								<div class="card_header">
 									<h4><label class="label label-danger">의견</label></h4>
 									<center><h3>${list.topic_title}</h3></center>
 									<img id="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
@@ -96,12 +97,12 @@
 							</c:if>
 							<!-- 2) 커버이미지 없을 때 -->
 							<c:if test="${list.img_file_name eq null}">
-								<div id="card_header_noneImg">
+								<div class="card_header_noneImg">
 									<h4><label class="label label-danger">의견</label></h4>
 									<center><h3>${list.topic_title}</h3></center>
 								</div>
 							</c:if>
-							<div id="card_body">
+							<div class="card_body">
 								<p>${list.topic_short_cont}</p>
 								<span class="glyphicon glyphicon-comment"> ${list.op_cnt}</span>
 							</div>
