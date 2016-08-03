@@ -2,10 +2,10 @@ package com.four.myapp.domain;
 
 public class NotiDTO {
 	private String noti_no;
-	private String user_no;
-	private String topic_no;
+	private int user_no;
+	private int topic_no;
 	private String topic_title;
-	private String other_user_no;
+	private int other_user_no;
 	private String other_user_nick;
 	private String noti_type;
 	private String noti_statement;
@@ -20,16 +20,16 @@ public class NotiDTO {
 	public void setNoti_no(String noti_no) {
 		this.noti_no = noti_no;
 	}
-	public String getUser_no() {
+	public int getUser_no() {
 		return user_no;
 	}
-	public void setUser_no(String user_no) {
+	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	public String getTopic_no() {
+	public int getTopic_no() {
 		return topic_no;
 	}
-	public void setTopic_no(String topic_no) {
+	public void setTopic_no(int topic_no) {
 		this.topic_no = topic_no;
 	}
 	public String getTopic_title() {
@@ -38,10 +38,10 @@ public class NotiDTO {
 	public void setTopic_title(String topic_title) {
 		this.topic_title = topic_title;
 	}	
-	public String getOther_user_no() {
+	public int getOther_user_no() {
 		return other_user_no;
 	}
-	public void setOther_user_no(String other_user_no) {
+	public void setOther_user_no(int other_user_no) {
 		this.other_user_no = other_user_no;
 	}
 	public String getOther_user_nick() {
