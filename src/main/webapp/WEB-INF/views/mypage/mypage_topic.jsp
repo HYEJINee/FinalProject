@@ -3,222 +3,112 @@
 <!DOCTYPE html>
 <html>
 
-<div class="row">
-	<div class="col-md-12">
-		<center>
-			<h3>토론중</h3>
-		</center>
-		<c:choose>
-			<c:when test="${getMyList.size() eq 0}">
-				<center>
-					<h3>게시물이 없습니다.</h3>
-				</center>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${getMyList}" var="myList">
-					<!-- begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}" -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-offset-6">
+					<ul id="topic-tab" class="nav nav-pills">
+						<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
+			  			<li role="presentation" data-filter=".progress_1"><a href="" data-toggle="pill">건의중</a></li>
+						<li role="presentation" data-filter=".progress_3"><a href="" data-toggle="pill">토론중</a></li>
+						<li role="presentation" data-filter=".progress_4"><a href="" data-toggle="pill">종료</a></li>
+						<li role="presentation" data-filter=".progress_2"><a href="" data-toggle="pill">상정실패</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="list col-md-12">
+				<c:if test="${getMyList.size() eq 0}">
+					<center><h2>등록된 게시물이 없습니다.</h2></center>
+				</c:if>
+				<c:if test="${getMyList.size() > 0}">
+					<c:forEach items="${getMyList}" var="list">
+					<div class="item col-md-3 topic_${list.topic_type} progress_${list.topic_progress}" style="padding-left: 0px; padding-right: 0px;">
+					<input type="hidden" name="topic_no" value="${list.topic_no}"/>
 					<c:choose>
-						<c:when test="${myList.topic_type eq 0}">
-							<div class="item list_item col-md-3 col-md-offset-1">
-								<input type="hidden" name="topic_no" value="${myList.topic_no}" />
-								<label class="label label-primary">찬반</label> <br />
-								<center>
-									<h3>${myList.topic_title}</h3>
-								</center>
-								<hr />
-								<p>${myList.topic_short_cont}</p>
-								<span class="glyphicon glyphicon-user">
-									${myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut}</span>
+						<c:when test="${list.topic_type eq 0}">
+						<!-- card_header -->
+							<!-- 1) 커버이미지 있을 때 -->
+							<c:if test="${list.img_file_name != null}">
+								<div id="card_header">
+									<h4><label class="label label-primary">찬반</label></h4>
+									<center><h3>${list.topic_title}</h3></center>
+									<img id="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
+								</div>
+							</c:if>
+							<!-- 2) 커버이미지 없을 때 -->
+							<c:if test="${list.img_file_name eq null}">
+								<div id="card_header_noneImg">
+									<h4><label class="label label-primary">찬반</label></h4>
+									<center><h3>${list.topic_title}</h3></center>
+								</div>
+							</c:if>
+							<div id="card_body">
+								<p>${list.topic_short_cont}</p>
+								<span class="glyphicon glyphicon-user"> ${list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut}</span>
 								<c:choose>
-									<c:when test="${myList.debate_tot_pro eq 0}">
+									<c:when test="${list.debate_tot_pro eq 0}">
 										<span id="pro"> 찬 0%</span>
 									</c:when>
 									<c:otherwise>
-										<span id="pro"> 찬 <fmt:formatNumber
-												value="${myList.debate_tot_pro/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
-												pattern=".0" />%
-										</span>
+										<span id="pro"> 찬 <fmt:formatNumber value="${list.debate_tot_pro/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
 									</c:otherwise>
 								</c:choose>
 								<c:choose>
-									<c:when test="${myList.debate_tot_con eq 0}">
+									<c:when test="${list.debate_tot_con eq 0}">
 										<span id="con"> 반 0%</span>
 									</c:when>
 									<c:otherwise>
-										<span id="con"> 반 <fmt:formatNumber
-												value="${myList.debate_tot_con/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
-												pattern=".0" />%
-										</span>
+										<span id="con"> 반 <fmt:formatNumber value="${list.debate_tot_con/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
 									</c:otherwise>
 								</c:choose>
 								<c:choose>
-									<c:when test="${myList.debate_tot_neut eq 0}">
+									<c:when test="${list.debate_tot_neut eq 0}">
 										<span id="neut"> 중 0%</span>
 									</c:when>
 									<c:otherwise>
-										<span id="neut"> 중 <fmt:formatNumber
-												value="${myList.debate_tot_neut/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
-												pattern=".0" />%
-										</span>
+										<span id="neut"> 중 <fmt:formatNumber value="${list.debate_tot_neut/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
 									</c:otherwise>
 								</c:choose>
 							</div>
 						</c:when>
-						<c:when test="${myList.topic_type eq 1}">
-							<div class="item list_item type1 col-md-3 col-md-offset-1">
-								<input type="hidden" name="topic_no" value="${myList.topic_no}" />
-								<label class="label label-danger">의견</label><br />
-								<center>
-									<h3>${myList.topic_title}</h3>
-								</center>
-								<hr />
-								<p>${myList.topic_short_cont}</p>
-								<span class="glyphicon glyphicon-education">
-									${myList.op_cnt}</span>
+						<c:when test="${list.topic_type eq 1}">
+						<!-- card_header -->
+							<!-- 1) 커버이미지 있을 때 -->
+							<c:if test="${list.img_file_name != null}">
+								<div id="card_header">
+									<h4><label class="label label-danger">의견</label></h4>
+									<center><h3>${list.topic_title}</h3></center>
+									<img id="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
+								</div>
+							</c:if>
+							<!-- 2) 커버이미지 없을 때 -->
+							<c:if test="${list.img_file_name eq null}">
+								<div id="card_header_noneImg">
+									<h4><label class="label label-danger">의견</label></h4>
+									<center><h3>${list.topic_title}</h3></center>
+								</div>
+							</c:if>
+							<div id="card_body">
+								<p>${list.topic_short_cont}</p>
+								<span class="glyphicon glyphicon-comment"> ${list.op_cnt}</span>
 							</div>
 						</c:when>
 					</c:choose>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-	</div>
-</div>
-<hr />
-<div class="row">
-	<div class="col-md-12">
-		<center>
-			<h3>건의중</h3>
-		</center>
-		<c:choose>
-			<c:when test="${getMyList.size() eq 0}">
-				<center>
-					<h3>게시물이 없습니다.</h3>
-				</center>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${topicList}" var="topic">
-					<div class="col-md-4">
-						<div class="card" topic-no="${topic.topic_no}">
-							<c:choose>
-								<c:when
-									test="${topic.img_file_name != '' && topic.img_file_name != null}">
-									<div class="card-header">
-										<c:choose>
-											<c:when test="${topic.topic_type == 0}">찬반 토론</c:when>
-											<c:when test="${topic.topic_type == 1}">자유 토론</c:when>
-										</c:choose>
-										<br>
-										<h4>${topic.topic_title}</h4>
-										<img
-											src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}"
-											style="position: absolute; left: 0; top: -50%; width: 100%; height: auto; opacity: 0.5; z-index: -1;">
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="card-header"
-										style="background-color: rgba(230, 230, 230, 0.5);">
-										<c:choose>
-											<c:when test="${topic.topic_type == 0}">찬반 토론</c:when>
-											<c:when test="${topic.topic_type == 1}">자유 토론</c:when>
-										</c:choose>
-										<br>
-										<h4>${topic.topic_title}</h4>
-									</div>
-								</c:otherwise>
-							</c:choose>
-							<div class="card-body">${topic.topic_short_cont}</div>
-							<div class="card-footer">
-								<p class="text-right">
-									<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-									${topic.recommend}
-								</p>
-							</div>
-						</div>
 					</div>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-	</div>
-</div>
-<hr />
-<div class="row">
-	<div class="col-md-12">
-		<center>
-			<h3>토론을 종료한 안건</h3>
-		</center>
-		<c:choose>
-			<c:when test="${getMyFinishList.size() eq 0}">
-				<center>
-					<h3>게시물이 없습니다.</h3>
-				</center>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${getMyFinishList}" var="myList">
-					<!-- begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}" -->
-					<c:choose>
-						<c:when test="${myList.topic_type eq 0}">
-							<div class="item list_item col-md-3 col-md-offset-1">
-								<input type="hidden" name="topic_no" value="${myList.topic_no}" />
-								<label class="label label-primary">찬반</label> <br />
-								<center>
-									<h3>${myList.topic_title}</h3>
-								</center>
-								<hr />
-								<p>${myList.topic_short_cont}</p>
-								<span class="glyphicon glyphicon-user">
-									${myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut}</span>
-								<c:choose>
-									<c:when test="${myList.debate_tot_pro eq 0}">
-										<span id="pro"> 찬 0%</span>
-									</c:when>
-									<c:otherwise>
-										<span id="pro"> 찬 <fmt:formatNumber
-												value="${myList.debate_tot_pro/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
-												pattern=".0" />%
-										</span>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${myList.debate_tot_con eq 0}">
-										<span id="con"> 반 0%</span>
-									</c:when>
-									<c:otherwise>
-										<span id="con"> 반 <fmt:formatNumber
-												value="${myList.debate_tot_con/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
-												pattern=".0" />%
-										</span>
-									</c:otherwise>
-								</c:choose>
-								<c:choose>
-									<c:when test="${myList.debate_tot_neut eq 0}">
-										<span id="neut"> 중 0%</span>
-									</c:when>
-									<c:otherwise>
-										<span id="neut"> 중 <fmt:formatNumber
-												value="${myList.debate_tot_neut/(myList.debate_tot_pro + myList.debate_tot_con + myList.debate_tot_neut)*100}"
-												pattern=".0" />%
-										</span>
-									</c:otherwise>
-								</c:choose>
-							</div>
-						</c:when>
-						<c:when test="${myList.topic_type eq 1}">
-							<div class="item list_item type1 col-md-3 col-md-offset-1">
-								<input type="hidden" name="topic_no" value="${myList.topic_no}" />
-								<label class="label label-danger">의견</label><br />
-								<center>
-									<h3>${myList.topic_title}</h3>
-								</center>
-								<hr />
-								<p>${myList.topic_short_cont}</p>
-								<span class="glyphicon glyphicon-education">
-									${myList.op_cnt}</span>
-							</div>
-						</c:when>
-					</c:choose>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-	</div>
-</div>
+					</c:forEach>
+				</c:if>
+			</div>
+		</div>
+
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<div id="load"></div>
+		
+	<nav id="page_nav" style="display:none;">
+		<p><a href="/ongoing/list?pageNo=2"></a></p>
+	</nav>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
 </html>

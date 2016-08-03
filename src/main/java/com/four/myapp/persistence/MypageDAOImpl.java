@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.four.myapp.domain.MainDto;
 import com.four.myapp.domain.MemberVO;
+import com.four.myapp.domain.MyListDTO;
 import com.four.myapp.domain.TimelineDTO;
 
 @Repository
@@ -35,8 +36,11 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
-	public List<MainDto> getMyList(String user_no) throws SQLException {
-		return sqlSession.selectList(NAMESPACE + ".getMyList", user_no);
+	public List<MainDto> getMyList(String user_no, int index) throws SQLException {
+		MyListDTO myListDTO = new MyListDTO();
+		myListDTO.setUser_no(user_no);
+		myListDTO.setIndex(index);
+		return sqlSession.selectList(NAMESPACE + ".getMyList", myListDTO);
 	}
 
 	@Override

@@ -34,8 +34,8 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<MainDto> getMyList(String user_no) throws SQLException {
-		return dao.getMyList(user_no);
+	public List<MainDto> getMyList(String user_no, int index) throws SQLException {
+		return dao.getMyList(user_no, index);
 	}
 
 	@Override

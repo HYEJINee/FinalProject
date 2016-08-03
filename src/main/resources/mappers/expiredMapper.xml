@@ -17,4 +17,21 @@
 	<update id="expiredProposal2">
 		update topic_tbl set topic_progress = 4 where topic_progress = 3 and topic_endate <![CDATA[ < ]]> now()
 	</update>
+	
+	<select id="getTimelineDTO" parameterType="int" resultType="TimelineDTO">
+		select user_no, topic_no, topic_type from topic_tbl where topic_no = #{topic_no};
+	</select>
+	
+	<insert id="timelineTopic" parameterType="TimelineDTO">
+		insert into
+		timeline_tbl (user_no, topic_no, topic_type, timeline_type) values
+		(#{user_no}, #{topic_no}, #{topic_type}, #{timeline_type});
+	</insert>
+	
+	<insert id="notiTopic" parameterType="NotiDTO">
+		insert into
+		noti_tbl (user_no, topic_no, other_user_no, noti_type) values
+		(#{user_no}, #{topic_no}, #{other_user_no}, #{noti_type});
+	</insert>
+	
 </mapper>
