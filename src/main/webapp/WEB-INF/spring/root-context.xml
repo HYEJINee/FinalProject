@@ -49,6 +49,5 @@
     </bean>
     <bean id="emailSender" class="com.four.myapp.persistence.EmailSender">
     </bean>
-
-   
+    
 </beans>

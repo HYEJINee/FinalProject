@@ -113,7 +113,7 @@ public class TopicProposalServiceImpl implements TopicProposalService{
 	}
 	
 	@Override
-	public void proposalToGo(int topic_no) {
+	public void proposalRelease(int topic_no) {
 		proposalDAO.makeProgress(topic_no);
 	}
 	
