@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.four.myapp.mappers.expiredMapper">
+
 	<select id="checkExpired" resultType="int">
 		select topic_no from topic_tbl where topic_progress = 1 and topic_endate <![CDATA[ < ]]> now()
 	</select>
 
 	<update id="expiredProposal">
 		update topic_tbl set topic_progress = 2 where topic_progress = 1 and topic_endate <![CDATA[ < ]]> now()
+	</update>
+	<update id="expiredProposal2">
+		update topic_tbl set topic_progress = 4 where topic_progress = 3 and topic_endate <![CDATA[ < ]]> now()
 	</update>
 </mapper>

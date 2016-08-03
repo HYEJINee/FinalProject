@@ -9,16 +9,12 @@
 <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
 </head>
-<body data-spy="scroll" data-target=".ScrollSpy" data-offset="50">
-	<script type="text/javascript">
-		var list = new Array();
-		<c:forEach items="${readoplike}" var="item">
-		list.push("${item.op_no}");
-		</c:forEach>
-	</script>
+<body>
+	<!-- 종료된 토론 페이지 보는것만 가능, 투표,의견 작성, 삭제, 수정 불가능 -->
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div class="container top">
 		<form class="form-horizontal">
+		<!-- 토론 주제에 따른 타이틀 변경 -->
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
 					<h1>
