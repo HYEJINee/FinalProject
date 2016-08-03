@@ -21,7 +21,7 @@ function fnInfiScroll() {
 			itemSelector: '.item',
 			// use element for option
 			masonry: {
-				gutter: 80
+				gutter: 50
 			}
 		});
 				

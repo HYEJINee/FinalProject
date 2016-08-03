@@ -19,32 +19,39 @@ import com.four.myapp.service.FinishedService;
 import com.four.myapp.service.ReadService;
 
 @Controller
+@RequestMapping("/finished/*")
 public class FinishedController {
 	@Autowired
 	private FinishedService service;
 	
-	@RequestMapping("/finished/list")
-	public void FinishedHandler(Model model) throws SQLException {
-		model.addAttribute("list", service.getAll_fin());
+	@RequestMapping("/list")
+	public void FinishedHandler(@RequestParam(required=false) Integer pageNo, Model model) throws SQLException {
+		if(pageNo == null)
+			  pageNo = 1;
+		int index = (pageNo-1) * 9;
+		
+		model.addAttribute("list", service.getAll_fin(index));
 	}
 	
-	@RequestMapping("/finished/tab")
-	public @ResponseBody List<MainDto> TabHandler(@RequestParam("type") String type, Model model) throws SQLException {
-		if(type.equals("all")) {
-			return service.getAll_fin();
-		}
-		else if(type.equals("pro-con")) {
-			return service.getProCon_fin();
-		}
-		else {
-			return service.getFree_fin();
-		}
+	@RequestMapping("/tab")
+	public @ResponseBody List<MainDto> TabHandler(@RequestParam("pageNo") Integer pageNo, @RequestParam("type") String type, Model model) throws SQLException {
+		int index = 0;
+		if(pageNo == null)
+			  pageNo = 1;
+		index = (pageNo-1) * 9;
+		
+		if(type.equals("all"))
+			return service.getAll_fin(index);
+		else if(type.equals("pro-con"))
+			return service.getProCon_fin(index);
+		else
+			return service.getFree_fin(index);
 	}
 	
 	@Autowired
 	private ReadService read_service;
 	
-	@RequestMapping(value="/finished/read", method=RequestMethod.GET)
+	@RequestMapping(value="/read", method=RequestMethod.GET)
 	public void readget(@RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
 		MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		if(vo != null) {

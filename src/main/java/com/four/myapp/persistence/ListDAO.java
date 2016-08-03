@@ -14,7 +14,7 @@ public interface ListDAO {
 	public List<MainDto> getProCon_on(int index) throws SQLException;
 	public List<MainDto> getFree_on(int index) throws SQLException;
 	
-	public List<MainDto> getAll_fin() throws SQLException;
-	public List<MainDto> getProCon_fin() throws SQLException;
-	public List<MainDto> getFree_fin() throws SQLException;
+	public List<MainDto> getAll_fin(int index) throws SQLException;
+	public List<MainDto> getProCon_fin(int index) throws SQLException;
+	public List<MainDto> getFree_fin(int index) throws SQLException;
 }

@@ -21,14 +21,11 @@ public class OngoingController {
 	
 	@RequestMapping("/list")
 	public void OngoingHandler(@RequestParam(required=false) Integer pageNo, Model model) throws SQLException {
-		if(pageNo == null) {
+		if(pageNo == null)
 			  pageNo = 1;
-			  int index = (pageNo-1) * 9;
-			  model.addAttribute("list", service.getAll_on(index));
-		  } else {
-			  int index = (pageNo-1) * 9;
-			  model.addAttribute("list", service.getAll_on(index));
-		  }
+		int index = (pageNo-1) * 9;
+		
+		model.addAttribute("list", service.getAll_on(index));
 	}
 	
 	@RequestMapping("/ongoing/tab")
