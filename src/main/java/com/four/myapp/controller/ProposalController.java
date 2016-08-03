@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.ReplyDTO;
-import com.four.myapp.domain.TimelineDTO;
 import com.four.myapp.domain.TopicProposalDTO;
 import com.four.myapp.service.TimelineService;
 import com.four.myapp.service.TopicProposalService;
@@ -81,7 +80,7 @@ public class ProposalController {
     	  
     	//Timeline : 안건이 투표중으로 바뀜 (timeline_type="3") 
 		  timelineService.timelineTopic2to4(topic_no, "3");
-    	  service.proposalToGo(topic_no);
+    	  service.proposalRelease(topic_no);
     	
     	  return "redirect:/ongoing/list";
       }

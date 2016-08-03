@@ -40,6 +40,10 @@
 		insert into reply_tbl(topic_no, user_no, reply_content) values(#{topic_no}, #{user_no}, #{reply_content});
 	</insert>
 	
+	<insert id="addDebateTbl" parameterType="int">
+		insert into debate_tbl(topic_no, debate_regdate, debate_endate) values (#{topic_no}, now(), add_date(now(), interval +10 day))
+	</insert>
+	
 	<select id="getLatest" resultType="int">
 		select topic_no from topic_tbl where user_no = #{user_no} order by topic_regdate desc limit 1;
 	</select>
