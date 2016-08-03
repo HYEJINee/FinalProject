@@ -6,7 +6,7 @@ import java.util.List;
 import com.four.myapp.domain.MainDto;
 
 public interface FinishedService {
-	public List<MainDto> getAll_fin() throws SQLException;
-	public List<MainDto> getProCon_fin() throws SQLException;
-	public List<MainDto> getFree_fin() throws SQLException;
+	public List<MainDto> getAll_fin(int index) throws SQLException;
+	public List<MainDto> getProCon_fin(int index) throws SQLException;
+	public List<MainDto> getFree_fin(int index) throws SQLException;
 }

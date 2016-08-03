@@ -14,7 +14,7 @@ var $grid = $('.list');
 		itemSelector: '.item',
 		// use element for option
 		masonry: {
-			gutter: 80
+			gutter: 60
 		}
 	});
 			
