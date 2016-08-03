@@ -6,5 +6,5 @@ import java.util.List;
 import com.four.myapp.domain.MainDto;
 
 public interface SearchDAO {
-	public List<MainDto> getSearchResult(String search, String search2) throws SQLException;
+	public List<MainDto> getSearchResult(String search, String search2, int index) throws SQLException;
 }
