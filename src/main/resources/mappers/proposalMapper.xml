@@ -41,7 +41,7 @@
 	</insert>
 	
 	<insert id="addDebateTbl" parameterType="int">
-		insert into debate_tbl(topic_no, debate_regdate, debate_endate) values (#{topic_no}, now(), add_date(now(), interval +10 day))
+		insert into debate_tbl(topic_no, debate_regdate, debate_endate) values (#{topic_no}, now(), date_add(now(), interval +10 day))
 	</insert>
 	
 	<select id="getLatest" resultType="int">
