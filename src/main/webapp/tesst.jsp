@@ -1,23 +1,19 @@
-<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>TAWAR - 회원 가입</title>
+<title>Insert title here</title>
 
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/member/css/member.css">
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <script>
 	var email_check = "email_none";
 	var nick_check = "nick_none";
@@ -207,19 +203,20 @@
 </script>
 </head>
 <body>
-	<div class="container body ">
-		<form class="col s12" method="post" action="/member/member_regist"
-			name="form">
-			<h2 style="text-align: center">회원가입</h2>
+
+	<div class="row">
+	<form class="col s12" method="post"
+			action="/member/member_regist" name="form">
+			<h2 class="text-center">회원가입</h2>
 			<hr />
-			<div class="row"  style="margin-top:40px;">
+			<div class="row">
 				<div class="input-field col s4 offset-s4">
-					<input id="user_email" type="text"> <label for="user_email">이메일
-						주소</label>
+					<input id="user_email" type="text" class=""> <label
+						for="user_email">이메일 주소</label>
 				</div>
 				<div class="col s1">
-					<input type="button" class="btn waves-effect waves-light"
-						value="중복확인" onclick="return chkUser_email()" />
+					<input type="button" class="btn btn-default" value="중복확인"
+						onclick="return chkUser_email()" />
 				</div>
 			</div>
 			<div class="row">
@@ -242,26 +239,16 @@
 					<input id="user_nick" type="text"> <label for="user_nick">닉네임</label>
 				</div>
 				<div class="col s1">
-					<input type="button" class="btn waves-effect waves-light"
-						value="중복확인" onclick="return chkUser_nick()" />
+					<input type="button" class="btn btn-default" value="중복확인"
+						onclick="return chkUser_nick()" />
 				</div>
 			</div>
-			<div class="row">
-				<div class="col s4 offset-s8">
-					<button class="btn-large waves-effect waves-light" type="submit"
-						onclick="return RegCheckIt()">가입하기</button>
-				</div>
-			</div>
-		</form>
-		<form name="nickform">
-			<input type="hidden" id="nick" />
-		</form>
-		<form name="emailform">
-			<input type="hidden" id="emi" />
+
 		</form>
 	</div>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
 </body>
 </html>
