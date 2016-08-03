@@ -61,13 +61,13 @@ public class ReadController {
 	     if(vote_type == 0){
 	    	 service.votepro(topic_no); 
 	    	//Timeline : 유저가 투표함 (timeline_type="6") 
-			  timelineService.timelineVote(topic_no, user_no, 0, "6");
+			  timelineService.timelineVote(topic_no, user_no, "0", "6");
 	     } else if(vote_type == 1){
 	    	 service.votecon(topic_no);
-	    	 timelineService.timelineVote(topic_no, user_no, 1, "6");
+	    	 timelineService.timelineVote(topic_no, user_no, "1", "6");
 	     } else{
 	    	 service.voteneut(topic_no);
-	    	 timelineService.timelineVote(topic_no, user_no, 2, "6");
+	    	 timelineService.timelineVote(topic_no, user_no, "2", "6");
 	     }
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
@@ -97,11 +97,14 @@ public class ReadController {
 	     service.insertoption(topic_no, recontent, rel, optionchk, user_no); // insert
 	     
 	     //Timeline : 유저가 의견을 남김 (timeline_type="7") 
-		  timelineService.timelineVote(topic_no, user_no, optionchk, "7");
+		  timelineService.timelineVote(topic_no, user_no, Integer.toString(optionchk), "7");
 	     
 	     if(rel != 0) {
 	    	int reop_no = service.selectcomment(rel, recontent, optionchk, user_no).getOp_no();
 	    	service.inserttag(rel, reop_no, topic_no);
+	    	
+	    	//Notification : A가 B의 글에 답글을 달때 B의 알림창에 추가 된다 
+	    	timelineService.notiReply(user_no, topic_no, reop_no);
 	     }
 	    
 	     return "redirect:/read/read?topic_no="+topic_no;
