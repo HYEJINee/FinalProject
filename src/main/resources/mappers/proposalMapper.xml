@@ -73,8 +73,8 @@
 	</select>
 	
 	<update id="makeProgress" parameterType="int">
-		update topic_tbl set topic_progress = 3 where topic_no = #{topic_no}
-	</update>
+		update topic_tbl set topic_progress = 3, topic_regdate = now(), topic_endate = date_add(now(), interval +20 day) where topic_no = #{topic_no}
+		</update>
 	
 	<update id="modReply" parameterType="ReplyDTO">
 		update reply_tbl set reply_content = #{reply_content} where reply_no = #{reply_no}
