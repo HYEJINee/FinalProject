@@ -41,7 +41,7 @@
 					<li id="ongoing"><a href="/ongoing/list">토론중</a></li>
 					<li id="finished"><a href="/finished/list">종료된 토론</a>
 				</ul>
-				<form class="navbar-form navbar-left" action="/search/search_result"  method="post">
+				<form class="navbar-form navbar-left" action="/search/search_result"  method="get">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search_word"  id="search_word">
 					</div>
