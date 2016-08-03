@@ -38,7 +38,7 @@ public class MypageController {
 	MemberServiceImpl memService;
 	
 	@RequestMapping(value = "/mypage", method=RequestMethod.GET)
-	public String timeline(HttpServletRequest request, Model model) throws Exception {
+	public String timeline(HttpServletRequest request, Model model, @RequestParam(required=false) Integer pageNo) throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("USER_KEY");
 		if (vo == null) {
@@ -46,11 +46,20 @@ public class MypageController {
 		}
 		else {
 			String user_no = vo.getUser_no();
+			
+			if(pageNo == null)
+				  pageNo = 1;
+			int index = (pageNo-1) * 9;
+			
+			model.addAttribute("getMyList", service.getMyList(user_no, index));
+			
 			model.addAttribute("timeline", service.timeline(user_no));
 			model.addAttribute("getNoti", service.getNoti(user_no));
+			/*
 			model.addAttribute("getMyList", service.getMyList(user_no));
 			model.addAttribute("getMyRecmdList", service.getMyRecmdList(user_no));
 			model.addAttribute("getMyFinishList", service.getMyFinishList(user_no));
+			*/
 			return "/mypage/mypage_home";
 		}
 	}

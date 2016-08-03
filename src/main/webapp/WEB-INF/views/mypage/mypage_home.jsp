@@ -19,7 +19,8 @@
 		<div class="row ">
 			<div class="mypage-header-container">
 				<div class="mypage-header-profile">
-					<img class="center round-profile-150" src="/resources/mypage/img/${USER_KEY.user_profile}" />
+					<img class="center round-profile-150"
+						src="/resources/mypage/img/${USER_KEY.user_profile}" />
 				</div>
 				<div class="mypage-header-user">
 					<h3>${USER_KEY.user_nick }의페이지</h3>
@@ -90,8 +91,7 @@
 					<div class="col-md-7 mypage-profile-picture">
 						<table width="100%">
 							<tr>
-								<td>
-									<img src="${USER_KEY.user_lv_img }" />
+								<td><img src="${USER_KEY.user_lv_img }" />
 								<td>
 							</tr>
 							<tr>
@@ -117,5 +117,11 @@
 		</div>
 		<script
 			src="${pageContext.request.contextPath}/resources/mypage/js/mypage.js"></script>
+		<script
+			src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+		<script
+			src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+		<script src="/resources/proposal/js/jquery.infinitescroll.min.js"></script>
+		<script src="/resources/ongoing/js/ongoing.js"></script>
 </body>
 </html>
