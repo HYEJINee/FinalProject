@@ -19,8 +19,7 @@
 		<div class="row ">
 			<div class="mypage-header-container">
 				<div class="mypage-header-profile">
-					<img class="center round-profile-150"
-						src="/resources/mypage/img/${USER_KEY.profile_file_name}.${USER_KEY.profile_ext_name}" />
+					<img class="center round-profile-150" src="/resources/mypage/img/${USER_KEY.user_profile}" />
 				</div>
 				<div class="mypage-header-user">
 					<h3>${USER_KEY.user_nick }의페이지</h3>
@@ -74,7 +73,7 @@
 							<div id="profile-img-div">
 								<div id="profile-img-wrapper"></div>
 								<img id="profile-test" class="round-profile-150"
-									src=${USER_KEY.profile} />
+									src="/resources/mypage/img/${USER_KEY.user_profile}" />
 							</div>
 
 							<p class="text-center" style="font-size: 12pt">이미지 파일은 JPG,

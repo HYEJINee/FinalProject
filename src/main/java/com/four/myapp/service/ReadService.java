@@ -13,7 +13,7 @@ import com.four.myapp.domain.ReadtagVO;
 public interface ReadService {
 	public ReadVO Readdao(int topic_no) throws SQLException;
 	public List<ReadResourceVO> getResource(int topic_no) throws SQLException;
-	public List<ReadOpinionVO> getOpinion(int topic_no) throws SQLException;
+	public List<ReadOpinionVO> getOpinion(int topic_no, int pageNo) throws SQLException;
 	public void topicvote(int topic_no, int user_no, int vote_type);
 	public void votepro(int topic_no);
 	public void votecon(int topic_no);

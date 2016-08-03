@@ -6,17 +6,8 @@
 <html>
 <head>
 <title>Read Page</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link
-	href="${pageContext.request.contextPath}/resources/read/css/read.css"
-	rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="/resources/bootstrap/js/bootstrap.js"></script>
-<script src="/resources/bootstrap/js/menu.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/read/js/read.js"></script>
+<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
 </head>
 <body data-spy="scroll" data-target=".ScrollSpy" data-offset="50">
 	<script type="text/javascript">
@@ -162,7 +153,7 @@
 			</c:choose>
 		</form>
 	</div>
-	<div class="container" data-offset="150">
+	<div class="container">
 		<form class="form-horizontal">
 			<div>
 				<h2>본문</h2>
@@ -204,17 +195,17 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="ScrollSpy">
+	<div class="grid ScrollSpy col-sm-offset-2 col-sm-10">
 			
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 		
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
-					<div class="container" id="${opinion.op_no}#">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
 							<div class="form-group">
-								<div class="col-sm-1">
+								<div class="col-sm-offset-1 col-sm-2">
 									<input type="hidden" name="op_no" value="${opinion.op_no}" />
 									<input type="hidden" name="topic_no"
 										value="${readlist.topic_no}" /> <input type="hidden"
@@ -222,31 +213,33 @@
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
+								
 								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
-									<div class="col-sm-3">
+									style="border-style: solid; border-width: 1px; border-color: #3333FF">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
-											<span class="label label-info" style="margin-top: 20px">찬성</span>
+											<span class="label label-primary" style="margin-top: 20px">찬성</span>
 										</h3>
 									</div>
 									<div class="col-sm-5 minitop">
@@ -265,12 +258,8 @@
 											</c:forEach>
 										</h4>
 									</div>
-
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
 									</div>
+									
 									<hr />
 									${opinion.op_content} <br />
 									<hr />
@@ -307,7 +296,7 @@
 			</c:choose>
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 1}">
-					<div class="container" id="${opinion.op_no}#">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
 							<div class="form-group">
@@ -316,7 +305,8 @@
 								<input type="hidden" name="op_like_type" />
 								<div class="col-sm-offset-2 col-sm-9" id="blog_intro"
 									style="border-style: solid; border-width: 1px; border-color: #FF3232">
-									<div class="col-sm-3">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;
 											<span class="label label-danger" style="margin-top: 20px">반대</span>
 										</h3>
@@ -337,10 +327,6 @@
 											</c:forEach>
 										</h4>
 									</div>
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
 									</div>
 									<hr />
 									${opinion.op_content} <br />
@@ -371,27 +357,27 @@
 												</div>
 									</div>
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-2 col-sm-offset-1">
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
@@ -403,40 +389,41 @@
 
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 2}">
-					<div class="container" id="${opinion.op_no}#">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
 							<div class="form-group ">
 								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
-								<div class="col-sm-2">
+								<div class="col-sm-offset-1 col-sm-2">
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #66FF00">
-									<div class="col-sm-3">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-success" style="margin-top: 20px">중립</span>
 										</h3>
@@ -457,10 +444,7 @@
 											</c:forEach>
 										</h4>
 									</div>
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
+									
 									</div>
 									<hr />
 									${opinion.op_content} <br />
@@ -499,11 +483,11 @@
 			</c:choose>
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 3}">
-					<div class="container" id="${opinion.op_no}#">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post"
 							id="${opinion.op_no}">
 							<div class="form-group">
-								<div class="col-sm-1">
+								<div class="col-sm-offset-1 col-sm-2">
 									<input type="hidden" name="op_no" value="${opinion.op_no}" />
 									<input type="hidden" name="topic_no"
 										value="${readlist.topic_no}" /> <input type="hidden"
@@ -511,31 +495,32 @@
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 1}">
 											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 2}">
 											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 3}">
 											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 										<c:when test="${opinion.user_lv eq 4}">
 											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
+												style="height: 60px; width: 60px" />
 										</c:when>
 									</c:choose>
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
-									<div class="col-sm-3">
+									<div class="row">
+									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
-											<span class="label label-info" style="margin-top: 20px">의견</span>
+											<span class="label label-info" style="margin-top: 20px">자유</span>
 										</h3>
 									</div>
 									<div class="col-sm-5 minitop">
@@ -543,22 +528,18 @@
 											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 												<c:choose>
 													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">#참조</a>
+														<a href="#${tag.tagged_op_no}#">#의견</a>
 													</c:when>
 												</c:choose>
 												<c:choose>
 													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">#반박</a>
+														<a href="#${tag.tag_op_no}#">#의견</a>
 													</c:when>
 												</c:choose>
 											</c:forEach>
 										</h4>
 									</div>
 
-									<div style="text-align: right">
-										<h3>
-											<em>NO.${status.count}</em>
-										</h3>
 									</div>
 									<hr />
 									${opinion.op_content} <br />
@@ -596,16 +577,10 @@
 			</c:choose>
 		</c:forEach>
 	</div>
-	<div class="container">
-		<form class="form-horizontal">
-			<div class="form-group">
-				<div class=" col-sm-offset-5">
-					<input type="button" value="이전 답글" class="btn btn-default" /> 
-					<input type="button" value="다음 답글" class="btn btn-default" id="nextoption"/><br /> <br />
-				</div>
-			</div>
-		</form>
-	</div>
+	<div id="bottom"></div>
+	<nav id="page_nav" style="display:none">
+		<p><a href="/finished/read?topic_no=${readlist.topic_no}&pageNo=2"></a></p>
+	</nav>
 	<div class="container">
 		<form class="form-horizontal" action="option" method="post"
 			id="optionform">
@@ -613,27 +588,26 @@
 				<h2>의견 작성</h2>
 				<hr />
 				<div class="col-sm-1">
-					<img src="" style="height: 30px; width: 30px" />
 					<c:choose>
 						<c:when test="${readuser.user_lv eq 0}">
 							<img src="/resources/user_lv/common.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 1}">
 							<img src="/resources/user_lv/prestige.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 2}">
 							<img src="/resources/user_lv/royal.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 3}">
 							<img src="/resources/user_lv/vip.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 						<c:when test="${readuser.user_lv eq 4}">
 							<img src="/resources/user_lv/vvip.png"
-								style="height: 50px; width: 50px" />
+								style="height: 60px; width: 60px" />
 						</c:when>
 					</c:choose>
 				</div>
@@ -671,5 +645,11 @@
 			</div>
 		</form>
 	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/read/js/jquery.infinitescroll.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/read/js/read.js"></script>
 </body>
 </html>

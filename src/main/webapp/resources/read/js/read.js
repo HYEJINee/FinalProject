@@ -1,48 +1,90 @@
 /**
  * read.js
  */
-/*
-	function fn(rel) {
-       alert(rel)
-       var aaa = rel+"#";
-       alert(aaa)
-       $("#" + aaa).focus();
-    }
-    */
-/*
-	$(function(){
-		$('body').scrollspy({ target: '#scroll' })
-	})
-*/
-/*
-	$(function(){
+$(function() {
+	var $grid = $('.grid');
 	
-    $("body").scrollspy({target : "#scrolldiv"})
-   // $("body").affix({offset: {top: 150} });
-   
-	});*/
+	$grid.isotope();
+	
+	$grid.infinitescroll({
+		navSelector : '#page_nav',
+		nextSelector : '#page_nav p a',
+		itemSelector : '.grid-item',
+		loading: {
+			selector: '#bottom',
+			finishedMsg: '<em>모든 의견을 불러왔습니다.<em>',
+			img: 'http://i.imgur.com/qkKy8.gif',
+			msgText: '<em>의견을 불러오는 중...</em>'
+		}
+	},
+		function(newElements) {
+			$grid.isotope('appended', $(newElements));
+		}
+	);
+})
 
+function Modify(button) {
+	var content = $(button).next().val();
+	var opno = $(button).next().next().val();
+	var recontent = $(button).next().val().replace(/<br\s*[\/]?>/gi, "\n");
+	$('#myModal').modal();
+	$("#upcontent").val(recontent);	
+	$("#reupopno").val(opno);	
+}
+function Optdel(button) {
+	var topicno = $(button).next().val();
+	var opno = $(button).next().next().val();
+	$("#delopno").val(opno);	
+	$("#deltopicno").val(topicno);
+	$("#delform").submit();	
+}
+function Ref(button) {
+	var id = $(button).attr('id');
+	var nick = $(button).next().val();
+	var op_no = $(button).next().next().val();
+	$("#relid").val(nick);
+	$("#rel").val(op_no);
+	$("#context").focus();
+}
+function Opvotebtn0(button) {
+	var op_like_type = $(button).next().val();
+	var formid = $(button).val(); //0 , 1, 2
+	if (list.length == 0) {
+		$("input[name=op_like_type]").val(
+				op_like_type);
+		$("#" + formid).submit();
+	} else {
+		if (list.indexOf(formid) == -1) {
+			$("input[name=op_like_type]").val(
+					op_like_type);
+			$("#" + formid).submit();
+		} else if (list.indexOf(formid) != -1) {
+			alert("이미 투표에 참여하셨습니다.");
+		}
+	}
+}
+function Opvotebtn1(button) {
+	var op_like_type = $(button).next().val();
+	var formid = $(button).val(); //0 , 1, 2
+	if (list.length == 0) {
+		$("input[name=op_like_type]").val(
+				op_like_type);
+		$("#" + formid).submit();
+	} else {
+		if (list.indexOf(formid) == -1) {
+			$("input[name=op_like_type]").val(
+					op_like_type);
+			$("#" + formid).submit();
+		} else if (list.indexOf(formid) != -1) {
+			alert("이미 투표에 참여하셨습니다.");
+		}
+	}
+}
 	$(document).ready(function() {
 		$(function() {
 			$('#btnDebateType').dropdown();
 		});
-		$("button[name=del]").click(function() { //id test1 이라는 a태그 클릭시 발생
-			var topicno = $(this).next().val();
-			var opno = $(this).next().next().val();
-			$("#delopno").val(opno);	
-			$("#deltopicno").val(topicno);
-			$("#delform").submit();
-			
-		});
-		$("button[name=Modal]").click(function() { //id test1 이라는 a태그 클릭시 발생
-			var content = $(this).next().val();
-			var opno = $(this).next().next().val();
-			var recontent = $(this).next().val().replace(/<br\s*[\/]?>/gi, "\n");
-			$('#myModal').modal();
-			$("#upcontent").val(recontent);	
-			$("#reupopno").val(opno);		
-			
-		});
+		
 		$("#optupbtn").click(function() {
 			var recontent = $("#upcontent").val().replace(/\n/gi, "<br/>");
 			$("#reupcontent").val(recontent);

@@ -14,7 +14,7 @@ public class MemberVO {
 	private String profile_file_name;
 	private String profile_ext_name;
 	
-	private String profile;
+	private String user_profile;
 	private String user_lv_img;
 
 	public String getUser_no() {
@@ -80,15 +80,14 @@ public class MemberVO {
 
 	public void setProfile_ext_name(String profile_ext_name) {
 		this.profile_ext_name = profile_ext_name;
-		setProfile(profile_ext_name, profile_ext_name);
 	}
 
-	public String getProfile() {
-		return profile;
+	public String getUser_profile() {
+		return user_profile;
 	}
 
-	public void setProfile(String profile_file_name, String profile_ext_name ) {
-		this.profile = "/resources/mypage/img/" + this.profile_file_name + "." + profile_ext_name;
+	public void setUser_profile(String user_profile ) {
+		this.user_profile = user_profile;
 	}
 
 	public String getUser_lv_img() {
@@ -121,7 +120,8 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [user_no=" + user_no + ", user_email=" + user_email + ", user_pw=" + user_pw + ", user_nick="
-				+ user_nick + ", user_lv=" + user_lv + ", user_check=" + user_check + ", profile_file_name=" + profile_file_name + "]";
+				+ user_nick + ", user_lv=" + user_lv + ", user_check=" + user_check + ", profile_file_name=" + profile_file_name + 
+				", user_profile=" + user_profile + "]";
 	}
 
 

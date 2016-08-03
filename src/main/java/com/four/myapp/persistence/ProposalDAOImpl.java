@@ -1,6 +1,5 @@
 package com.four.myapp.persistence;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,10 +33,7 @@ public class ProposalDAOImpl implements ProposalDAO {
 	}
 	
 	@Override
-	public List<ReplyDTO> getReplies(int topic_no, int index) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("topic_no", topic_no);
-		map.put("index", index);
+	public List<ReplyDTO> getReplies(Map<String, Object> map) {
 		return sqlSession.selectList(NAMESPACE + ".getReplies", map);
 	}
 	
@@ -52,19 +48,13 @@ public class ProposalDAOImpl implements ProposalDAO {
 	}
 	
 	@Override
-	public void recommend(int topic_no, int user_no) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("topic_no", topic_no);
-		map.put("user_no", user_no);
+	public void recommend(Map<String, Object> map) {
 		sqlSession.insert(NAMESPACE + ".recommend", map);
 	}
 	
 	@Override
-	public boolean checkRecommended(int topic_no, int user_no) {
+	public boolean checkRecommended(Map<String, Object> map) {
 		boolean result = false;
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("topic_no", topic_no);
-		map.put("user_no", user_no);
 		if(sqlSession.selectOne(NAMESPACE + ".hadRecommended", map) != null) {
 			result = true;
 		}
@@ -74,12 +64,17 @@ public class ProposalDAOImpl implements ProposalDAO {
 	@Override
 	public void proposalUp(TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks) {
 		sqlSession.insert(NAMESPACE + ".proposalUp", topicProposalDTO);
+		
 		topicProposalDTO.setTopic_no((int)sqlSession.selectOne(NAMESPACE + ".getLatest", topicProposalDTO.getUser_no()));
+		
 		sqlSession.insert(NAMESPACE + ".proposalDetailUp", topicProposalDTO);
+		
 		if(topicProposalDTO.getImg_file_name() != null) {
 			sqlSession.insert(NAMESPACE + ".imgUp", topicProposalDTO);
 		}
+		
 		ProposalRefDTO proposalRefDTO = null; 
+		
 		for(int refCnt = 0; refCnt < refTitles.size(); refCnt++) {
 			proposalRefDTO = new ProposalRefDTO(topicProposalDTO.getTopic_no(), refTitles.get(refCnt), refLinks.get(refCnt));
 			sqlSession.insert(NAMESPACE + ".proposalRefUp", proposalRefDTO);

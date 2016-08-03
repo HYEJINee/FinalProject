@@ -6,27 +6,28 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TimelineDTO {
-	private String user_no;
-	private String topic_no;
-	private String topic_title;
+	private int user_no;
+	private int topic_no;
+	private int topic_type;
+	private String topic_title; //join으로 추가
 	private String timeline_type;
-	private String timeline_statement;
-	private String vote_type;
-	private String vote_statement;
+	private String timeline_statement; //DTO에서 timeline_type별로 생성
+	private int vote_type;
+	private String vote_statement; //DTO에서 vote_type별로 생성
 	private String timeline_date;
-	private String timeline_css;
+	private String timeline_css; //DTO에서 timeline_type별로 생성
 	
 
-	public String getUser_no() {
+	public int getUser_no() {
 		return user_no;
 	}
-	public void setUser_no(String user_no) {
+	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	public String getTopic_no() {
+	public int getTopic_no() {
 		return topic_no;
 	}
-	public void setTopic_no(String topic_no) {
+	public void setTopic_no(int topic_no) {
 		this.topic_no = topic_no;
 	}	
 	public String getTopic_title() {
@@ -51,7 +52,7 @@ public class TimelineDTO {
 			break;
 		case "1" : 
 			this.timeline_css = "topic";
-			this.timeline_statement = " 안건이 토론 상정을 위해 추천을 받고있습니다. ";
+			this.timeline_statement = " 안건이 토론 상정을 위해 추천을 받고있습니다. ";//임시저장을 안하기 때문에 안쓰지만 일단 남겨둠 
 			break;
 		case "2" : 
 			this.timeline_css = "topic";
@@ -75,7 +76,7 @@ public class TimelineDTO {
 			break;
 		case "7" : 
 			this.timeline_css = "opinion";
-			this.timeline_statement = " 안건에 <strong>"  + vote_statement + "</strong> 의견을 남겼습니다.";
+			this.timeline_statement = " 안건에"  + vote_statement + "의견을 남겼습니다.";
 			break;
 		default : 
 			this.timeline_css = "topic";
@@ -86,20 +87,22 @@ public class TimelineDTO {
 	public String getTimeline_statement() {
 		return timeline_statement;
 	}
-	public String getVote_type() {
+	public int getVote_type() {
 		return vote_type;
 	}
-	public void setVote_type(String vote_type) {
+	public void setVote_type(int vote_type) {
 		this.vote_type = vote_type;
 		setVote_statement(vote_type);
 	}
-	public void setVote_statement(String vote_type) {
-		switch (vote_type) {
-		case "0" : this.vote_statement = "찬성";
+	public void setVote_statement(int vote_type2) {
+		switch (vote_type2) {
+		case 0 : this.vote_statement = " <strong>찬성</strong> ";
 			break;
-		case "1" : this.vote_statement = "반대";
+		case 1 : this.vote_statement = " <strong>반대</strong> ";
 			break;
-		case "2" : this.vote_statement = "중재";
+		case 2 : this.vote_statement = " <strong>중재</strong> ";
+			break;
+		case 3 : this.vote_statement = " ";
 			break;
 		default : this.vote_statement = null;
 			break;
@@ -116,6 +119,15 @@ public class TimelineDTO {
 	}
 	public String getTimeline_css() {
 		return timeline_css;
+	}
+	public int getTopic_type() {
+		return topic_type;
+	}
+	public void setTopic_type(int topic_type) {
+		this.topic_type = topic_type;
+	}
+	public String toString(){
+		return "user_no=" + user_no + ", topic_no=" + topic_no + ", topic_type=" + topic_type + ", vote_type=" + vote_type + ", timeline_type=" + timeline_type;
 	}
 	
 }

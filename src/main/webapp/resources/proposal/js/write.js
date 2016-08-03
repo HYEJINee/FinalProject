@@ -81,7 +81,6 @@ $('#btn_topic_type li').on('click', function() {
 	};
 })
 
-
 $('#btnSubmit').on('click', function(event) {
 	event.preventDefault();
 	var topic_type = $('#hid_topic_type').val();
@@ -122,9 +121,3 @@ $('#btnRemoveRef').on('click', function() {
 		$('.reference').eq(numberOfRef - 1).remove();
 	}
 });
-
-
-
-/*
- * $('#coverImgUp').on('change', function() { $('#formCoverImg').submit(); })
- */

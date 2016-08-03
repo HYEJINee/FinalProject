@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.four.myapp.domain.MemberVO;
 import com.four.myapp.domain.ReadVO;
 import com.four.myapp.service.ReadService;
+import com.four.myapp.service.TimelineService;
 
 /**
  * Handles requests for the application home page.
@@ -26,10 +27,13 @@ public class ReadController {
 	@Autowired
 	private ReadService service;
 	
+	@Autowired
+	private TimelineService timelineService; //timeline 생성용 service
+	
 	private static final Logger logger = LoggerFactory.getLogger(ReadController.class);
 	
 	@RequestMapping(value="/read/read", method=RequestMethod.GET)
-	public void readget(@RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
+	public void readget(@RequestParam(required=false) Integer pageNo, @RequestParam("topic_no") int topic_no, Model model, HttpSession session) throws SQLException {
 		MemberVO vo = (MemberVO)session.getAttribute("USER_KEY");
 		if(vo != null) {
 			 model.addAttribute("readuser", vo);
@@ -37,14 +41,15 @@ public class ReadController {
 			 model.addAttribute("readvote",service.Readvote(topic_no, user_no));
 			 model.addAttribute("readoplike",service.getoplike(user_no));
 	      }
+		if(pageNo == null) { pageNo = 1; }
 		model.addAttribute("readlist",service.Readdao(topic_no));
 		model.addAttribute("readResource",service.getResource(topic_no));
-		model.addAttribute("readOpinion",service.getOpinion(topic_no));
+		model.addAttribute("readOpinion",service.getOpinion(topic_no, pageNo));
 		model.addAttribute("taglist",service.getTaglist(topic_no));
 	}
 	
 	 @RequestMapping(value="/read/vote", method=RequestMethod.POST)
-	   public String vote(@RequestParam("vote_type")int vote_type, int topic_no, HttpSession session){
+	   public String vote(@RequestParam("vote_type")int vote_type, int topic_no, HttpSession session) throws SQLException{
 		 
 		 logger.info("글번호 : " + topic_no);
 		 logger.info("투표 타입 : " + vote_type);
@@ -54,11 +59,15 @@ public class ReadController {
 	     service.topicvote(topic_no, user_no,vote_type);
 	     
 	     if(vote_type == 0){
-	    	 service.votepro(topic_no);
+	    	 service.votepro(topic_no); 
+	    	//Timeline : 유저가 투표함 (timeline_type="6") 
+			  timelineService.timelineVote(topic_no, user_no, 0, "6");
 	     } else if(vote_type == 1){
 	    	 service.votecon(topic_no);
+	    	 timelineService.timelineVote(topic_no, user_no, 1, "6");
 	     } else{
 	    	 service.voteneut(topic_no);
+	    	 timelineService.timelineVote(topic_no, user_no, 2, "6");
 	     }
 	     
 	     return "redirect:/read/read?topic_no="+topic_no;
@@ -86,7 +95,9 @@ public class ReadController {
 	     int user_no = Integer.parseInt(vo.getUser_no());
 	     logger.info("왜 : " + rel);
 	     service.insertoption(topic_no, recontent, rel, optionchk, user_no); // insert
-	   
+	     
+	     //Timeline : 유저가 의견을 남김 (timeline_type="7") 
+		  timelineService.timelineVote(topic_no, user_no, optionchk, "7");
 	     
 	     if(rel != 0) {
 	    	int reop_no = service.selectcomment(rel, recontent, optionchk, user_no).getOp_no();

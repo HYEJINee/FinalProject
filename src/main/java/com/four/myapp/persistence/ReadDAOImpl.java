@@ -33,8 +33,11 @@ public class ReadDAOImpl implements ReadDAO {
 	}
 
 	@Override
-	public List<ReadOpinionVO> getOpinion(int topic_no) throws SQLException {
-		return sqlSession.selectList(NAMESPACE+".selectOpinion", topic_no);
+	public List<ReadOpinionVO> getOpinion(int topic_no, int index) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("topic_no", topic_no);
+		map.put("index", index);
+		return sqlSession.selectList(NAMESPACE+".selectOpinion", map);
 	}
 
 	@Override

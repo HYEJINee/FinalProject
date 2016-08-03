@@ -13,3 +13,10 @@
 .minitop {
 	margin-top: 15px;
 }
+#bottom {
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+	padding-bottom: 80px;
+}
+
