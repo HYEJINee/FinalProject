@@ -72,7 +72,7 @@ public class TimelineDTO {
 			break;
 		case "6" : 
 			this.timeline_css = "vote";
-			this.timeline_statement = " 안건에 <strong>" + vote_statement + "</strong> 투표를 하였습니다.";
+			this.timeline_statement = " 안건에 " + vote_statement + " 투표를 하였습니다.";
 			break;
 		case "7" : 
 			this.timeline_css = "opinion";
@@ -93,18 +93,25 @@ public class TimelineDTO {
 	public void setVote_type(int vote_type) {
 		this.vote_type = vote_type;
 		setVote_statement(vote_type);
+		
 	}
-	public void setVote_statement(int vote_type2) {
-		switch (vote_type2) {
-		case 0 : this.vote_statement = " <strong>찬성</strong> ";
+	public void setVote_statement(int vote_type) {
+		System.out.println("TimelineDTO vote_type: " + vote_type);
+		switch (vote_type) {
+		case 0 : 
+			this.vote_statement = " <strong>찬성</strong> ";
 			break;
-		case 1 : this.vote_statement = " <strong>반대</strong> ";
+		case 1 : 
+			this.vote_statement = " <strong>반대</strong> ";
 			break;
-		case 2 : this.vote_statement = " <strong>중재</strong> ";
+		case 2 : 
+			this.vote_statement = " <strong>중재</strong> ";
 			break;
-		case 3 : this.vote_statement = " ";
+		case 3 : 
+			this.vote_statement = " ";
 			break;
-		default : this.vote_statement = null;
+		default : 
+			this.vote_statement = null;
 			break;
 		}
 	}
