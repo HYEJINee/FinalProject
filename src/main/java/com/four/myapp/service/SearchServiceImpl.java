@@ -15,9 +15,9 @@ public class SearchServiceImpl implements SearchService {
 	SearchDAO dao;
 	
 	@Override
-	public List<MainDto> getSearchResult(String search, String search2) throws SQLException {
-
-		return dao.getSearchResult(search, search2);
+	public List<MainDto> getSearchResult(String search, String search2,int pageNo) throws SQLException {
+		int index = (pageNo-1) * 10;
+		return dao.getSearchResult(search, search2, index);
 		}
 
 }
