@@ -36,6 +36,14 @@ public class TimelineDAOImpl implements TimelineDAO {
 		timelineDTO = sqlSession.selectOne(NAMESPACE + ".getTopic", topic_no);
 		timelineDTO.setTimeline_type(timeline_type);
 		sqlSession.insert(NAMESPACE + ".timelineTopic", timelineDTO);
+		
+		notiDTO.setUser_no(timelineDTO.getUser_no());
+		notiDTO.setTopic_no(timelineDTO.getTopic_no());
+		
+		if(timeline_type=="3"){
+			notiDTO.setNoti_type("3");
+			sqlSession.insert(NAMESPACE + ".notiReply", notiDTO);
+		}
 	}
 
 	@Override

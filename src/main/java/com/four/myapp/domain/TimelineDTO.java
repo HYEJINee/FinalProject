@@ -96,7 +96,6 @@ public class TimelineDTO {
 		setVote_statement(vote_type);
 	}
 	public void setVote_statement(String vote_type) {
-		System.out.println("TimelineDTO vote_type: " + vote_type);
 		switch (vote_type) {
 		case "0" : 
 			this.vote_statement = " <strong>찬성</strong> ";

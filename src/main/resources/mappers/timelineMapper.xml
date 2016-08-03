@@ -29,4 +29,9 @@
 		noti_tbl (user_no, topic_no, other_user_no, noti_type) values
 		(#{user_no}, #{topic_no}, #{other_user_no}, 0);
 	</insert>
+	<insert id="notiTopic" parameterType="NotiDTO">
+		insert into
+		noti_tbl (user_no, topic_no, other_user_no, noti_type) values
+		(#{user_no}, #{topic_no}, #{other_user_no}, #{noti_type});
+	</insert>
 </mapper>
