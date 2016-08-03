@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
 </head>
-<body data-spy="scroll" data-target=".ScrollSpy" data-offset="50">
+<body>
 	<script type="text/javascript">
 		var list = new Array();
 		<c:forEach items="${readoplike}" var="item">
@@ -224,7 +224,7 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="grid ScrollSpy col-sm-offset-2 col-sm-10">
+	<div class="grid col-sm-offset-2 col-sm-10" id="op">
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
@@ -320,7 +320,7 @@
 												</div>
 												<div class="col-sm-offset-4 col-sm-1">
 													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
+														aria-label="Left Align"  onclick="Opvotebtn0(this)"
 														value="${opinion.op_no}">
 														<span class="glyphicon glyphicon-triangle-top"
 															aria-hidden="true"></span> ${opinion.op_like}
@@ -328,8 +328,8 @@
 													<input type="hidden" value="0" />
 												</div>
 												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger" 
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
+													<button type="button" class="btn btn btn-danger"
+														aria-label="Left Align"  onclick="Opvotebtn1(this)"
 														value="${opinion.op_no}">
 														<span class="glyphicon glyphicon-triangle-bottom"
 															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
@@ -361,7 +361,7 @@
 												</div>
 												<div class="col-sm-offset-2 col-sm-1">
 													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
+														aria-label="Left Align"  onclick="Opvotebtn0(this)"
 														value="${opinion.op_no}">
 														<span class="glyphicon glyphicon-triangle-top"
 															aria-hidden="true"></span> ${opinion.op_like}
@@ -370,7 +370,7 @@
 												</div>
 												<div class="col-sm-1">
 													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
+														aria-label="Left Align"  onclick="Opvotebtn1(this)"
 														value="${opinion.op_no}">
 														<span class="glyphicon glyphicon-triangle-bottom"
 															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
@@ -898,16 +898,19 @@
 			</c:choose>
 
 		</c:forEach>
+		<br /><br /><br /><br /><br />
 	</div>
 	<div id="bottom"></div>
 	<nav id="page_nav" style="display:none">
 		<p><a href="/read/read?topic_no=${readlist.topic_no}&pageNo=2"></a></p>
 	</nav>
+	
 	<div class="container">
 		<form class="form-horizontal" action="option" method="post" id="optionform">
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
 			<div class="form-group">
+			
 				<h2>의견 작성</h2>
 				<hr />
 				<div class="col-sm-1">
