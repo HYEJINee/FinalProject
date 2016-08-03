@@ -17,11 +17,12 @@ public class ExpiredTopicUpdater {
 	
 	private static final String NAMESPACE = "com.four.myapp.mappers.expiredMapper";
 	
-	@Pointcut("bean(ProposalDAOImpl)")
+	@Pointcut("bean(*DAOImpl)")
 	private void targetMethod() { }
 	
 	@Before("targetMethod()")
 	public void beforeTragetMethod(JoinPoint joinPoint) {
+        System.out.println("AspectUsingAnnotation.beforeTargetMethod executed.");
 		sqlSession.update(NAMESPACE + ".expiredProposal");
 	}
 }
