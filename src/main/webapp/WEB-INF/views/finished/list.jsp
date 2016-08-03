@@ -18,11 +18,13 @@
 				<div class="col-md-3">
 					<h2>종료된 토론</h2>
 				</div>
-				<ul id="topic-tab" class="nav nav-pills">
-					<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
-		  			<li role="presentation" data-filter=".topic_0"><a href="" data-toggle="pill">찬반 토론</a></li>
-					<li role="presentation" data-filter=".topic_1"><a href="" data-toggle="pill">자유 토론</a></li>
-				</ul>
+				<div class="col-md-offset-9">
+					<ul id="topic-tab" class="nav nav-pills">
+						<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
+			  			<li role="presentation" data-filter=".topic_0"><a href="" data-toggle="pill">찬반 토론</a></li>
+						<li role="presentation" data-filter=".topic_1"><a href="" data-toggle="pill">자유 토론</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<hr/>
@@ -101,7 +103,7 @@
 								</c:if>
 								<div id="card_body">
 									<p>${list.topic_short_cont}</p>
-									<span class="glyphicon glyphicon-education"> ${list.op_cnt}</span>
+									<span class="glyphicon glyphicon-comment"> ${list.op_cnt}</span>
 								</div>
 							</c:when>
 						</c:choose>
@@ -111,7 +113,7 @@
 			</div>
 		</div>
 	</div>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	<div id="load"></div>
 		
 	<nav id="page_nav" style="display:none;">

@@ -6,11 +6,16 @@
 */
 @CHARSET "UTF-8";
 
+body {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
 .container {
 	margin-top: 50px;
 }
 .nav-pills {
 	margin-top: 20px;
+	
 }
 .nav-pills li{
 	/* 부트스트랩 우선순위 때문에 직접 지정 */

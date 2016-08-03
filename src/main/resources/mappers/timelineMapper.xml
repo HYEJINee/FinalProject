@@ -20,4 +20,13 @@
 		select user_no, topic_no, topic_type from topic_tbl
 		where topic_no = #{topic_no};
 	</select>
+	<select id="getUser" parameterType="int" resultType="int">
+		select user_no from opinion_tbl
+		where op_no = #{op_no};
+	</select>
+	<insert id="notiReply" parameterType="NotiDTO">
+		insert into
+		noti_tbl (user_no, topic_no, other_user_no, noti_type) values
+		(#{user_no}, #{topic_no}, #{other_user_no}, 0);
+	</insert>
 </mapper>

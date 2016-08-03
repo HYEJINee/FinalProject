@@ -25,7 +25,12 @@ public class TimelineServiceImpl implements TimelineService {
 	}
 	
 	@Override
-	public void timelineVote(int topic_no, int user_no, int vote_type, String timeline_type) throws SQLException {
+	public void timelineVote(int topic_no, int user_no, String vote_type, String timeline_type) throws SQLException {
 		dao.timelineVote(topic_no, user_no, vote_type, timeline_type);
+	}
+
+	@Override
+	public void notiReply(int other_user_no, int topic_no, int reop_no) throws SQLException {
+		dao.notiReply(other_user_no, topic_no, reop_no);
 	}
 }

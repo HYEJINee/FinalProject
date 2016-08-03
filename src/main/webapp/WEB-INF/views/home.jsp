@@ -130,9 +130,9 @@
 												<center><h3>${mainList.topic_title}</h3></center>
 											</div>
 										</c:if>
-										<div id="card_body">
+										<div id="card_body" style="padding: 8px;">
 											<p>${mainList.topic_short_cont}</p>
-											<span class="glyphicon glyphicon-education"> ${mainList.op_cnt}</span>
+											<span class="glyphicon glyphicon-comment"> ${mainList.op_cnt}</span>
 										</div>
 									</div>
 								</c:when>
@@ -151,7 +151,7 @@
 					  	<c:if test="${nowBlock > 0}">
 					  		<li>
 						      <a href="/?nowBlock=${nowBlock-1}&nowPage=${(nowBlock-1)*pagePerBlock}" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
+						        <span aria-hidden="true">&laquo; Prev</span>
 						      </a>
 						    </li>
 					  	</c:if>
@@ -177,7 +177,7 @@
 					  	<c:if test="${nowBlock +1 < totalBlock}">
 					  		<li>
 						      <a href="/?nowBlock=${nowBlock+1}&nowPage=${(nowBlock+1)*pagePerBlock}" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
+						        <span aria-hidden="true">Next &raquo;</span>
 						      </a>
 						    </li>
 					  	</c:if>
@@ -267,7 +267,7 @@
 									</c:choose>
 							</c:if>
 							<c:if test="${finishList.topic_type eq 1}">
-								<span id="board_icon" class="glyphicon glyphicon-education"> ${finishList.op_cnt}</span>
+								<span id="board_icon" class="glyphicon glyphicon-comment"> ${finishList.op_cnt}</span>
 							</c:if>
 						</div>
 					</c:if>
@@ -279,33 +279,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-	$(document).ready(function(){
-		// 메인 제목
-		$(".main_title").click(function(){
-			location.href = "/";
-		});
-		// 메인 헤더 게시물
-		$(".header_item").click(function(){
-			var topic_no = $(this).children().filter("input").val();
-			location.href = "/read/read?topic_no=" + topic_no;
-		});
-		// 토론중 게시물
-		$(".list_item").click(function(){
-			var topic_no = $(this).children().filter("input").val();
-			location.href = "/read/read?topic_no=" + topic_no;
-		});
-		// 안건 건의중인 게시물
-		$(".on_item").click(function(){
-			var topic_no = $(this).children().filter("input").val();
-			location.href = "/proposal/read?topic_no=" + topic_no;
-		});
-		// 종료된 게시물
-		$(".fin_item").click(function(){
-			var topic_no = $(this).children().filter("input").val();
-			location.href = "/finished/read?topic_no=" + topic_no;
-		});
-	});
-</script>
+<script src="/resources/main/js/main.js"></script>
 </body>
 </html>
