@@ -8,6 +8,56 @@
 .item {
 	margin-top: 15px;
 }
+.grid-item{
+	margin-top: 30px;
+	border:1px #d9edf7 solid;
+}
+.card {
+	cursor: pointer;
+}
+.card:hover {
+	opacity: 0.5;
+}
+.card_header {
+	overflow: hidden;
+	padding-top: 25px;
+	padding-bottom: 20px;
+	height:160px;
+}
+.card_header label {
+	margin-left: 15px;
+	padding: 5px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.card_header_noneImg {
+	overflow: hidden;
+	padding-top: 25px;
+	padding-bottom: 20px;
+	height:160px;
+	background-color: rgba(230, 230, 230, 0.5);	
+}
+.card_header_noneImg label{
+	margin-left: 15px;
+	padding: 5px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.card_body {
+	padding: 5px;
+}
+.card_body p {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-size: 12pt;
+	padding: 5px;
+}
+.coverImg {
+	position: absolute;
+	left:0; 
+	top:0; 
+	width:100%; 
+	height:130px; 
+	opacity:0.5;
+	z-index:-1;"
+}
 .header_item {
 	margin-top: 5px;
 }

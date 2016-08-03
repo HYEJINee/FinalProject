@@ -5,7 +5,6 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/main/css/main.css">
-<link rel="stylesheet" href="/resources/css/list_item.css">
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <head>
 	<title>TAWAR</title>
@@ -60,7 +59,7 @@
 						<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}">
 							<c:choose>
 								<c:when test="${mainList.topic_type eq 0}">
-									<div class="card grid-item col-md-4 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+									<div class="card grid-item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px; width:31%; margin-left: 2%;">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 										<!-- card_header -->
 										<!-- 1) 커버이미지 있을 때 -->
@@ -109,7 +108,7 @@
 									</div>
 								</c:when>
 								<c:when test="${mainList.topic_type eq 1}">
-									<div class="card grid-item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+									<div class="card grid-item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px; width:31%; margin-left: 2%;">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 										<!-- card_header -->
 										<!-- 1) 커버이미지 있을 때 -->
