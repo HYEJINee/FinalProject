@@ -6,16 +6,10 @@
 <html>
 <head>
 <title>검색 결과</title>
-<link rel="stylesheet" href="/resources/search/css/search.css">
 <link
 	href="${pageContext.request.contextPath}/resources/proposal/css/list.css"
 	rel="stylesheet">
-<script>
-	$('#searchTab a').click(function(e) {
-		e.preventDefault()
-		$(this).tab('show')
-	})
-</script>
+
 <style>
 .container {
 	margin-top: 50px;
@@ -34,25 +28,14 @@
 				<div role="tabpanel" id="category" class="col-md-offset-6"
 					style="margin-top: 10px">
 					<ul class="nav nav-pills" id="searchTab" role="tablist">
-						<li class="all active" role="presentation"
-							style="margin-left: 15px;">
-								<a href="#all" aria-controls="all" role="tab" data-toggle="pill">전체
-									토론&nbsp;&nbsp;</a>
-							</li>
-						<li class="ongoing" role="presentation">
-								<a href="#ongoing" aria-controls="ongoing" role="tab"
-									data-toggle="pill"> 진행 중 토론 </a>
-							</li>
-						<li class="proposal" role="presentation"
-							style="margin-left: 15px;">
-								<a href="#proposal" aria-controls="proposal" role="tab"
-									data-toggle="pill">투표 중 안건</a>
-							</li>
-						<li class="finished" role="presentation"
-							style="margin-left: 15px;">
-								<a href="#finished" aria-controls="finished" role="tab"
-									data-toggle="pill">종료된 토론</a>
-							</li>
+						<li role="presentation" class="active" data-filter="*"><a
+							href="" data-toggle="pill">모든 안건</a></li>
+						<li role="presentation" data-filter=".topic_3"><a href=""
+							data-toggle="pill">진행 중 토론</a></li>
+						<li role="presentation" data-filter=".topic_1"><a href=""
+							data-toggle="pill">투표 중 안건</a></li>
+						<li role="presentation" data-filter=".topic_4"><a href=""
+							data-toggle="pill">종료된 토론</a></li>
 					</ul>
 
 				</div>
@@ -71,127 +54,82 @@
 							</center>
 						</c:if>
 
-						<c:if test="${!empty searchList}">
-							<c:forEach items="${searchList}" var="list">
-								<div class="col-md-4">
-									<div class="card" topic-no="${list.topic_no}">
+						<div class="grid">
+							<c:if test="${!empty searchList}">
+								<c:forEach items="${searchList}" var="list">
+									<div class="card grid-item topic_${list.topic_progress}">
+									
+								<c:choose>
+								
+								<c:when
+											test="${list.img_file_name != '' && list.img_file_name != null}">
 										<div class="card-header">
-											찬반 토론
+									
+											<c:choose>
+												<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
+												<c:when test="${list.topic_type == 1}">자유 토론</c:when>
+											</c:choose>
+										<br>
+										<h4>${list.topic_title}</h4>
+										<img
+											src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}"
+											style="position: absolute; left: 0; top: -50%; width: 100%; height: auto; opacity: 0.5; z-index: -1;">
+									</div>
+									
+										</c:when>
+									<c:otherwise>
+										<div class="card-header"
+											style="background-color: rgba(230, 230, 230, 0.5);">
+											<c:choose>
+												<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
+												<c:when test="${list.topic_type == 1}">자유 토론</c:when>
+											</c:choose>
+											<br>
 											<h4>${list.topic_title}</h4>
 										</div>
-										<div class="card-body">${list.topic_short_cont}</div>
-										<div class="card-footer">
-											<p class="text-right">
-												<span class="glyphicon glyphicon-thumbs-up"
-													aria-hidden="true"></span>
-											</p>
-										</div>
+									</c:otherwise>
+									</c:choose>
+									<div class="card-body">${list.topic_short_cont}</div>
+									<div class="card-footer">
+										<p class="text-right">
+											<span class="glyphicon glyphicon-thumbs-up"
+												aria-hidden="true"></span>
+										</p>
 									</div>
-								</div>
-							</c:forEach>
-						</c:if>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="ongoing">
-					<div id="searchList" class="col-md-12">
-						<c:if test="${empty searchList}">
-							<center>
-								<h2>등록된 게시물이 없습니다.</h2>
-							</center>
-						</c:if>
-
-						<c:if test="${!empty searchList}">
-							<c:forEach items="${searchList}" var="list">
-								<c:if test="${list.topic_progress==3 }">
-									<div class="col-md-4">
-										<div class="card" topic-no="${list.topic_no}">
-											<div class="card-header">
-												찬반 토론
-												<h4>${list.topic_title}</h4>
-											</div>
-											<div class="card-body">${list.topic_short_cont}</div>
-											<div class="card-footer">
-												<p class="text-right">
-													<span class="glyphicon glyphicon-thumbs-up"
-														aria-hidden="true"></span>
-												</p>
-											</div>
-										</div>
 									</div>
-								</c:if>
-							</c:forEach>
-						</c:if>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="proposal">
-					<div id="searchList" class="col-md-12">
-						<c:if test="${empty searchList}">
-							<center>
-								<h2>등록된 게시물이 없습니다.</h2>
-							</center>
-						</c:if>
-
-						<c:if test="${!empty searchList}">
-							<c:forEach items="${searchList}" var="list">
-								<c:if test="${list.topic_progress==1 }">
-
-									<div class="col-md-4">
-
-										<div class="card" topic-no="${list.topic_no}">
-											<div class="card-header">
-												찬반 토론
-												<h4>${list.topic_title}</h4>
-											</div>
-											<div class="card-body">${list.topic_short_cont}</div>
-											<div class="card-footer">
-												<p class="text-right">
-													<span class="glyphicon glyphicon-thumbs-up"
-														aria-hidden="true"></span>
-												</p>
-											</div>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</c:if>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="finished">
-					<div id="searchList" class="col-md-12">
-						<c:if test="${empty searchList}">
-							<center>
-								<h2>등록된 게시물이 없습니다.</h2>
-							</center>
-						</c:if>
-
-						<c:if test="${!empty searchList}">
-							<c:forEach items="${searchList}" var="list">
-								<c:if test="${list.topic_progress==4 }">
-									<div class="col-md-4">
-										<div class="card" topic-no="${list.topic_no}">
-											<div class="card-header">
-												찬반 토론
-												<h4>${list.topic_title}</h4>
-											</div>
-											<div class="card-body">${list.topic_short_cont}</div>
-											<div class="card-footer">
-												<p class="text-right">
-													<span class="glyphicon glyphicon-thumbs-up"
-														aria-hidden="true"></span>
-												</p>
-											</div>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</c:if>
+								</c:forEach>
+								
+							</c:if>
+						</div>
 					</div>
 				</div>
 			</div>
+			<div id="load"></div>
 		</div>
-
-
-	</div>
-	<script src="/resources/search/js/search.js"></script>
+		<nav id="page_nav" style="display: none;">
+			<p>
+				<a href="/search/search_result?search_word=${search_word}&pageNo=2"></a>
+			</p>
+		</nav>
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		<br /> <br /> <br /> <br /> <br />
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script
+			src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+		<script
+			src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/proposal/js/jquery.infinitescroll.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/proposal/js/list.js"></script>
+		<script>
+			$('#searchTab a').click(function(e) {
+				e.preventDefault()
+				$(this).tab('show')
+			})
+		</script>
 </body>
 </html>

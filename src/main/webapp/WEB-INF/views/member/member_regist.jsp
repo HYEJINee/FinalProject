@@ -5,6 +5,7 @@
 <title>TAWAR - 회원 가입</title>
 
 <%@include file="../include/header.jsp"%>
+
 <link rel="stylesheet" href="/resources/member/css/member.css">
 <script>
 	var email_check = "email_none";
@@ -146,7 +147,7 @@
 			alert("닉네임 중복체크를 확인해주세요.");
 			before_nick = document.form.user_nick.value;
 			return false;
-		}else if (nick_check == "nick_fail"
+		} else if (nick_check == "nick_fail"
 				&& before_nick !== document.form.user_nick.value) {
 			alert("닉네임 중복 체크를 다시 확인해주세요.");
 			before_nick = document.form.user_nick.value;

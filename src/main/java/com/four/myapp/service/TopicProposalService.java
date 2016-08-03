@@ -21,7 +21,7 @@ public interface TopicProposalService {
 	public boolean recommendedHistory(int topic_no, int user_no);
 	public void submitProposal(MemberVO memberVO, MultipartFile multipartFile, String filePath, TopicProposalDTO topicProposalDTO, List<String> refTitles, List<String> refLinks) throws IOException;
 	public void commentUp(MemberVO memberVO, ReplyDTO replyDTO);
-	public void proposalToGo(int topic_no);
+	public void proposalRelease(int topic_no);
 	public void modReply(ReplyDTO replyDTO);
 	public void delReply(int reply_no);
 }

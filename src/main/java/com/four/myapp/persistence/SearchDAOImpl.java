@@ -18,11 +18,11 @@ public class SearchDAOImpl implements SearchDAO {
 
 	private static final String NAMESPACE = "com.four.mappers.searchMapper";
 	@Override
-	public List<MainDto> getSearchResult(String search, String search2) throws SQLException {
-		Map<String, String> paramMap = new HashMap<String, String>();
+	public List<MainDto> getSearchResult(String search, String search2, int index) throws SQLException {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
 	    paramMap.put("search", search);
 	    paramMap.put("search2", search2);
-
+	    paramMap.put("index", index);
 		return sqlsession.selectList(NAMESPACE+".getSearchResult", paramMap);
 		 
 	}

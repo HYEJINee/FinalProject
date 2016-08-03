@@ -89,6 +89,7 @@ public class ProposalDAOImpl implements ProposalDAO {
 	@Override
 	public void makeProgress(int topic_no) {
 		sqlSession.update(NAMESPACE + ".makeProgress", topic_no);
+		sqlSession.insert(NAMESPACE + ".addDebateTbl", topic_no); 
 	}
 	
 	@Override

@@ -9,12 +9,13 @@
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
@@ -41,7 +42,7 @@
 					<li id="ongoing"><a href="/ongoing/list">토론중</a></li>
 					<li id="finished"><a href="/finished/list">종료된 토론</a>
 				</ul>
-				<form class="navbar-form navbar-left" action="/search/search_result"  method="post">
+				<form class="navbar-form navbar-left" action="/search/search_result"  method="get">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search_word"  id="search_word">
 					</div>

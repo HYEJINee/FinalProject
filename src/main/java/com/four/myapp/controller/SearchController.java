@@ -31,11 +31,14 @@ public class SearchController {
 	@Autowired
 	SearchServiceImpl service;
 
-	@RequestMapping(value = "/search_result", method = RequestMethod.POST)
-	public String getSearchResult(String search_word, Model model) throws Exception {
+	@RequestMapping(value = "/search_result", method = RequestMethod.GET)
+	public String getSearchResult(@RequestParam(required = false) Integer pageNo, String search_word, Model model)
+			throws Exception {
 		StringTokenizer st = new StringTokenizer(search_word, " ");
 		String[] keyWords = new String[st.countTokens()];
-
+		if (pageNo == null) {
+			pageNo = 1;
+		}
 		int i = 0;
 		String search = "";
 		String search2 = "";
@@ -65,8 +68,11 @@ public class SearchController {
 				}
 			}
 		}
-		System.out.println("select topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no left join (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl on topic_tbl.topic_no = op_tbl.topic_no where topic_title " + search+ "or topic_short_cont " + search2);
-		model.addAttribute("searchList", service.getSearchResult(search, search2));
+		System.out.println(
+				"select topic_tbl.topic_no, topic_tbl.user_no, topic_type, topic_title, topic_short_cont, topic_progress, debate_tot_pro, debate_tot_con, debate_tot_neut, op_cnt from topic_tbl left join debate_tbl on topic_tbl.topic_no = debate_tbl.topic_no left join (select count(op_no) as op_cnt, topic_no from opinion_tbl) as op_tbl on topic_tbl.topic_no = op_tbl.topic_no where topic_title "
+						+ search + "or topic_short_cont " + search2);
+		model.addAttribute("searchList", service.getSearchResult(search, search2, pageNo));
+		model.addAttribute("search_word",search_word);
 
 		return "/search/search_result";
 	}
