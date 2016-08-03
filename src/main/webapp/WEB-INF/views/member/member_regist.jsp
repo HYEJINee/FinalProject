@@ -220,25 +220,25 @@
 			<div class="row"  style="margin-top:40px;">
 				<div class="input-field col s4 offset-s3">
 				<i class="small material-icons prefix">email</i>
-					<input id="user_email" type="text"><label for="user_email">이메일
+					<input id="user_email"  name="user_email" type="text"><label for="user_email">이메일
 						주소</label>
 				</div>
 				<div class="col s1">
-					<input type="button" class="btn waves-effect waves-light"
+					<input type="button"  class="btn waves-effect waves-light"
 						value="중복확인" onclick="return chkUser_email()" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s4 offset-s3">
 				<i class="small material-icons prefix">vpn_key</i>
-					<input placeholder="영문과 숫자 조합 8자리 이상 입력하세요." id="user_pw"
+					<input placeholder="영문과 숫자 조합 8자리 이상 입력하세요." id="user_pw" name="user_pw"
 						type="password" onkeyup="checkPwd()"> <label for="user_pw">비밀번호</label>
 				</div>
 				<div class="col s3" id="checkPwd"></div>
 			</div>
 			<div class="row">
 				<div class="input-field col s4 offset-s3">	<i class="small material-icons prefix">vpn_key</i>
-					<input id="user_pw2" type="password" onkeyup="checkPwd2()">
+					<input id="user_pw2"  name="user_pw2" type="password" onkeyup="checkPwd2()">
 					<label for="user_pw2">비밀번호 확인</label>
 				</div>
 
@@ -246,7 +246,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4 offset-s3">	<i class="small material-icons prefix">perm_identity</i>
-					<input id="user_nick" type="text"> <label for="user_nick">닉네임</label>
+					<input id="user_nick"  name="user_nick" type="text"> <label for="user_nick">닉네임</label>
 				</div>
 				<div class="col s1">
 					<input type="button" class="btn waves-effect waves-light"

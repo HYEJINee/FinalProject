@@ -9,7 +9,6 @@
 <link
 	href="${pageContext.request.contextPath}/resources/proposal/css/list.css"
 	rel="stylesheet">
-
 <style>
 .container {
 	margin-top: 50px;
@@ -57,79 +56,99 @@
 						<div class="grid">
 							<c:if test="${!empty searchList}">
 								<c:forEach items="${searchList}" var="list">
-									<div class="card grid-item topic_${list.topic_progress}">
-									
-								<c:choose>
-								
-								<c:when
-											test="${list.img_file_name != '' && list.img_file_name != null}">
-										<div class="card-header">
-									
-											<c:choose>
-												<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
-												<c:when test="${list.topic_type == 1}">자유 토론</c:when>
-											</c:choose>
-										<br>
-										<h4>${list.topic_title}</h4>
-										<img
-											src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}"
-											style="position: absolute; left: 0; top: -50%; width: 100%; height: auto; opacity: 0.5; z-index: -1;">
-									</div>
-									
-										</c:when>
-									<c:otherwise>
-										<div class="card-header"
-											style="background-color: rgba(230, 230, 230, 0.5);">
-											<c:choose>
-												<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
-												<c:when test="${list.topic_type == 1}">자유 토론</c:when>
-											</c:choose>
-											<br>
-											<h4>${list.topic_title}</h4>
+									<div class="card grid-item topic_${list.topic_progress}"
+										topic_no="${list.topic_no}" onclick="goToRead(this)">
+
+										<c:choose>
+
+											<c:when
+												test="${list.img_file_name != '' && list.img_file_name != null}">
+												<div class="card-header">
+
+													<c:choose>
+														<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
+														<c:when test="${list.topic_type == 1}">자유 토론</c:when>
+													</c:choose>
+													<br>
+													<h4>${list.topic_title}</h4>
+													<img
+														src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}"
+														style="position: absolute; left: 0; top: -50%; width: 100%; height: auto; opacity: 0.5; z-index: -1;">
+												</div>
+
+											</c:when>
+											<c:otherwise>
+												<div class="card-header"
+													style="background-color: rgba(230, 230, 230, 0.5);">
+													<c:choose>
+														<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
+														<c:when test="${list.topic_type == 1}">자유 토론</c:when>
+													</c:choose>
+													<br>
+													<h4>${list.topic_title}</h4>
+												</div>
+											</c:otherwise>
+										</c:choose>
+										<div class="card-body">${list.topic_short_cont}</div>
+										<div class="card-footer">
+											<p class="text-right">
+												<span class="glyphicon glyphicon-thumbs-up"
+													aria-hidden="true"></span>
+											</p>
 										</div>
-									</c:otherwise>
-									</c:choose>
-									<div class="card-body">${list.topic_short_cont}</div>
-									<div class="card-footer">
-										<p class="text-right">
-											<span class="glyphicon glyphicon-thumbs-up"
-												aria-hidden="true"></span>
-										</p>
-									</div>
 									</div>
 								</c:forEach>
-								
+
 							</c:if>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="load"></div>
 		</div>
-		<nav id="page_nav" style="display: none;">
-			<p>
-				<a href="/search/search_result?search_word=${search_word}&pageNo=2"></a>
-			</p>
-		</nav>
-		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-		<br /> <br /> <br /> <br /> <br />
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-		<script
-			src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
-		<script
-			src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/proposal/js/jquery.infinitescroll.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/proposal/js/list.js"></script>
-		<script>
-			$('#searchTab a').click(function(e) {
-				e.preventDefault()
-				$(this).tab('show')
-			})
-		</script>
+		<div id="load"></div>
+	</div>
+	<nav id="page_nav" style="display: none;">
+		<p>
+			<a href="/search/search_result?search_word=${search_word}&pageNo=2"></a>
+		</p>
+	</nav>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+	<script
+		src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/proposal/js/jquery.infinitescroll.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/proposal/js/list.js"></script>
+	<script>
+		$('#searchTab a').click(function(e) {
+			e.preventDefault()
+			$(this).tab('show')
+		})
+	</script>
+	<script>
+		function goToRead(card) {
+			var topic_no = $(card).attr("topic_no");
+			location.href = "/read/read?topic_no=" + topic_no;
+		}
+	</script>
 </body>
 </html>
