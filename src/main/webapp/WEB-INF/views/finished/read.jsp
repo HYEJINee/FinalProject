@@ -264,7 +264,7 @@
 											<div class="col-sm-4">
 													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
 												</div>
-												<div class="col-sm-offset-4 col-sm-1">
+												<div class="col-sm-offset-5 col-sm-1 minibottom">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align"
 														value="${opinion.op_no}" disabled="disabled">
@@ -279,9 +279,6 @@
 														<span class="glyphicon glyphicon-triangle-bottom"
 															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
 													</button>
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default" disabled="disabled">답글</button>
 												</div>
 									</div>
 								</div>
@@ -331,7 +328,7 @@
 										<div class="col-sm-4">
 													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
 												</div>
-												<div class="col-sm-offset-4 col-sm-1">
+												<div class="col-sm-offset-5 col-sm-1 minibottom">
 													<button type="button" class="btn btn btn-info"
 														aria-label="Left Align" disabled="disabled">
 														<span class="glyphicon glyphicon-triangle-top"
@@ -344,9 +341,6 @@
 														<span class="glyphicon glyphicon-triangle-bottom"
 															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
 													</button>
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default" disabled="disabled">답글</button>
 												</div>
 										</div>	
 								</div>
@@ -379,16 +373,12 @@
 					</div>
 				</c:when>
 			</c:choose>
-
+			<!-- 중립 의견 -->
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 2}">
-					<div class="container grid-item" id="${opinion.op_no}#">
-						<form class="form-horizontal" action="like" method="post"
-							id="${opinion.op_no}">
+					<div class="container grid-item" >
+						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group ">
-								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
-									type="hidden" name="topic_no" value="${readlist.topic_no}" />
-								<input type="hidden" name="op_like_type" />
 								<div class="col-sm-offset-1 col-sm-2">
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
@@ -413,14 +403,15 @@
 										</c:when>
 									</c:choose>
 								</div>
-								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #66FF00">
+								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #66FF00">
+									<!-- 닉네임과 의견 출력 -->
 									<div class="row">
 									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-success" style="margin-top: 20px">중립</span>
 										</h3>
 									</div>
+									<!-- 태그가 있을 경우 출력 -->
 									<div class="col-sm-5 minitop">
 										<h4>
 											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
@@ -437,36 +428,31 @@
 											</c:forEach>
 										</h4>
 									</div>
-									
+									<!-- 의견 내용 -->
 									</div>
 									<hr />
 									${opinion.op_content} <br />
 									<hr />
-									
 									<div>
+									<!-- 날짜, 좋아요, 싫어요, 답글 버튼 클릭 방지 -->
 												<div class="col-sm-4">
 													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
 												</div>
-												<div class="col-sm-offset-4 col-sm-1">
+												<div class="col-sm-offset-5 col-sm-1 minibottom">
 													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}" disabled="disabled">
+														aria-label="Left Align" disabled="disabled">
 														<span class="glyphicon glyphicon-triangle-top"
 															aria-hidden="true"></span> ${opinion.op_like}
 													</button>
 												</div>
 												<div class="col-sm-1">
 													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}" disabled="disabled">
+														aria-label="Left Align" disabled="disabled">
 														<span class="glyphicon glyphicon-triangle-bottom"
 															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
 													</button>
 												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" name="rebtn" disabled="disabled">답글</button>
-												</div>
+												
 									</div>
 								</div>
 							</div>
@@ -474,17 +460,13 @@
 					</div>
 				</c:when>
 			</c:choose>
+			<!-- 자유 의견 -->
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 3}">
-					<div class="container grid-item" id="${opinion.op_no}#">
-						<form class="form-horizontal" action="like" method="post"
-							id="${opinion.op_no}">
+					<div class="container grid-item" >
+						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group">
 								<div class="col-sm-offset-1 col-sm-2">
-									<input type="hidden" name="op_no" value="${opinion.op_no}" />
-									<input type="hidden" name="topic_no"
-										value="${readlist.topic_no}" /> <input type="hidden"
-										name="op_like_type" />
 									<c:choose>
 										<c:when test="${opinion.user_lv eq 0}">
 											<img src="/resources/user_lv/common.png"
@@ -508,14 +490,15 @@
 										</c:when>
 									</c:choose>
 								</div>
-								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
+								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #46FFFF">
+									<!-- 닉네임과 의견 출력 -->
 									<div class="row">
 									<div class="col-sm-4">
 										<h3>${opinion.user_nick}&nbsp;&nbsp;
 											<span class="label label-info" style="margin-top: 20px">자유</span>
 										</h3>
 									</div>
+									<!-- 태그가 있을 경우 출력 -->
 									<div class="col-sm-5 minitop">
 										<h4>
 											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
@@ -532,34 +515,29 @@
 											</c:forEach>
 										</h4>
 									</div>
-
+									<!-- 의견 내용 -->
 									</div>
 									<hr />
 									${opinion.op_content} <br />
 									<hr />
 									<div>
+									<!-- 날짜, 좋아요, 싫어요, 답글 버튼 클릭 방지 -->
 												<div class="col-sm-4">
 													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
 												</div>
-												<div class="col-sm-offset-4 col-sm-1">
+												<div class="col-sm-offset-5 col-sm-1 minibottom">
 													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}" disabled="disabled">
+														aria-label="Left Align" disabled="disabled">
 														<span class="glyphicon glyphicon-triangle-top"
 															aria-hidden="true"></span> ${opinion.op_like}
 													</button>
 												</div>
 												<div class="col-sm-1">
 													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}" disabled="disabled">
+														aria-label="Left Align" disabled="disabled">
 														<span class="glyphicon glyphicon-triangle-bottom"
 															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
 													</button>
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" name="rebtn" disabled="disabled">답글</button>
 												</div>
 									</div>
 								</div>
@@ -570,10 +548,12 @@
 			</c:choose>
 		</c:forEach>
 	</div>
+	<!-- 무한스크롤을 위한 선언 -->
 	<div id="bottom"></div>
 	<nav id="page_nav" style="display:none">
 		<p><a href="/finished/read?topic_no=${readlist.topic_no}&pageNo=2"></a></p>
 	</nav>
+	<!-- 의견 작성 -->
 	<div class="container">
 		<form class="form-horizontal" action="option" method="post"
 			id="optionform">
@@ -604,37 +584,20 @@
 						</c:when>
 					</c:choose>
 				</div>
+				<!-- 닉네임 대신 출력 -->
 				<div class="col-sm-3">
 						<h4>종료된 토론입니다.</h4>
-				</div>
-				<div class="col-sm-5">
-					<div id="debateType" class="btn-group">
-						<button type="button" id="btnDebateType"
-							class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-							aria-expanded="false" disabled="disabled">
-							토론 형식 <span class="caret"></span>
-						</button>
-						<ul id="btn_topic_type" class="dropdown-menu" role="menu">
-							<li><a>찬성 </a></li>
-							<li><a>반대 </a></li>
-							<li><a>중립 </a></li>
-						</ul>
-						<input type="hidden" id="hid_topic_type" name="optionchk" />
-					</div>
 				</div>
 			</div>
 			<div class="col-sm-offset-1 col-sm-9">
 			<textarea id="context" cols="150" rows="10"
 							style="border-color: #46FFFF" readonly="readonly"
-							placeholder="종료된 토론으로 의견작성이 불가능합니다."></textarea>
-						<br />
-						<br />
+							placeholder="종료된 토론으로 의견작성이 불가능합니다."></textarea> <br/><br/>
 			</div>
-			<br /> <input type="hidden" name="topic_no"
-				value="${readlist.topic_no}" />
+			<br />
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
 			<input type="button" value="등록" class="btn btn-default btn-lg"
-							disabled="disabled" />
+							disabled="disabled" /><br/><br/><br/><br/><br/><br/><br/><br/>
 			</div>
 		</form>
 	</div>
