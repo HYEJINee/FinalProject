@@ -34,7 +34,17 @@ $(function() {
 		var filterValue = $(this).attr('data-filter');
 		$grid.isotope({filter: filterValue});
 	})
+	// 상단 이동 Btn 생성
+	$(window).scroll(function(){
+		if($(this).scrollTop() > 200)
+			$("#topBtn").fadeIn();
+		else
+			$("#topBtn").fadeOut();
+	});
 	
+	$("#topBtn").click(function(){
+		$('html, body').animate( { scrollTop : 0 }, 400 );
+	});
 	// 헤더 탭 부분 종료된 토론 활성화
 	$("#proposal").addClass("active");
 	$("#ongoing").removeClass("active");

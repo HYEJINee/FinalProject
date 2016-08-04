@@ -1,6 +1,4 @@
 /*
-	�������� List�� ����Ǵ� css
-	���� ������ : 2016.08.04
 */
 
 @CHARSET "UTF-8";
@@ -87,6 +85,12 @@ h2 {
 	margin-right:auto;
 	text-align: center;
 	padding-bottom: 80px;
+}
+#topBtn {
+	position: fixed; 
+	right: 2%; 
+	bottom: 2%;
+	display: none;
 }
 /* ����ī�忡 ���̴� css */
 .pro {
