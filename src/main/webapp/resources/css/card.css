@@ -5,7 +5,7 @@
   position: relative;
   border-radius: 2px;
   overflow: hidden;
-  background-color: #fafafa;
+  background-color: #ffffff;
   -webkit-transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
@@ -144,8 +144,9 @@
 }
 .card--big .card__action-bar {
   left: 0;
-  padding: 10px;
+  padding: 14px;
 }
-.card--big .card__action-bar .thumb-up {
-	
+.main_container .card--big {
+	border: none;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.15);
 }

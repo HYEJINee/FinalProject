@@ -18,7 +18,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-	<div id="content" class="container list_container">
+	<div id="content" class="container">
 
 		<h2 class="col-md-8">안건 건의</h2>
 
@@ -43,19 +43,6 @@
 		</c:if>
 
 		<div class="grid">
-			<div class="card card--big grid-item topic_1">
-				<div
-					style="background-image: url(https://placeimg.com/640/480/nature)"
-					class="card__image"></div>
-				<h2 class="card__title">Kangaroo Valley Safari</h2>
-				<span class="card__subtitle">By Mattia Astorino</span>
-				<p class="card__text">Located two hours south of Sydney in the
-					Southern Highland of New South Wales...</p>
-				<div class="card__action-bar">
-					<button class="card__button">SHARE</button>
-					<button class="card__button">LEARN MORE</button>
-				</div>
-			</div>
 			<c:forEach items="${topicList}" var="topic">
 				<div class="card card--big grid-item topic_${topic.topic_type}"
 					topic-no="${topic.topic_no}" onclick="toTopic(this)">
@@ -84,7 +71,8 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div class="card_header_noneImg">
+							<div class="card_header_noneImg ">
+								<div class="card__image" ></div>
 								<c:choose>
 									<c:when test="${topic.topic_type == 0}">
 										<h4>
@@ -97,9 +85,7 @@
 										</h4>
 									</c:when>
 								</c:choose>
-								<center>
-									<h3>${topic.topic_title}</h3>
-								</center>
+								<h2 class="card__title">${topic.topic_title}</h2>
 							</div>
 						</c:otherwise>
 					</c:choose>

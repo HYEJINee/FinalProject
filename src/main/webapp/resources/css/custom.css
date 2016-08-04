@@ -18,8 +18,8 @@ h1, h2, h3, h4 {
 	margin: 0 auto;
 	text-align: center;
 }
-.list_container {
-	margin-top: 30px;
+#content {
+	margin-top: 80px;
 }
 #main_title {
 	width: 100%;

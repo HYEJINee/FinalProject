@@ -48,7 +48,7 @@
 .card_body p {
 	font-family: 'Jeju Gothic', sans-serif;
 	font-size: 12pt;
-	padding: 5px;
+	/*padding: 5px;*/
 }
 .coverImg {
 	position: absolute;
