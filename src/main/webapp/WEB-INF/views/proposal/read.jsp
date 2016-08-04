@@ -73,13 +73,14 @@
 			
 			<!-- 본문 내용 -->	
 			<div id="divContent" class="col-md-12">
+			<h4>본문</h4>
 				<p>${topic.topic_long_cont}</p>
 			</div>
 			<!-- 본문 내용 -->	
 
 			<!-- 참고 자료 -->			
 			<div id="divRef" class="col-md-12">
-				<h4>참고 자료</h4>
+				<h4>참고 자료</h4><br/>
 				<c:forEach items="${ref}" var="ref">
 					<a href="${ref.topic_resource_link}">${ref.topic_resource_title}</a> 
 				</c:forEach>

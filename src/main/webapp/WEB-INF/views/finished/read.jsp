@@ -17,7 +17,7 @@
 		<!-- 토론 주제에 따른 타이틀 변경 -->
 		<c:choose>
 		<c:when test='${readlist.img_file_name != "" && readlist.img_file_name != null}'>
-			<div id="divCoverImg" class="jumbotron">
+			<div id="divCoverImg">
 				<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
 					<h2>
@@ -66,7 +66,7 @@
 				<div style="text-align: right; color: red">
 					<h3>
 						<em>토론 종료 날짜 : ${readlist.debate_endate}</em><br />
-					</h3><hr/>
+					</h3>
 				</div>
 			
 			<br />
@@ -161,7 +161,7 @@
 		<!-- 찬반 토론일때만 투표부분에 텍스트 출력 -->
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
-			<div class="form-group">
+			<div class="form-group" id="divRecommend">
 				<div class="col-sm-offset-5">
 							<h4>종료된 토론입니다.</h4>
 				</div>
@@ -173,40 +173,28 @@
 	<div class="container">
 		<form class="form-horizontal">
 		<!-- 본문 -->
-			<div>
-				<h2>본문</h2>
-				<h4>${readlist.topic_long_cont}</h4>
-				<br />
-				<hr />
+			<div id="divContent" class="col-md-12">
+			<h4>본문</h4>
+				<p>${readlist.topic_long_cont}</p>
 			</div>
-			<div>
 			<!-- 참고자료 링크를 넣어서 클릭시 다른 사이트가 새창으로 띄움 -->
-				<h2>참고자료</h2>
+			<div id="divRef" class="col-md-12">
+				<h4>참고 자료</h4><br/>
 				<c:forEach items="${readResource}" var="resource">
-					<br />
-					<h3>
-						<a href=http://${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a>
-					</h3>
-					<br />
+					<a href=http://${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a>
 				</c:forEach>
 			</div>
-			<hr />
 			<!-- 찬반 주제일때만 찬성-반대 의견이 보임 -->
 			<c:choose>
 				<c:when test="${readlist.topic_type eq 0}">
-			<div class="row marketing">
+			<div id="divProCon" class="col-md-12">
 				<div class="col-lg-6">
-					<h2 style="text-align: center">찬성 의견</h2>
-					<br />
-					<h4>${readlist.topic_pro}</h4>
-					<br />
+					<h4>찬성 의견</h4>
+					<p>${readlist.topic_pro}</p>
 				</div>
 				<div class="col-lg-6">
-					<h2 style="text-align: center">반대 의견</h2>
-					<br />
-					<h4>${readlist.topic_con}</h4>
-					<br />
-
+					<h4>반대 의견</h4>
+					<p>${readlist.topic_con}</p>
 				</div>
 			</div>
 			</c:when>

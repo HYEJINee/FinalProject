@@ -18,3 +18,77 @@
 	padding-bottom: 80px;
 }
 
+#divCoverImg {
+	background-color: transparent;
+	position: relative;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height:450px;
+}
+#divCoverImg>p {
+	font-weight: bold !important;
+}
+
+#short_cont {
+	font-size:12pt;
+	padding : 2% 1.5%;
+}
+
+#writer {
+	font-size:10pt;
+}
+
+#coverImg {
+	position: absolute;
+	width:100%;
+	height:100%;
+	left: 0;
+	top: 0;
+	opacity : 0.5;
+	z-index: -1;
+}
+#divProCon {
+	margin-bottom: 20px;
+	padding: 20px 50px;
+	border-bottom: 1px solid silver;
+	min-height: 300px;
+}
+
+#divProCon h4 {
+	padding-bottom: 10px;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 1px solid silver;
+}
+
+#divProCon p {
+	padding: 5px 40px;
+	font-size: 12pt;
+}
+#divContent {
+	padding: 5px 50px;
+	min-height: 400px;
+}
+#divContent h4 {
+	padding-bottom: 20px;
+	border-bottom: 1px solid silver;
+}
+#divContent p {
+	text-indent: 30px;
+	line-height: 1.8;
+	word-spacing: 3px;
+	font-size: 13pt;
+}
+#divRef {
+	margin-bottom: 20px;
+	padding: 20px 50px;
+}
+
+#divRef h4 {
+	padding-bottom: 20px;
+	border-bottom: 1px solid silver;
+}
+#divRecommend {
+	margin: 20px 0px;
+	padding-bottom: 30px;
+}
