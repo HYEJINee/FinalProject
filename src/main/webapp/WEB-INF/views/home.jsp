@@ -206,8 +206,8 @@
 									<label class="label label-danger">의견</label>
 								</c:when>
 							</c:choose>
-							<span id="board_title"">${recmdList.topic_title}</span>
-							<span id="board_icon" class="glyphicon glyphicon-star">${recmdList.recomnd_cnt}</span>
+							<span class="board_title">${recmdList.topic_title}</span>
+							<span class="board_icon glyphicon glyphicon-star">${recmdList.recomnd_cnt}</span>
 						</div>
 					</c:if>
 					<c:if test="${status.count eq 7}">
@@ -235,35 +235,35 @@
 									<label class="label label-danger">의견</label>
 								</c:when>
 							</c:choose>
-							<span id="board_title">${finishList.topic_title}</span>
+							<span class="board_title">${finishList.topic_title}</span>
 							<c:if test="${finishList.topic_type eq 0}">
 								<c:choose>
 										<c:when test="${finishList.debate_tot_pro eq 0}">
-											<span id="pro_board"> 찬 0%</span>
+											<span class="pro_board"> 찬 0%</span>
 										</c:when>
 										<c:otherwise>
-											<span id="pro_board"> 찬 <fmt:formatNumber value="${finishList.debate_tot_pro/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+											<span class="pro_board"> 찬 <fmt:formatNumber value="${finishList.debate_tot_pro/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}" pattern=".0"/>%</span>
 										</c:otherwise>
 									</c:choose>
 									<c:choose>
 										<c:when test="${finishList.debate_tot_con eq 0}">
-											<span id="con"> 반 0%</span>
+											<span class="con"> 반 0%</span>
 										</c:when>
 										<c:otherwise>
-											<span id="con"> 반 <fmt:formatNumber value="${finishList.debate_tot_con/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+											<span class="con"> 반 <fmt:formatNumber value="${finishList.debate_tot_con/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}" pattern=".0"/>%</span>
 										</c:otherwise>
 									</c:choose>
 									<c:choose>
 										<c:when test="${finishList.debate_tot_neut eq 0}">
-											<span id="neut"> 중 0%</span>
+											<span class="neut"> 중 0%</span>
 										</c:when>
 										<c:otherwise>
-											<span id="neut"> 중 <fmt:formatNumber value="${finishList.debate_tot_neut/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+											<span class="neut"> 중 <fmt:formatNumber value="${finishList.debate_tot_neut/(finishList.debate_tot_pro + finishList.debate_tot_con + finishList.debate_tot_neut)*100}" pattern=".0"/>%</span>
 										</c:otherwise>
 									</c:choose>
 							</c:if>
 							<c:if test="${finishList.topic_type eq 1}">
-								<span id="board_icon" class="glyphicon glyphicon-comment"> ${finishList.op_cnt}</span>
+								<span class="board_icon glyphicon glyphicon-comment"> ${finishList.op_cnt}</span>
 							</c:if>
 						</div>
 					</c:if>
