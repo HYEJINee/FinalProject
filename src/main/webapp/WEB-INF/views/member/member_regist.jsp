@@ -96,56 +96,68 @@
 			}
 		});
 	}
-	function RegCheckIt() {
+	function RegCheckIt(event, button) {
 		var userinput = document.form;
+		event.preventDefault();
+		var ori_btn = $(button).html();
+		var spinner = $(button).replaceWith('<div id="spinner" class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>');
+		
 
 		if (!userinput.user_email.value) {
 			alert("이메일 주소를 입력하세요.");
 			userinput.user_email.focus();
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
-		}
-		if (!userinput.user_pw.value) {
+		} else if (!userinput.user_pw.value) {
 			alert("비밀번호를 입력하세요.");
 			userinput.user_pw.focus();
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 
 		var upw = document.form.user_pw.value;
 		if (!/^[a-zA-Z0-9]{8,20}$/.test(upw)) {
 			alert("비밀번호는 숫자와 영문자 조합으로 8~20자리를 사용해야 합니다.");
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 		var chk_num = upw.search(/[0-9]/g);
 		var chk_eng = upw.search(/[a-z]/ig);
 		if (chk_num < 0 || chk_eng < 0) {
 			alert("비밀번호는 숫자와 영문자를 혼용하여야 합니다.");
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 		if (!userinput.user_pw2.value) {
 			alert("비밀번호 확인을 입력하세요.");
 			userinput.user_pw2.focus();
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 		var pw1 = document.form.user_pw.value;
 		var pw2 = document.form.user_pw2.value;
 		if (pw1 != pw2) {
 			alert("동일한 암호를 입력하세요.");
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 		if (!userinput.user_nick.value) {
 			alert("닉네임을 입력하세요.");
 			userinput.user_nick.focus();
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 
 		if (email_check == "email_none") {
 			alert("이메일 중복체크를 확인해주세요.");
 			before_email = document.form.user_email.value;
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		} else if (email_check == "email_fail"
 				&& before_email != document.form.user_email.value) {
 			alert("이메일 중복 체크를 다시 확인해주세요.");
 			before_email = document.form.user_email.value;
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 
@@ -153,27 +165,31 @@
 			alert("중복된 아이디입니다.");
 			userinput.user_email.focus();
 			before_email = document.form.user_email.value;
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
 
 		if (nick_check == "nick_none") {
 			alert("닉네임 중복체크를 확인해주세요.");
 			before_nick = document.form.user_nick.value;
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		} else if (nick_check == "nick_fail"
 				&& before_nick !== document.form.user_nick.value) {
 			alert("닉네임 중복 체크를 다시 확인해주세요.");
 			before_nick = document.form.user_nick.value;
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 
 		} else if (nick_check == "nick_fail") {
 			alert("중복된 닉네임입니다.");
 			userinput.user_nick.focus();
 			before_nick = document.form.user_nick.value;
+			$('#spinner').replaceWith('<button class="btn waves-effect waves-light blue accent-3" type="submit" onclick="return RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>');
 			return false;
 		}
-
-		return true;
+		
+		userinput.submit();
 	}
 
 	function checkPwd() {
@@ -257,7 +273,7 @@
 			<div class="row" style="margin-top:40px;">
 				<div class="col s4 offset-s10">
 					<button class="btn waves-effect waves-light blue accent-3" type="submit"
-						onclick="return RegCheckIt()">가입하기  <i class="material-icons right">send</i></button>
+						onclick="RegCheckIt(event, this)">가입하기  <i class="material-icons right">send</i></button>
 				</div>
 			</div>
 		</form>

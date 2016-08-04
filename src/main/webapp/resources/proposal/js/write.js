@@ -92,13 +92,13 @@ $('#btnSubmit').on('click', function(event) {
 	if (short_cont.length > 300 || short_cont.length == 0) {
 		alert('요약문은 비워두거나 150자를 넘을 수 없습니다.');
 	} else if(topic_type.length == 0) {
-		alert('토론 형식');
+		alert('토론 형식을 선택해주세요.');
 	} else if (title.length == 0) {
-		alert('제목');
+		alert('제목을 입력해주세요.');
 	} else if (short_cont.length == 0) {
-		alert('요약');
+		alert('요약문을 입력해주세요.');
 	} else if (topic_type != 1 && (pro.length == 0 || con.length == 0)) {
-		alert('찬반');
+		alert('찬성/반대 근거를 입력해주세요.');
 	} else {
 		if(topic_type == 1) {
 			$('#divProCon').remove();
