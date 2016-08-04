@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Read Page</title>
-<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
+
 </head>
 <body>
 <!-- 현재 토론중인 페이지 -->
@@ -20,7 +20,7 @@
 	</script>
 	
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	
+	<link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
 	<div class="container top">
 		<form class="form-horizontal">
 		<!-- 토론 주제에 따른 타이틀 변경 -->
@@ -664,7 +664,7 @@
 												</div>
 												<div class="col-sm-offset-1 col-sm-1 minibottom">
 													<button type="button" class="btn btn-default"
-														id="btn${status.count}" name="rebtn" disabled="disabled">답글</button>
+														id="btn${status.count}"  disabled="disabled">답글</button>
 												</div>
 											</c:when>
 											<c:when test="${readuser.user_nick != opinion.user_nick}">
@@ -1000,7 +1000,7 @@
 
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" readonly="readonly"
 							placeholder="로그인 후 의견 작성이 가능합니다."></textarea>
 						<br />
@@ -1008,7 +1008,7 @@
 					</c:when>
 
 					<c:when test="${empty readuser.user_nick != true}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" name="context"></textarea>
 						<br />
 						<br />
@@ -1021,8 +1021,8 @@
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<input type="button" value="등록" class="btn btn-default btn-lg"
-							disabled="disabled" />
+						<button type="button" class="btn btn-default btn-lg"
+							disabled="disabled" >등록</button>
 						<br />
 						<br />
 						<br />
@@ -1035,7 +1035,7 @@
 						<br />
 					</c:when>
 					<c:when test="${empty readuser.user_nick != true}">
-						<input type="button" value="등록" class="btn btn-default btn-lg" id="optionbtn" />
+						<button type="button"class="btn btn-default btn-lg" id="optionbtn" >등록</button>
 						<br />
 						<br />
 						<br />
@@ -1117,14 +1117,14 @@
 			<div class="col-sm-offset-1 col-sm-9">
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" readonly="readonly"
 							placeholder="로그인 후 의견 작성이 가능합니다."></textarea>
 						<br />
 						<br />
 					</c:when>
 					<c:when test="${empty readuser.user_nick != true}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" name="context"></textarea>
 						<br />
 						<br />
@@ -1137,8 +1137,8 @@
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<input type="button" value="등록" class="btn btn-default btn-lg"
-							disabled="disabled" />
+						<button type="button" class="btn btn-default btn-lg"
+							disabled="disabled" >등록</button>
 						<br />
 						<br />
 						<br />
@@ -1151,8 +1151,8 @@
 						<br />
 					</c:when>
 					<c:when test="${empty readuser.user_nick != true}">
-						<input type="button" value="등록" class="btn btn-default btn-lg"
-							id="freebtn" />
+						<button type="button" class="btn btn-default btn-lg"
+							id="freebtn" >등록</button>
 						<br />
 						<br />
 						<br />
@@ -1186,7 +1186,7 @@
 					<h4 class="modal-title" id="myModalLabel">의견 수정하기</h4>
 				</div>
 				<div class="modal-body">
-					<textarea id="upcontent" cols="80" rows="10"></textarea>
+					<textarea id="upcontent" cols="68" rows="10"></textarea>
 					<form id="optupform" action="reup" method="post">
 						<input type="hidden" name="reupopno" id="reupopno"> <input
 							type="hidden" name="reupcontent" id="reupcontent"> <input

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.four.myapp.mappers.expiredMapper">
+	<update id="comment">
+		update user_tbl user_point set user_point = (user_point + 2) where user_no = #{user_no}
+	</update>
+	<update id="proposal">
+		update user_tbl user_point set user_point = (user_point + 10) where user_no = #{user_no}
+	</update>
+	<update id="opinion">
+		update user_tbl user_point set user_point = (user_point + 5) where user_no = #{user_no}
+	</update>
+	<update id="release">
+		update user_tbl user_point set user_point = (user_point + 20) where user_no = #{user_no}
+	</update>
+	<update id="level">
+		update user_tbl user_lv set user_lv = #{user_lv} where user_no = #{user_no}
+	</update>
+	<select id="TopicWriter" resultType="int">
+		select user_no from topic_tbl where topic_no = #{topic_no}
+	</select>
+	<select id="user_point" resultType="int">
+		select user_point from user_tbl where user_no = #{user_no}
+	</select>
+</mapper>

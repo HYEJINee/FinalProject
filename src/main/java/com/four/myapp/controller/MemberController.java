@@ -113,11 +113,12 @@ public class MemberController {
    @RequestMapping(value = "/member_modify", method = RequestMethod.POST)
    public String member_modify(@ModelAttribute MemberVO mem,Model model,HttpServletRequest req) throws Exception {
       MemberVO vo = (MemberVO) WebUtils.getSessionAttribute(req, "USER_KEY");
+      System.out.println("modify : "+vo.toString());
       service.modifyMember(mem);
       vo = service.selectMember(vo.getUser_email());
       WebUtils.setSessionAttribute(req, "USER_KEY", vo);
       logger.info("modifyComplete : " + vo.toString());
-      return "redirect:/member/mypage";
+      return "redirect:/mypage/mypage";
    }
    @RequestMapping(value="/member_logout")
    public String logout(HttpServletRequest req){

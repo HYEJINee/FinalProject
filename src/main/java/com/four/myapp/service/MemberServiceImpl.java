@@ -24,10 +24,6 @@ public class MemberServiceImpl implements MemberService {
 		dao.modifyMember(vo);
 	}
 
-	@Override
-	public MemberVO readMember(String user_email) throws Exception {
-		return dao.readMember(user_email);
-	}
 
 	@Override
 	public MemberVO readWithPW(String user_email, String user_pw) throws Exception {

@@ -44,7 +44,8 @@
 						<div class="grid">
 							<c:if test="${!empty searchList}">
 								<c:forEach items="${searchList}" var="list">
-									<div class="card grid-item topic_${list.topic_progress}" topic_no="${list.topic_no}" onclick="goToRead(this)">
+									<c:if test="${list.topic_progress != 2}">
+									<div class="card grid-item topic_${list.topic_progress}" topic_no="${list.topic_no}" onclick="goToRead(this, ${list.topic_progress})">
 										<c:choose>
 											<c:when test="${list.img_file_name != '' && list.img_file_name != null}">
 												<div class="card_header">
@@ -113,6 +114,7 @@
 											</c:choose>
 										</div>
 									</div>
+									</c:if>
 								</c:forEach>
 
 							</c:if>

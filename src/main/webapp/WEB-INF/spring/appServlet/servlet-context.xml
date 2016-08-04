@@ -31,4 +31,5 @@
 	<!-- 만료된 주제 업데이트 -->
 	<aop:aspectj-autoproxy />
 	<beans:bean id="ExpiredTopicUpdater" class="com.four.myapp.util.ExpiredTopicUpdater" />
+	<beans:bean id="PointEvaluator" class="com.four.myapp.util.PointEvaluator" />
 </beans:beans>

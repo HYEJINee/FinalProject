@@ -24,7 +24,7 @@
 	</insert>
 	<update id="modifyMember" parameterType="MemberVO">
 		update user_tbl set
-		user_pw = #{user_pw}, user_nick=#{user_nick}
+		user_pw = #{user_pw}, user_nick=#{user_nick} where user_email=#{user_email}
 	</update>
 	<select id="allMember" resultType="MemberVO">
 		select * from user_tbl

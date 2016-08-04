@@ -561,53 +561,7 @@
 		<p><a href="/finished/read?topic_no=${readlist.topic_no}&pageNo=2"></a></p>
 	</nav>
 	<!-- 의견 작성 -->
-	<div class="container">
-		<form class="form-horizontal" action="option" method="post"
-			id="optionform">
-			<div class="form-group">
-				<h2>의견 작성</h2>
-				<hr />
-				<div class="col-sm-1">
-					<c:choose>
-						<c:when test="${readuser.user_lv eq 0}">
-							<img src="/resources/user_lv/common.png"
-								style="height: 60px; width: 60px" />
-						</c:when>
-						<c:when test="${readuser.user_lv eq 1}">
-							<img src="/resources/user_lv/prestige.png"
-								style="height: 60px; width: 60px" />
-						</c:when>
-						<c:when test="${readuser.user_lv eq 2}">
-							<img src="/resources/user_lv/royal.png"
-								style="height: 60px; width: 60px" />
-						</c:when>
-						<c:when test="${readuser.user_lv eq 3}">
-							<img src="/resources/user_lv/vip.png"
-								style="height: 60px; width: 60px" />
-						</c:when>
-						<c:when test="${readuser.user_lv eq 4}">
-							<img src="/resources/user_lv/vvip.png"
-								style="height: 60px; width: 60px" />
-						</c:when>
-					</c:choose>
-				</div>
-				<!-- 닉네임 대신 출력 -->
-				<div class="col-sm-3">
-						<h4>종료된 토론입니다.</h4>
-				</div>
-			</div>
-			<div class="col-sm-offset-1 col-sm-9">
-			<textarea id="context" cols="150" rows="10"
-							style="border-color: #46FFFF" readonly="readonly"
-							placeholder="종료된 토론으로 의견작성이 불가능합니다."></textarea> <br/><br/>
-			</div>
-			<br />
-			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
-			<input type="button" value="등록" class="btn btn-default btn-lg"
-							disabled="disabled" /><br/><br/><br/><br/><br/><br/><br/><br/>
-			</div>
-		</form>
-	</div>
+	<br/><br/><br/><br/><br/><br/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
