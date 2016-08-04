@@ -57,31 +57,35 @@
 						</c:if>
 						<div class="card_body">
 							<p>${list.topic_short_cont}</p>
-							<span class="glyphicon glyphicon-user"> ${list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut}</span>
-							<c:choose>
-								<c:when test="${list.debate_tot_pro eq 0}">
-									<span class="pro"> 찬 0%</span>
-								</c:when>
-								<c:otherwise>
-									<span class="pro"> 찬 <fmt:formatNumber value="${list.debate_tot_pro/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
-								</c:otherwise>
-							</c:choose>
-							<c:choose>
-								<c:when test="${list.debate_tot_con eq 0}">
-									<span class="con"> 반 0%</span>
-								</c:when>
-								<c:otherwise>
-									<span class="con"> 반 <fmt:formatNumber value="${list.debate_tot_con/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
-								</c:otherwise>
-							</c:choose>
-							<c:choose>
-								<c:when test="${list.debate_tot_neut eq 0}">
-									<span class="neut"> 중 0%</span>
-								</c:when>
-								<c:otherwise>
-									<span class="neut"> 중 <fmt:formatNumber value="${list.debate_tot_neut/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
-								</c:otherwise>
-							</c:choose>
+						</div>
+						<div class="card_footer">
+							<p class="text-right">
+								<span class="glyphicon glyphicon-user"> ${list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut}</span>
+								<c:choose>
+									<c:when test="${list.debate_tot_pro eq 0}">
+										<span class="pro"> 찬 0%</span>
+									</c:when>
+									<c:otherwise>
+										<span class="pro"> 찬 <fmt:formatNumber value="${list.debate_tot_pro/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${list.debate_tot_con eq 0}">
+										<span class="con"> 반 0%</span>
+									</c:when>
+									<c:otherwise>
+										<span class="con"> 반 <fmt:formatNumber value="${list.debate_tot_con/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${list.debate_tot_neut eq 0}">
+										<span class="neut"> 중 0%</span>
+									</c:when>
+									<c:otherwise>
+										<span class="neut"> 중 <fmt:formatNumber value="${list.debate_tot_neut/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
+									</c:otherwise>
+								</c:choose>
+							</p>
 						</div>
 					</c:when>
 					<c:when test="${list.topic_type eq 1}">
@@ -103,7 +107,11 @@
 						</c:if>
 						<div class="card_body">
 							<p>${list.topic_short_cont}</p>
-							<span class="glyphicon glyphicon-comment"> ${list.op_cnt}</span>
+						</div>
+						<div class="card_footer">
+							<p class="text-right">
+								<span class="glyphicon glyphicon-comment"> ${list.op_cnt}</span>
+							</p>
 						</div>
 					</c:when>
 				</c:choose>

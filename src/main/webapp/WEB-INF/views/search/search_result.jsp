@@ -5,36 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>검색 결과</title>
-<link
-	href="${pageContext.request.contextPath}/resources/proposal/css/list.css"
-	rel="stylesheet">
-<style>
-.container {
-	margin-top: 50px;
-}
-</style>
+<title>TAWAR 검색 결과</title>
+<link rel="stylesheet" href="/resources/proposal/css/list.css">
+<link rel="stylesheet" href="/resources/css/list_item.css">
 </head>
 <body>
 	<!-- Header -->
 	<%@ include file="../include/header.jsp"%>
-	<div class="container">
+	<div class="container" id="content">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-6">
 					<h2>검색 결과</h2>
 				</div>
-				<div role="tabpanel" id="category" class="col-md-offset-6"
-					style="margin-top: 10px">
-					<ul class="nav nav-pills" id="searchTab" role="tablist">
-						<li role="presentation" class="active" data-filter="*"><a
-							href="" data-toggle="pill">모든 안건</a></li>
-						<li role="presentation" data-filter=".topic_3"><a href=""
-							data-toggle="pill">진행 중 토론</a></li>
-						<li role="presentation" data-filter=".topic_1"><a href=""
-							data-toggle="pill">투표 중 안건</a></li>
-						<li role="presentation" data-filter=".topic_4"><a href=""
-							data-toggle="pill">종료된 토론</a></li>
+				<div role="tabpanel" class="col-md-offset-6">
+					<ul class="nav nav-pills" id="topic-tab" role="tablist">
+						<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
+						<li role="presentation" data-filter=".topic_3"><a href="" data-toggle="pill">진행 중 토론</a></li>
+						<li role="presentation" data-filter=".topic_1"><a href="" data-toggle="pill">투표 중 안건</a></li>
+						<li role="presentation" data-filter=".topic_4"><a href="" data-toggle="pill">종료된 토론</a></li>
 					</ul>
 
 				</div>
@@ -43,7 +32,6 @@
 		</div>
 		<hr />
 		<div class="row">
-
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="all">
 					<div id="searchList" class="col-md-12">
@@ -56,45 +44,73 @@
 						<div class="grid">
 							<c:if test="${!empty searchList}">
 								<c:forEach items="${searchList}" var="list">
-									<div class="card grid-item topic_${list.topic_progress}"
-										topic_no="${list.topic_no}" onclick="goToRead(this)">
-
+									<div class="card grid-item topic_${list.topic_progress}" topic_no="${list.topic_no}" onclick="goToRead(this)">
 										<c:choose>
-
-											<c:when
-												test="${list.img_file_name != '' && list.img_file_name != null}">
-												<div class="card-header">
-
+											<c:when test="${list.img_file_name != '' && list.img_file_name != null}">
+												<div class="card_header">
 													<c:choose>
-														<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
-														<c:when test="${list.topic_type == 1}">자유 토론</c:when>
+														<c:when test="${list.topic_type == 0}"><h4><label class="label label-primary">찬반</label></h4></c:when>
+														<c:when test="${list.topic_type == 1}"><h4><label class="label label-primary">의견</label></h4></c:when>
 													</c:choose>
-													<br>
-													<h4>${list.topic_title}</h4>
-													<img
-														src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}"
-														style="position: absolute; left: 0; top: -50%; width: 100%; height: auto; opacity: 0.5; z-index: -1;">
+													<center><h3>${list.topic_title}</h3></center>
+													<img class="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
 												</div>
-
 											</c:when>
 											<c:otherwise>
-												<div class="card-header"
-													style="background-color: rgba(230, 230, 230, 0.5);">
+												<div class="card_header_noneImg">
 													<c:choose>
-														<c:when test="${list.topic_type == 0}">찬반 토론</c:when>
-														<c:when test="${list.topic_type == 1}">자유 토론</c:when>
+														<c:when test="${list.topic_type == 0}"><h4><label class="label label-primary">찬반</label></h4></c:when>
+														<c:when test="${list.topic_type == 1}"><h4><label class="label label-primary">의견</label></h4></c:when>
 													</c:choose>
-													<br>
-													<h4>${list.topic_title}</h4>
+													<center><h3>${list.topic_title}</h3></center>
 												</div>
 											</c:otherwise>
 										</c:choose>
-										<div class="card-body">${list.topic_short_cont}</div>
+										<div class="card_body">
+											<p>${list.topic_short_cont}</p>
+										</div>
 										<div class="card-footer">
-											<p class="text-right">
-												<span class="glyphicon glyphicon-thumbs-up"
-													aria-hidden="true"></span>
-											</p>
+											<c:choose>
+												<c:when test="${list.topic_progress == 1}">
+													<p class="text-right">
+														<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+													</p>
+												</c:when>
+												<c:when test="${list.topic_progress != 1 && list.topic_type == 0}">
+													<p class="text-right">
+														<span class="glyphicon glyphicon-user"> ${list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut}</span>
+														<c:choose>
+															<c:when test="${list.debate_tot_pro eq 0}">
+																<span class="pro"> 찬 0%</span>
+															</c:when>
+															<c:otherwise>
+																<span class="pro"> 찬 <fmt:formatNumber value="${list.debate_tot_pro/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
+															</c:otherwise>
+														</c:choose>
+														<c:choose>
+															<c:when test="${list.debate_tot_con eq 0}">
+																<span class="con"> 반 0%</span>
+															</c:when>
+															<c:otherwise>
+																<span class="con"> 반 <fmt:formatNumber value="${list.debate_tot_con/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
+															</c:otherwise>
+														</c:choose>
+														<c:choose>
+															<c:when test="${list.debate_tot_neut eq 0}">
+																<span class="neut"> 중 0%</span>
+															</c:when>
+															<c:otherwise>
+																<span class="neut"> 중 <fmt:formatNumber value="${list.debate_tot_neut/(list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut)*100}" pattern="0"/>%</span>
+															</c:otherwise>
+														</c:choose>
+													</p>
+												</c:when>
+												<c:when test="${list.topic_progress != 1 && list.topic_type == 1}">
+													<p class="text-right">
+														<span class="glyphicon glyphicon-comment"> ${list.op_cnt}</span>
+													</p>
+												</c:when>
+											</c:choose>
 										</div>
 									</div>
 								</c:forEach>
@@ -112,20 +128,6 @@
 			<a href="/search/search_result?search_word=${search_word}&pageNo=2"></a>
 		</p>
 	</nav>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script
@@ -138,17 +140,6 @@
 		src="${pageContext.request.contextPath}/resources/proposal/js/jquery.infinitescroll.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/proposal/js/list.js"></script>
-	<script>
-		$('#searchTab a').click(function(e) {
-			e.preventDefault()
-			$(this).tab('show')
-		})
-	</script>
-	<script>
-		function goToRead(card) {
-			var topic_no = $(card).attr("topic_no");
-			location.href = "/read/read?topic_no=" + topic_no;
-		}
-	</script>
+	<script src="/resources/search/js/search.js"></script>
 </body>
 </html>
