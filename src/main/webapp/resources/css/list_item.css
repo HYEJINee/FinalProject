@@ -1,17 +1,36 @@
 /*
-	작성자 : 최락휘
-	작성일 : 2016.07.29
-	수정일 : 2016.08.04
+	공통적인 List에 적용되는 css
+	최종 수정일 : 2016.08.04
 */
-@CHARSET "utf-8";
+
+@CHARSET "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-.item {
-	margin-top: 15px;
+
+body {
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
+
+h2 {
+	font-family: 'Jeju Gothic', sans-serif;
+}
+
+#topic-tab>li.active>a, #topic-tab>li.active>a:focus, #topic-tab>li.active>a:hover
+	{
+	color: #224f77;
+	font-weight: bold;
+	background-color: #fff
+}
+.nav-pills li a {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-size: 13pt;	
+}
+
 .grid-item{
 	margin-top: 30px;
 	border:1px #d9edf7 solid;
+	width: 350px;
 }
 .card {
 	cursor: pointer;
@@ -44,11 +63,15 @@
 }
 .card_body {
 	padding: 5px;
+	word-break:break-all;
+	text-overflow: ellipsis;
+	width:inherit;
 }
 .card_body p {
 	font-family: 'Jeju Gothic', sans-serif;
 	font-size: 12pt;
 	padding: 5px;
+	margin-top: 10px;
 }
 .coverImg {
 	position: absolute;
@@ -59,37 +82,17 @@
 	opacity:0.5;
 	z-index:-1;"
 }
-.header_item {
-	margin-top: 5px;
+#load {
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+	padding-bottom: 80px;
 }
-.header_item label {
-	font-size: 13pt;
-	font-family: 'Nanum Gothic', sans-serif;
-	margin-right: 10px;
-	padding: 5px;
-}
-.header_item span {
-	font-size: 15pt;
-	font-family: 'Nanum Gothic', sans-serif;
-	font-weight: bold;
-}
-#main_title {
-	margin-top: 60px;
-}
-#main_title h2 {
-	font-family: 'Jeju Gothic', sans-serif;
-}
-center h3 {
-	font-family: 'Jeju Gothic', sans-serif;
-}
+/* 찬반카드에 쓰이는 css */
 .pro {
-	color:blue; 
-	margin-left:20px;
-	font-family: 'Jeju Gothic', sans-serif;
-}
-#pro_board {
 	color:blue;
-	margin-left:35px;
+	margin-left: 20px;
+	font-family: 'Jeju Gothic', sans-serif;
 }
 .con {
 	color:red;
@@ -98,23 +101,4 @@ center h3 {
 .neut {
 	color:gray;
 	font-family: 'Jeju Gothic', sans-serif;
-}
-#board_title {
-	margin-left:20px;
-	font-family: 'Nanum Gothic', sans-serif;
-}
-.board_title h3 {
-	font-family: 'Jeju Gothic', sans-serif;
-}
-#board_icon {
-	 float:right;
-}
-.board_title h3{
-	margin-left: 50%;
-}
-.board_title a {
-	float: right;
-}
-#last {
-	margin-bottom: 200px;
 }

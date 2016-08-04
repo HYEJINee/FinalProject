@@ -30,7 +30,6 @@ public class OngoingController {
 	
 	@RequestMapping("/ongoing/tab")
 	public @ResponseBody List<MainDto> TabHandler(@RequestParam(required=false) Integer pageNo, @RequestParam("type") String type, Model model) throws SQLException {
-		System.out.println(type);
 		int index = 0;
 		if(pageNo == null)
 			  pageNo = 1;

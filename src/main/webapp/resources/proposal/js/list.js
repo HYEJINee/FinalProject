@@ -9,9 +9,8 @@ $(function() {
 		// set itemSelector so .grid-sizer is not used in layout
 		itemSelector: '.grid-item',
 		// use element for option
-		columnWidth: 358,
 		masonry: {
-			gutter: 30
+			gutter: 40
 		}
 	});
 			
@@ -35,6 +34,11 @@ $(function() {
 		var filterValue = $(this).attr('data-filter');
 		$grid.isotope({filter: filterValue});
 	})
+	
+	// 헤더 탭 부분 종료된 토론 활성화
+	$("#proposal").addClass("active");
+	$("#ongoing").removeClass("active");
+	$("#finished").removeClass("active");
 });
 		
 $('.btn-write').on('click', function() {

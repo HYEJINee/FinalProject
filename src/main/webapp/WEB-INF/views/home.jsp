@@ -29,22 +29,18 @@
 				<h2>인권을<br>자유를<br/>논하다</h2>
 			</div>
 			<c:forEach items="${main}" var="mainList" begin="0" end="2">
+				<div class="item header_item col-md-offset-8">
+				<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 				<c:choose>
 					<c:when test="${mainList.topic_type eq 0}">
-						<div class="item header_item col-md-offset-9">
-							<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 							<label class="label label-primary">찬반</label>
-							<span>${mainList.topic_title}</span><br/><br/>
-						</div>
 					</c:when>
 					<c:when test="${mainList.topic_type eq 1}">
-						<div class="item header_item col-md-offset-9">
-							<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 							<label class="label label-danger">의견</label>
-							<span>${mainList.topic_title}</span><br/><br/>
-						</div>
 					</c:when>
 				</c:choose>
+				<span>${mainList.topic_title}</span><br/><br/>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
@@ -63,74 +59,74 @@
 						<c:forEach items="${main}" var="mainList" begin="${beginPerPage}" end="${beginPerPage + numPerPage -1}">
 							<c:choose>
 								<c:when test="${mainList.topic_type eq 0}">
-									<div class="item list_item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+									<div class="card grid-item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px; width:31%; margin-left: 2%;">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 										<!-- card_header -->
 										<!-- 1) 커버이미지 있을 때 -->
 										<c:if test="${mainList.img_file_name != null}">
-											<div id="card_header">
+									 		<div class="card_header">
 												<h4><label class="label label-primary">찬반</label></h4>
 												<center><h3>${mainList.topic_title}</h3></center>
-												<img id="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
+												<img class="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
 											</div>
 										</c:if>
 										<!-- 2) 커버이미지 없을 때 -->
 										<c:if test="${mainList.img_file_name eq null}">
-											<div id="card_header_noneImg">
+											<div class="card_header_noneImg">
 												<h4><label class="label label-primary">찬반</label></h4>
 												<center><h3>${mainList.topic_title}</h3></center>
 											</div>
 										</c:if>
-										<div id="card_body">
+										<div class="card_body">
 										<p>${mainList.topic_short_cont}</p>
 										<span class="glyphicon glyphicon-user"> ${mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut}</span>
 										<c:choose>
 											<c:when test="${mainList.debate_tot_pro eq 0}">
-												<span id="pro"> 찬 0%</span>
+												<span class="pro"> 찬 0%</span>
 											</c:when>
 											<c:otherwise>
-												<span id="pro"> 찬 <fmt:formatNumber value="${mainList.debate_tot_pro/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+												<span class="pro"> 찬 <fmt:formatNumber value="${mainList.debate_tot_pro/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
 											</c:otherwise>
 										</c:choose>
 										<c:choose>
 											<c:when test="${mainList.debate_tot_con eq 0}">
-												<span id="con"> 반 0%</span>
+												<span class="con"> 반 0%</span>
 											</c:when>
 											<c:otherwise>
-												<span id="con"> 반 <fmt:formatNumber value="${mainList.debate_tot_con/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+												<span class="con"> 반 <fmt:formatNumber value="${mainList.debate_tot_con/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
 											</c:otherwise>
 										</c:choose>
 										<c:choose>
 											<c:when test="${mainList.debate_tot_neut eq 0}">
-												<span id="neut"> 중 0%</span>
+												<span class="neut"> 중 0%</span>
 											</c:when>
 											<c:otherwise>
-												<span id="neut"> 중 <fmt:formatNumber value="${mainList.debate_tot_neut/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
+												<span class="neut"> 중 <fmt:formatNumber value="${mainList.debate_tot_neut/(mainList.debate_tot_pro + mainList.debate_tot_con + mainList.debate_tot_neut)*100}" pattern=".0"/>%</span>
 											</c:otherwise>
 										</c:choose>
 										</div>
 									</div>
 								</c:when>
 								<c:when test="${mainList.topic_type eq 1}">
-									<div class="item list_item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px;">
+									<div class="card grid-item col-md-3 col-md-offset-1" style="padding-left: 0px; padding-right: 0px; width:31%; margin-left: 2%;">
 										<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
 										<!-- card_header -->
 										<!-- 1) 커버이미지 있을 때 -->
 										<c:if test="${mainList.img_file_name != null}">
-											<div id="card_header">
+											<div class="card_header">
 												<h4><label class="label label-danger">의견</label><br/></h4>
 												<center><h3>${mainList.topic_title}</h3></center>
-												<img id="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
+												<img class="coverImg" src="/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name}">
 											</div>
 										</c:if>
 										<!-- 2) 커버이미지 없을 때 -->
 										<c:if test="${mainList.img_file_name eq null}">
-											<div id="card_header_noneImg">
+											<div class="card_header_noneImg">
 												<h4><label class="label label-danger">의견</label><br/></h4>
 												<center><h3>${mainList.topic_title}</h3></center>
 											</div>
 										</c:if>
-										<div id="card_body" style="padding: 8px;">
+										<div class="card_body" style="padding: 8px;">
 											<p>${mainList.topic_short_cont}</p>
 											<span class="glyphicon glyphicon-comment"> ${mainList.op_cnt}</span>
 										</div>
