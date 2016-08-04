@@ -2,7 +2,7 @@
  * 	finished.js
  * 	작성자 : 최락휘
  * 	작성일 : 2016.07.21
- *  최종수정 : 2016.08.01
+ *  최종수정 : 2016.08.04
  *  내용 : 전체 헤더 탭 활성화, 카테고리 기능 
  */
 // 게시물 선택시 읽기 페이지로 이동
@@ -12,14 +12,14 @@ function fnRead(div) {
 }
 // 무한스크롤 설정
 function fnInfiScroll() {
-	var $grid = $('.list');
+	var $grid = $('.grid');
 		
 		$grid.isotope({
 			// set itemSelector so .grid-sizer is not used in layout
-			itemSelector: '.item',
+			itemSelector: '.grid-item',
 			// use element for option
 			masonry: {
-				gutter: 50
+				gutter: 40
 			}
 		});
 				

@@ -16,14 +16,14 @@
 	
 	<div id="content" class="container">
 	
-		<h3 class="col-md-9">안건 건의</h3>
+		<h2 class="col-md-8">안건 건의</h2>
 		
 		<ul id="topic-tab" class="nav nav-pills">
 			<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
   			<li role="presentation" data-filter=".topic_0"><a href="" data-toggle="pill">찬반 토론</a></li>
 			<li role="presentation" data-filter=".topic_1"><a href="" data-toggle="pill">자유 토론</a></li>
 		</ul>
-		
+		<hr/>
 		
 		<c:if test="${empty USER_KEY != true}">
 			<div id="divWrite">
@@ -43,7 +43,7 @@
 								<c:choose>
 									<c:when test="${topic.topic_type == 0}"><h4><label class="label label-primary">찬반</label></h4></c:when>
 									<c:when test="${topic.topic_type == 1}"><h4><label class="label label-danger">의견</label></h4></c:when>
-								</c:choose><br>
+								</c:choose>
 								<center><h3>${topic.topic_title}</h3></center>
 								<img id="coverImg" src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}" style="position: absolute; left:0; top:-50%; width:100%; height:auto; opacity:0.5;z-index:-1;">
 							</div>
@@ -53,7 +53,7 @@
 								<c:choose>
 									<c:when test="${topic.topic_type == 0}"><h4><label class="label label-primary">찬반</label></h4></c:when>
 									<c:when test="${topic.topic_type == 1}"><h4><label class="label label-danger">의견</label></h4></c:when>
-								</c:choose><br>
+								</c:choose>
 								<center><h3>${topic.topic_title}</h3></center>
 							</div>
 						</c:otherwise>
