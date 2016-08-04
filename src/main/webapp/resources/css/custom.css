@@ -1,16 +1,77 @@
 @CHARSET "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @font-face {
-  font-family: 'Hanna';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot);
-  src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot?#iefix) format('embedded-opentype'),
-       url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff2) format('woff2'),
-       url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format('woff'),
-       url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format('truetype');
+	font-family: 'Hanna';
+	font-style: normal;
+	font-weight: 400;
+	src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot);
+	src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot?#iefix)
+		format('embedded-opentype'),
+		url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff2) format('woff2'),
+		url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format('woff'),
+		url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format('truetype');
 }
-#main_title{
+h1, h2, h3, h4 {
+	font-family: 'Jeju Gothic', sans-serif;
+}
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+#content {
+	margin-top: 80px;
+}
+#main_title {
 	width: 100%;
-	padding: 40px 100px 40px 100px;
-	background: url(img/girl-crop.jpg);
+	padding: 50px;
+	background: url(img/girl-crop.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+#main_title h2 {
+	margin-left: 27px;
+	font-family: 'Hanna', Helvetica, Arial, sans-serif;
+	color: white;
+	text-shadow: 0px 0px 6px rgba(0,0,0,0.7);
+}
+#main_title span {
+	color: white;
+	text-shadow: 0px 0px 6px rgba(0,0,0,0.7);
+}
+.list_title {
+  margin: 56px 0 30px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.list_title.background {
+  position: relative;
+  z-index: 1;
+}
+.list_title.background:before {
+  border-top: 2px solid #dfdfdf;
+  content: "";
+  margin: 0 auto;
+  /* this centers the line to the full width specified */
+  position: absolute;
+  /* positioning must be absolute here, and relative positioning must be applied to the parent */
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 95%;
+  z-index: -1;
+}
+.list_title.background span {
+  /* to hide the lines from behind the text, you have to set the background color the same as the container */
+  background: #fff;
+  padding: 0 15px;
+}
+.card {
+  /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.37);*/
+}
+.card:hover {
+  cursor: pointer;
+}
+.item:hover {
+  cursor: pointer;
 }
