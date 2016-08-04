@@ -446,7 +446,7 @@
 										</c:when>
 									</c:choose>
 								</div>
-								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #66FF00">
+								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #00FF99">
 									<!-- 닉네임과 의견 출력 -->
 									<div class="row">
 									<div class="col-sm-4">
@@ -545,7 +545,7 @@
 										</c:when>
 									</c:choose>
 								</div>
-								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #46FFFF">
+								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #0099FF">
 									<!-- 닉네임과 의견 출력 -->
 									<div class="row">
 									<div class="col-sm-4">

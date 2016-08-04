@@ -663,7 +663,7 @@
 									</c:choose>
 								</div>
 								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #66FF00">
+									style="border-style: solid; border-width: 1px; border-color: #00FF99">
 									<div class="row">
 										<div class="col-sm-4">
 											<h3>${opinion.user_nick}&nbsp;&nbsp;
@@ -843,7 +843,7 @@
 									</c:choose>
 								</div>
 								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #46FFFF">
+									style="border-style: solid; border-width: 1px; border-color: #0099FF">
 									<div class="row">
 										<div class="col-sm-4">
 											<h3>${opinion.user_nick}&nbsp;&nbsp;
