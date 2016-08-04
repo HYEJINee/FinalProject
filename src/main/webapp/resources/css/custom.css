@@ -11,8 +11,14 @@
 		url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format('woff'),
 		url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format('truetype');
 }
-h1, h2, h3, h4 {
+h1, h2, h3, h4, span {
 	font-family: 'Jeju Gothic', sans-serif;
+}
+.glyphicon {
+    font-family: 'Jeju Gothic', sans-serif;
+}
+.glyphicon:before{
+    font-family:'Glyphicons Halflings';
 }
 .center {
 	margin: 0 auto;
@@ -21,6 +27,41 @@ h1, h2, h3, h4 {
 #content {
 	margin-top: 80px;
 }
+
+.profile-150 {
+	width: 150px;
+	height: 150px;
+}
+.profile-75 {
+	width: 75px;
+	height: 75px;
+}
+
+
+.round-profile {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: 150px;
+	background: no-repeat center center;
+	background-size: cover;
+}
+
+.user-lv-26{
+	height: 26px;
+	width: 26px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.user-lv-45 {
+ 	height: 45px;
+	width: 45px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+ }
 #main_title {
 	width: 100%;
 	padding: 50px;

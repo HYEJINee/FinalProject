@@ -71,7 +71,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div class="card_header_noneImg ">
+							<div class="card_header">
 								<div class="card__image" ></div>
 								<c:choose>
 									<c:when test="${topic.topic_type == 0}">

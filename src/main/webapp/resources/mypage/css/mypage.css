@@ -9,17 +9,6 @@
 	margin-right: auto;
 }
 
-.mypage-header {
-	
-}
-
-.round-profile-150 {
-	display: block;
-	width: 150px;
-	height: 150px;
-	border-radius: 150px;
-}
-
 .mypage-header-user {
 	text-align: center;
 }
@@ -40,19 +29,22 @@
 .mypage-timeline-all {
 	padding: 1em;
 	border-radius: 4px;
-	border: blue 1px solid;
+	border: #b573bc 1.5px solid;
 }
 
 .mypage-timeline-topic {
-	border-color: blue;
+	border-color: #b573bc;
+	background-color: rgba(181, 115, 188, 0.07);
 }
 
 .mypage-timeline-opinion {
-	border-color: red;
+	border-color: #e580a7;
+	background-color: rgba(229, 128, 167, 0.02);
 }
 
 .mypage-timeline-vote {
-	border-color: grey;
+	border-color: #ff9811;
+	background-color: rgba(255, 152, 17, 0.03);
 }
 
 .align-right {
@@ -60,11 +52,13 @@
 }
 
 .noti-reply {
-	border-color: blue;
+	border-color: #69c1f7;
+	background-color: rgba(105, 193, 247, 0.08);
 }
 
 .noti-topic {
-	border-color: red;
+	border-color: #e580a7;
+	background-color: rgba(229, 128, 167, 0.02);
 }
 #profile-img-up {
 	display: none;

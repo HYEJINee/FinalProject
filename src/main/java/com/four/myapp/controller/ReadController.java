@@ -104,7 +104,7 @@ public class ReadController {
 	    	service.inserttag(rel, reop_no, topic_no);
 	    	
 	    	//Notification : A가 B의 글에 답글을 달때 B의 알림창에 추가 된다 
-	    	timelineService.notiReply(user_no, topic_no, reop_no);
+	    	timelineService.notiReply(user_no, topic_no, rel);
 	     }
 	    
 	     return "redirect:/read/read?topic_no="+topic_no;

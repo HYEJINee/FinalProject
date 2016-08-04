@@ -13,7 +13,7 @@
 <body>
 	<!-- Header -->
 	<%@ include file="../include/header.jsp" %>
-	<div class="container">
+	<div id="content" class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-3">
@@ -35,7 +35,7 @@
 			</c:if>
 			<c:if test="${list.size() > 0}">
 				<c:forEach items="${list}" var="list">
-				<div class="grid-item card topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;" onClick="fnRead(this)">
+				<div class="card card--big grid-item card topic_${list.topic_type}" style="padding-left: 0px; padding-right: 0px;" onClick="fnRead(this)">
 				<input type="hidden" name="topic_no" value="${list.topic_no}"/>
 				<c:choose>
 					<c:when test="${list.topic_type eq 0}">
@@ -43,22 +43,24 @@
 						<!-- 1) 커버이미지 있을 때 -->
 						<c:if test="${list.img_file_name != null}">
 							<div class="card_header">
+								<div style="background-image: url(/resources/proposal/img/${list.img_file_name}.${list.img_ext_name})"
+									class="card__image" id="coverImg"></div>
 								<h4><label class="label label-primary">찬반</label></h4>
-								<center><h3>${list.topic_title}</h3></center>
-								<img class="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
+								<h2 class="card__title">${list.topic_title}</h2>
 							</div>
 						</c:if>
 						<!-- 2) 커버이미지 없을 때 -->
 						<c:if test="${list.img_file_name eq null}">
-							<div class="card_header_noneImg">
+							<div class="card_header">
+								<div class="card__image" ></div>
 								<h4><label class="label label-primary">찬반</label></h4>
-								<center><h3>${list.topic_title}</h3></center>
+								<h2 class="card__title">${list.topic_title}</h2>
 							</div>
 						</c:if>
 						<div class="card_body">
-							<p>${list.topic_short_cont}</p>
+							<p class="card__text">${list.topic_short_cont}</p>
 						</div>
-						<div class="card_footer">
+						<div class="card_footer  card__action-bar">
 							<p class="text-right">
 								<span class="glyphicon glyphicon-user"> ${list.debate_tot_pro + list.debate_tot_con + list.debate_tot_neut}</span>
 								<c:choose>
@@ -93,22 +95,24 @@
 						<!-- 1) 커버이미지 있을 때 -->
 						<c:if test="${list.img_file_name != null}">
 							<div class="card_header">
+								<div style="background-image: url(/resources/proposal/img/${list.img_file_name}.${list.img_ext_name})"
+									class="card__image" id="coverImg"></div>
 								<h4><label class="label label-danger">의견</label></h4>
-								<center><h3>${list.topic_title}</h3></center>
-								<img class="coverImg" src="/resources/proposal/img/${list.img_file_name}.${list.img_ext_name}">
+								<h2 class="card__title">${list.topic_title}</h2>
 							</div>
 						</c:if>
 						<!-- 2) 커버이미지 없을 때 -->
 						<c:if test="${list.img_file_name eq null}">
-							<div class="card_header_noneImg">
+							<div class="card_header">
+								<div class="card__image" ></div>
 								<h4><label class="label label-danger">의견</label></h4>
-								<center><h3>${list.topic_title}</h3></center>
+								<h2 class="card__title">${list.topic_title}</h2>
 							</div>
 						</c:if>
 						<div class="card_body">
 							<p>${list.topic_short_cont}</p>
 						</div>
-						<div class="card_footer">
+						<div class="card_footer card__action-bar">
 							<p class="text-right">
 								<span class="glyphicon glyphicon-comment"> ${list.op_cnt}</span>
 							</p>

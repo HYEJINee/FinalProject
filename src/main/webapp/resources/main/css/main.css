@@ -1,7 +1,7 @@
 /*
-	ÀÛ¼ºÀÚ : ÃÖ¶ôÈÖ
-	ÀÛ¼ºÀÏ : 2016.07.29
-	¼öÁ¤ÀÏ : 2016.08.04
+	ï¿½Û¼ï¿½ï¿½ï¿½ : ï¿½Ö¶ï¿½ï¿½ï¿½
+	ï¿½Û¼ï¿½ï¿½ï¿½ : 2016.07.29
+	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : 2016.08.04
 */
 @CHARSET "utf-8";
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -26,9 +26,17 @@
 	height:160px;
 }
 .card_header label {
+	/*
 	margin-left: 15px;
 	padding: 5px;
 	font-family: 'Nanum Gothic', sans-serif;
+	*/
+	position: absolute;
+    margin-left: 0px;
+    padding: 5px;
+    font-family: 'Nanum Gothic', sans-serif;
+    width: 76px;
+    border-radius: 0;
 }
 .card_header_noneImg {
 	overflow: hidden;
