@@ -28,7 +28,9 @@
 #divCoverImg>p {
 	font-weight: bold !important;
 }
-
+#finishedbottom{
+	padding-bottom: 150px;
+}
 #short_cont {
 	font-size:12pt;
 	padding : 2% 1.5%;

@@ -203,7 +203,7 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="grid ScrollSpy col-sm-offset-2 col-sm-10">
+	<div class="grid ScrollSpy col-sm-offset-2 col-sm-10" id="finishedbottom">
 		<!-- 의견들을 list로 담아와서 foreach로 뿌림 -->
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<!-- 찬성 의견, grid-item은 무한 스크롤을 위해 선언 -->
@@ -215,7 +215,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -366,7 +366,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -413,7 +413,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -512,7 +512,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -608,8 +608,7 @@
 	<nav id="page_nav" style="display:none">
 		<p><a href="/finished/read?topic_no=${readlist.topic_no}&pageNo=2"></a></p>
 	</nav>
-	<!-- 의견 작성 -->
-	<br/><br/><br/><br/><br/><br/>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>

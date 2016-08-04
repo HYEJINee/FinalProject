@@ -231,7 +231,7 @@
 				<h4>참고 자료</h4>
 				<br />
 				<c:forEach items="${readResource}" var="resource">
-					<a href=http://${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a>
+					<a href=${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a>
 				</c:forEach>
 			</div>
 			<c:choose>
@@ -266,7 +266,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -578,7 +578,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -629,7 +629,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -809,7 +809,7 @@
 								<div class="col-sm-offset-1 col-sm-1">
 									<c:choose>
 										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/${opinion.user_profile}"
+											<img src="/resources/upload/member_img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -1139,7 +1139,7 @@
 						<div class="col-sm-1">
 							<c:choose>
 								<c:when test="${readuser.user_profile != storm.jpg}">
-									<img src="/resources/${readuser.user_profile}"
+									<img src="/resources/upload/member_img/${readuser.user_profile}"
 										style="height: 60px; width: 60px" />
 								</c:when>
 								<c:otherwise>
