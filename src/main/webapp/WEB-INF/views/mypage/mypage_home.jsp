@@ -23,16 +23,23 @@
 						src="/resources/mypage/img/${USER_KEY.user_profile}" />
 				</div>
 				<div class="mypage-header-user">
-					<h3>${USER_KEY.user_nick }의페이지</h3>
+					<h3>${USER_KEY.user_nick }의 페이지</h3>
 				</div>
 			</div>
 		</div>
+		<script>
+			function allTopicFn(){
+				$("#on-going").click();
+				$("#all-topics").click();
+				console.log($("#all-topics").text());
+			}
+		</script>
 		<div class="nav-container">
 			<ul class="center nav nav-pills">
 				<li role="presentation" class="active"><a href="#noti"
 					aria-controls="noti" role="tab" data-toggle="tab">알림</a></li>
 				<li role="presentation"><a href="#my-topic"
-					aria-controls="my-topic" role="tab" data-toggle="tab">내 안건</a></li>
+					aria-controls="my-topic" role="tab" data-toggle="tab" onclick="allTopicFn();">내 안건</a></li>
 				<li role="presentation"><a href="#timeline"
 					aria-controls="timeline" role="tab" data-toggle="tab">활동</a></li>
 				<li role="presentation"><a href="#profile"
@@ -50,11 +57,11 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<c:if test="${notiDTO.noti_css eq 'reply' }">
-							<a href="/read/read?topic_no=${notiDTO.topic_no }"
+							<a href="/${notiDTO.topic_kind }/read?topic_no=${notiDTO.topic_no }"
 								onclick="dismissNoti(${notiDTO.noti_no })" class="alert-link">${notiDTO.other_user_nick }</a>님이  
-							</c:if>
+						</c:if>
 
-						<a href="/read/read?topic_no=${notiDTO.noti_no }"
+						<a href="/${notiDTO.topic_kind }/read?topic_no=${notiDTO.noti_no }"
 							class="alert-link">${notiDTO.topic_title }</a>${notiDTO.noti_statement }
 					</div>
 				</c:forEach>

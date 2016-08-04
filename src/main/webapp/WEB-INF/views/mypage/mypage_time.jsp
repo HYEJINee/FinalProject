@@ -24,7 +24,7 @@
 			<div class="col-md-3 mypage-timeline-date">${mypageDTO.timeline_date }</div>
 			<div
 				class="col-md-9 mypage-timeline-all mypage-timeline-${mypageDTO.timeline_css }">
-				<a href="/board/read?topic_no=${mypageDTO.topic_no }">${mypageDTO.topic_title }</a>${mypageDTO.timeline_statement }
+				<a href="/${mypageDTO.topic_kind }/read?topic_no=${mypageDTO.topic_no }">${mypageDTO.topic_title }</a>${mypageDTO.timeline_statement }
 			</div>
 		</div>
 	</c:forEach>
