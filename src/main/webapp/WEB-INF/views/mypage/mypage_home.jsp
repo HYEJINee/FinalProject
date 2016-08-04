@@ -6,6 +6,7 @@
 <title>Mypage</title>
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/main/css/main.css">
+<link rel="stylesheet" href="/resources/css/list_item.css">
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 </head>
@@ -27,19 +28,12 @@
 				</div>
 			</div>
 		</div>
-		<script>
-			function allTopicFn(){
-				$("#on-going").click();
-				$("#all-topics").click();
-				console.log($("#all-topics").text());
-			}
-		</script>
 		<div class="nav-container">
 			<ul class="center nav nav-pills">
 				<li role="presentation" class="active"><a href="#noti"
 					aria-controls="noti" role="tab" data-toggle="tab">알림</a></li>
 				<li role="presentation"><a href="#my-topic"
-					aria-controls="my-topic" role="tab" data-toggle="tab" onclick="allTopicFn();">내 안건</a></li>
+					aria-controls="my-topic" role="tab" data-toggle="tab">내 안건</a></li>
 				<li role="presentation"><a href="#timeline"
 					aria-controls="timeline" role="tab" data-toggle="tab">활동</a></li>
 				<li role="presentation"><a href="#profile"
@@ -67,7 +61,7 @@
 				</c:forEach>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="my-topic">
-				<%@include file="mypage_topic.jsp"%>
+				<jsp:include page="mypage_topic.jsp" flush="true"></jsp:include>
 			</div>
 			<div role="tabpanel" class="tab-pane " id="timeline">
 				<%@include file="mypage_time.jsp"%>
@@ -122,13 +116,7 @@
 				</div>
 			</div>
 		</div>
-		<script
-			src="${pageContext.request.contextPath}/resources/mypage/js/mypage.js"></script>
-		<script
-			src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
-		<script
-			src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
-		<script src="/resources/proposal/js/jquery.infinitescroll.min.js"></script>
-		<script src="/resources/ongoing/js/ongoing.js"></script>
+<script src="${pageContext.request.contextPath}/resources/mypage/js/mypage.js"></script>
+<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
