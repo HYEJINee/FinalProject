@@ -91,6 +91,7 @@ public class PointEvaluator {
 				map.put("user_lv", 3);
 				sqlSession.update(NAMESPACE + ".level", map);
 			} else if (user_point < 200 && user_point >= 100) {
+				map.put("user_lv", 2);
 				sqlSession.update(NAMESPACE + ".level", map);
 			} else if (user_point < 100 && user_point >= 20) {
 				map.put("user_lv", 1);
