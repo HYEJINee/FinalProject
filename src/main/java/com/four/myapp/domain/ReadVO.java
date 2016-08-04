@@ -9,6 +9,7 @@ public class ReadVO {
 	private String img_file_name;
 	private String img_ext_name;
 	
+	
 	public String getImg_file_name() {
 		return img_file_name;
 	}

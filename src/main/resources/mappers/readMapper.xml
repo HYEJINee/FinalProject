@@ -11,6 +11,7 @@
 		C.debate_endate, C.debate_tot_pro, C.debate_tot_con, C.debate_tot_neut,
 		D.img_file_name , D.img_ext_name,
 		(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick
+		
 		FROM topic_tbl AS A 
         LEFT JOIN topic_detail_tbl B on A.topic_no = B.topic_no 
         LEFT JOIN debate_tbl C on A.topic_no = C.topic_no 
@@ -27,6 +28,7 @@
 		select A.op_no, A.user_no, A.op_content,A.op_rel, A.op_regdate,
       A.vote_type,(Select user_nick From user_tbl where user_no = A.user_no) AS user_nick,
       (Select user_lv From user_tbl where user_no = A.user_no) AS user_lv,
+      (Select user_profile From user_tbl where user_no = A.user_no) AS user_profile,
       (Select count(op_like) From op_like_tbl where op_no = A.op_no) AS op_count,
         (Select count(op_like) From op_like_tbl where op_no = A.op_no and op_like = 0) AS op_like
        from opinion_tbl AS A where topic_no = #{topic_no} limit #{index}, 4

@@ -2,9 +2,15 @@ package com.four.myapp.domain;
 import java.sql.Date;
 public class ReadOpinionVO {
 	private int op_no, op_like, vote_type, op_rel, user_lv, op_count, user_no;
-	private String op_content,  user_nick;
+	private String op_content,  user_nick,  user_profile;
 	private Date op_regdate;
 	
+	public String getUser_profile() {
+		return user_profile;
+	}
+	public void setUser_profile(String user_profile) {
+		this.user_profile = user_profile;
+	}
 	public Date getOp_regdate() {
 		return op_regdate;
 	}

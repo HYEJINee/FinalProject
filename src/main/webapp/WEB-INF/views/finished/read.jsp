@@ -214,26 +214,14 @@
 							<div class="form-group">
 								<div class="col-sm-offset-1 col-sm-2">
 									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
+										<c:when test="${opinion.user_profile != storm.jpg}">
+											<img src="/resources/${opinion.user_profile}"
 												style="height: 60px; width: 60px" />
 										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
+										<c:otherwise>
+											<img src="/resources/upload/member_img/storm.jpg"
 												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
+										</c:otherwise>
 									</c:choose>
 								</div>
 								<!-- 닉네임과 찬성 텍스트 뿌림 -->
@@ -353,26 +341,14 @@
 								</div>
 								<div class="col-sm-2 col-sm-offset-1">
 									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
+										<c:when test="${opinion.user_profile != storm.jpg}">
+											<img src="/resources/${opinion.user_profile}"
 												style="height: 60px; width: 60px" />
 										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
+										<c:otherwise>
+											<img src="/resources/upload/member_img/storm.jpg"
 												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
+										</c:otherwise>
 									</c:choose>
 								</div>
 							</div>
@@ -388,26 +364,14 @@
 							<div class="form-group ">
 								<div class="col-sm-offset-1 col-sm-2">
 									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
+										<c:when test="${opinion.user_profile != storm.jpg}">
+											<img src="/resources/${opinion.user_profile}"
 												style="height: 60px; width: 60px" />
 										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
+										<c:otherwise>
+											<img src="/resources/upload/member_img/storm.jpg"
 												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
+										</c:otherwise>
 									</c:choose>
 								</div>
 								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #66FF00">
@@ -475,26 +439,14 @@
 							<div class="form-group">
 								<div class="col-sm-offset-1 col-sm-2">
 									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
+										<c:when test="${opinion.user_profile != storm.jpg}">
+											<img src="/resources/${opinion.user_profile}"
 												style="height: 60px; width: 60px" />
 										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
+										<c:otherwise>
+											<img src="/resources/upload/member_img/storm.jpg"
 												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 60px; width: 60px" />
-										</c:when>
+										</c:otherwise>
 									</c:choose>
 								</div>
 								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #46FFFF">
