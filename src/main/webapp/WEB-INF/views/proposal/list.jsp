@@ -71,12 +71,12 @@
 		</div>
 		
 	</div>
+	<button id="topBtn" class="btn btn-default"><span class="glyphicon glyphicon-menu-up"></span><br/>Top</button>
 	<div id="load"></div>
 		
 	<nav id="page_nav" style="display:none;">
 		<p><a href="/proposal/list?pageNo=2"></a></p>
 	</nav>
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
