@@ -101,17 +101,17 @@ center h3 {
 	font-family: 'Jeju Gothic', sans-serif;
 }
 .board_title {
-	margin-left:20px;
+	/*margin-left:20px;*/
 	font-family: 'Nanum Gothic', sans-serif;
 }
-.board_title h3 {
+.board_title h3, .board_title span {
 	font-family: 'Jeju Gothic', sans-serif;
 }
 .board_icon {
 	 float:right;
 }
 .board_title h3{
-	margin-left: 50%;
+	/*margin-left: 50%;*/
 }
 .board_title a {
 	float: right;

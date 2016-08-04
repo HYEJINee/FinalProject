@@ -50,7 +50,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="list_title background double"><span>토론중</span></h3>
+				<h3 class="list_title background"><span>토론중</span></h3>
 				<c:choose>
 					<c:when test="${main.size() eq 0}">
 						<center><h3>게시물이 없습니다.</h3></center>
@@ -139,9 +139,10 @@
 			</div>
 		</div>
 		<!-- Page -->
+		<br/>
 		<c:if test="${main.size() > 0}">
 			<div class="row">
-				<div class="col-md-offset-5">
+				<div class="center">
 					<nav>
 					  <ul class="pagination">
 					  	<c:if test="${nowBlock > 0}">
@@ -189,7 +190,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="board_title col-md-10">
-					<h3>안건 건의</h3>
+					<h3 class="list_title background"><span>안건 건의</span></h3>
 					<a href="/proposal/list">전체 안건 보기</a>
 				</div>
 				<div class="col-md-10">
@@ -218,7 +219,7 @@
 			</div>
 			<div id="last" class="col-md-6"">
 				<div class="board_title col-md-10">
-					<h3>종료된 토론</h3>
+					<h3 class="list_title background"><span>종료된 토론</span></h3>
 					<a href="/finished/list">전체 토론 보기</a>
 				</div>
 				<div class="col-md-10">
