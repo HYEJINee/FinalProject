@@ -1000,7 +1000,7 @@
 						<div class="col-sm-1">
 									<c:choose>
 										<c:when test="${readuser.user_profile != storm.jpg}">
-											<img src="/resources/${readuser.user_profile}"
+											<img src="/resources/upload/member_img/${readuser.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -1046,6 +1046,9 @@
 
 						</div>
 						<div class="col-sm-5">
+						
+							<c:choose>
+								<c:when test="${empty readuser.user_nick != true}">
 							<div id="debateType" class="btn-group">
 								<button type="button" id="btnDebateType"
 									class="btn btn-default dropdown-toggle" data-toggle="dropdown"
@@ -1059,6 +1062,8 @@
 								</ul>
 								<input type="hidden" id="hid_topic_type" name="optionchk" />
 							</div>
+							</c:when>
+							</c:choose>
 						</div>
 					</div>
 
@@ -1161,10 +1166,15 @@
 
 						</div>
 						<div class="col-sm-5">
+						<c:choose>
+								<c:when test="${empty readuser.user_nick != true}">
 							<button type="button" id="btnDebateType" class="btn btn-info"
 								disabled="disabled">자유</button>
 							<input type="hidden" name="optionchk" value="3" /> <input
 								type="hidden" id="rel" name="rel" value="0">
+								</c:when>
+								</c:choose>
+								
 						</div>
 					</div>
 					<div class="form-group">
