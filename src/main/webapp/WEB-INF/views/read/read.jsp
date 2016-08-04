@@ -1000,7 +1000,7 @@
 
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" readonly="readonly"
 							placeholder="로그인 후 의견 작성이 가능합니다."></textarea>
 						<br />
@@ -1008,7 +1008,7 @@
 					</c:when>
 
 					<c:when test="${empty readuser.user_nick != true}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" name="context"></textarea>
 						<br />
 						<br />
@@ -1117,14 +1117,14 @@
 			<div class="col-sm-offset-1 col-sm-9">
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" readonly="readonly"
 							placeholder="로그인 후 의견 작성이 가능합니다."></textarea>
 						<br />
 						<br />
 					</c:when>
 					<c:when test="${empty readuser.user_nick != true}">
-						<textarea id="context" cols="150" rows="10"
+						<textarea id="context" cols="120" rows="10"
 							style="border-color: #46FFFF" name="context"></textarea>
 						<br />
 						<br />
@@ -1137,8 +1137,8 @@
 			<div class="col-sm-offset-10 col-sm-2" style="text-align: right">
 				<c:choose>
 					<c:when test="${empty readuser.user_nick != false}">
-						<input type="button" value="등록" class="btn btn-default btn-lg"
-							disabled="disabled" />
+						<button type="button" class="btn btn-default btn-lg"
+							disabled="disabled" >등록</button>
 						<br />
 						<br />
 						<br />
@@ -1186,7 +1186,7 @@
 					<h4 class="modal-title" id="myModalLabel">의견 수정하기</h4>
 				</div>
 				<div class="modal-body">
-					<textarea id="upcontent" cols="80" rows="10"></textarea>
+					<textarea id="upcontent" cols="68" rows="10"></textarea>
 					<form id="optupform" action="reup" method="post">
 						<input type="hidden" name="reupopno" id="reupopno"> <input
 							type="hidden" name="reupcontent" id="reupcontent"> <input
