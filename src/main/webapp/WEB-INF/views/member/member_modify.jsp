@@ -128,7 +128,7 @@
 		
 		
 		alert("수정이 완료되었습니다.");
-			var url = "/member/mypage";    
+			var url = "/mypage/mypage";    
 			$(location).attr('href',url);
 		return true;
 	}
@@ -172,15 +172,14 @@
 
 		<form class="form-horizontal" method="post"
 			action="/member/member_modify" name="form">
-			<input type="hidden" name="param" value="join" />
 			<h2 class="text-center">회원정보 수정</h2>
 			<hr />
 			<div class="form-group">
 				<label for="user_email" class="col-sm-3 control-label">이메일
 					주소</label>
 				<div class="col-sm-6">
-					${USER_KEY.user_email }
-				</div>
+					${USER_KEY.user_email}
+				</div><input type="hidden" name="user_email" value="${USER_KEY.user_email}"/>
 			</div>
 
 			<div class="form-group">

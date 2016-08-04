@@ -25,14 +25,10 @@ public class MemberDAOImpl implements MemberDAO {
    @Override
    public void modifyMember(MemberVO vo) {
       sqlSession.update(NAMESPACE+".modifyMember", vo);      
+      System.out.println(vo.getUser_email());
       
    }
 
-
-   @Override
-   public MemberVO readMember(String user_email) throws Exception {
-      return sqlSession.selectOne(NAMESPACE + ".readMember", user_email);
-   } 
 
    @Override
    public MemberVO readWithPW(String user_email, String user_pw) throws Exception {
