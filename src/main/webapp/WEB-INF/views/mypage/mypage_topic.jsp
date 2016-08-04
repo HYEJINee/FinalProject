@@ -7,8 +7,8 @@
 			<div class="col-md-12">
 				<div class="col-md-offset-6">
 					<ul id="topic-tab" class="nav nav-pills">
-						<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill">모든 안건</a></li>
-			  			<li role="presentation" data-filter=".progress_1"><a href="" data-toggle="pill">건의중</a></li>
+						<li role="presentation" class="active" data-filter="*"><a href="" data-toggle="pill" id="all-topics">모든 안건</a></li>
+			  			<li role="presentation" data-filter=".progress_1"><a href="" data-toggle="pill" id="on-going">건의중</a></li>
 						<li role="presentation" data-filter=".progress_3"><a href="" data-toggle="pill">토론중</a></li>
 						<li role="presentation" data-filter=".progress_4"><a href="" data-toggle="pill">종료</a></li>
 						<li role="presentation" data-filter=".progress_2"><a href="" data-toggle="pill">상정실패</a></li>

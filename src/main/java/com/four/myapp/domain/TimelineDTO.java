@@ -8,6 +8,8 @@ import java.util.Date;
 public class TimelineDTO {
 	private int user_no;
 	private int topic_no;
+	private int topic_progress;
+	private String topic_kind;
 	private int topic_type;
 	private String topic_title; //join으로 추가
 	private String timeline_type;
@@ -29,7 +31,36 @@ public class TimelineDTO {
 	}
 	public void setTopic_no(int topic_no) {
 		this.topic_no = topic_no;
-	}	
+	}
+	public int getTopic_progress() {
+		return topic_progress;
+	}
+	public void setTopic_progress(int topic_progress) {
+		this.topic_progress = topic_progress;
+		setTopic_kind(topic_progress);
+	}
+	public String getTopic_kind() {
+		return topic_kind;
+	}
+	public void setTopic_kind(int topic_progress) {
+		switch (topic_progress) {
+		case 1 : 
+			this.topic_kind = "proposal";
+			break;
+		case 2 : 
+			this.topic_kind = "proposal";
+			break;
+		case 3 : 
+			this.topic_kind = "ongoing";
+			break;
+		case 4 : 
+			this.topic_kind = "finished";
+			break;
+		default : 
+			this.topic_kind = "read";
+			break;
+		}
+	}
 	public String getTopic_title() {
 		return topic_title;
 	}
