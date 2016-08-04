@@ -87,9 +87,10 @@ center h3 {
 	margin-left:20px;
 	font-family: 'Jeju Gothic', sans-serif;
 }
-#pro_board {
+.pro_board {
 	color:blue;
-	margin-left:35px;
+	font-family: 'Jeju Gothic', sans-serif;
+	margin-left:30px;
 }
 .con {
 	color:red;
@@ -99,14 +100,14 @@ center h3 {
 	color:gray;
 	font-family: 'Jeju Gothic', sans-serif;
 }
-#board_title {
+.board_title {
 	margin-left:20px;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 .board_title h3 {
 	font-family: 'Jeju Gothic', sans-serif;
 }
-#board_icon {
+.board_icon {
 	 float:right;
 }
 .board_title h3{
