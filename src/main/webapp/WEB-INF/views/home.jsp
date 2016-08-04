@@ -23,34 +23,34 @@
 	<!-- Header -->
 	<%@ include file="include/header.jsp" %>
 	<!-- Content Title -->
-	<div class="container" id="main_title">
-		<div class="row">
-			<div class="main_title col-md-3">
-				<h2>인권을<br>자유를<br/>논하다</h2>
-			</div>
-			<c:forEach items="${main}" var="mainList" begin="0" end="2">
-				<div class="item header_item col-md-offset-8">
-				<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
-				<c:choose>
-					<c:when test="${mainList.topic_type eq 0}">
-							<label class="label label-primary">찬반</label>
-					</c:when>
-					<c:when test="${mainList.topic_type eq 1}">
-							<label class="label label-danger">의견</label>
-					</c:when>
-				</c:choose>
-				<span>${mainList.topic_title}</span><br/><br/>
+	<div id="main_title">
+		<div class="container">	
+			<div class="row">
+				<div class="main_title col-md-3">
+					<h2>인권을<br>자유를<br/>논하다</h2>
 				</div>
-			</c:forEach>
+				<c:forEach items="${main}" var="mainList" begin="0" end="2">
+					<div class="item header_item col-md-offset-8">
+					<input type="hidden" name="topic_no" value="${mainList.topic_no}"/>
+					<c:choose>
+						<c:when test="${mainList.topic_type eq 0}">
+								<label class="label label-primary">찬반</label>
+						</c:when>
+						<c:when test="${mainList.topic_type eq 1}">
+								<label class="label label-danger">의견</label>
+						</c:when>
+					</c:choose>
+					<span>${mainList.topic_title}</span><br/><br/>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
-	<hr/>
 	<!-- Content List -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<center><h3>토론중</h3></center>
-				<hr/>
+				<h3 class="list_title background double"><span>토론중</span></h3>
 				<c:choose>
 					<c:when test="${main.size() eq 0}">
 						<center><h3>게시물이 없습니다.</h3></center>
