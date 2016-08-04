@@ -124,7 +124,7 @@
   color: #FF1744;
 }
 .card--big {
-  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 40px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
   height: 304px;
   min-height: 304px;
 }
@@ -144,4 +144,8 @@
 }
 .card--big .card__action-bar {
   left: 0;
+  padding: 10px;
+}
+.card--big .card__action-bar .thumb-up {
+	
 }

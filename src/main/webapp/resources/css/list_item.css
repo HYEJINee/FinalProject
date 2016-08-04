@@ -1,6 +1,6 @@
 /*
-	�������� List�� ����Ǵ� css
-	���� ������ : 2016.08.04
+	占쏙옙占쏙옙占쏙옙占쏙옙 List占쏙옙 占쏙옙占쏙옙풔占� css
+	占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 : 2016.08.04
 */
 
 @CHARSET "UTF-8";
@@ -45,9 +45,13 @@ h2 {
 	height:160px;
 }
 .card_header label {
-	margin-left: 15px;
+	position: absolute;
+	margin-left: 0px;
 	padding: 5px;
 	font-family: 'Nanum Gothic', sans-serif;
+	width: 76px;
+	border-radius: 0;
+		
 }
 .card_header_noneImg {
 	overflow: hidden;
@@ -70,8 +74,10 @@ h2 {
 .card_body p {
 	font-family: 'Jeju Gothic', sans-serif;
 	font-size: 12pt;
+	/*
 	padding: 5px;
 	margin-top: 10px;
+	*/
 }
 .coverImg {
 	position: absolute;
@@ -88,7 +94,7 @@ h2 {
 	text-align: center;
 	padding-bottom: 80px;
 }
-/* ����ī�忡 ���̴� css */
+/* 占쏙옙占쏙옙카占썲에 占쏙옙占싱댐옙 css */
 .pro {
 	color:blue;
 	margin-left: 20px;

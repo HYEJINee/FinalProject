@@ -18,7 +18,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-	<div id="content" class="container">
+	<div id="content" class="container list_container">
 
 		<h2 class="col-md-8">안건 건의</h2>
 
@@ -44,7 +44,9 @@
 
 		<div class="grid">
 			<div class="card card--big grid-item topic_1">
-				<div style="background-image: url(https://placeimg.com/640/480/nature)" class="card__image"></div>
+				<div
+					style="background-image: url(https://placeimg.com/640/480/nature)"
+					class="card__image"></div>
 				<h2 class="card__title">Kangaroo Valley Safari</h2>
 				<span class="card__subtitle">By Mattia Astorino</span>
 				<p class="card__text">Located two hours south of Sydney in the
@@ -55,11 +57,16 @@
 				</div>
 			</div>
 			<c:forEach items="${topicList}" var="topic">
-				<div class=" grid-item card topic_${topic.topic_type}"
+				<div class="card card--big grid-item topic_${topic.topic_type}"
 					topic-no="${topic.topic_no}" onclick="toTopic(this)">
 					<c:choose>
-						<c:when test="${topic.img_file_name != '' && topic.img_file_name != null}">
+						<c:when
+							test="${topic.img_file_name != '' && topic.img_file_name != null}">
 							<div class="card_header">
+								<div
+									style="background-image: url(/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name})"
+									class="card__image" id="coverImg"
+									style="position: absolute; left: 0; top: -50%; width: 100%; height: auto; opacity: 0.5; z-index: -1;"></div>
 								<c:choose>
 									<c:when test="${topic.topic_type == 0}">
 										<h4>
@@ -72,12 +79,8 @@
 										</h4>
 									</c:when>
 								</c:choose>
-								<center>
-									<h3>${topic.topic_title}</h3>
-								</center>
-								<img id="coverImg"
-									src="/resources/proposal/img/${topic.img_file_name}.${topic.img_ext_name}"
-									style="position: absolute; left: 0; top: -50%; width: 100%; height: auto; opacity: 0.5; z-index: -1;">
+									<h2 class="card__title">${topic.topic_title}</h2>
+
 							</div>
 						</c:when>
 						<c:otherwise>
@@ -101,9 +104,9 @@
 						</c:otherwise>
 					</c:choose>
 					<div class="card_body">
-						<p>${topic.topic_short_cont}</p>
+						<p class="card__text">${topic.topic_short_cont}</p>
 					</div>
-					<div class="card-footer">
+					<div class="card-footer card__action-bar">
 						<p class="text-right">
 							<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 							${topic.recommend}
