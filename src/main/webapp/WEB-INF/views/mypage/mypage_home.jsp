@@ -5,16 +5,14 @@
 <head>
 <title>Mypage</title>
 <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/main/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/mypage/css/mypage.css">
+<link rel="stylesheet" href="/resources/css/list_item.css">
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 </head>
 
 <body>
 	<%@include file="../include/header.jsp"%>
-	<link rel="stylesheet"
-		href="${pageContext.request.contextPath}/resources/mypage/css/mypage.css">
-
 	<div class="container">
 		<div class="row ">
 			<div class="mypage-header-container">
@@ -27,13 +25,6 @@
 				</div>
 			</div>
 		</div>
-		<script>
-			function allTopicFn(){
-				$("#on-going").click();
-				$("#all-topics").click();
-				console.log($("#all-topics").text());
-			}
-		</script>
 		<div class="nav-container">
 			<ul class="center nav nav-pills">
 				<li role="presentation" class="active"><a href="#noti"

@@ -26,7 +26,7 @@ function fnInfiScroll() {
 		$grid.infinitescroll({
 			navSelector : '#page_nav',
 			nextSelector : '#page_nav p a',
-			itemSelector : '.item',
+			itemSelector : '.grid-item',
 			loading: {
 				selector: '#load',
 			    finishedMsg: "<em>모든 안건을 불러왔습니다.</em>",
