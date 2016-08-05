@@ -231,7 +231,7 @@
 				<h4>참고 자료</h4>
 				<br />
 				<c:forEach items="${readResource}" var="resource">
-					<a href=${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a>
+					<a href=${resource.topic_resource_link } target="_blank">${resource.topic_resource_title}</a>
 				</c:forEach>
 			</div>
 			<c:choose>
@@ -253,623 +253,662 @@
 		<hr />
 	</div>
 	<div class="container">
-	<div class="grid col-sm-10" id="op">
-		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
-			<c:choose>
-				<c:when test="${opinion.vote_type eq 0}">
-					<div class="container grid-item" id="${opinion.op_no}#">
-						<form class="form-horizontal" action="like" method="post" id="${opinion.op_no}">
-							<div class="form-group">
-							<input type="hidden" name="op_no" value="${opinion.op_no}" />
+		<div class="grid col-sm-10" id="op">
+			<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
+				<c:choose>
+					<c:when test="${opinion.vote_type eq 0}">
+						<div class="container grid-item" id="${opinion.op_no}#">
+							<form class="form-horizontal" action="like" method="post"
+								id="${opinion.op_no}">
+								<div class="form-group">
+									<input type="hidden" name="op_no" value="${opinion.op_no}" />
 									<input type="hidden" name="topic_no"
 										value="${readlist.topic_no}" /> <input type="hidden"
 										name="op_like_type" />
-								<div class="col-sm-1">
+									<div class="col-sm-1">
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+									</div>
+									<!-- div class="col-sm-1">
 											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 								</div>
 								<div class="col-sm-1">
 								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
 								
-								</div>
-								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #3333FF">
-									<div class="row">
-										<div class="col-sm-4 ">
-											<h3>${opinion.user_nick}&nbsp;&nbsp;
-												<span class="label label-primary" style="margin-top: 20px">찬성</span>
-											</h3>
+								</div-->
+									<div class="col-sm-10"
+										style="border-style: solid; border-width: 1px; border-color: #3333FF">
+										<div class="row">
+											<div class="col-sm-4 ">
+												<h3>${opinion.user_nick}&nbsp;&nbsp;
+													<span class="label label-primary" style="margin-top: 20px">찬성</span>
+												</h3>
+											</div>
+											<div class="col-sm-5 minitop">
+												<h4>
+													<c:forEach items="${taglist}" var="tag"
+														varStatus="tagstart">
+														<c:choose>
+															<c:when test="${tag.tag_op_no == opinion.op_no}">
+																<a href="#${tag.tagged_op_no}#">#참조</a>
+															</c:when>
+														</c:choose>
+														<c:choose>
+															<c:when test="${tag.tagged_op_no == opinion.op_no}">
+																<a href="#${tag.tag_op_no}#">#반박</a>
+															</c:when>
+														</c:choose>
+													</c:forEach>
+												</h4>
+											</div>
 										</div>
-										<div class="col-sm-5 minitop">
-											<h4>
-												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-													<c:choose>
-														<c:when test="${tag.tag_op_no == opinion.op_no}">
-															<a href="#${tag.tagged_op_no}#">#참조</a>
-														</c:when>
-													</c:choose>
-													<c:choose>
-														<c:when test="${tag.tagged_op_no == opinion.op_no}">
-															<a href="#${tag.tag_op_no}#">#반박</a>
-														</c:when>
-													</c:choose>
-												</c:forEach>
-											</h4>
-										</div>
-									</div>
 
-									<hr />
-									${opinion.op_content} <br />
-									<hr />
-									<div>
-										<c:choose>
-											<c:when test="${empty readuser.user_nick != false}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)"
-														disabled="disabled">답글</button>
-												</div>
-											</c:when>
-											<c:when test="${readuser.user_nick != opinion.user_nick}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Modify(this)">수정</button>
-													<input type="hidden" value="${opinion.op_content}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Optdel(this)">삭제</button>
-													<input type="hidden" value="${readlist.topic_no}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-offset-2 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
+										<hr />
+										${opinion.op_content} <br />
+										<hr />
+										<div>
+											<c:choose>
+												<c:when test="${empty readuser.user_nick != false}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" name="opvotebtn0"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" name="opvotebtn1"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)"
+															disabled="disabled">답글</button>
+													</div>
+												</c:when>
+												<c:when test="${readuser.user_nick != opinion.user_nick}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Modify(this)">수정</button>
+														<input type="hidden" value="${opinion.op_content}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Optdel(this)">삭제</button>
+														<input type="hidden" value="${readlist.topic_no}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-offset-2 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
 
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${opinion.vote_type eq 1}">
-					<div class="container grid-item  col-sm-offset-1"
-						id="${opinion.op_no}#">
-						<form class="form-horizontal" action="like" method="post"
-							id="${opinion.op_no}">
-							<div class="form-group">
-								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
-									type="hidden" name="topic_no" value="${readlist.topic_no}" />
-								<input type="hidden" name="op_like_type" />
-								<div class="col-sm-9 "
-									style="border-style: solid; border-width: 1px; border-color: #FF3232">
-									<div class="row">
-										<div class="col-sm-4">
-											<h3>${opinion.user_nick}&nbsp;
-												<span class="label label-danger" style="margin-top: 20px">반대</span>
-											</h3>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:otherwise>
+											</c:choose>
 										</div>
-										<div class="col-sm-5 minitop">
-											<h4>
-												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-													<c:choose>
-														<c:when test="${tag.tag_op_no == opinion.op_no}">
-															<a href="#${tag.tagged_op_no}#">#참조</a>
-														</c:when>
-													</c:choose>
-													<c:choose>
-														<c:when test="${tag.tagged_op_no == opinion.op_no}">
-															<a href="#${tag.tag_op_no}#">#반박</a>
-														</c:when>
-													</c:choose>
-												</c:forEach>
-											</h4>
-										</div>
-									</div>
-									<hr />
-									${opinion.op_content} <br />
-									<hr />
-									<div>
-										<c:choose>
-											<c:when test="${empty readuser.user_nick != false}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)"
-														disabled="disabled">답글</button>
-												</div>
-											</c:when>
-											<c:when test="${readuser.user_nick != opinion.user_nick}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Modify(this)">수정</button>
-													<input type="hidden" value="${opinion.op_content}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Optdel(this)">삭제</button>
-													<input type="hidden" value="${readlist.topic_no}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-offset-2 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:otherwise>
-										</c:choose>
 									</div>
 								</div>
-								<div class="col-sm-1">
+							</form>
+						</div>
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${opinion.vote_type eq 1}">
+						<div class="container grid-item  col-sm-offset-1"
+							id="${opinion.op_no}#">
+							<form class="form-horizontal" action="like" method="post"
+								id="${opinion.op_no}">
+								<div class="form-group">
+									<input type="hidden" name="op_no" value="${opinion.op_no}" />
+									<input type="hidden" name="topic_no"
+										value="${readlist.topic_no}" /> <input type="hidden"
+										name="op_like_type" />
+									<div class="col-sm-10 "
+										style="border-style: solid; border-width: 1px; border-color: #FF3232">
+										<div class="row">
+											<div class="col-sm-4">
+												<h3>${opinion.user_nick}&nbsp;
+													<span class="label label-danger" style="margin-top: 20px">반대</span>
+												</h3>
+											</div>
+											<div class="col-sm-5 minitop">
+												<h4>
+													<c:forEach items="${taglist}" var="tag"
+														varStatus="tagstart">
+														<c:choose>
+															<c:when test="${tag.tag_op_no == opinion.op_no}">
+																<a href="#${tag.tagged_op_no}#">#참조</a>
+															</c:when>
+														</c:choose>
+														<c:choose>
+															<c:when test="${tag.tagged_op_no == opinion.op_no}">
+																<a href="#${tag.tag_op_no}#">#반박</a>
+															</c:when>
+														</c:choose>
+													</c:forEach>
+												</h4>
+											</div>
+										</div>
+										<hr />
+										${opinion.op_content} <br />
+										<hr />
+										<div>
+											<c:choose>
+												<c:when test="${empty readuser.user_nick != false}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" name="opvotebtn0"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" name="opvotebtn1"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)"
+															disabled="disabled">답글</button>
+													</div>
+												</c:when>
+												<c:when test="${readuser.user_nick != opinion.user_nick}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Modify(this)">수정</button>
+														<input type="hidden" value="${opinion.op_content}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Optdel(this)">삭제</button>
+														<input type="hidden" value="${readlist.topic_no}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-offset-2 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
+
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+									</div>
+									<div class="col-sm-1">
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+									</div>
+									<!-- div class="col-sm-1">
 											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 								</div>
 								<div class="col-sm-1">
 								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
 								
+								</div-->
 								</div>
-							</div>
-						</form>
-					</div>
-				</c:when>
-			</c:choose>
+							</form>
+						</div>
+					</c:when>
+				</c:choose>
 
-			<c:choose>
-				<c:when test="${opinion.vote_type eq 2}">
-					<div class="container grid-item" id="${opinion.op_no}#">
-						<form class="form-horizontal" action="like" method="post"
-							id="${opinion.op_no}">
-							<div class="form-group">
-								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
-									type="hidden" name="topic_no" value="${readlist.topic_no}" />
-								<input type="hidden" name="op_like_type" />
+				<c:choose>
+					<c:when test="${opinion.vote_type eq 2}">
+						<div class="container grid-item" id="${opinion.op_no}#">
+							<form class="form-horizontal" action="like" method="post"
+								id="${opinion.op_no}">
+								<div class="form-group">
+									<input type="hidden" name="op_no" value="${opinion.op_no}" />
+									<input type="hidden" name="topic_no"
+										value="${readlist.topic_no}" /> <input type="hidden"
+										name="op_like_type" />
+									<div class="col-sm-1">
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+									</div>
+									<!-- img src="/resources/mypage/img/${opinion.user_profile}"
+												style="height: 80px; width: 80px" />
+								</div>
 								<div class="col-sm-1">
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
+								</div-->
+									<div class="col-sm-10"
+										style="border-style: solid; border-width: 1px; border-color: #00FF99">
+										<div class="row">
+											<div class="col-sm-4">
+												<h3>${opinion.user_nick}&nbsp;&nbsp;
+													<span class="label label-success" style="margin-top: 20px">중립</span>
+												</h3>
+											</div>
+											<div class="col-sm-5 minitop">
+												<h4>
+													<c:forEach items="${taglist}" var="tag"
+														varStatus="tagstart">
+														<c:choose>
+															<c:when test="${tag.tag_op_no == opinion.op_no}">
+																<a href="#${tag.tagged_op_no}#">#참조</a>
+															</c:when>
+														</c:choose>
+														<c:choose>
+															<c:when test="${tag.tagged_op_no == opinion.op_no}">
+																<a href="#${tag.tag_op_no}#">#반박</a>
+															</c:when>
+														</c:choose>
+													</c:forEach>
+												</h4>
+											</div>
+										</div>
+										<hr />
+										${opinion.op_content} <br />
+										<hr />
+
+										<div>
+											<c:choose>
+												<c:when test="${empty readuser.user_nick != false}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" name="opvotebtn0"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" name="opvotebtn1"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" disabled="disabled">답글</button>
+													</div>
+												</c:when>
+												<c:when test="${readuser.user_nick != opinion.user_nick}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Modify(this)">수정</button>
+														<input type="hidden" value="${opinion.op_content}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Optdel(this)">삭제</button>
+														<input type="hidden" value="${readlist.topic_no}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-offset-2 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
+
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${opinion.vote_type eq 3}">
+						<div class="container grid-item" id="${opinion.op_no}#">
+							<form class="form-horizontal" action="like" method="post"
+								id="${opinion.op_no}">
+								<div class="form-group">
+									<input type="hidden" name="op_no" value="${opinion.op_no}" />
+									<input type="hidden" name="topic_no"
+										value="${readlist.topic_no}" /> <input type="hidden"
+										name="op_like_type" />
+									<div class="col-sm-1">
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+									</div>
+									<!-- div class="col-sm-1">
 											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 								</div>
 								<div class="col-sm-1">
 								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
 								
-								</div>
-								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #00FF99">
-									<div class="row">
-										<div class="col-sm-4">
-											<h3>${opinion.user_nick}&nbsp;&nbsp;
-												<span class="label label-success" style="margin-top: 20px">중립</span>
-											</h3>
+								</div-->
+									<div class="col-sm-10"
+										style="border-style: solid; border-width: 1px; border-color: #0099FF">
+										<div class="row">
+											<div class="col-sm-4">
+												<h3>${opinion.user_nick}&nbsp;&nbsp;
+													<span class="label label-info" style="margin-top: 20px">자유</span>
+												</h3>
+											</div>
+											<div class="col-sm-5 minitop">
+												<h4>
+													<c:forEach items="${taglist}" var="tag"
+														varStatus="tagstart">
+														<c:choose>
+															<c:when test="${tag.tag_op_no == opinion.op_no}">
+																<a href="#${tag.tagged_op_no}#">#의견</a>
+															</c:when>
+														</c:choose>
+														<c:choose>
+															<c:when test="${tag.tagged_op_no == opinion.op_no}">
+																<a href="#${tag.tag_op_no}#">#의견</a>
+															</c:when>
+														</c:choose>
+													</c:forEach>
+												</h4>
+											</div>
 										</div>
-										<div class="col-sm-5 minitop">
-											<h4>
-												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-													<c:choose>
-														<c:when test="${tag.tag_op_no == opinion.op_no}">
-															<a href="#${tag.tagged_op_no}#">#참조</a>
-														</c:when>
-													</c:choose>
-													<c:choose>
-														<c:when test="${tag.tagged_op_no == opinion.op_no}">
-															<a href="#${tag.tag_op_no}#">#반박</a>
-														</c:when>
-													</c:choose>
-												</c:forEach>
-											</h4>
-										</div>
-									</div>
-									<hr />
-									${opinion.op_content} <br />
-									<hr />
+										<hr />
+										${opinion.op_content} <br />
+										<hr />
 
-									<div>
-										<c:choose>
-											<c:when test="${empty readuser.user_nick != false}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" disabled="disabled">답글</button>
-												</div>
-											</c:when>
-											<c:when test="${readuser.user_nick != opinion.user_nick}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Modify(this)">수정</button>
-													<input type="hidden" value="${opinion.op_content}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Optdel(this)">삭제</button>
-													<input type="hidden" value="${readlist.topic_no}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-offset-2 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
+										<div>
+											<c:choose>
+												<c:when test="${empty readuser.user_nick != false}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" name="opvotebtn0"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" name="opvotebtn1"
+															value="${opinion.op_no}" disabled="disabled">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" name="rebtn" disabled="disabled">답글</button>
+													</div>
+												</c:when>
+												<c:when test="${readuser.user_nick != opinion.user_nick}">
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-offset-4 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="col-sm-4">
+														<em>작성 날짜 : ${opinion.op_regdate}</em><br />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Modify(this)">수정</button>
+														<input type="hidden" value="${opinion.op_content}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn-default"
+															onclick="Optdel(this)">삭제</button>
+														<input type="hidden" value="${readlist.topic_no}" /> <input
+															type="hidden" value="${opinion.op_no}">
+													</div>
+													<div class="col-sm-offset-2 col-sm-1">
+														<button type="button" class="btn btn btn-info"
+															aria-label="Left Align" onclick="Opvotebtn0(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-top"
+																aria-hidden="true"></span> ${opinion.op_like}
+														</button>
+														<input type="hidden" value="0" />
+													</div>
+													<div class="col-sm-1">
+														<button type="button" class="btn btn btn-danger"
+															aria-label="Left Align" onclick="Opvotebtn1(this)"
+															value="${opinion.op_no}">
+															<span class="glyphicon glyphicon-triangle-bottom"
+																aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
+														</button>
+														<input type="hidden" value="1" />
+													</div>
 
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</c:when>
-			</c:choose>
-			<c:choose>
-				<c:when test="${opinion.vote_type eq 3}">
-					<div class="container grid-item" id="${opinion.op_no}#">
-						<form class="form-horizontal" action="like" method="post"
-							id="${opinion.op_no}">
-							<div class="form-group">
-								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
-									type="hidden" name="topic_no" value="${readlist.topic_no}" />
-								<input type="hidden" name="op_like_type" />
-								<div class="col-sm-1">
-											<img src="/resources/mypage/img/${opinion.user_profile}"
-												style="height: 80px; width: 80px" />
-								</div>
-								<div class="col-sm-1">
-								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
-								
-								</div>
-								<div class="col-sm-9"
-									style="border-style: solid; border-width: 1px; border-color: #0099FF">
-									<div class="row">
-										<div class="col-sm-4">
-											<h3>${opinion.user_nick}&nbsp;&nbsp;
-												<span class="label label-info" style="margin-top: 20px">자유</span>
-											</h3>
-										</div>
-										<div class="col-sm-5 minitop">
-											<h4>
-												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-													<c:choose>
-														<c:when test="${tag.tag_op_no == opinion.op_no}">
-															<a href="#${tag.tagged_op_no}#">#의견</a>
-														</c:when>
-													</c:choose>
-													<c:choose>
-														<c:when test="${tag.tagged_op_no == opinion.op_no}">
-															<a href="#${tag.tag_op_no}#">#의견</a>
-														</c:when>
-													</c:choose>
-												</c:forEach>
-											</h4>
+													<div class="col-sm-offset-1 col-sm-1 minibottom">
+														<button type="button" class="btn btn-default"
+															id="btn${status.count}" onclick="Ref(this)">답글</button>
+														<input type="hidden" value="${opinion.user_nick}">
+														<input type="hidden" value="${opinion.op_no}">
+													</div>
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</div>
-									<hr />
-									${opinion.op_content} <br />
-									<hr />
-
-									<div>
-										<c:choose>
-											<c:when test="${empty readuser.user_nick != false}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" name="opvotebtn0"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" name="opvotebtn1"
-														value="${opinion.op_no}" disabled="disabled">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" name="rebtn" disabled="disabled">답글</button>
-												</div>
-											</c:when>
-											<c:when test="${readuser.user_nick != opinion.user_nick}">
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-offset-4 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="col-sm-4">
-													<em>작성 날짜 : ${opinion.op_regdate}</em><br />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Modify(this)">수정</button>
-													<input type="hidden" value="${opinion.op_content}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn-default"
-														onclick="Optdel(this)">삭제</button>
-													<input type="hidden" value="${readlist.topic_no}" /> <input
-														type="hidden" value="${opinion.op_no}">
-												</div>
-												<div class="col-sm-offset-2 col-sm-1">
-													<button type="button" class="btn btn btn-info"
-														aria-label="Left Align" onclick="Opvotebtn0(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-top"
-															aria-hidden="true"></span> ${opinion.op_like}
-													</button>
-													<input type="hidden" value="0" />
-												</div>
-												<div class="col-sm-1">
-													<button type="button" class="btn btn btn-danger"
-														aria-label="Left Align" onclick="Opvotebtn1(this)"
-														value="${opinion.op_no}">
-														<span class="glyphicon glyphicon-triangle-bottom"
-															aria-hidden="true"></span> ${opinion.op_count - opinion.op_like}
-													</button>
-													<input type="hidden" value="1" />
-												</div>
-
-												<div class="col-sm-offset-1 col-sm-1 minibottom">
-													<button type="button" class="btn btn-default"
-														id="btn${status.count}" onclick="Ref(this)">답글</button>
-													<input type="hidden" value="${opinion.user_nick}">
-													<input type="hidden" value="${opinion.op_no}">
-												</div>
-											</c:otherwise>
-										</c:choose>
-									</div>
 								</div>
-							</div>
-						</form>
-					</div>
-				</c:when>
-			</c:choose>
+							</form>
+						</div>
+					</c:when>
+				</c:choose>
 
-		</c:forEach>
-		<br /> <br /> <br /> <br /> <br />
-	</div>
+			</c:forEach>
+			<br /> <br /> <br /> <br /> <br />
+		</div>
 	</div>
 	<div id="bottom"></div>
 	<nav id="page_nav" style="display: none">
@@ -888,25 +927,21 @@
 						<h2>의견 작성</h2>
 						<hr />
 						<div class="col-sm-1">
+							<div class="profile-75">
 								<c:choose>
-										<c:when test="${readuser.user_profile != null}">
-											<img src="/resources/mypage/img/${readuser.user_profile}"
-												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
-					
-								</div>
-						<div class="col-sm-1">
-								<c:choose>
-										<c:when test="${readuser.user_lv_img != null}">
-											<img src="${readuser.user_lv_img}"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<c:when test="${readuser.user_profile != null}">
+									<div class="round-profile"
+										style="background-image: url(/resources/mypage/img/${readuser.user_profile})">
+										<img class="user-lv-26" src="${readuser.user_lv_img}" />
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="round-profile"
+										style="background-image: url(/resources/mypage/img/storm.jpg})">
+									</div>
+								</c:otherwise>
+								</c:choose>
+							</div>
 						</div>
 						<div class="col-sm-3">
 
@@ -920,30 +955,30 @@
 							</c:choose>
 
 						</div>
-						<div class="col-sm-5">
-						
+						<div class="col-sm-10">
+
 							<c:choose>
 								<c:when test="${empty readuser.user_nick != true}">
-							<div id="debateType" class="btn-group">
-								<button type="button" id="btnDebateType"
-									class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-									aria-expanded="false">
-									토론 형식 <span class="caret"></span>
-								</button>
-								<ul id="btn_topic_type" class="dropdown-menu" role="menu">
-									<li><a>찬성 </a></li>
-									<li><a>반대 </a></li>
-									<li><a>중립 </a></li>
-								</ul>
-								<input type="hidden" id="hid_topic_type" name="optionchk" />
-							</div>
-							</c:when>
+									<div id="debateType" class="btn-group">
+										<button type="button" id="btnDebateType"
+											class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown" aria-expanded="false">
+											토론 형식 <span class="caret"></span>
+										</button>
+										<ul id="btn_topic_type" class="dropdown-menu" role="menu">
+											<li><a>찬성 </a></li>
+											<li><a>반대 </a></li>
+											<li><a>중립 </a></li>
+										</ul>
+										<input type="hidden" id="hid_topic_type" name="optionchk" />
+									</div>
+								</c:when>
 							</c:choose>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-2">
+						<div class="col-sm-offset-1 col-sm-2">
 							<h4>
 								<input type="text" class="form-control" id="relid"
 									readonly="readonly"> <input type="hidden" id="rel"
@@ -951,10 +986,10 @@
 							</h4>
 						</div>
 						<div class="col-sm-2">
-							<h4>에 대한 답글</h4>
+							<h4 style="padding-top: 12px">에 대한 답글</h4>
 						</div>
 					</div>
-					<div class="col-sm-offset-2 col-sm-9">
+					<div class="col-sm-offset-1 col-sm-10">
 
 						<c:choose>
 							<c:when test="${empty readuser.user_nick != false}">
@@ -1017,25 +1052,25 @@
 						<h2>의견 작성</h2>
 						<hr />
 						<div class="col-sm-1">
-								<c:choose>
-										<c:when test="${readuser.user_profile != null}">
-											<img src="/resources/mypage/img/${readuser.user_profile}"
-												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
-					
-								</div>
+							<c:choose>
+								<c:when test="${readuser.user_profile != null}">
+									<img src="/resources/mypage/img/${readuser.user_profile}"
+										style="height: 80px; width: 80px" />
+								</c:when>
+								<c:otherwise>
+									<img src="/resources/upload/member_img/storm.jpg"
+										style="height: 80px; width: 80px" />
+								</c:otherwise>
+							</c:choose>
+
+						</div>
 						<div class="col-sm-1">
-								<c:choose>
-										<c:when test="${readuser.user_lv_img != null}">
-											<img src="${readuser.user_lv_img}"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+							<c:choose>
+								<c:when test="${readuser.user_lv_img != null}">
+									<img src="${readuser.user_lv_img}"
+										style="height: 50px; width: 50px" />
+								</c:when>
+							</c:choose>
 						</div>
 						<div class="col-sm-3">
 
@@ -1050,15 +1085,15 @@
 
 						</div>
 						<div class="col-sm-5">
-						<c:choose>
+							<c:choose>
 								<c:when test="${empty readuser.user_nick != true}">
-							<button type="button" id="btnDebateType" class="btn btn-info"
-								disabled="disabled">자유</button>
-							<input type="hidden" name="optionchk" value="3" /> <input
-								type="hidden" id="rel" name="rel" value="0">
+									<button type="button" id="btnDebateType" class="btn btn-info"
+										disabled="disabled">자유</button>
+									<input type="hidden" name="optionchk" value="3" />
+									<input type="hidden" id="rel" name="rel" value="0">
 								</c:when>
-								</c:choose>
-								
+							</c:choose>
+
 						</div>
 					</div>
 					<div class="form-group">
