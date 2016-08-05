@@ -26,4 +26,9 @@ public class HomeController {
 		model.addAttribute("finish", service.getFinishedList());
 		return "home";
 	}
+	
+	@RequestMapping(value = "/about/about", method = RequestMethod.GET)
+	public String about() throws SQLException {
+		return "/about/about";
+	}
 }

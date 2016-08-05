@@ -40,6 +40,7 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
+				<li id="about"><a href="/about/about">TAWAR 소개</a></li>
 					<li id="proposal"><a href="/proposal/list">안건 건의<span class="sr-only"></span></a></li>
 					<li id="ongoing"><a href="/ongoing/list">토론중</a></li>
 					<li id="finished"><a href="/finished/list">종료된 토론</a>
