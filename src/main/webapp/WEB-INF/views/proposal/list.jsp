@@ -103,6 +103,7 @@
 		</div>
 
 	</div>
+	<button id="topBtn" class="btn btn-default"><span class="glyphicon glyphicon-menu-up"></span><br/>Top</button>
 	<div id="load"></div>
 
 	<nav id="page_nav" style="display: none;">
@@ -110,20 +111,6 @@
 			<a href="/proposal/list?pageNo=2"></a>
 		</p>
 	</nav>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script

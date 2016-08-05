@@ -35,31 +35,10 @@ public class ListDAOImpl implements ListDAO {
 	public List<MainDto> getAll_on(int index) throws SQLException {
 		return sqlsession.selectList(NAMESPACE + ".getAll_on", index);
 	}
-
-	@Override
-	public List<MainDto> getProCon_on(int index) throws SQLException {
-		return sqlsession.selectList(NAMESPACE + ".getProCon_on", index);
-	}
-
-	@Override
-	public List<MainDto> getFree_on(int index) throws SQLException {
-		return sqlsession.selectList(NAMESPACE + ".getFree_on", index);
-	}
 	
 	@Override
 	public List<MainDto> getAll_fin(int index) throws SQLException {
 		return sqlsession.selectList(NAMESPACE + ".getAll_fin", index);
 	}
-
-	@Override
-	public List<MainDto> getProCon_fin(int index) throws SQLException {
-		return sqlsession.selectList(NAMESPACE + ".getProCon_fin", index);
-	}
-
-	@Override
-	public List<MainDto> getFree_fin(int index) throws SQLException {
-		return sqlsession.selectList(NAMESPACE + ".getFree_fin", index);
-	}
-
 
 }
