@@ -252,7 +252,8 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="grid col-sm-offset-1 col-sm-10" id="op">
+	<div class="container">
+	<div class="grid col-sm-10" id="op">
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
@@ -263,7 +264,7 @@
 									<input type="hidden" name="topic_no"
 										value="${readlist.topic_no}" /> <input type="hidden"
 										name="op_like_type" />
-								<div class="col-sm-offset-1 col-sm-1">
+								<div class="col-sm-1">
 											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 								</div>
@@ -547,7 +548,7 @@
 										</c:choose>
 									</div>
 								</div>
-								<div class="col-sm-offset-1 col-sm-1">
+								<div class="col-sm-1">
 											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 								</div>
@@ -570,7 +571,7 @@
 								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
-								<div class="col-sm-offset-1 col-sm-1">
+								<div class="col-sm-1">
 											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 								</div>
@@ -722,7 +723,7 @@
 								<input type="hidden" name="op_no" value="${opinion.op_no}" /> <input
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
-								<div class="col-sm-offset-1 col-sm-1">
+								<div class="col-sm-1">
 											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
 								</div>
@@ -868,6 +869,7 @@
 
 		</c:forEach>
 		<br /> <br /> <br /> <br /> <br />
+	</div>
 	</div>
 	<div id="bottom"></div>
 	<nav id="page_nav" style="display: none">
