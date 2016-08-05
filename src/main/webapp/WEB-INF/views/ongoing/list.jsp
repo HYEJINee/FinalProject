@@ -110,7 +110,7 @@
 							</div>
 						</c:if>
 						<div class="card_body">
-							<p>${list.topic_short_cont}</p>
+							<p class="card__text">${list.topic_short_cont}</p>
 						</div>
 						<div class="card_footer card__action-bar">
 							<p class="text-right">

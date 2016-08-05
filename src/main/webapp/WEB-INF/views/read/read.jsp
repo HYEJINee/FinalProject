@@ -252,7 +252,7 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="grid col-sm-offset-2 col-sm-10" id="op">
+	<div class="grid col-sm-offset-1 col-sm-10" id="op">
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
@@ -264,40 +264,12 @@
 										value="${readlist.topic_no}" /> <input type="hidden"
 										name="op_like_type" />
 								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #3333FF">
@@ -576,40 +548,12 @@
 									</div>
 								</div>
 								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 							</div>
 						</form>
@@ -627,40 +571,12 @@
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
 								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #00FF99">
@@ -807,40 +723,12 @@
 									type="hidden" name="topic_no" value="${readlist.topic_no}" />
 								<input type="hidden" name="op_like_type" />
 								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 								<div class="col-sm-9"
 									style="border-style: solid; border-width: 1px; border-color: #0099FF">
@@ -998,9 +886,9 @@
 						<h2>의견 작성</h2>
 						<hr />
 						<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${readuser.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${readuser.user_profile}"
+								<c:choose>
+										<c:when test="${readuser.user_profile != null}">
+											<img src="/resources/mypage/img/${readuser.user_profile}"
 												style="height: 80px; width: 80px" />
 										</c:when>
 										<c:otherwise>
@@ -1008,31 +896,16 @@
 												style="height: 80px; width: 80px" />
 										</c:otherwise>
 									</c:choose>
+					
 								</div>
-								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${readuser.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${readuser.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${readuser.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${readuser.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${readuser.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
+						<div class="col-sm-1">
+								<c:choose>
+										<c:when test="${readuser.user_lv_img != null}">
+											<img src="${readuser.user_lv_img}"
 												style="height: 50px; width: 50px" />
 										</c:when>
 									</c:choose>
-								</div>
+						</div>
 						<div class="col-sm-3">
 
 							<c:choose>
@@ -1142,16 +1015,25 @@
 						<h2>의견 작성</h2>
 						<hr />
 						<div class="col-sm-1">
-							<c:choose>
-								<c:when test="${readuser.user_profile != storm.jpg}">
-									<img src="/resources/upload/member_img/${readuser.user_profile}"
-										style="height: 60px; width: 60px" />
-								</c:when>
-								<c:otherwise>
-									<img src="/resources/upload/member_img/storm.jpg"
-										style="height: 60px; width: 60px" />
-								</c:otherwise>
-							</c:choose>
+								<c:choose>
+										<c:when test="${readuser.user_profile != null}">
+											<img src="/resources/mypage/img/${readuser.user_profile}"
+												style="height: 80px; width: 80px" />
+										</c:when>
+										<c:otherwise>
+											<img src="/resources/upload/member_img/storm.jpg"
+												style="height: 80px; width: 80px" />
+										</c:otherwise>
+									</c:choose>
+					
+								</div>
+						<div class="col-sm-1">
+								<c:choose>
+										<c:when test="${readuser.user_lv_img != null}">
+											<img src="${readuser.user_lv_img}"
+												style="height: 50px; width: 50px" />
+										</c:when>
+									</c:choose>
 						</div>
 						<div class="col-sm-3">
 
