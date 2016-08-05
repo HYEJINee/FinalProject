@@ -182,7 +182,7 @@
 			<div id="divRef" class="col-md-12">
 				<h4>참고 자료</h4><br/>
 				<c:forEach items="${readResource}" var="resource">
-					<a href=http://${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a>
+					<a href=http://${resource.topic_resource_link} target="_blank">${resource.topic_resource_title}</a><br/><br/>
 				</c:forEach>
 			</div>
 			<!-- 찬반 주제일때만 찬성-반대 의견이 보임 -->
