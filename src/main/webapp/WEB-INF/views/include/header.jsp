@@ -48,9 +48,13 @@
 				</ul>
 				<form class="navbar-form navbar-left" action="/search/search_result"  method="get">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search_word"  id="search_word">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search_word"  id="search_word">
+							<span class="input-group-btn">
+								<button class="btn btn-default btnBoot" type="button"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
 					</div>
-					<button type="submit" class="btn btnBoot"    >검색</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${empty USER_KEY != true}">

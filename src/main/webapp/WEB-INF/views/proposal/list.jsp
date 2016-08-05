@@ -123,5 +123,13 @@
 		src="${pageContext.request.contextPath}/resources/proposal/js/jquery.infinitescroll.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/proposal/js/list.js"></script>
+	<script>
+		$(document).ready(function(){
+			// 헤더 탭 부분 종료된 토론 활성화
+			$("#proposal").addClass("active");
+			$("#ongoing").removeClass("active");
+			$("#finished").removeClass("active");
+		});
+	</script>
 </body>
 </html>

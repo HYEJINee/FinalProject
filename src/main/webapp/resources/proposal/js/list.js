@@ -45,10 +45,6 @@ $(function() {
 	$("#topBtn").click(function(){
 		$('html, body').animate( { scrollTop : 0 }, 400 );
 	});
-	// 헤더 탭 부분 종료된 토론 활성화
-	$("#proposal").addClass("active");
-	$("#ongoing").removeClass("active");
-	$("#finished").removeClass("active");
 });
 		
 $('.btn-write').on('click', function() {

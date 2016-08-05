@@ -123,6 +123,7 @@
 				</div>
 			</div>
 		</div>
+		<button id="topBtn" class="btn btn-default"><span class="glyphicon glyphicon-menu-up"></span><br/>Top</button>
 		<div id="load"></div>
 	</div>
 	<nav id="page_nav" style="display: none;">

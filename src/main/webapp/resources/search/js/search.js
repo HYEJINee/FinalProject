@@ -18,4 +18,8 @@ $(document).ready(function(){
 		e.preventDefault()
 		$(this).tab('show')
 	})
+	// 헤더 탭 부분 종료된 토론 활성화
+	$("#proposal").removeClass("active");
+	$("#ongoing").removeClass("active");
+	$("#finished").removeClass("active");
 });
