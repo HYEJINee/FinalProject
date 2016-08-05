@@ -938,7 +938,7 @@
 								</c:when>
 								<c:otherwise>
 									<div class="round-profile"
-										style="background-image: url(/resources/mypage/img/storm.jpg})">
+										style="background-image: url(/resources/mypage/img/storm.jpg)">
 									</div>
 								</c:otherwise>
 								</c:choose>
