@@ -165,7 +165,7 @@
 											<div class="profile-75">
 												<div class="round-profile"
 													style="background-image: url(/resources/mypage/img/${reply.profile_file_name}.${reply.profile_ext_name})">
-													<img class="user-lv-26" src="${USER_KEY.user_lv_img }" />
+													<img class="user-lv-26" src="${reply.user_lv_img }" />
 												</div>
 											</div>
 										</div>
