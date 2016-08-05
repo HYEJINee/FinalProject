@@ -62,7 +62,7 @@
 									</c:when>
 									<c:when test="${topic.topic_type == 1}">
 										<h4>
-											<label class="label label-danger">의견</label>
+											<label class="label label-info">자유</label>
 										</h4>
 									</c:when>
 								</c:choose>
@@ -81,7 +81,7 @@
 									</c:when>
 									<c:when test="${topic.topic_type == 1}">
 										<h4>
-											<label class="label label-danger">의견</label>
+											<label class="label label-info">자유</label>
 										</h4>
 									</c:when>
 								</c:choose>

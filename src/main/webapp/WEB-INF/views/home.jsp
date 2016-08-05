@@ -47,7 +47,7 @@
 								<label class="label label-primary">찬반</label>
 							</c:when>
 							<c:when test="${mainList.topic_type eq 1}">
-								<label class="label label-danger">의견</label>
+								<label class="label label-info">자유</label>
 							</c:when>
 						</c:choose>
 						<span>${mainList.topic_title}</span><br /> <br />
@@ -157,7 +157,7 @@
 													style="background-image: url(/resources/proposal/img/${mainList.img_file_name}.${mainList.img_ext_name})"
 													class="card__image" id="coverImg"></div>
 												<h4>
-													<label class="label label-danger">의견</label><br />
+													<label class="label label-info">자유</label><br />
 												</h4>
 												<h2 class="card__title">${mainList.topic_title}</h2>
 											</div>
@@ -167,7 +167,7 @@
 											<div class="card_header">
 												<div class="card__image"></div>
 												<h4>
-													<label class="label label-danger">의견</label><br />
+													<label class="label label-info">자유</label><br />
 												</h4>
 												<h2 class="card__title">${mainList.topic_title}</h2>
 											</div>
@@ -263,7 +263,7 @@
 										<label class="label label-primary">찬반</label>
 									</c:when>
 									<c:when test="${recmdList.topic_type eq 1}">
-										<label class="label label-danger">의견</label>
+										<label class="label label-info">자유</label>
 									</c:when>
 								</c:choose>
 								<span class="board_title">${recmdList.topic_title}</span> <span
@@ -295,7 +295,7 @@
 										<label class="label label-primary">찬반</label>
 									</c:when>
 									<c:when test="${finishList.topic_type eq 1}">
-										<label class="label label-danger">의견</label>
+										<label class="label label-info">자유</label>
 									</c:when>
 								</c:choose>
 								<span class="board_title">${finishList.topic_title}</span>
