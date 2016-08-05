@@ -97,7 +97,7 @@
 							<div class="card_header">
 								<div style="background-image: url(/resources/proposal/img/${list.img_file_name}.${list.img_ext_name})"
 									class="card__image" id="coverImg"></div>
-								<h4><label class="label label-danger">의견</label></h4>
+								<h4><label class="label label-info">자유</label></h4>
 								<h2 class="card__title">${list.topic_title}</h2>
 							</div>
 						</c:if>
@@ -105,12 +105,12 @@
 						<c:if test="${list.img_file_name eq null}">
 							<div class="card_header">
 								<div class="card__image" ></div>
-								<h4><label class="label label-danger">의견</label></h4>
+								<h4><label class="label label-info">자유</label></h4>
 								<h2 class="card__title">${list.topic_title}</h2>
 							</div>
 						</c:if>
 						<div class="card_body">
-							<p>${list.topic_short_cont}</p>
+							<p class="card__text">${list.topic_short_cont}</p>
 						</div>
 						<div class="card_footer card__action-bar">
 							<p class="text-right">

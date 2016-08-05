@@ -6,12 +6,13 @@
 <html>
 <head>
 <title>Read Page</title>
-<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/read/css/read.css" rel="stylesheet" />
 </head>
 <body>
 	<!-- 종료된 토론 페이지 보는것만 가능, 투표,의견 작성, 삭제, 수정 불가능 -->
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
+	<link
+		href="${pageContext.request.contextPath}/resources/read/css/read.css"
+		rel="stylesheet" />
 	<div class="container top">
 		<form class="form-horizontal">
 		<!-- 토론 주제에 따른 타이틀 변경 -->
@@ -203,50 +204,23 @@
 		<h2>의견</h2>
 		<hr />
 	</div>
-	<div class="grid ScrollSpy col-sm-offset-2 col-sm-10" id="finishedbottom">
+	<div class="container">
+	<div class="grid ScrollSpy col-sm-10" id="finishedbottom">
 		<!-- 의견들을 list로 담아와서 foreach로 뿌림 -->
 		<c:forEach items="${readOpinion}" var="opinion" varStatus="status">
 			<!-- 찬성 의견, grid-item은 무한 스크롤을 위해 선언 -->
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 0}">
-					<div class="container grid-item">
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group">
-								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+								<div class="col-sm-1">
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 								<!-- 닉네임과 찬성 텍스트 뿌림 -->
 								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #3333FF">
@@ -258,21 +232,21 @@
 									</div>
 									<!-- 태그가 있을 경우 출력 -->
 									<div class="col-sm-5 minitop">
-										<h4>
-											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-												<c:choose>
-													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">#참조</a>
-													</c:when>
-												</c:choose>
-												<c:choose>
-													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">#반박</a>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-										</h4>
-									</div>
+											<h4>
+												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
+													<c:choose>
+														<c:when test="${tag.tag_op_no == opinion.op_no}">
+															<a href="#${tag.tagged_op_no}#">#참조</a>
+														</c:when>
+													</c:choose>
+													<c:choose>
+														<c:when test="${tag.tagged_op_no == opinion.op_no}">
+															<a href="#${tag.tag_op_no}#">#반박</a>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+											</h4>
+										</div>
 									</div>
 									<!-- 의견 내용 -->
 									<hr />
@@ -309,7 +283,7 @@
 			<!-- 반대 의견 -->
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 1}">
-					<div class="container grid-item  col-sm-offset-1">
+					<div class="container grid-item  col-sm-offset-1" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post">
 							<div class="form-group">
 								<div class="col-sm-9 " style="border-style: solid; border-width: 1px; border-color: #FF3232">
@@ -322,21 +296,21 @@
 									</div>
 									<!-- 태그가 있을 경우 출력 -->
 									<div class="col-sm-5 minitop">
-										<h4>
-											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-												<c:choose>
-													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">#참조</a>
-													</c:when>
-												</c:choose>
-												<c:choose>
-													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">#반박</a>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-										</h4>
-									</div>
+											<h4>
+												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
+													<c:choose>
+														<c:when test="${tag.tag_op_no == opinion.op_no}">
+															<a href="#${tag.tagged_op_no}#">#참조</a>
+														</c:when>
+													</c:choose>
+													<c:choose>
+														<c:when test="${tag.tagged_op_no == opinion.op_no}">
+															<a href="#${tag.tag_op_no}#">#반박</a>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+											</h4>
+										</div>
 									</div>
 									<!-- 의견 내용 -->
 									<hr />
@@ -363,41 +337,13 @@
 												</div>
 										</div>	
 								</div>
-								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+								<div class="col-sm-1">
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 							</div>
 						</form>
@@ -407,44 +353,16 @@
 			<!-- 중립 의견 -->
 			<c:choose>
 				<c:when test="${opinion.vote_type eq 2}">
-					<div class="container grid-item" >
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group ">
-								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+								<div class="col-sm-1">
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #00FF99">
 									<!-- 닉네임과 의견 출력 -->
@@ -456,21 +374,21 @@
 									</div>
 									<!-- 태그가 있을 경우 출력 -->
 									<div class="col-sm-5 minitop">
-										<h4>
-											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-												<c:choose>
-													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">#참조</a>
-													</c:when>
-												</c:choose>
-												<c:choose>
-													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">#반박</a>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-										</h4>
-									</div>
+											<h4>
+												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
+													<c:choose>
+														<c:when test="${tag.tag_op_no == opinion.op_no}">
+															<a href="#${tag.tagged_op_no}#">#참조</a>
+														</c:when>
+													</c:choose>
+													<c:choose>
+														<c:when test="${tag.tagged_op_no == opinion.op_no}">
+															<a href="#${tag.tag_op_no}#">#반박</a>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+											</h4>
+										</div>
 									<!-- 의견 내용 -->
 									</div>
 									<hr />
@@ -505,45 +423,17 @@
 			</c:choose>
 			<!-- 자유 의견 -->
 			<c:choose>
-				<c:when test="${opinion.vote_type eq 3}">
-					<div class="container grid-item" >
+				<c:when test="${opinion.vote_type eq 3}" >
+					<div class="container grid-item" id="${opinion.op_no}#">
 						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group">
-								<div class="col-sm-offset-1 col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_profile != storm.jpg}">
-											<img src="/resources/upload/member_img/${opinion.user_profile}"
+								<div class="col-sm-1">
+											<img src="/resources/mypage/img/${opinion.user_profile}"
 												style="height: 80px; width: 80px" />
-										</c:when>
-										<c:otherwise>
-											<img src="/resources/upload/member_img/storm.jpg"
-												style="height: 80px; width: 80px" />
-										</c:otherwise>
-									</c:choose>
 								</div>
 								<div class="col-sm-1">
-									<c:choose>
-										<c:when test="${opinion.user_lv eq 0}">
-											<img src="/resources/user_lv/common.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 1}">
-											<img src="/resources/user_lv/prestige.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 2}">
-											<img src="/resources/user_lv/royal.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 3}">
-											<img src="/resources/user_lv/vip.png"
-												style="height: 50px; width: 650px" />
-										</c:when>
-										<c:when test="${opinion.user_lv eq 4}">
-											<img src="/resources/user_lv/vvip.png"
-												style="height: 50px; width: 50px" />
-										</c:when>
-									</c:choose>
+								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
+								
 								</div>
 								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #0099FF">
 									<!-- 닉네임과 의견 출력 -->
@@ -555,21 +445,21 @@
 									</div>
 									<!-- 태그가 있을 경우 출력 -->
 									<div class="col-sm-5 minitop">
-										<h4>
-											<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
-												<c:choose>
-													<c:when test="${tag.tag_op_no == opinion.op_no}">
-														<a href="#${tag.tagged_op_no}#">#의견</a>
-													</c:when>
-												</c:choose>
-												<c:choose>
-													<c:when test="${tag.tagged_op_no == opinion.op_no}">
-														<a href="#${tag.tag_op_no}#">#의견</a>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-										</h4>
-									</div>
+											<h4>
+												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
+													<c:choose>
+														<c:when test="${tag.tag_op_no == opinion.op_no}">
+															<a href="#${tag.tagged_op_no}#">#의견</a>
+														</c:when>
+													</c:choose>
+													<c:choose>
+														<c:when test="${tag.tagged_op_no == opinion.op_no}">
+															<a href="#${tag.tag_op_no}#">#의견</a>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+											</h4>
+										</div>
 									<!-- 의견 내용 -->
 									</div>
 									<hr />
@@ -602,6 +492,7 @@
 				</c:when>
 			</c:choose>
 		</c:forEach>
+	</div>
 	</div>
 	<!-- 무한스크롤을 위한 선언 -->
 	<div id="bottom"></div>
