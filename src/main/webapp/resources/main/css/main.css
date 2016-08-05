@@ -6,6 +6,9 @@
 @CHARSET "utf-8";
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+#search_btn {
+		padding: 13px;
+	}
 .item {
 	margin-top: 15px;
 }

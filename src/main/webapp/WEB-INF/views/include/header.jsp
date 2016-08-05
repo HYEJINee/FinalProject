@@ -51,7 +51,7 @@
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search_word"  id="search_word">
 							<span class="input-group-btn">
-								<button class="btn btn-default btnBoot" type="button"><span class="glyphicon glyphicon-search"></span></button>
+								<button id="search_btn" class="btn btn-default btnBoot" type="button"><span class="glyphicon glyphicon-search"></span></button>
 							</span>
 						</div>
 					</div>
