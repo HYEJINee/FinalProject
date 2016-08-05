@@ -118,7 +118,7 @@ public class MemberController {
       vo = service.selectMember(vo.getUser_email());
       WebUtils.setSessionAttribute(req, "USER_KEY", vo);
       logger.info("modifyComplete : " + vo.toString());
-      return "redirect:/mypage/mypage";
+      return "redirect:/mypage/mypage_home";
    }
    @RequestMapping(value="/member_logout")
    public String logout(HttpServletRequest req){
