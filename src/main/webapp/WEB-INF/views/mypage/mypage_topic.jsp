@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
@@ -148,6 +149,7 @@
 		</c:if>
 	</div>
 </div>
+<button id="topBtn" class="btn btn-default"><span class="glyphicon glyphicon-menu-up"></span><br/>Top</button>
 <div id="load"></div>
 
 <nav id="page_nav" style="display: none;">
@@ -155,5 +157,4 @@
 		<a href="/mypage/list?pageNo=2"></a>
 	</p>
 </nav>
-<script src="/resources/mypage/js/mypage_topic.js"></script>
 </html>

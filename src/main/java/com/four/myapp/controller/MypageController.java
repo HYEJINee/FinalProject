@@ -103,7 +103,7 @@ public class MypageController {
 	      return "redirect:/mypage/mypage";
 	   }
 	 
-	 @RequestMapping("/list")
+	 @RequestMapping(value="/list", method=RequestMethod.GET)
 	 public void ListHandler(HttpServletRequest request, @RequestParam(required=false) Integer pageNo, Model model) throws SQLException {
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO) session.getAttribute("USER_KEY");
@@ -111,7 +111,7 @@ public class MypageController {
 		if(pageNo == null)
 			  pageNo = 1;
 		int index = (pageNo-1) * 9;
-		System.out.println(pageNo);
+		System.out.println(index);
 		model.addAttribute("getMyList", service.getMyList(user_no, index));
 	 }
 }

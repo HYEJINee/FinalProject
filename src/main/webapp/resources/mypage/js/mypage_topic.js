@@ -12,7 +12,7 @@ function fnRead(div) {
 		location.href = "/proposal/read?topic_no=" + topic_no;
 	}
 	else if($(div).hasClass("progress_3")) {
-		location.href = "/ongoing/read?topic_no=" + topic_no;
+		location.href = "/read/read?topic_no=" + topic_no;
 	}
 	else {
 		location.href = "/finished/read?topic_no=" + topic_no;
@@ -20,7 +20,7 @@ function fnRead(div) {
   }
 //무한스크롤 설정
 function fnInfiScroll() {
-  	var $grid = $('.grid');
+var $grid = $('.grid');
 	
 	$grid.isotope({
 		// set itemSelector so .grid-sizer is not used in layout
@@ -49,10 +49,21 @@ function fnInfiScroll() {
 	
 	$('.nav-pills').on('click', 'li', function() {
 		var filterValue = $(this).attr('data-filter');
-			$grid.isotope({filter: filterValue});
-	});
+		$grid.isotope({filter: filterValue});
+	})
 }
 
 $(document).ready(function(){
 	  fnInfiScroll();
+	  //topBtn
+	  $(window).scroll(function(){
+			if($(this).scrollTop() > 200)
+				$("#topBtn").fadeIn();
+			else
+				$("#topBtn").fadeOut();
+		});
+		
+		$("#topBtn").click(function(){
+			$('html, body').animate( { scrollTop : 0 }, 400 );
+		});
 });

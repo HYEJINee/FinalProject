@@ -40,6 +40,7 @@ public class MypageDAOImpl implements MypageDAO {
 		MyListDTO myListDTO = new MyListDTO();
 		myListDTO.setUser_no(user_no);
 		myListDTO.setIndex(index);
+		System.out.println("user_no : " + user_no + "\nindex : " + index);
 		return sqlSession.selectList(NAMESPACE + ".getMyList", myListDTO);
 	}
 

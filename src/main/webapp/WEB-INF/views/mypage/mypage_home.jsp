@@ -61,7 +61,7 @@
 				</c:forEach>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="my-topic">
-				<%@include file="mypage_topic.jsp"%>
+				<jsp:include page="mypage_topic.jsp"/>
 			</div>
 			<div role="tabpanel" class="tab-pane " id="timeline">
 				<%@include file="mypage_time.jsp"%>
@@ -121,5 +121,6 @@
 		<script
 			src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
 		<script src="/resources/proposal/js/jquery.infinitescroll.min.js"></script>
+		<script src="/resources/mypage/js/mypage_topic.js"></script>   
 </body>
 </html>

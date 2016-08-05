@@ -19,14 +19,4 @@ public class OngoingServiceImpl implements OngoingService {
 		return dao.getAll_on(index);
 	}
 
-	@Override
-	public List<MainDto> getProCon_on(int index) throws SQLException {
-		return dao.getProCon_on(index);
-	}
-
-	@Override
-	public List<MainDto> getFree_on(int index) throws SQLException {
-		return dao.getFree_on(index);
-	}
-
 }

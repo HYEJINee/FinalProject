@@ -18,15 +18,4 @@ public class FinishedServiceImpl implements FinishedService {
 	public List<MainDto> getAll_fin(int index) throws SQLException {
 		return dao.getAll_fin(index);
 	}
-
-	@Override
-	public List<MainDto> getProCon_fin(int index) throws SQLException {
-		return dao.getProCon_fin(index);
-	}
-
-	@Override
-	public List<MainDto> getFree_fin(int index) throws SQLException {
-		return dao.getFree_fin(index);
-	}
-	
 }
