@@ -215,13 +215,13 @@
 						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group">
 								<div class="col-sm-1">
-											<img src="/resources/mypage/img/${opinion.user_profile}"
-												style="height: 80px; width: 80px" />
-								</div>
-								<div class="col-sm-1">
-								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
-								
-								</div>
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+										</div>
 								<!-- 닉네임과 찬성 텍스트 뿌림 -->
 								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #3333FF">
 									<div class="row">
@@ -236,12 +236,12 @@
 												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 													<c:choose>
 														<c:when test="${tag.tag_op_no == opinion.op_no}">
-															<a href="#${tag.tagged_op_no}#">#참조</a>
+															<a href="#${tag.tagged_op_no}#">#참조 의견</a>
 														</c:when>
 													</c:choose>
 													<c:choose>
 														<c:when test="${tag.tagged_op_no == opinion.op_no}">
-															<a href="#${tag.tag_op_no}#">#반박</a>
+															<a href="#${tag.tag_op_no}#">#반박 의견</a>
 														</c:when>
 													</c:choose>
 												</c:forEach>
@@ -300,12 +300,12 @@
 												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 													<c:choose>
 														<c:when test="${tag.tag_op_no == opinion.op_no}">
-															<a href="#${tag.tagged_op_no}#">#참조</a>
+															<a href="#${tag.tagged_op_no}#">#참조 의견</a>
 														</c:when>
 													</c:choose>
 													<c:choose>
 														<c:when test="${tag.tagged_op_no == opinion.op_no}">
-															<a href="#${tag.tag_op_no}#">#반박</a>
+															<a href="#${tag.tag_op_no}#">#반박 의견</a>
 														</c:when>
 													</c:choose>
 												</c:forEach>
@@ -338,13 +338,13 @@
 										</div>	
 								</div>
 								<div class="col-sm-1">
-											<img src="/resources/mypage/img/${opinion.user_profile}"
-												style="height: 80px; width: 80px" />
-								</div>
-								<div class="col-sm-1">
-								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
-								
-								</div>
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+										</div>
 							</div>
 						</form>
 					</div>
@@ -357,14 +357,14 @@
 						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group ">
 								<div class="col-sm-1">
-											<img src="/resources/mypage/img/${opinion.user_profile}"
-												style="height: 80px; width: 80px" />
-								</div>
-								<div class="col-sm-1">
-								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
-								
-								</div>
-								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #00FF99">
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+										</div>
+								<div class="col-sm-10" style="border-style: solid; border-width: 1px; border-color: #00FF99">
 									<!-- 닉네임과 의견 출력 -->
 									<div class="row">
 									<div class="col-sm-4">
@@ -378,12 +378,12 @@
 												<c:forEach items="${taglist}" var="tag" varStatus="tagstart">
 													<c:choose>
 														<c:when test="${tag.tag_op_no == opinion.op_no}">
-															<a href="#${tag.tagged_op_no}#">#참조</a>
+															<a href="#${tag.tagged_op_no}#">#참조 의견</a>
 														</c:when>
 													</c:choose>
 													<c:choose>
 														<c:when test="${tag.tagged_op_no == opinion.op_no}">
-															<a href="#${tag.tag_op_no}#">#반박</a>
+															<a href="#${tag.tag_op_no}#">#반박 의견</a>
 														</c:when>
 													</c:choose>
 												</c:forEach>
@@ -428,14 +428,14 @@
 						<form class="form-horizontal" action="like" method="post" >
 							<div class="form-group">
 								<div class="col-sm-1">
-											<img src="/resources/mypage/img/${opinion.user_profile}"
-												style="height: 80px; width: 80px" />
-								</div>
-								<div class="col-sm-1">
-								<img src="${opinion.user_lv_img}" style="height: 50px; width: 50px" />
-								
-								</div>
-								<div class="col-sm-9" style="border-style: solid; border-width: 1px; border-color: #0099FF">
+										<div class="profile-75">
+											<div class="round-profile"
+												style="background-image: url(/resources/mypage/img/${opinion.user_profile})">
+												<img class="user-lv-26" src="${opinion.user_lv_img}" />
+											</div>
+										</div>
+										</div>
+								<div class="col-sm-10" style="border-style: solid; border-width: 1px; border-color: #0099FF">
 									<!-- 닉네임과 의견 출력 -->
 									<div class="row">
 									<div class="col-sm-4">

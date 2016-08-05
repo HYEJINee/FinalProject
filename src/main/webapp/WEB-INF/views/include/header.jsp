@@ -1,4 +1,5 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"  isELIgnored="false"%>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"
+	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -17,14 +18,15 @@
 	href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/css/flat-theme.css">
 <link rel="stylesheet" href="/resources/css/custom.css">
-<link href="${pageContext.request.contextPath}/resources/css/card.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/card.css"
+	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
 </head>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container-fluid ">
+		<div class="container-fluid header">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -33,20 +35,24 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<img src="/resources/css/img/logo.png" style="width:70px;height:70px;"/>
-				<a class="navbar-brand" href="/">TAWAR</a>
+				<a class="navbar-brand" id="navbar-brand" href="#"> <img id="nav-icon" alt="Brand"
+					src="/resources/css/img/logo.png"
+					/>
+				</a> <a class="navbar-brand" href="/">TAWAR</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-				<li id="about"><a href="/about/about">TAWAR 소개</a></li>
-					<li id="proposal"><a href="/proposal/list">안건 건의<span class="sr-only"></span></a></li>
+					<li id="about"><a href="/about/about">TAWAR 소개</a></li>
+					<li id="proposal"><a href="/proposal/list">안건 건의<span
+							class="sr-only"></span></a></li>
 					<li id="ongoing"><a href="/ongoing/list">토론중</a></li>
 					<li id="finished"><a href="/finished/list">종료된 토론</a>
 				</ul>
-				<form class="navbar-form navbar-left" action="/search/search_result"  method="get">
+				<form class="navbar-form navbar-left" action="/search/search_result"
+					method="get">
 					<div class="form-group">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search_word"  id="search_word">
@@ -54,6 +60,7 @@
 								<button id="search_btn" class="btn btn-default btnBoot" type="button"><span class="glyphicon glyphicon-search"></span></button>
 							</span>
 						</div>
+
 					</div>
 				</form>
 				<ul class="nav navbar-nav navbar-right">

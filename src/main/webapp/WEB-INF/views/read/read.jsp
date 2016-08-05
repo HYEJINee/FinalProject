@@ -296,12 +296,12 @@
 														varStatus="tagstart">
 														<c:choose>
 															<c:when test="${tag.tag_op_no == opinion.op_no}">
-																<a href="#${tag.tagged_op_no}#">#참조</a>
+																<a href="#${tag.tagged_op_no}#">#참조 의견</a>
 															</c:when>
 														</c:choose>
 														<c:choose>
 															<c:when test="${tag.tagged_op_no == opinion.op_no}">
-																<a href="#${tag.tag_op_no}#">#반박</a>
+																<a href="#${tag.tag_op_no}#">#반박 의견</a>
 															</c:when>
 														</c:choose>
 													</c:forEach>
@@ -444,12 +444,12 @@
 														varStatus="tagstart">
 														<c:choose>
 															<c:when test="${tag.tag_op_no == opinion.op_no}">
-																<a href="#${tag.tagged_op_no}#">#참조</a>
+																<a href="#${tag.tagged_op_no}#">#참조 의견</a>
 															</c:when>
 														</c:choose>
 														<c:choose>
 															<c:when test="${tag.tagged_op_no == opinion.op_no}">
-																<a href="#${tag.tag_op_no}#">#반박</a>
+																<a href="#${tag.tag_op_no}#">#반박 의견</a>
 															</c:when>
 														</c:choose>
 													</c:forEach>
@@ -622,12 +622,12 @@
 														varStatus="tagstart">
 														<c:choose>
 															<c:when test="${tag.tag_op_no == opinion.op_no}">
-																<a href="#${tag.tagged_op_no}#">#참조</a>
+																<a href="#${tag.tagged_op_no}#">#참조 의견</a>
 															</c:when>
 														</c:choose>
 														<c:choose>
 															<c:when test="${tag.tagged_op_no == opinion.op_no}">
-																<a href="#${tag.tag_op_no}#">#반박</a>
+																<a href="#${tag.tag_op_no}#">#반박 의견</a>
 															</c:when>
 														</c:choose>
 													</c:forEach>
@@ -938,7 +938,7 @@
 								</c:when>
 								<c:otherwise>
 									<div class="round-profile"
-										style="background-image: url(/resources/mypage/img/storm.jpg})">
+										style="background-image: url(/resources/mypage/img/storm.jpg)">
 									</div>
 								</c:otherwise>
 								</c:choose>

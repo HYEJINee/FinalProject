@@ -11,7 +11,7 @@
 		url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format('woff'),
 		url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format('truetype');
 }
-h1, h2, h3, h4, span {
+h1, h2, h3, h4, span, .header {
 	font-family: 'Jeju Gothic', sans-serif;
 }
 .glyphicon {
@@ -23,6 +23,17 @@ h1, h2, h3, h4, span {
 .center {
 	margin: 0 auto;
 	text-align: center;
+}
+#nav-icon {
+	height: 47px;
+	width: 47px;
+}
+#navbar-brand {
+	margin: 0;
+	padding: 6px 25px 0 10px;
+}
+.navbar-brand {
+    font-size: 23px;
 }
 #content {
 	margin-top: 80px;
