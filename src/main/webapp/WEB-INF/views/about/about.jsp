@@ -6,7 +6,7 @@
 </head>
 <style>
 .image{
-	margin-top : 200px;
+	margin:150 auto;
 	width : 100%;
 }
 </style>
@@ -14,7 +14,7 @@
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<div class="container">
 	<div class="row">
-	<div class="image">
+	<div class="center image">
 	<img src="/resources/about/about_1.PNG"/>
 	
 	<img src="/resources/about/about_2.PNG"/>

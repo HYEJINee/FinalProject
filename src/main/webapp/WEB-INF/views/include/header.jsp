@@ -33,6 +33,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
+				<img src="/resources/css/img/logo.png" style="width:70px;height:70px;"/>
 				<a class="navbar-brand" href="/">TAWAR</a>
 			</div>
 
