@@ -33,21 +33,6 @@ public class FinishedController {
 		model.addAttribute("list", service.getAll_fin(index));
 	}
 	
-	@RequestMapping("/tab")
-	public @ResponseBody List<MainDto> TabHandler(@RequestParam("pageNo") Integer pageNo, @RequestParam("type") String type, Model model) throws SQLException {
-		int index = 0;
-		if(pageNo == null)
-			  pageNo = 1;
-		index = (pageNo-1) * 9;
-		
-		if(type.equals("all"))
-			return service.getAll_fin(index);
-		else if(type.equals("pro-con"))
-			return service.getProCon_fin(index);
-		else
-			return service.getFree_fin(index);
-	}
-	
 	@Autowired
 	private ReadService read_service;
 	
