@@ -111,6 +111,7 @@ public class MypageController {
 		if(pageNo == null)
 			  pageNo = 1;
 		int index = (pageNo-1) * 9;
+		System.out.println(pageNo);
 		model.addAttribute("getMyList", service.getMyList(user_no, index));
 	 }
 }

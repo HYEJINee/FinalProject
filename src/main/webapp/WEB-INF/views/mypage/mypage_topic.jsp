@@ -155,4 +155,5 @@
 		<a href="/mypage/list?pageNo=2"></a>
 	</p>
 </nav>
+<script src="/resources/mypage/js/mypage_topic.js"></script>
 </html>
