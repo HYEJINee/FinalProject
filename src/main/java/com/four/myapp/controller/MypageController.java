@@ -102,5 +102,15 @@ public class MypageController {
 		   WebUtils.setSessionAttribute(req, "USER_KEY", vo);
 	      return "redirect:/mypage/mypage";
 	   }
-
+	 
+	 @RequestMapping("/list")
+	 public void ListHandler(HttpServletRequest request, @RequestParam(required=false) Integer pageNo, Model model) throws SQLException {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("USER_KEY");
+		String user_no = vo.getUser_no();
+		if(pageNo == null)
+			  pageNo = 1;
+		int index = (pageNo-1) * 9;
+		model.addAttribute("getMyList", service.getMyList(user_no, index));
+	 }
 }

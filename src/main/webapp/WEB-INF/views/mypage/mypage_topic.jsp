@@ -152,7 +152,7 @@
 
 <nav id="page_nav" style="display: none;">
 	<p>
-		<a href="/ongoing/list?pageNo=2"></a>
+		<a href="/mypage/list?pageNo=2"></a>
 	</p>
 </nav>
 </html>
