@@ -24,8 +24,8 @@
 	
 	<insert id="timelineTopic" parameterType="TimelineDTO">
 		insert into
-		timeline_tbl (user_no, topic_no, topic_type, timeline_type) values
-		(#{user_no}, #{topic_no}, #{topic_type}, #{timeline_type});
+		timeline_tbl (user_no, topic_no, timeline_type) values
+		(#{user_no}, #{topic_no}, #{timeline_type});
 	</insert>
 	
 	<insert id="notiTopic" parameterType="NotiDTO">
