@@ -132,8 +132,8 @@
 		<p><a href="/ongoing/list?pageNo=2"></a></p>
 	</nav>
 <script src="/resources/finished/js/finished.js"></script>
-<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
-<script src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
 <script src="/resources/proposal/js/jquery.infinitescroll.min.js"></script>
 </body>
 </html>

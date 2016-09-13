@@ -502,8 +502,8 @@
 	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
-<script src="https://npmcdn.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/read/js/jquery.infinitescroll.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/read/js/read.js"></script>
 </body>
